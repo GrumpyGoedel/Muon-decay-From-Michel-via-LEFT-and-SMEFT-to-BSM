@@ -1,0 +1,1802 @@
+\documentclass[parskip=half]{scrreprt}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{setspace}
+\DeclareOldFontCommand{\bf}{\normalfont\bfseries}{\mathbf}
+\DeclareOldFontCommand{\rm}{\normalfont\rmfamily}{\mathrm}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[force]{feynmp-auto}
+\usepackage[backend=biber, uniquename=false, 
+    uniquelist=false,
+    maxcitenames=3]{biblatex}
+\addbibresource{literature.bib}
+\usepackage{amsmath,amssymb}
+\usepackage{slashed}
+\newcommand{\im}{\text{i}}
+\newcommand{\op}{\mathcal{O}}
+%%%%%%%%%%%% Jenkins, Manohar, Stoffer commands
+\def\nn{\nonumber\\ }
+\def\gamfY#1#2#3{\gamma^{(Y)}_{\substack{#1 \\ #2 #3}}}
+\def\rd{{\rm d}}
+\def\abs#1{\left| #1 \right| }
+\def\lsix{ \mathcal{L}^{(6)}}
+\def\lchi{\Lambda_\chi}
+\def\lqcd{ \Lambda_{\text{QCD}}}
+\def\vev#1{\left\langle #1 \right\rangle}
+\def\msbar{$\overline{\hbox{MS}}$}
+\def\hyp{\mathsf{y}}
+\def\tr{{\rm Tr}\,}
+\def\gamHY{\gamma^{(Y)}_H}
+\def\gamfY#1#2#3{\gamma^{(Y)}_{\substack{#1 \\ #2 #3}}}
+\newcommand{\de}{\text{d}}
+%%%%%%%%%%%
+\usepackage{autobreak}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage{bm}
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings, decorations.pathmorphing, positioning, arrows.meta}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{pdfpages}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{csquotes}
+\usepackage[normalem]{ulem}
+\usepackage{multirow}
+
+\title{Muon decay: From Michel via LEFT and SMEFT to BSM}
+\author{Carl Jakob Moritz}
+\date{June 2026}
+
+\begin{document}
+%\doublespacing
+\begin{fmffile}{main}
+\fmfset{arrow_len}{3mm}
+\newsavebox{\muondecaySM}
+\newsavebox{\muondecayLEFT}
+
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    \hspace*{-.6cm}
+    \begin{tikzpicture}
+        \node (muon) at (0,0) {\textsf{\LARGE Muon}};
+        \node[anchor=north] (decay) at (muon.south) [yshift=0.32cm,xshift=-0.28cm] {\textsf{\LARGE decay}};
+        \coordinate (vertex1) at (-0.7,0.5);
+        \coordinate (vertex2) at (0.3,-0.9);
+        \draw[postaction={
+            decorate,
+            decoration={
+                markings,
+                % Change 0.5 to move the arrow along the line
+                mark=at position 0.5 with {\arrow{Stealth[length=6pt]}}
+            }
+        }] (-6,3) -- (vertex1);
+        \draw[postaction={
+            decorate,
+            decoration={
+                markings,
+                % Change 0.5 to move the arrow along the line
+                mark=at position 0.5 with {\arrow{Stealth[length=6pt]}}
+            }
+        }] (vertex1) -- (3,2);
+        \draw[postaction={
+            decorate,
+            decoration={
+                markings,
+                % Change 0.5 to move the arrow along the line
+                mark=at position 0.5 with {\arrow{Stealth[length=6pt]}}
+            }
+        }] (3,-2) -- (vertex2);
+        \draw[postaction={
+            decorate,
+            decoration={
+                markings,
+                % Change 0.5 to move the arrow along the line
+                mark=at position 0.5 with {\arrow{Stealth[length=6pt]}}
+            }
+        }] (vertex2) -- (2,-4);
+    \end{tikzpicture}\par\vspace*{4cm}
+    \sffamily\Large 
+    From the Michel parameters via LEFT and SMEFT to BSM\par\large 
+    A comprehensive exploration of energy regimes and theoretical layers\par\vspace*{3cm}\normalsize
+    Carl Jakob Moritz\par 
+    May 2026\par 
+    Supervisor: Tyler Corbett\par
+    University of Vienna
+    
+\end{titlepage}
+\section*{Abstract}
+How would a heavy new field from beyond the Standard Model leave its imprint on a
+process like muon decay that happens well below the electroweak scale? In order to
+bridge the energy regimes and investigate the traces of new physics within the
+phenomenology of muon decay, we perturb the Michel parameters in the presence of
+Low Energy Effective Field Theory (LEFT) operators. To infer their UV origin, we
+collect the matching Standard Model Effective Field Theory (SMEFT) operators at
+dimension six. Finally, we open them up and ask: Which possible Beyond Standard
+Model (BSM) fields could produce them? Focusing on one specific BSM scalar field,
+we derive the constraints imposed by precision measurements of muon decay. This
+approach synthesizes experimental data and effective field theory matching into a
+comprehensive exploration of energy scales and theoretical layers.
+\tableofcontents
+\chapter{Introduction}
+\textit{The true is the whole. However, the whole is only the essence completing itself through its own development.}\par
+\begin{raggedleft}
+    G.W.F Hegel: Phenomenology of Spirit \cite[p.11]{hegel1977pheno}\par
+\end{raggedleft} \vspace{0.8cm}
+The muon was not welcomed quite enthusiastically by particle physicists when it made its first appearance in cloud chamber experiments in the 1930s \cite{neddermeyer1937note}: \enquote{Who ordered that?} was Isidor Rabi's famous reaction to the strange new particle \cite{bartusiak1987who}, encapturing the disorientation of a scientific community who firmly believed matter to consist of electrons, neutrons and protons. The muon fitted nowhere in this scheme: Sharing all its properties with the electron except having 200 times its mass, the muon seemed to be basically a heavy copy of the electron. 
+
+But soon the muon took its place at the very heart of particle research, acting as a messenger for a plethora of unkown physics: Being the first heavy sibling of the elctron to be discovered, it introduced the three-generational structure of the Standard Model, where each matter field exists in three different versions of increasing mass. The muon decaying into an electron with varying energy proved that another new type of particle had to be involved in the process which carried the rest of the energy but was otherwise neutral and lightweight -- the neutrino. And when Louis Michel first determined the spectrum shape of the emitted electron by a single parameter $\rho$, experimental physicists could go on to resolve the precise nature of the electroweak interaction to be of V-A nature. So arguably muon decay has served for many decades as almost a kind of Rosetta stone for particle physics. But -- has its translative potential truly been exhausted yet?\par 
+The V-A structure of electroweak interactions was later explained as being mediated by a heavy gauge field and the full theory of electroweak processes involves four gauge fields, three of which obtain mass when the scalar doublet they interact with obtains its vaccum expecation value of $\approx 246\text{ GeV}$. Their exact properties were revealed only later by specific experiments but many features of the heavy new particles could already be deduced from the precise phenomenology of muon decay. In the same way this process could be viewed as setting constraints for yet unknown physics. In order to determine precise boundaries for possible extensions of the Standard Model we apply a rigorous approach to bridge the energy regimes: At the scale of the muon mass the Low Energy Effective Field Theory (LEFT) is the adequate description for processes such as muon decay. We perturb the standard set of Michel parameters $\rho, \eta, \delta$ and $\xi$ of muon decay by the presence of LEFT operators -- first by the two operators that account for the classic signature $\mu^- \to e^- \bar{\nu}_e \nu_\mu$ and then by LEFT operators that allow for all possible combinations of neutrino output: Two neutrinos of any generation and with any lepton number $+1$ or $-1$. From experimental values for the Michel parameters we deduce the supression range of the LEFT operators. Then we begin the search for UV origins of the LEFT operators. To this end we first evolve the LEFT operators up to the electroweak scale, match their SMEFT origins onto them and subsequently evolve the SMEFT operators up to the energy scale of new physics. Here, we use a dictionary for SMEFT operators to collect possible UV fields which would produce them and therefore leave their imprint on muon decay. In this way we apply yet another precise reading of the muonic Rosetta stone and see whether the particle no one ordered has yet another thing to tell us.\par 
+The structure of the thesis is as follows: The first chapter revolves around the Michel parameters of muon decay, whereby we first briefly introduce the Standard Model and how it describes muon decay. Subsequently the parameters themselves are introduced and how they shed light on the interaction involved in muon decay. Then the LEFT is introduced and how the presence of LEFT operators perturbs the Michel parameters. Finally the Renormalization group equations are applied to evolve the LEFT operators up to the electroweak scale.\par 
+In the second chapter we delve into the Standard Model Effective Field Theory (SMEFT). After the being introduced in the first section, its matching conditions onto the LEFT are used to translate the derived constraints from the first chapter to the energy regime above the electroweak scale. The full one-loop RGEs for SMEFT dimension six and seven are then used to further evolve the constraints up to the scale of new physics.\par
+We begin the fourth chapter by a short review of the general approaches of top-down and bottom-up effective field theories. After the short outline of its theoretical mechanisms a full dictionary for SMEFT operators is used to collect the UV origins of the identified operators.\par 
+In the last chapter we present our results, namely the constraints for the UV origins of muon decay that stem from the exerimental values of the Michel parameters. After reflecting on the posed question of how muon decay thus has still to tell us about new physics we then give a short outlook on how the findings could be further analyzed and refined by possible new directions of investigation.
+\chapter{Muon decay in the Standard Model}
+We briefly introduce the Standard Model of particle physics - its gauge symmetry, field contents and Lagrangian density. For muon decay, however, we do not need the full SM: At the energy scale of the muon mass, the $W$ boson is not a dynamical degree of freedom and can be intergrated out. The effective theory obtained this way resembles the historical 4-Fermi theory and we use it to derive the decay width for muon decay.
+\begin{figure}[ht]
+    \centering
+    \vspace*{1.5cm}
+    \hspace*{-2cm}
+    \begin{fmfgraph*}(80,60)
+        \fmfleft{l1,l2}
+        \fmfright{r1,r2,r3}
+        \fmf{fermion,tension=2}{l2,o1}
+        \fmf{fermion}{o1,r3}
+        \fmf{photon,label=$W^-$}{o1,o2}
+        \fmf{fermion}{r1,o2,r2}
+        \fmflabel{$\mu^-$}{l2}
+        \fmflabel{$\nu_\mu$}{r3}
+        \fmflabel{$e^-$}{r2}
+        \fmflabel{$\bar\nu_e$}{r1}
+    \end{fmfgraph*}\par\vspace{1cm}
+    \caption{Muon decay in the Standard Model}
+    \label{fig:mdSM}
+\end{figure}
+\section{The Standard Model}
+The fundamental structuring principle for the Standard Model is its local gauge symmetry group:
+\begin{equation}
+    SU(3)_C \times SU(2)_L \times U(1)_Y
+\end{equation}
+The first subgroup $SU(3)_C$ defines quantum chromodynamics, the theory of strong interactions governing quarks by means of 8 massless gluons. The other two subgroups $SU(2)_L \times U(1)_Y$ jointly represents the unified electroweak sector. The three generations of left-handed lepton fields $L$ and quark fields $Q$ transform as doublets under $SU(2)_L$, whereas the right-handed lepton $e$, up-type quark $u$ and down-type quark $d$ transform as singlets. The gauge bosons of $SU(2)_L$ thus couple exclusively to left-handed fermions, rendering electroweak theory chiral. The completing building block of the SM is the Higgs doublet $H$. After it acquires a vacuum expectation value (VEV) at an energy of $v\approx 246\text{ GeV}$ it no longer transforms as a $SU(2)_L$ doublet but as a singlet - and the three remaining degrees of freedom are absorbed by three vector bosons obtaining a mass. The Higgs VEV thus defines the electroweak scale, below which the $SU(2)_L \times U(1)_Y$ symmetry group is broken and only the electromagnetic $U(1)_\text{em}$ symmetry applies. Above the electroweak scale the entire symmetry group $SU(2)_L \times U(1)_Y$ applies and the full Lagrangian density is constructed as a renormalizable and gauge invariant theory:
+\begin{align}
+\mathcal{L} _{\rm SM} &= -\frac14 G_{\mu \nu}^A G^{A\mu \nu}-\frac14 W_{\mu \nu}^I W^{I \mu \nu} -\frac14 B_{\mu \nu} B^{\mu \nu}
++ (D_\mu H^\dagger)(D^\mu H)+\sum_{\psi=Q,L,e,u,d} \overline \psi\, i \slashed{D} \, \psi\nn
+&-\lambda \left(H^\dagger H -\frac12 v^2\right)^2- \biggl[ H^{\dagger j} \overline d\, Y_d\, Q_{j} + \widetilde H^{\dagger j} \overline u\, Y_u\, Q_{j} + H^{\dagger j} \overline e\, Y_e\,  L_{j} + \hbox{h.c.}\biggr]
+\label{eq:LagSM}
+\end{align}
+The gauge covariant derivative is:
+\begin{equation}
+    D_\mu = \partial_\mu + i g_3 T^A A^A_\mu + \tfrac{1}{2}i g_2  \sigma^I W^I_\mu + i g_1 \hyp B_\mu
+\end{equation}
+Here, $T^A$ are the $SU(3)_C$ generators,  the Pauli matrices $\tfrac{1}{2}\sigma^I$ generate $SU(2)_L$, and $\hyp$ is the $U(1)_Y$ hypercharge generator.  The fermion fields have weak-eigenstate indices $r=1, ..., 3$ and the Yukawa couplings are $3\times 3$ matrices. $\widetilde H$ is defined by
+\begin{align}
+\widetilde H_j &= \epsilon_{jk} H^{\dagger\, k}
+\end{align}
+Here, an $SU(2)$ invariant tensor $\epsilon_{jk}$ is defined by $\epsilon_{12}=1$ and $\epsilon_{jk}=-\epsilon_{kj}$, $j,k=1,2$.
+
+\section{Weak interactions and leptonic currents}
+We wish to find a description for muon decay in the SM, whereby we will use the following momenta convention:
+\begin{equation}
+    \mu^-(q)\to \bar{\nu}_e(k_1)+\nu_\mu(k_2)+e^-(p)
+    \label{eq:md}
+\end{equation}
+From the fermion sector of the SM Lagrangian \ref{eq:LagSM} we can derive the interaction term of the lepton doublet with the $SU(2)_L$ gauge bosons:
+\begin{equation}
+    \mathcal{L}_\text{int}^{SU(2)_L}=\bar{L} i\gamma^\mu \tfrac{1}{2}i g_2  \sigma^I W^I_\mu L
+\end{equation}
+We expand the product of the Pauli matrices and the weak gauge fields and rotate the latter to their physical, charged fields:
+\begin{equation}
+    W_\mu^\pm = \frac{1}{\sqrt{2}} (W_\mu^1 \mp i W_\mu^2)
+\end{equation}
+We then find the following interaction terms (dropping flavor indices):
+\begin{equation}
+    \mathcal{L}_\text{int}^{SU(2)_L} = \frac{g_2}{2} \left( \bar{\nu}_L \gamma^\mu W_\mu^3 \nu_L - \bar{e}_L \gamma^\mu W_\mu^3 e_L + \sqrt{2} \bar{\nu}_L \gamma^\mu W_\mu^+ e_L + \sqrt{2} \bar{e}_L \gamma^\mu W_\mu^- \nu_L \right)
+\end{equation}
+We see that two interactions $\sqrt{2} \bar{e}_L \gamma^\mu W_\mu^- \nu_L$ allow us to describe muon decay as mediated by a $W^-$ boson (see fig. \ref{fig:mdSM}). The full invariant amplitude can the be derived by applying Feynman rules, notably inserting two vertex factors $i\tfrac{g}{\sqrt{2}}\gamma^\mu P_L$ and the $W^-$ propagator $-i\left(g_{\mu\nu}-\frac{k_\mu k_\nu}{m_W^2}\right)/\left(k^2-m_W^2\right)^{-1}$, and setting the spinor momenta according to \ref{eq:md}:
+\begin{equation}
+    \im\mathcal{M}=\Big[\bar u(k_1)\big(i\tfrac{g}{\sqrt{2}}\gamma^\mu P_L\big)u(q)\Big]
+                    \frac{-i\Big(g_{\mu\nu}-\frac{k_\mu k_\nu}{m_W^2}\Big)}{k^2-m_W^2}
+                    \Big[\bar u(p)\big(\im\tfrac{g}{\sqrt{2}}\gamma^\mu P_L\big)u(k_2)\Big]
+    \label{eq:mdAmp}
+\end{equation}
+The momentum $k$ of the $W^-$ boson relates to the momenta of the interacting leptons by $k=q-k_1=k_2+p$ -- but since the momentum exchange is very small compared to the $W$ boson mass, we can expand the propagator:
+\begin{equation}
+    \frac{-\im\Big(g_{\mu\nu}-\frac{k_\mu k_\nu}{m_W^2}\Big)}{k^2-m_W^2} \approx
+    -\im\frac{g_{\mu\nu}}{m_W^2}+\mathcal{O}\left(\frac{k^4}{m_W^2}\right)
+\end{equation}
+Substituting this simplified propagator back into the amplitude yields:
+\begin{equation}
+    \mathcal{M}=-\frac{g_2^2}{2m_W^2}[\bar u(k_1)\gamma^\mu P_L u(q)][\bar u(p)\gamma_\mu P_L u(k_2)]
+\end{equation}
+This result resembles the theory that Fermi presented in 1934 for beta decay \cite{fermi1934tentativo} where he conceptualized the process by a 4-fermion vector-vector interaction Hamiltonian. He already speculated about a heavy, undiscovered mechanism and gave an account of the decay as an approximated local interaction between the two weak currents. In order to connect his theory with the SM and frame it as a low energy limit of a UV complete Lagrangian we are adjusting Fermi's approach to modern terminology, namely by writing it as an interaction term of two charged currents in a Lagrangian:
+\begin{equation}
+    \mathcal{L}_\text{IR} = \frac{-4G_F}{\sqrt{2}} \left[ \bar{e} \gamma^\mu P_L \nu_e + \bar{\mu} \gamma^\mu P_L \nu_\mu \right] \left[ \bar{\nu}_e \gamma_\mu P_L e + \bar{\nu}_\mu \gamma_\mu P_L \mu \right]
+    \label{eq:LagIR}
+\end{equation}
+The coupling constant $G_F$ of this interaction has a factor $\tfrac{4}{\sqrt{2}}$ to appropriately connect this direct coupling to the SM parameters, as we will see soon. The IR Lagrangian gives as a Feynman rule the 4-fermion vertex $-i \frac{4G_F}{\sqrt{2}} [\gamma^\mu P_L]_{ab} [\gamma_\mu P_L]_{cd}$ where $abcd$ are Dirac indices of the respective spinor pairs. Contracting the vertex with the four particles of muon decay gives the amplitude:
+\begin{equation}
+    \mathcal{M}=-\frac{4G_F}{\sqrt{2}}[\bar u(k_1)\gamma^\mu P_L u(q)][\bar u(p)\gamma_\mu P_L u(k_2)]
+    \label{eq:Amp4F}
+\end{equation}
+We see that the IR Lagrangian and the SM Lagrangian in the large $m_W$ limit produce the same amplitude for muon decay if:
+\begin{equation}
+    -\frac{4G_F}{\sqrt{2}}=-\frac{g_2^2}{2m_W^2}\implies G_F=\frac{\sqrt{2}g_2^2}{8m_W^2}
+\end{equation}
+In order to make the connection between the the two theories precise we will now give an account of how to generally integrate out heavy fields from the Lagrangian and how to apply the technique to the $W^-$ boson.
+\begin{figure}[t]
+    \centering
+    \sbox{\muondecaySM}{
+        \begin{fmfgraph*}(80,60)
+            \fmfleft{l1,l2}
+            \fmfright{r1,r2,r3}
+            \fmf{fermion,tension=2}{l2,o1}
+            \fmf{fermion}{o1,r3}
+            \fmf{photon,label=$W^-$}{o1,o2}
+            \fmf{fermion}{r1,o2,r2}
+            \fmflabel{$\mu^-$}{l2}
+            \fmflabel{$\nu_\mu$}{r3}
+            \fmflabel{$e^-$}{r2}
+            \fmflabel{$\bar\nu_e$}{r1}
+        \end{fmfgraph*}
+    }
+    \sbox{\muondecayLEFT}{
+        \begin{fmfgraph*}(80,60)
+            \fmfleft{l1,l2}
+            \fmfright{r1,r2,r3}
+            \fmf{fermion,tension=2}{l2,o1}
+            \fmf{phantom,tension=25}{o1,o2}
+            \fmf{fermion}{o1,r3}
+            \fmf{fermion}{r1,o2,r2}
+            \fmflabel{$\mu^-$}{l2}
+            \fmflabel{$\nu_\mu$}{r3}
+            \fmflabel{$e^-$}{r2}
+            \fmflabel{$\bar\nu_e$}{r1}
+        \end{fmfgraph*}
+    }
+    \begin{tikzpicture}
+        \node (mdSM) {\usebox{\muondecaySM}};
+        \node[anchor=west] (mdLEFT) at (mdSM.east) [xshift=3.3cm] {\usebox{\muondecayLEFT}};
+        \draw[->, thick, dotted, shorten <=25pt, shorten >=-5pt] (mdSM.south) to[bend right] node[midway, below] {$q^2\ll m_W^2$} (mdLEFT.south);
+        \node[anchor=north] at (mdSM.south) [yshift=0.5cm] {$\frac{g^2}{q^2-m_W^2}$};
+        \node[anchor=north] (mdLEFTform) at (mdLEFT.south) [yshift=1.2cm, xshift=-0.6cm] {$-\frac{g^2}{m_W^2}\propto G_F$};
+    \end{tikzpicture}
+    \caption{The four-fermion contact interaction}
+    \label{fig:mdSM2FF}
+\end{figure}
+\section{Integrating out heavy fields}
+In the path integral formulation, the dynamics of a system are captured by the generating functional, which integrates over all possible field configurations. For a theory containing both light fields, denoted collectively as $\phi$, and a heavy field $\Phi$ with mass $M \gg E$ (where $E$ is the typical energy scale of the physical processes under consideration), the effective action $S_{\text{eff}}[\phi]$ for the light degrees of freedom is formally defined by integrating out the heavy field \cite{Donoghue:1992dd}:
+\begin{equation}
+    e^{i S_{\text{eff}}[\phi]} = \int \mathcal{D}\Phi \, e^{i S[\phi, \Phi]}
+\end{equation}
+If the heavy field $\Phi$ appears strictly quadratically in the action -- for instance, interacting with a current $J(\phi)$ composed of light fields via an interaction term $J \Phi$ -- the path integral is exactly solvable. It reduces to a multi-dimensional Gaussian integral. By shifting the integration variable to complete the square, the heavy field can be analytically integrated out, resulting in a non-local effective action. At low energies ($p^2 \ll M^2$), the heavy propagator $1/(p^2 - M^2)$ collapses to a point-like contact interaction $-1/M^2$, generating the local operators of the effective field theory.
+
+However, if the heavy field possesses self-interactions or couples non-linearly, the path integral cannot be evaluated exactly. Instead, one employs the saddle-point approximation. In the low-energy limit, the path integral is overwhelmingly dominated by the field configuration that minimizes the action. We expand the heavy field around this classical minimum, $\Phi_c$:
+\begin{equation}
+    \Phi = \Phi_c + \eta
+\end{equation}
+where $\eta$ represents quantum fluctuations, and $\Phi_c$ is the solution to the Euler-Lagrange Equation of Motion (EOM), defined by:
+\begin{equation}
+    \left. \frac{\delta S[\phi, \Phi]}{\delta \Phi} \right|_{\Phi = \Phi_c} = 0
+\end{equation}
+Expanding the action around $\Phi_c$ yields:
+\begin{equation}
+    S[\phi, \Phi] = S[\phi, \Phi_c] + \frac{1}{2} \left. \frac{\delta^2 S}{\delta \Phi^2} \right|_{\Phi_c} \eta^2 + \mathcal{O}(\eta^3)
+\end{equation}
+Notably, the linear term in $\eta$ vanishes by definition of the EOM. The integration over the quadratic quantum fluctuations $\eta$ generates a functional determinant, which corresponds to one-loop quantum corrections.
+If we restrict our matching procedure strictly to tree-level, these loop corrections are neglected. The effective action simply becomes the original action evaluated at the classical minimum:
+\begin{equation}
+    S_{\text{eff}}^{\text{tree}}[\phi] \approx S[\phi, \Phi_c]
+\end{equation}
+Therefore, replacing a heavy mediator with its classical equation of motion and substituting it back into the Lagrangian evaluates the path integral at the tree-level saddle point. We now perform this calculation for the $W^\pm$ in order to derive the IR Lagrangian appropriate for muon decay. To this end we first isolate the terms in the electroweak Lagranigan that contain the $W^\pm$ boson:
+\begin{equation}
+    \mathcal{L}_ \text{SM} \supset -\frac{1}{2} W_{\mu\nu}^+ W^{-\mu\nu} + m_W^2 W_\mu^+ W^{-\mu} - \frac{g}{\sqrt{2}} \left( J^\mu W_\mu^+ + J^{\mu \dagger} W_\mu^- \right)
+    \label{eq:LagW}
+\end{equation}
+The current $J^\mu$ is that of eq. \ref{eq:LagIR}, containing only the first and second generation of leptons:
+\begin{equation}
+    J^\mu=\bar{e} \gamma^\mu P_L \nu_e + \bar{\mu} \gamma^\mu P_L \nu_\mu 
+\end{equation}
+To find the EOM we apply the Euler-Lagrange equation:
+\begin{equation}
+    \frac{\partial \mathcal{L}}{\partial W_\mu^-} - \partial_\nu \frac{\partial \mathcal{L}}{\partial (\partial_\nu W_\mu^-)} = 0
+\end{equation}
+This gives:
+\begin{equation}
+    m_W^2 W_\mu^+ - \frac{g}{\sqrt{2}} J^\mu + \partial^\nu W_{\nu\mu}^+ = 0
+\end{equation}
+The derivative of $W_{\nu\mu}$ corresponds to the momentum $p$ and the term can therefore be neglected in the low energy limit. We therefore have:
+\begin{equation}
+    W_\mu^+ \approx \frac{g}{\sqrt{2} m_W^2} J^\mu
+\end{equation}
+Substituting this back into the Lagrangian \ref{eq:LagW} gives the familiar charged current interaction of eq. \ref{eq:LagIR}:
+\begin{equation}
+    \mathcal{L}_\text{IR} = - \frac{g^2}{2 m_W^2} J^{\mu \dagger} J_\mu
+\end{equation}
+At the energy scale of muon decay, which roughly amounts to the muon mass $105.658\text{ MeV}$ \cite{particle2024review}, this Lagrangian is an adequate description of the dynamics.\par 
+Systematically constructing an whole \textit{Effective Field Theory (EFT)} from a UV complete theory by integrating out the heavy degree of freedom represents an example of a \textit{top-down} approach to EFTs: Starting from a full theory valid in the high energy limit, in this case the SM Lagrangian, one derives the appropriate effective theory for the low energy limit. By requiring the amplitudes in both theories to agree in a certain energy regime, one \textit{matches} the couplings of the effective theory, called \textit{Wilson coefficients}, to the UV complete theory. The 4-Fermi theory, on the other hand, started from the opposite direction: Without knowledge of the SM and the underlying heavy mechanism it gave an adequate description for weak interactions starting \textit{from scratch}, namely directly from the known, interacting fields. Experimental evaluation then allowed for constraining the effective couplings. For the course of this work both methods are applied to some extent. In the next section we see how to to determine Fermi's constant from the total decay width. The kinematic space of the electron is, however, far more complex and in the following section we get acquainted with the Michel parameters that form its foundation. The $\rho$ parameter, for example, brings to light the V-A nature of the weak interaction, as we will briefly show.
+\section{Effective Field Theories}
+Effective Field Theory (EFT) is the idea that physics is separated by scales -- or more precisely it is a set of ideas that justify why this separation works \cite{brivio2019standard}. Notably the Standard Model (SM) has been validated up to LHC energies despite not being well-defined in the UV regime due to Landau poles in the electroweak sector. Renormalization works by regularizing the short-distance physics and absorbing the effects in low energy effective parameters -- see the detailed discussion in chapter 4 of \cite{brivio2019standard} for how dimensional regularization and the $\overline{MS}$ scheme correspond to a systematic removal of UV physics which is the key principle of an EFT. The Lagrangian is then constructed as combining the IR physics as a local, analytical operator expansion with the UV physics controlling the corresponding Wilson coefficients.
+\begin{equation}
+    \mathcal{L}_\text{EFT}\simeq\sum_iC_i^\text{UV}(\mu)O_i^\text{IR}(\mu)
+\end{equation}
+The first two "prime directives" of EFTs are thus in \cite{brivio2019standard} summarized as:
+\begin{enumerate}
+    \item determine a characteristic scale in observables
+    \item construct the Lagrangian out of the degrees of freedom, the propagating on-shell ates
+\end{enumerate}
+Starting from the SM two characteristic scales directly come to mind: The scale of electroweak symmetry breaking dictated by the Higgs VEV $v$ and the scale of heavy new physics $\Lambda$. Depending on how one assumes heavy new physics to relate to the Higgs mechanism two  EFTs can be set up by the scale $\Lambda$:
+\begin{enumerate}
+    \item if one assumes the Higgs to enter the EFT in the form of its scalar doublet $H$, the full SM field content above the EW scale is used to construct the Standard Model Effective Field Theory (SMEFT).
+    \item the Higgs Effective Field Theory (HEFT) instead treats the physical Higgs and the Goldstone bosons separatedly. The framework can be described as a chiral Lagrangian with a light scalar h, organized by a loop/chiral expansion rather than by canonical dimension \cite{buchalla2014complete}.
+\end{enumerate}
+While the HEFT might be more general and appropriate for non-linear UV models, the SMEFT is in our case the more restrictive and diagnostic tool: As its operators adhere to the full $SU(3)_C\times SU(2)_L\times U(1)_Y$ gauge group one can systematically derive all UV representations that would generate specific operators -- rendering the SMEFT a powerful mode of investigation in the bottom-up spirit \cite{li2022bottom}.\par 
+The scale $v$ on the other hand separates the IR regime from the full SM and allows expanding the physics above the EW scale by Wilson coefficients divided by powers of $v$ and the effects of UV physics by powers of $\Lambda$. We will first introduce the SMEFT and subsequently derive the LEFT.
+\section{Total decay width}
+We want to derive the total decay width for muon decay from the amplitude of 4-Fermi theory:
+\begin{equation}
+    \mathcal{M}=-\frac{4G_F}{\sqrt{2}}[\bar u(k_1)\gamma^\mu P_L u(q)][\bar u(p)\gamma_\mu P_L u(k_2)]
+    \label{eq:Amp4F2}
+\end{equation}
+If the spins of the outgoing particles are not measured, the expectation value of the squared amplitude is the following spin sum:
+\begin{equation}
+    \langle|\mathcal{M}|^2\rangle=\sum_{\text{spins}}|\mathcal{M}|^2
+\end{equation}
+Squaring the amplitude, we get:
+\begin{equation}
+\begin{aligned}
+    |\mathcal{M}|^2=\left(\frac{g^2}{2m_W^2}\right)^2&[\overline{u}(k_1)\gamma^\mu P_L u(q)][\overline{u}(p)\gamma_\mu P_Lu(2)]\\ &\times [\overline{u}(k_1)\gamma^\mu P_L u(q)]^*[\overline{u}(p)\gamma_\mu P_Lu(2)]^*
+    \label{eq:T2}
+\end{aligned}
+\end{equation}
+A detailed derivation can be found in \cite{griffiths2020introduction} - by applying the completeness theorem for the spin sums and trace identities, the amplitude evaluates to:
+\begin{equation}
+    \langle|\mathcal{M}|^2\rangle=2\left(\frac{g}{M_W}\right)^4(q\cdot k_3)(k_2\cdot p)
+    \label{eq:T2summedF}
+\end{equation}
+The decay rate is calculated by applying Fermi's Golden Rule:
+\begin{equation}
+    \frac{\de^3\Gamma}{\de^3p} = \frac{1}{(2\pi)^5}\frac{1}{4m_\mu E_e}
+    \int\frac{\de^3k_1}{2E_1}\frac{\de^3k_2}{2E_2}
+    \delta^{(4)}(q-k_1-k_2-p)\langle|\mathcal{M}|^2\rangle
+    \label{eq:fermiGoldenRule}
+\end{equation}
+The neutrino phase space is evaluated using the following identity \cite[p.308]{scheck2012electroweak}:
+\begin{equation}
+    \int\frac{d^3p_2}{2E_2}\frac{d^3p_3}{2E_3}=\delta^{(4)}(Q-p_2-p_3)p_2^\alpha p_3^\beta=\frac{\pi}{24}(g^{\alpha\beta}Q^2+2Q^\alpha Q^\beta)
+    \label{eq:neutrinoPhaseSpace}
+\end{equation}
+Integrating over all electron momenta gives in the $m_e\to 0$ limit the total decay width:
+\begin{equation}
+    \Gamma =\frac{G_F^2m_\mu^5}{192\pi^3}
+    \label{eq:totalDW}
+\end{equation}
+Current experiments determine $G_F$ to the value \parencite{particle2024review}:
+\begin{equation}
+    G_{F,SM}=\qty{1.166385(6)e-5}{\per\giga\electronvolt\squared}
+    \label{eq:GFexp}
+\end{equation}
+\section{The Michel parameters}\label{sec:michel}
+In his work from 1950 \cite{michel1950interaction}, Michel set up the most general Lorentz-invariant Hamiltonian in order to analyze the kinematics of four-fermion interactions:
+\begin{equation}
+    \mathcal{H}_{1950} = \sum_{i=S,V,T,A,P} C_i (\bar{\psi}_e \Gamma_i \psi_\mu) (\bar{\psi}_{\nu} \Gamma_i \psi_{\nu}) + \text{h.c.}
+\end{equation}
+Because he did not consider the possibility that such an interaction might violate parity, his Hamiltonian only couples currents of the same kind -- scalar, vector, tensor, axial and pseudo -- to each other, resulting in a overall parity-conserving expression. There are thus 5 coupling constants $C_i$ that define his four-fermion theory. Critically, however, Michel realized that the exact weights of the five different interaction types in the overall expression only alter the energy spectrum by a single constant. This is because the neutrinos are not observed and integrated over. When evaluating the squared amplitude $|\mathcal{M}|^2$ one first obtains a product of two traces: One for the electron-muon line and one for the neutrino line, the latter containing the neutrino momenta $k_1,k_2$ - integrating over the neutrino phase space thus amounts to solving the following integral:
+\begin{equation}
+    I^{\alpha\beta} = \int \frac{d^3k_1}{2E_1} \frac{d^3k_2}{2E_2} \delta^4(Q - k_1 - k_2) k_1^\alpha k_2^\beta
+\end{equation}
+By pure Lorentz invariance, this can only depend on the total transferred momentum $Q=q-p$ and the only two rank-2 tensors one can build out of $Q$ are the metric tensor $g^{\alpha\beta}$ and the product $Q^\alpha Q^\beta$:
+\begin{equation}
+    I^{\alpha\beta} = A(Q^2) g^{\alpha\beta} + B(Q^2) Q^\alpha Q^\beta
+\end{equation}
+Because the neutrinos are considered to be massless, dimensional analysis and Lorentz invariance fix $A(Q^2)\propto g^{\alpha\beta}$ and $B(Q^2)\propto 1$. If one contracts the neutrino tensor with the muon-electron trace, which is built of $q_\mu$ and $p_e$, scalars of the following kind can be formed:
+\begin{align}
+    Q^2 = (q_\mu - p_e)^2 \approx m_\mu^2 - 2m_\mu E_e\\
+    Q \cdot q_\mu = (q_\mu - p_e) \cdot q_\mu \approx m_\mu^2 - m_\mu E_e\\
+    Q \cdot p_e = (q_\mu - p_e) \cdot p_e \approx m_\mu E_e
+\end{align}
+Every single invariant is simply linear function of the elctron energy $E_e$ and because of the phase space factor $E_e^2\de E_e$ the differential decay rate $\de\Gamma/\de E_e$ is a polynomial in $E_e^2$ and $E_e^3$. Thus a single parameter suffices to describe the relative weight between the quadratic and cubic terms and thus the shape of the spectrum -- the original Michel parameter $\rho$. Expressed in terms of the modern dimensionless variable $x=E/W$ with W the maximum electron energy, the spectrum can be written as:
+\begin{equation}
+    P(x) dx \propto x^2 \left[ 3(1 - x) + 2\rho \left( \frac{4}{3}x - 1 \right) \right] dx
+\end{equation}
+Current global data gives for the $\rho$ parameter:
+\begin{equation}
+    \rho = 0.74979\pm 0.00026
+\end{equation}
+This implies the interaction to consist of vector and axial vector terms:
+\begin{equation}
+    \rho = \frac{3C_V^2 + 3C_A^2 + 6C_T^2}{C_S^2 + C_P^2 + 4C_V^2 + 4C_A^2 + 6C_T^2}
+    \label{eq:rho}
+\end{equation}
+For $C_V=-C_A=1$ this gives $\rho=\tfrac{3}{4}$. However, from the experimental value of the $\rho$ parameter the exact ratio of the $V$ and $A$ term or whether axial and vector current mix to form a parity-violating term can not be deduced. A paradigm shift took place in 1956 when Lee and Yang, in order to explain the $\theta-\tau$ puzzle \parencite{lee1956question}, suggested that the weak force might violate parity  -- a breakthrough idea, which was experimentally tested a year later by Chien-Shiung Wu \parencite{wu1957experimental}: She confirmed that the electrons in Cobalt-60 decay are emitted preferentially in the direction opposite to the nuclear spin. In the phenomenology of muon decay parity violation generates an anisotropic part in the electron spectrum. If one measures the polarization of the decaying muon and the angle by which the electron is emitted relative to that polarization the probability is not distributed isotropically at all: The electron is most likely to be ejected in the exact opposite direction to the muon's polarization. And this clearly violates parity, since mirroring of the experiment would leave the polarization invariant but spatially reverse the electron momentum.\par 
+In 1957, two groups (Bouchiat \& Michel \cite{bouchiat1957theory} and, independently, Kinoshita \& Sirlin \cite{kinoshita1957muon,kinoshita1957polarization} expanded the formalism to match the new chiral reality and introduced additional
+parameters for the anisotropic part of the spectrum. The parameter $\xi$ measures parity violation and $\delta$ is again a shape parameter for the anisotropic part of the spectrum. 
+\begin{equation}
+    \begin{aligned}
+        \frac{\de ^2\Gamma_\text{anisotr.}}{\de x\de \hspace{-0.1em}\cos\theta}\propto\xi P_\mu\cos\theta \left( x^2(1-x)+2\delta\left(\frac{4}{3}x-1\right)\right)
+    \end{aligned}
+\end{equation}
+As one can see, the peak of the differential decay width is located at $\theta=180^\circ$, the direction opposite to the muon polarization vector. The SM predicts $\xi = 1$, maximal parity violation, and $\delta = \frac{3}{4}$, which means the shape of the anisotropic spectrum is also V-A-like. Both SM predictions are supported by current data \parencite{particle2024review}:
+\begin{align}
+    P_\mu\xi &=1.0009 \pm 0.0012\\
+    \xi P_\mu\delta/\rho&=1.00179 \pm 0.00114
+\end{align}
+Both groups also introduced a parameter $\eta$ to account for the finite electron mass shaping the low-energy end of the spectrum. It reflects the interference of scalar and tensor terms, which can only produce a non-zero term in the amplitude via mass insertion. As the Standard Model neither has tensor nor scalar interaction terms, it predicts $\eta$ to be zero, which current experimental data supports \parencite{particle2024review}:
+\begin{equation}
+    \eta =0.057 \pm 0
+\end{equation}
+The full spectrum of the electron, when the muon's polarization and the electron's momentum direction relative to it are measured (but not the spin of the electron), thus has the following form:
+\begin{equation}
+    \begin{aligned}
+        \frac{\de ^2\Gamma}{\de x\de \hspace{-0.1em}\cos\theta}=&\frac{m_\mu}{4\pi^3}W^4G_F^2
+        \sqrt{x^2-x_0^2}
+        \left[2x(1-x)+\frac{4}{9}\rho(4x^2-3x-x_0^2)\right.\\
+        &+2\eta x_0(1-x)-\frac{2}{3}\xi P_\mu\cos\theta\sqrt{x^2-x_0^2}\Big( [1-x]\\
+        &\hspace{2.2cm}+\left.\frac{2}{3}\delta\left[(4x-3)+((1-x_0^2)^{-1}-1)\right]\Big)\right]
+        \label{eq:MichelNoPe}
+    \end{aligned}
+\end{equation}
+
+If the spin of the electron is also measured, additional Michel parameters can be defined: $\xi'$, $\xi''$, $\eta''$, $\alpha'/A$, and $\beta'/A$, whereby $A$ is an overall normalization factor and not independently determined. In order to account for the elctron spin dependence, we extend the parameterization of the differential decay rate as in \cite{particle2024review}:
+
+\begin{equation}
+\frac{d^2\Gamma}{dx\, d\cos\theta}=\frac{m_\mu }{4\pi^3} W^4G_F^2\sqrt{x^2-x_0^2}\left[F_{IS}(x)-P_\mu\cos\theta F_{AS}(x)+\hat \zeta\cdot \vec P_e(x,\theta)\right]\, ,
+\end{equation}
+
+The unit vector $\hat\zeta$ defines the direction along which the electron polarization, $\vec P_e$, is analyzed. From a theory perspective, we choose $\hat\zeta$ such that it projects the polarization onto a specific axis, such as longitudinal or transverse polarizations. The isotropic and anisotropic distributions correspond to those defined in Eq. \ref{eq:MichelNoPe} -- the factor of $2$ difference relative to Eq. \ref{eq:MichelNoPe} is because we no longer sum over the electron spin states.
+\begin{eqnarray}
+F_{IS}(x)&=&x(1-x)+\frac{2}{9}\rho(4x^2-3x-x_0^2)+\eta x_0(1-x)\, ,\\
+F_{AS}(x)&=&\frac{\xi}{3}\sqrt{x^2-x_0^2}\left[(1-x)+\frac{2}{3}\delta\left(\left[4x-3\right]+\left[\sqrt{1-x_0^2}-1\right]\right)\right]\, .
+\end{eqnarray}
+%
+The additional electron spin dependent terms follow from expanding the electron spin dependence as $\vec P_e(x,\theta)=P_{T_1}\hat x_1+P_{T_2}\hat x_2+P_L\hat x_3$. The direction $\hat x_3$ is chosen along the electron momentum, $\hat x_1$ lies in the decay plane and is transverse to the electron momentum, and $\hat x_2$ is orthogonal to both $\hat x_1$ and $\hat x_3$. The kinematics are outlined in further detail in appendix~\ref{sec:kinPS}, our method for projecting out each Michel parameter is discussed in appendix~\ref{sec:michelbasis}. With this choice, the polarization components are given by:
+%
+\begin{align}
+P_{T_1}=&\frac{P_\mu\sin\theta}{12}\left[-2\left(\xi''+12\left[\rho-\frac{3}{4}\right]\right)(1-x)x_0-3\eta\left(x^2-x_0^2\right)+\eta''\left(-3x^2+4x-x_0^2\right)\right]
+\\
+P_{T_2}=&\frac{P_\mu\sin\theta}{3}\sqrt{x^2-x_0^2}\left[3\frac{\alpha'}{A}(1-x)+2\frac{\beta'}{A}\sqrt{1-x_0^2}\right]\\
+P_L=&-F_{IP}(x)+P_\mu\cos\theta F_{AP}(x)\\
+F_{IP}(x)=&\frac{\sqrt{x^2-x_0^2}}{54}\left[9\xi'\left(-2x+2+\sqrt{1-x_0^2}\right)+4\xi\left(\delta-\frac{3}{4}\right)\left(4x-4+\sqrt{1-x_0^2}\right)\right]\\
+F_{AP}(x)=&\frac{1}{6}\left[\xi''\left(2x^2-x-x_0^2\right)+4\left(\rho-\frac{3}{4}\right)\left(4x^2-3x-x_0^2\right)+2\eta''(1-x)x_0\right]
+\end{align}
+
+These different contributions can be qualitatively understood as follows:
+
+\begin{itemize}
+\item The longitudinal polarization, $P_L$, corresponds to alignment of the electron momentum with its polarization. The corresponding contributions in addition to the usual Michel parameters are $\xi'$, $\xi''$, and $\eta''$. These terms also include contributions from $\rho$ and $\delta$ as defined above.
+\item The transverse polarization $P_{T_1}$ lies in the decay plane. It receives contributions from $\xi''$ and $\eta''$ along with contributions from the previously defined $\rho$ and $\eta$. It includes angular dependence in the form of $\sin\theta$. 
+\item The transverse polarization $P_{T_2}$ is perpendicular to the decay plane. It is $T$-odd and therefore sensitive to time-reversal violating effects, we will see in the LEFT interpretation its only contributions (at leading order) come from operators that don't conserve lepton number. It also includes angular dependence of the form $\sin\theta$. The parameters $\alpha'/A$ and $\beta'/A$ are constrained by considering this kinematical region. We treat $\alpha'/A$ and $\beta'/A$ as independent variables, not ratios. Their labeling as ratios comes from a different, but equivalent treatment of the Michel parameters.
+\end{itemize}
+
+In the SM we have for these extended Michel parameters, $\eta''=0$, $\xi'=\xi''=1$, and $\alpha'/A=\beta'/A=0$. 
+
+The Michel parameters lay the phenomenological foundation for the inquiry of this thesis: How would heavy fields from beyond the SM affect them? Expressing the Michel parameters in terms of SPVAT couplings as for $\rho$ in Eq. \ref{eq:rho} possesses inherent theoretical limitations. The SPVAT Lagrangian is constructed essentially as an ad hoc, bottom-up classification of the Lorentz-invariant four-fermion interactions. It does not systematically incorporate the underlying gauge structure of the strong and electromagnetic interactions, nor does it provide a framework for consistently evolving the couplings up to the high-energy matching scale. In order to systematically probe for new physics within muon decay, a more modern theoretical architecture is required: Low-Energy Effective Field Theory (LEFT).
+
+\chapter{The Low Energy Effective Field Theory (LEFT)}
+The LEFT is constructed by integrating out all heavy degrees of freedom at the electroweak scale (the $W$, $Z$ and Higgs boson as well as the top quark) while strictly preserving the unbroken low-energy gauge symmetry of the Standard Model, $SU(3)_C \times U(1)_{em}$. This provides several critical advantages over the historical SPVAT approach:
+\begin{itemize}
+    \item \textbf{Gauge Invariance:} The operators in LEFT are explicitly constructed to be invariant under QED and QCD, ensuring theoretical consistency at low energies.
+    \item \textbf{Systematic Expansion:} LEFT allows for a rigorous power-counting expansion in terms of operator dimensionality (suppressed by powers of the new physics scale $\Lambda$), guaranteeing that all possible interactions up to a given mass dimension are accounted for.
+    \item \textbf{Renormalization Group (RG) Evolution:} A formal EFT framework allows the Wilson coefficients evaluated at the high-energy matching scale ($\mu \sim m_W$) to be systematically evolved down to the kinematic scale of muon decay ($\mu \sim m_\mu$) via the renormalization group equations, properly accounting for operator mixing.
+\end{itemize}
+
+By mapping the specific SPVAT couplings to the rigorously defined Wilson coefficients of the LEFT operator basis, we can modernize the historical Michel parameters. The primary objective of the subsequent chapters is to execute this exact mapping: deriving the analytical deviations of the Michel parameters driven by the insertion of dimension-six LEFT operators, thereby establishing a precise, gauge-invariant dictionary between high-energy BSM theory and low-energy muon decay observables.
+
+
+
+At the energy scale of muon decay, determined by the muon mass $m_\mu \approx 106\text{ MeV}$, the heavy fields of the SM are not dynamical degrees of freedom - the $W^\pm$, $Z$ and $H$ boson as well as the $t$ quark all have masses clustered around the electroweak scale $v\approx 246\text{ GeV}$, three orders of magnitude above the muon mass. For energies well below this scale, an effective theory can be derived by integrating out the heavy fields and adding higher-dimensional effective operators built from the remaining field content. 
+
+\section{The LEFT basis}
+\paragraph{LEFT symmetries}
+Since the particles responsible for electroweak symmetry breaking are integrated out, only the unbroken gauge symmetry remains:
+\begin{equation}
+    SU(3)_C \times U(1)_\text{em}
+\end{equation}
+This is conceptually different from the broken phase of the SM:  While left-handed fermions only exist as doublets in the SM, regardless of the energy scale, the LEFT treats left-handed neutrinos and left-handed charged leptons as completely independent, unrelated fields. As a consequence, left- and right-handed particles can mix more freely in the LEFT and new mathematical structures like scalar and tensor interactions arise.
+\paragraph{LEFT particle content}
+As degrees of freedom remain the massless bosons and all fermions except the top quark.
+\begin{itemize}
+    \item \textbf{Gauge bosons} Photon $\gamma$ and gluons $g$
+    \item \textbf{Charged fermions} Charged leptons $e,\mu,\tau$ and the five lightest quarks $u,d,c,s,b$. Since the $SU(2)_L$ group is missing, left- and right-handed charged fermions have the same gauge charges and as they are moreover coupled together in the Lagrangian by explicit mass terms after symmetry breaking they are written as single Dirac spinors, e.g. $e=e_L+e_R$.
+    \item \textbf{Neutral fermions} For the neutrinos, however, standard LEFT only contains left-handed fields $\nu_e,\nu_\mu,\nu_\tau$.
+\end{itemize}
+\paragraph{LEFT Lagrangian}
+The renormalizable parts of QCD and QED plus an infinite tower of higher-dimensional operators built from the light fields form the LEFT Lagrangian:
+\begin{equation}
+    \mathcal{L}_{\text{LEFT}} = \mathcal{L}_{\text{QED} + \text{QCD}} + \sum_{d \ge 5} \sum_i c_i^{(d)} \mathcal{O}_i^{(d)}
+\end{equation}
+\begin{itemize}
+    \item $\mathcal{O}_i^{(d)}$ are the local, gauge-invariant operators of mass dimension $d$
+    \item $c_i^{(d)}$ are the Wilson coefficients
+\end{itemize}
+The number of operators at each mass dimension is given in table \ref{tab:LEFTnum} \parencite{jenkins2018lowOM}. 
+\begin{table}[t]
+    \centering
+    \begin{tabular}{cccc} \toprule
+             d&quantum numbers&$n_g=1$&$n_g=3$ \\\midrule
+             3&$(\Delta L=2$) + h.c.&2&12\\
+             5&$\Delta L=\Delta B=0$&10&70\\
+             5&$(\Delta L=2)$ + h.c.&0&6\\
+             6&$\Delta B=\Delta L=0$&80&3631\\
+             6&$(\Delta L=2)$ + h.c.&22&1200\\
+             6&$(\Delta L=4)$ + h.c.&0&12\\
+             6&$(\Delta B=\Delta L=1)$ + h.c.&12&576\\
+             6&$(\Delta B=-\Delta L=1)$ + h.c.&4&456\\\bottomrule
+    \end{tabular}
+    \caption{Number of LEFT operators with dimension 3,5 and 6 ($n_g=$ generations)}
+    \label{tab:LEFTnum}
+\end{table}
+For muon decay, the following operators are relevant:\par
+Dimension-five dipole operators:
+\begin{align}
+    \op_{eA}&=\bar e_{L,p}\sigma^{\mu\nu}e_{R,r}F_{\mu\nu}\\
+    \op_{\nu A}&=(\nu^T_{L,p}C\sigma^{\mu\nu}e_{R,r})F_{\mu\nu}
+\end{align}
+Dimension-six operators:
+\begin{align}
+    \op_{\nu e}^{V,LL}&=(\bar\nu_{L,p}\gamma^\mu\nu_{L,r})(\bar e_{L,s}\gamma_\mu e_{L,t})\\
+    \op_{\nu e}^{V,LR}&=(\bar\nu_{L,p}\gamma^\mu\nu_{L,r})(\bar e_{R,s}\gamma_\mu e_{R,t})\\
+    \op_{\nu e}^{S,LL}&=(\nu_{L,p}^TC\nu_{L,r})(\bar e_{R,s} e_{L,t})\\
+    \op_{\nu e}^{S,LR}&=(\nu_{L,p}^TC\nu_{L,r})(\bar e_{L,s} e_{R,t})\\
+    \op_{\nu e}^{T,LL}&=(\nu_{L,p}^TC\sigma^{\mu\nu}\nu_{L,r})(\bar e_{R,s}\sigma_{\mu\nu} e_{L,t})
+\end{align}
+\begin{itemize}
+    \item[$\bullet$] Flavor-changing coupling of leptons to photon highly supressed
+    \item[$\bullet$] $C$ is charge conjugation matrix
+    \item[$\bullet$] $p,r,s,t$ flavor indices
+    \item[$\bullet$] Only $\op_{\nu e}^{V,LL}$ and $\op_{\nu e}^{V,LR}$ preserve lepton number
+\end{itemize}
+\section{Michel parameters in the LEFT}
+\subsection{SM-like neutrino output}
+
+We begin by deriving the Michel parameters for $\mu^-\to e^-\bar\nu_e\nu_\mu$, which corresponds to the SM process. We follow the discussion from \ref{sec:michel} and further elaborated in \ref{sec:kinPS}. We consider strictly the SM-like process as a simple first look at our results. In the next subsection we consider all four-fermion operators simultaneously which allows for different neutrino final states.
+
+Starting with the contributions insensitive to the electron polarization we find:
+%
+\begin{align}
+\frac{G_F^2}{G_{F,{\rm SM}}^2}=&1-\frac{v^2}{2}\left[L_{\nu e,2112}^{V,LL}+L_{\nu e,1221}^{V,LL}\right]+\frac{v^4}{4}\left[L_{\nu e,2112}^{V,LL}L_{\nu e,1221}^{V,LL}+L_{\nu e,2112}^{V,LR}L_{\nu e,1221}^{V,LR}\right]\label{eq:SMlikeGF}\\
+\rho=&\frac{3}{4}\\
+\eta=&\frac{v^2}{4}\left[L_{\nu e,2112}^{V,LR}+L_{\nu e,1221}^{V,LR}\right]+\frac{v^4}{8}\left[L_{\nu e,2112}^{V,LL}L_{\nu e,1221}^{V,LR}+L_{\nu e,2112}^{V,LL}L_{\nu e,1221}^{V,LR}\right]\\
+\xi=&1-\frac{v^4}{2}L_{\nu e,2112}^{V,LR}L_{\nu e,1221}^{V,LR}\\
+\delta=&\frac{3}{4}
+\end{align}
+Since the operators $\op_{\nu e}^{V,LL}$ and $\op_{\nu e}^{V,LR}$ are hermitian, their flavor structures $1221$ and $2112$ are equivalent and for their coefficients it holds that ${L_{\nu e,2112}^{V,LL}}^*=L_{\nu e,1221}^{V,LL}$ and ${L_{\nu e,2112}^{V,LR}}^*=L_{\nu e,1221}^{V,LR}$ so we can simplify the first order corrections for $G_F/G_{F,\rm SM}$ to the real part of one operator coefficient.\par 
+In general $G_F$ is viewed as an input parameter, but in \cite{grunwald2025beyond} the authors apply the $\{\hat m_W,\hat m_Z,\hat \alpha\}$ input parameter scheme to conduct a theory determination of $G_F$:
+\begin{equation}
+G_{F,{\rm SM}}=\frac{\pi\hat \alpha\hat m_Z^2}{\sqrt{2}\hat m_W^2(\hat m_Z^2-\hat m_W^2)}(1+\delta_R) =1.1658(10)\cdot 10^{-5}\, ,
+\end{equation}
+For this they are using the values $\delta_R=0.03686(21)$, $\hat\alpha=7.2973525693(11) \cdot10^{-3}$, $m_W=80.369(13)$, and $m_Z=91.1880(20)$ from \cite{particle2024review}. Comparing this SM prediction with the leading contribution in \ref{eq:SMlikeGF} and the experimental value in eq.~\ref{eq:GFexp}, we find
+%
+\begin{equation}
+-0.004\le v^2\text{Re}\left[L_{\nu e,2112}^{V,LL}\right]\le 0.002
+\end{equation}
+%
+By taking $|L|\sim 1/\Lambda^2$ (and assuming that $|L|\approx\text{Re}[L]$) we obtain a 95\% confidence level bound on the scale of new physics:
+%
+\begin{equation}
+\Lambda\ge 21v\sim {\rm\ 5.1\ TeV}
+\end{equation}
+If we allow for contributions that are quadratic in $L_{\nu e,2112}^{V,LR}$ and  $L_{\nu e,2112}^{V,LL}$ we can define a $\chi^2$ over $G_F, \eta$ and $\xi$. Assuming $P_\mu=1$, we find the following 95\% confidence level region for the two contributing Wilson coefficients:
+\begin{align}
+-0.036\le\quad v^2\, L_{\nu e,2112}^{V,LR}\quad\le0.064\, ,\\
+-0.0042\le\quad  v^2\, L_{\nu  e,2112}^{V,LL}\quad\le 0.0025
+\end{align}
+
+Extending our analysis to include electron polarization dependence we find corrections to the following additional Michel parameters:
+%
+\begin{align}
+\eta''=&-\frac{v^2}{2}c^{(6),V,LR}_{\nu e,2112}-\frac{v^4}{4}c_{\nu e,2113}^{(6),V,LL}c_{\nu e,2113}^{(6),V,LR}=-\eta\\
+\xi'=&1-\frac{v^4}{2}L_{\nu e,2112}^{V,LR}L_{\nu e,1221}^{V,LR}=\xi\\
+\frac{\beta'}{A}=&\frac{v^2}{4}{\rm Im}[c_{\nu e,2112}^{(6),VLR}]-\frac{v^4}{8}{\rm Im}[(c_{\nu e,2112}^{(6),VLL})^*c_{\nu e,2112}^{(6),VLR}]-\frac{v^4}{8}{\rm Im}[(c_{\nu e,2112}^{(6),VLL})c_{\nu e,2112}^{(6),VLR}]
+\end{align}
+%
+The parameters $\xi''$ and $\alpha'/A$ remain unchanged -- in the LEFT we will see they only receive corrections from lepton number violating operators. As $\eta''=-\eta$ and $\xi'=\xi$ and these two additional parameters are more poorly measured than $\eta$ and $\xi$, we neglect to extend our fit to include them here. However, the leading interference for $\beta'/A$ together with the one for $\eta$ allow for determining the real and imaginary component of $L^{V,LR}_{\nu e,2112}$:
+\begin{equation}
+    \eta\approx\frac{1}{2}\text{Re}[L^{V,LR}_{\nu e,2112}] \quad\quad \frac{\beta'}{A} \approx  \frac{1}{4} \text{Im}[L^{V,LR}_{\nu e,2112}]
+    \label{eq:etabetaprime}
+\end{equation}
+This operator can be transformed to to a scalar operator by a Fierz transformation:
+\begin{equation}
+    \begin{aligned}
+        \mathcal{O}_{\nu e,prst}^{V,LR}&=(\bar{\nu}_{p}\gamma^\mu P_L\nu_{r})(\bar e_{s}\gamma_\mu P_Re_{t})\\
+        &=2(\bar e_{Rs}\nu_{Lr})(\bar{\nu}_{Lp}e_{Rt})\\[7pt]
+        &\text{by Fierz: } (\gamma^\mu P_L)_{ab}(\gamma_\mu P_R)_{cd}=-2(P_R)_{ad}(P_L)_{cb}\\
+    \end{aligned}
+\end{equation}
+This resembles for $prst=2112$ the Michel structure of $g_{RR}^S$ in the notation by Fetscher, Gerber \& Johnson \cite{fetscher1986muon} and thus our determination in \ref{eq:etabetaprime} reproduces the findings in \cite{falkowski2016model} where the authors state that at leading order (and for SM like neutrino output) only the Michel parameters $\eta$ and $\beta'/A$ receive a correction stemming from the scalar interaction term $g_{RR}^S$. Since $L^{V,LR}_{\nu e,2112}$ and $g_{RR}^S$ produce the same operator structure we can also constrain $L^{V,LR}_{\nu e,2112}$ directly from the PDG results for the SPVAT matrix elements \cite{particle2024review}:
+\begin{equation}
+    L^{V,LR}_{\nu e,2112}\simeq |g_{RR}^S|<0.035
+\end{equation}
+Before we are discussing the evolution of this constrain up to the EW scale we discuss the case of full neutrino output.
+\subsection{Full 4-fermion results}
+Starting with neglecting measurements sensitive to electron spin, we find for $G_F$:
+%
+\begin{align}
+G_F^2/G_{F,{\rm SM}}^2=&1-\frac{v^2}{2}\left[c_{\nu e,2112}^{(6),VLL}+c_{\nu e,1221}^{(6),VLL}\right]+\frac{v^4}{4}\sum_{a,b=1}^3\left[c_{\nu e,ab12}^{(6),VLL}c_{\nu e,ba21}^{(6),VLL}+c_{\nu e,ab12}^{(6),VLR}c_{\nu e,ba21}^{(6),VLR}\right]\nonumber\\
+&+\frac{v^4}{16}\sum_{a<b}\left[|c_{\nu e,ab12}^{(6),SLL}+c_{\nu e,ba12}^{(6),SLL}|^2+|c_{\nu e,ab12}^{(6),SLR}+c_{\nu e,ba12}^{(6),SLR}|^2+(12\to 21)\right]\nonumber\\ &+2\times\frac{v^4}{16} \sum_{a=1}^{3}\left[|c_{\nu e,aa12}^{(6),SLL}|^2+|c_{\nu e,aa12}^{(6),SLR}|^2+(12\to 21)\right]\\ &+3 v^4\sum_{a<b}\left[|c_{\nu e,ab12}^{(6),TLL}-c_{\nu e,ba12}^{(6),TLL}|^2+(12\to 21)\right]\, .\nonumber \end{align}
+%
+Here we have used ``$(12\to 21)$'' to mean swapping only the last two flavor indices from ``12'' to ``21.'' For sums with $a<b$ it is understood $b$ is summed from 1 to 3. The factor of two for like neutrinos arises from the counting factor (1/2) for identical final-state particles and symmetrizing the amplitude giving $|c+c|^2$ to $4|c|^2$ for $a=b$. The factor of 3 for the tensor can be understood as coming from the six independent components of $\sigma^{\mu\nu}$ and the trace over dirac matrices. The difference in sign structure between scalar and tensor terms is simply due to the symmetry properties of the two operators under interchange of the neutrino flavor indices.
+
+For the other electron spin independent Michel parameters we find:
+%
+\begin{align}
+\rho=&\frac{3}{4}-\frac{3v^4}{64}\sum_{a<b}\left[|c_{\nu e,ab12}^{(6),SLL}+c_{\nu e,ba12}^{(6),SLL}|^2+|c_{\nu e,ab12}^{(6),SLR}+c_{\nu e,ba12}^{(6),SLR}|^2+(12\to 21)\right]\nonumber\\
+&\phantom{\frac{3}{4}}-2\times \frac{3v^4}{64}\sum_{a=1}^3\left[|c_{\nu e,aa12}^{(6),SLL}|^2+|c_{\nu e,aa12}^{(6),SLR}|^2+(12\to 21)\right]\\
+&\phantom{\frac{3}{4}}+\frac{3v^4}{4}\sum_{a<b}\left[|c_{\nu e,ab12}^{(6),TLL}-c_{\nu e,ba12}^{(6),TLL}|^2+(12\to 21)\right]\, \nonumber
+\end{align}
+\begin{align}
+\eta=&0+\frac{v^2}{4}\left[c_{\nu e,2112}^{(6),VLR}+c_{\nu e,1221}^{(6),VLR}\right]+\frac{v^4}{8}\left[c_{\nu e,1221}^{(6),VLL}c_{\nu e,2112}^{(6),VLR}+c_{\nu e,2112}^{(6),VLL}c_{\nu e,1221}^{(6),VLR}\right]\nonumber\\
+&+\frac{v^4}{8}\left[c_{\nu e,2112}^{(6),VLL}c_{\nu e,2112}^{(6),VLR}+c_{\nu e,1221}^{(6),VLL}c_{\nu e,1221}^{(6),VLR}\right]-\frac{v^4}{8}\sum_{a,b=1}^3\left[c_{\nu e,ba12}^{(6),VLL}c_{\nu e,ab12}^{(6),VLR}+c_{\nu e,ab12}^{(6),VLL}c_{\nu e,ba21}^{(6),VLR}\right]\nonumber\\
+&\phantom{0}+\frac{v^4}{8}\sum_{a<b}{\rm Re}\left[(c_{\nu e,ab12}^{(6),SLL}+c_{\nu e,ba12}^{(6),SLL})^*(c_{\nu e,ab12}^{(6),SLR}+c_{\nu e,ba12}^{(6),SLR})+(12\to 21)\right]\\
+&\phantom{0}+\frac{v^4}{4}\sum_{a=1}^3{\rm Re}\left[(c_{\nu e,aa12}^{(6),SLL})^*(c_{\nu e,aa12}^{(6),SLR})+(12\to 21)\right]\, ,\nonumber
+\end{align}
+
+\begin{align}
+\xi=&1-\frac{v^4}{2}\sum_{a,b=1}^3c_{\nu e,ab12}^{(6),VLR}c_{\nu e,ba21}^{(6),VLR}+\frac{v^4}{8}\sum_{a<b}\left[|c_{\nu e,ab12}^{(6),SLR}+c_{\nu e,ba21}^{(6),SLR}|^2-2|c_{\nu e,ab12}^{(6),SLL}+c_{\nu e,ba12}^{(6),SLL}|^2\right]\nonumber\\
+&\phantom{1}+\frac{v^4}{8}\sum_{a<b}\left[-2|c_{\nu e,ab21}^{(6),SLR}+c_{\nu e,ba21}^{(6),SLR}|^2+|c_{\nu e,ab21}^{(6),SLL}+c_{\nu e,ba21}^{(6),SLL}|^2\right]\\
+&\phantom{1}+\frac{v^4}{4}\sum_{a=1}^3\left[|c_{\nu e,aa21}^{(6),SLL}|^2-2|c_{\nu e,aa21}^{(6),SLR}|^2-2|c_{\nu e,aa12}^{(6),SLL}|^2+|c_{\nu e,aa12}^{(6),SLR}|^2\right]\nonumber\\
+&\phantom{1}+\frac{v^4}{8}\sum_{a<b}\left[32|c_{\nu e,ab12}^{(6),TLL}-c_{\nu e,ba12}^{(6),TLL}|^2-80|c_{\nu e,ab21}^{(6),TLL}-c_{\nu e,ba21}^{(6),TLL}|^2\right]
+\end{align}
+%
+\begin{align}
+\delta=&\frac{3}{4}+\frac{9v^4}{64}\sum_{a<b}\left[|c_{\nu e,ab12}^{(6),SLL}+c_{\nu e,ba12}^{(6),SLL}|^2-|c_{\nu e,ab12}^{(6),SLR}+c_{\nu e,ba12}^{(6),SLR}|^2 -(12\to 21)\right]\nonumber\\
+%&\phantom{\frac{3}{4}}-\frac{9v^4}{64}\sum_{a<b}\left[|c_{\nu e,ab21}^{(6),SLL}+c_{\nu e,ba21}^{(6),SLL}|^2-|c_{\nu e,ab21}^{(6),SLR}+c_{\nu e,ba21}^{(6),SLR}|^2\right]\\
+&\phantom{\frac{3}{4}}+\frac{9v^4}{32}\sum_{a=1}^3\left[|c_{\nu e,aa12}^{(6),SLL}|^2-|c_{\nu e,aa12}^{(6),SLR}|^2-(12\to 21)\right]\\%-|c_{\nu e,aa21}^{(6),SLL}|^2+|c_{\nu e,aa21}^{(6),SLR}|^2\right]\nonumber\\
+&\phantom{\frac{3}{4}}-\frac{9v^4}{4}\sum_{a<b}\left[|c_{\nu e,ab12}^{(6),TLL}-c_{\nu e,ba12}^{(6),TLL}|^2-(12\to 21)\right]\, .\nonumber%|c_{\nu e,ab21}^{(6),TLL}-c_{\nu e,ba21}^{(6),TLL}|^2\right]\, .\nonumber
+\end{align}
+%
+The extra quadratic term in $\eta$ that does not appear as part of a sum arises from the cross term when expanding the ratio defining eta (see \ref{eq:solveforMichel}). It originates from the product of the linear term in the numerator ($\sim c_{\nu e,2112}^{(6),VLR}$) with the linear correction to $1/G_F^2$ ($\sim c_{\nu e,2112}^{(6),VLL}$). This contribution only exists for the SM flavor assignment. Notice that for $\xi$ there is a difference between the ``$12$'' and ``$21$'' contributions. From \ref{eq:LLvio} we can see that exchanging these labels swaps the chirality assigned to the electron and muon. The parameter $\xi$, which corresponds to the anisotropic part of the rate, is sensitive to precisely this difference in chiral assignments. For the same reason, $\delta$ also swaps signs under the flavor exchange $(12\to 21)$.
+
+
+Measurements sensitive to the electron's polarization then access the additional Michel parameters:
+%
+\begin{align}
+\xi'=&1-\frac{v^4}{2}\sum_{a,b=1}^3c_{\nu e,ab12}^{(6),VLR}c_{\nu e,ba21}^{(6),VLR}-\frac{v^4}{8}\sum_{a<b}\left[|c_{\nu e,ab12}^{(6),SLL}+c_{\nu e,ba12}^{(6),SLL}|^2+|c_{\nu e,ab21}^{(6),SLR}+c_{\nu e,ba21}^{(6),SLR}|^2\right]\, ,\nonumber\\
+&-\frac{v^4}{4}\sum_{a=1}^3\left[|c_{\nu e,aa12}^{(6),SLL}|^2+|c_{\nu e,aa21}^{(6),SLR}|^2\right]-6v^4\sum_{a<b}|c_{\nu e,ab12}^{(6),TLL}-c_{\nu e,ba12}^{(6),TLL}|^2\\
+%%
+\xi''=&1+\frac{v^4}{8}\sum_{a<b}\left[|c_{\nu e,ab12}^{(6),SLL}+c_{\nu e,ba12}^{(6),SLL}|^2+|c_{\nu e,ab12}^{(6),SLR}+c_{\nu e,ba12}^{(6),SLR}|^2+(12\to 21)\right]\nonumber\\
+&\phantom{1}+\frac{v^4}{4}\sum_{a=1}^3\left[|c_{\nu e,aa12}^{(6),SLL}|^2+|c_{\nu e,aa12}^{(6),SLR}|^2+(12\to 21)\right]\\
+&\phantom{1}-10v^4\sum_{a<b}\left[|c_{\nu e,ab12}^{(6),TLL}-c_{\nu e,ba12}^{(6),TLL}|^2+(12\to 21)\right]\, ,\nonumber\\
+%%
+\eta''=&0-\frac{v^2}{4}\left[c_{\nu e,2112}^{(6),VLR}+c_{\nu e,1221}^{(6),VLR}\right]-\frac{v^4}{8}[c_{\nu e,1221}^{(6),VLL}c_{\nu e,2112}^{(6),VLR}+c_{\nu e,2112}^{(6),VLL}c_{\nu e,1221}^{(6),VLR}]\nonumber\\
+&\phantom{0}-\frac{v^4}{8}[c_{\nu e,2112}^{(6),VLL}c_{\nu e,2112}^{(6),VLR}+c_{\nu e,1221}^{(6),VLL}c_{\nu e,1221}^{(6),VLR}]+\frac{v^4}{8}\sum_{a,b=1}^3[c_{\nu e,ba21}^{(6),VLL}c_{\nu e,ab12}^{(6),VLR}+c_{\nu e,ab12}^{(6),VLL}c_{\nu e,ba21}^{(6),VLR}]\nonumber\\
+&\phantom{0}+\frac{3v^4}{8}\sum_{a<b}{\rm Re}\left[(c_{\nu e,ab12}^{(6),SLL}+c_{\nu e,ba12}^{(6),SLL})^*(c_{\nu e,ab12}^{(6),SLR}+c_{\nu e,ba12}^{(6),SLR})+(12\to 21)\right]\\
+&\phantom{0}+\frac{3v^4}{4}\sum_{a=1}^3{\rm Re}\left[(c_{\nu e,aa12}^{(6),SLL})^*c_{\nu e,aa12}^{(6),SLR}+(12\to 21)\right]\, ,\nonumber\\
+%%
+\frac{\alpha'}{A}=&0-\frac{v^4}{8}\sum_{a<b}{\rm Im}[(c_{\nu e,ab12}^{(6),SLL}+c_{\nu e,ba12}^{(6),SLL})^*(c_{\nu e,ab12}^{(6),SLR}+c_{\nu e,ba12}^{(6),SLR})+(12\to 21)]\nonumber\\
+&\phantom{0}-\frac{v^4}{4}\sum_{a=1}^3{\rm Im}[(c_{\nu e,aa12}^{(6),SLL})^*c_{\nu e,aa12}^{(6),SLR}+(12\to 21)]\, ,\\
+%%
+\frac{\beta'}{A}=&0-\frac{v^2}{4}{\rm Im}[c_{\nu e,2112}^{(6),VLR}]-\frac{v^4}{8}{\rm Im}[(c_{\nu e,2112}^{(6),VLL})^*c_{\nu e,2112}^{(6),VLR}]-\frac{v^4}{8}{\rm Im}[(c_{\nu e,2112}^{(6),VLL})c_{\nu e,2112}^{(6),VLR}]\nonumber\\
+&\phantom{0}+\frac{v^4}{8}\sum_{a,b=1}^3{\rm Im}[(c_{\nu e,ab12}^{(6),VLL})^*c_{\nu e,ab12}^{(6),VLR}]
+\end{align}
+What do I do with this? Let's talk about RGEs first.
+\section{RGEs of the LEFT}
+Before we can map the LEFT to the SMEFT we have to consider the RGEs for the LEFT up to the EW scale to check whether heavy mixing with other operators occurs or the Wilson coefficients dramatically change -- we will see, however, that this is not the case. 
+From \parencite[p.29]{jenkins2018lowAD} we find for the anomalous dimensions of the LNC operators $\mathcal{O}^{V,LL}_{\nu e}$ and $\mathcal{O}^{V,LR}_{\nu e}$:
+\begin{equation}
+    \begin{aligned}
+        \dot{L}^{V,LL}_{\substack{\nu e \\ prst}} &= \frac{4}{3} e^2 \mathsf{q}_e \delta_{st} \Bigg[ N_c \mathsf{q}_u \left( L^{V,LL}_{\substack{\nu u \\ prww}} + L^{V,LR}_{\substack{\nu u \\ prww}} \right) + N_c \mathsf{q}_d \left( L^{V,LL}_{\substack{\nu d \\ prww}} + L^{V,LR}_{\substack{\nu d \\ prww}} \right) \\[2pt] 
+        &\quad + \mathsf{q}_e \left( L^{V,LL}_{\substack{\nu e \\ prww}} + L^{V,LR}_{\substack{\nu e \\ prww}} \right) \Bigg] \\ &\quad + 96 e^2 \mathsf{q}_e^2 L_{\substack{\nu \gamma \\ wr}} L^*_{\substack{\nu \gamma \\ wp}} \delta_{st}
+    \end{aligned}
+\end{equation}
+\begin{equation}
+    \begin{aligned} 
+        \dot{L}^{V,LR}_{\substack{\nu e \\ prst}} &= \frac{4}{3} e^2 \mathsf{q}_e \delta_{st} \Bigg[ N_c \mathsf{q}_d \left( L^{V,LL}_{\substack{\nu d \\ prww}} + L^{V,LR}_{\substack{\nu d \\ prww}} \right) + N_c \mathsf{q}_u \left( L^{V,LL}_{\substack{\nu u \\ prww}} + L^{V,LR}_{\substack{\nu u \\ prww}} \right) \\ &\quad + \mathsf{q}_e \left( L^{V,LL}_{\substack{\nu e \\ prww}} + L^{V,LR}_{\substack{\nu e \\ prww}} \right) \Bigg] \\ &\quad - 96 e^2 \mathsf{q}_e^2 L_{\substack{\nu \gamma \\ wr}} L^*_{\substack{\nu \gamma \\ wp}} \delta_{st}
+    \end{aligned}
+\end{equation}
+Since $st=12\leftrightarrow 21$, the Kronecker delta $\delta_{st}$ in the closed fermions loop term and the dipole operator term make the anomalous dimensions for the muon decay LNC operators vanish:
+\begin{align}
+    \dot{L}^{V,LL}_{\nu e, ab12} = \dot{L}^{V,LL}_{\nu e, ab21}=0 \\
+    \dot{L}^{V,LR}_{\nu e, ab12} = \dot{L}^{V,LR}_{\nu e, ab21}=0
+\end{align}
+For the scalar and tensor LEFT operators, however, the anomalous dimensions do not evaluate to zero:
+\begin{align}
+    \dot{L}^{S,LL}_{\substack{\nu e \\ prst}} = -6 e^2 \mathsf{q}_e^2 L^{S,LL}_{\substack{\nu e \\ prst}}\\
+    \dot{L}^{T,LL}_{\substack{\nu e \\ prst}} = 2 e^2 \mathsf{q}_e^2 L^{T,LL}_{\substack{\nu e \\ prst}}\\
+    \dot{L}^{S,LR}_{\substack{\nu e \\ prst}} = -6 e^2 \mathsf{q}_e^2 L^{S,LR}_{\substack{\nu e \\ prst}}
+\end{align}
+Solving for the three operators yields:
+\begin{equation}
+    L^{S,LL}_{\nu e}(v) = L^{S,LL}_{\nu e}(m_\mu)\left(\frac{v}{m_\mu}\right)^{-\frac{3\alpha}{2\pi}}\approx0.973\cdot L^{S,LL}_{\nu e}(m_\mu)
+\end{equation}
+\begin{equation}
+    L^{T,LL}_{\nu e}(M_Z) = L^{T,LL}_{\nu e}(m_\mu)\left(\frac{M_Z}{m_\mu}\right)^{\frac{\alpha}{2\pi}}\approx 1.009\cdot L^{T,LL}_{\nu e}(m_\mu)
+\end{equation}
+\begin{equation}
+    L^{S,LR}_{\nu e}(M_Z) = L^{S,LR}_{\nu e}(m_\mu)\left(\frac{M_Z}{m_\mu}\right)^{-\frac{3\alpha}{2\pi}}\approx 0.973\cdot L^{S,LR}_{\nu e}(m_\mu)
+\end{equation}
+So we see that running of the couplings from the energy scale of muon decay ($\approx m_\mu$) to the EW scale ($\approx v$) only gives minor corrections -- but for completeness we are including them in our calculations. In the next chapter we will see how the five LEFT operators under consideration match onto the SMEFT and how the corresponding SMEFT coefficients evolve under the RGEs.
+\chapter{The Standard Model Effective Field Theory (SMEFT)}
+For the energy regime above the electroweak scale, the full Standard Model Effective Field Theory (SMEFT) is the appropriate effective description. Since we are exploring the imprints of heavy new physics in the phenomenology of muon decay we first have to identify the set of relevant SMEFT operators -- those operators which result in their low-energy limit in the LEFT operators identified in the previous chapter. For this purpose we are using the tree-level matching results of \cite{jenkins2018lowOM} and \parencite{liao2020extending}. However, while the matching is performed at the electroweak scale, the investigation of potential heavy new fields possibly shielded by these effective operators naturally takes place at the energy scale of new physics -- roughly $10\text{ TeV}$. So before we can \enquote{open up} the SMEFT operators, we first have to run them up to that energy scale. To accomplish this task we are using the paython package \texttt{wilson} \cite{aebischer2018python} and the \texttt{D7RGESolver} \parencite{liao2025rge}. This will allow us to present the full set of SMEFT operators at the new physics scale which in their low-energy limit affect muon decay.\par
+The reasoning of this chapter will be ordered in the following way: First, we briefly elaborate on the structure of SMEFT and its operators at dimensions 5, 6 and 7. Subsequently, we present the tree-level matching conditions for the relevant SMEFT operators at dimension 6 and 7 to the LEFT operators which perturb muon decay. Finally, the identified SMEFT operators are run up to the energy scale of new physics where, in the next chapter, we can open them up to explore the various heavy new fields veiled by them.
+\section{The SMEFT basis}
+The SM Lagrangian can be extended by effective operators of increasing canonical mass dimension:
+\begin{equation}
+    \mathcal{L}=\mathcal{L}_\text{SM}+\sum_{D\ge5}\mathcal{L}^D
+\end{equation}
+\begin{itemize}
+    \item at dimension 5, only one operator exists: Weinberg neutrino mass operator \parencite{weinberg1967model}
+    \item at dimension 6, Buchmüller and Wyler counted 80 operators in 1986 \parencite{buchmuller1986effective}
+    \item Standard Model equations of motion $\to$ field redefinitions $\to$ reduced number of operators
+    \item Updated classification published 2010: Warsaw basis \parencite{grzadkowski2010dimension}
+    \item 63 independent operators (59 conserve baryon number)
+    \item 20 operators at dimension 7 (violate baryon and lepton number) \parencite{lehman2014extending}
+    \item current contraints of dim-7 operators: \parencite{fridell2024probing}
+    \item extending LEFT matching to dim-7: \parencite{liao2020extending} (but only LEFT dim-7 to SMEFT dim-7)
+    \item Use dim-7 anomalous dimension to produce appropriate field content \parencite{liao2016renormalization}
+    \item produce LEFT op \parencite{jenkins2018lowAD}
+\end{itemize}
+\section{Matching onto the LEFT}
+From the LEFT paper by Jenkins, Manohar \& Stoffer \parencite{jenkins2018lowOM} on operators and matching at dimension 6 we collect the following matching conditions for the LNC operators $\mathcal{O}^{V,LL}_{\nu e}$ and $\mathcal{O}^{V,LR}_{\nu e}$:
+\begin{align}
+    L^{V,LL}_{\nu e,prst}&= C_{ll}^{prst}+C_{ll}^{stpr}-\tfrac{\bar g_2^2}{2M_W^2}[W_l]_{pt}[W_l]^*_{rs}-\tfrac{\bar g_Z^2}{M_Z^2}[Z_{\nu_L}]_{pr}[Z_{e_L}]^*_{st}\label{eq:LVLLRGE}\\
+    L^{V,LR}_{\nu e,prst}&= C_{le}^{prst} -\tfrac{\bar g_Z^2}{M_Z^2}[Z_{\nu_L}]_{pr}[Z_{e_L}]^*_{st}\label{eq:LVLRRGE}
+\end{align}
+Here, $[W_l]_{pr}$ is the modified coupling of $\mathcal{W}^+_\mu$ to $(\bar\nu_{Lp}\gamma^\mu e_{Lr})$ and $[Z_\psi]_{pr}$ the modified coupling of $\mathcal{Z}_\mu$ to $(\bar\psi_p\gamma^\mu\psi_r)$ with $\psi=\nu_L,e_L$ in the spontaneously broken SMEFT \cite{jenkins2018lowOM}:
+\begin{align}
+    [W_l]_{pr} &= \left[\delta_{pr} + v_T^2  C^{(3),pr}_{Hl} \right]\\
+    [Z_{\nu_L}]_{pr} &= \left[\delta_{pr}\left(\frac 12\right) - \frac12 v_T^2
+    C^{(1),pr}_{Hl} + \frac12 v_T^2  C^{(3),pr}_{Hl} \right]\\
+    [Z_{e_L}]_{pr} &= \left[\delta_{pr}\left(-\frac 12+\bar s^2 \right) - \frac12 v_T^2  C^{(1),pr}_{Hl} - \frac12 v_T^2  C^{(3),pr}_{Hl} \right]
+\end{align}
+Gauge couplings and the VEV are also modified in the spontaneously broken SMEFT as well as the weak mixing angle:
+\begin{align}
+    v_T = \left( 1+ \frac{3 C_H v^2}{8 \lambda} \right) v\qquad \bar g_1= g_1 \left(1 + C_{HB} \, v_T^2 \right)\qquad \bar g_2= g_2 \left(1 + C_{HW} \, v_T^2 \right)\\
+    \bar s =\sin \theta =  {{\bar g_1} \over \sqrt{ \bar g_1^2 + \bar g_2^2} }\left[ 1 + {\epsilon \over 2} \ {{\bar g_2} \over {\bar g_1}} \left( {{\bar g_2^2 - \bar g_1^2} \over {\bar g_1^2 + \bar g_2^2}} \right)   \right]\hspace{2.2cm}
+\end{align}
+For the $prst=ab12$ flavor combination under consideration we are therefore obtaining, while neglecting all terms quadratic in couplings, the following matching conditions:
+\begin{align}
+    L^{V,LL}_{\nu e,ab12}=\, &C_{ll}^{ab12}+C_{ll}^{12ab}-\tfrac{\bar g_2^2}{2M_W}\left(\delta_{a2}\delta_{b1}+\delta_{a2}C^{(3),b1}_{Hl}+\delta_{b1}C^{(3),a2}_{Hl}\right)\label{eq:LVLLmatching}\\
+    &+\tfrac{\bar g_Z^2}{M_Z^2}\left(\frac{1}{4}\delta_{ab}v_T^2\left[C_{Hl}^{(1),12*}+C_{Hl}^{(3),12*}\right]\right)\nonumber\\
+    L^{V,LR}_{\nu e,ab12}=\, &C_{le}^{ab12}+\tfrac{\bar g_Z^2}{M_Z^2}\left(\frac{1}{4}\delta_{ab}v_T^2\left[C_{Hl}^{(1),12*}+C_{Hl}^{(3),12*}\right]\right)
+\end{align}
+We have therefore 4 SMEFT Operators at dimension 6 which the LEFT matches onto (full basis in \ref{tab:dim6SMEFTbasis}):
+\begin{align}
+    Q_{ll}^{prst} & =(\bar{l}_p \gamma^\mu l_r)(\bar{l}_s \gamma_\mu l_t) \\
+    Q_{le}^{prst}&=(\bar{l}_p \gamma^\mu l_r)(\bar{e}_s \gamma_\mu e_t)\\
+    Q_{Hl}^{(1),pr}&=(H^\dagger i\overleftrightarrow{D}_\mu H)(\bar{l}_p \gamma^\mu l_r)\\
+    Q_{Hl}^{(3),pr} &=(H^\dagger i\overleftrightarrow{D}^I_\mu H)(\bar{l}_p \tau^I \gamma^\mu l_r) 
+\end{align}
+For the SM-like muon decay with $ab=21$ this gives:
+\begin{align}
+        L^{V,LL}_{\nu e,2112} &=-\frac{2}{v_T^2} + C_{ll}^{2112} + C_{ll}^{1221}-2C^{(3),22}_{Hl}-2C^{(3),11}_{Hl}\\
+        L^{V,LR}_{\nu e,2112} &= C_{le,2112}
+\end{align}
+We see from the last term of eq. \ref{eq:LVLLmatching} that the SMEFT operator $Q_{Hl}^{(1)}$ only produces LEFT operators with two identical neutrino generations (due to the $\delta_{ab}$) -- this is because the operator stems from a lepton number changing neutral current mediated by the $Z$ boson which couples the muon directly to the electron and decays itself into two neutrinos of the same generation.\par  
+For the scalar and tensor operators, since they violate lepton number, the matching at dimension 6 is zero but at dimension 7 we get from \parencite{liao2020extending}:
+\begin{align}
+L^{S,LL}_{\nu e,prst} &= -\frac{\sqrt{2}v}{8} \left( 2C_{\bar{e}LLLH}^{stpr} + C_{\bar{e}LLLH}^{sptr} + p \leftrightarrow r \right) \\
+L^{S,LR}_{\nu e,prst} &= -\frac{\sqrt{2}v}{2} \left( C_{LeHD}^{pt}\delta^{rs} + C_{LeHD}^{rt}\delta^{ps} \right), \\
+L^{T,LL}_{\nu e, prst} &= +\frac{\sqrt{2}v}{32} \left( C_{\bar{e}LLLH}^{sptr} - C_{\bar{e}LLLH}^{srtp} \right),
+\end{align}
+So there are two relevant operators at dimension 7 (full basis in \ref{tab:dim7SMEFTbl02} and \ref{tab:dim7SMEFTbl1-1}):
+\begin{align}
+    \mathcal{O}_{LeHD}^{pr} &= \epsilon_{ij}\epsilon_{mn} (\overline{L_p^{iC}} \gamma_\mu e_r) H^j H^m iD^\mu H^n \\
+    \mathcal{O}_{\bar{e}LLLH}^{prst} &= \epsilon_{ij}\epsilon_{mn} (\overline{e_p} L_r^i) (\overline{L_s^{jC}} L_t^m) H^n 
+\end{align}
+\section{RGEs for the SMEFT}
+Now we run the operators up to the scale of new physics, so approximately $10\text{ TeV}$. For the dim-6 operators, we are using the \texttt{wilson} package \parencite{aebischer2018python} and for the dim-7 operators the \texttt{D7RGESolver} from \parencite{liao2025rge}.
+\begin{equation}
+    \dot L^{S,LR}_{\substack{\nu e \\ 1212}}=-\frac{\sqrt{2}v}{2}C^{22}_{LeHD}
+\end{equation}
+For $C^{22}_{LeHD}$ EW scale up to new physics, the RGESolver yields neutrino operator and quark operator.\par 
+
+
+\chapter{Beyond Standard Model (BSM) physics}
+In order to connect SMEFT operators to their UV origins, two different ways of thinking can be followed:\par
+Top-down approach
+\begin{itemize}
+    \item start with a UV extension of the Standard Model
+    \item integrate out the heavy degree of freedom for a given process
+    \item match the resulting expression to the SMEFT
+    \item find Wilson coefficient
+    \item however, finding all UV origins for a given SMEFT operator requires extensive research
+\end{itemize}
+Bottom-up approach in the j-basis:
+\begin{itemize}
+    \item  classify operators by their angular momentum quantum numbers
+    \item convert 4-fermion SMEFT operators into on-shell contact amplitudes
+    \item project them into j-basis
+    \item this partitions EFT space by the spin of the possible UV mediators
+    \item for given j-basis element: Use unitarity $\to$ cut 4-point contact term: factorize it into two 3-point amplitudes times heavy mediator
+    \item structure of the extracted 3-point amplitudes immediately tells the required properties of the heavy BSM field
+\end{itemize}
+EFT operator bases are plagued by redundancies - however, there is a possibility to transition to amplitude bases: \parencite{shadmi2019effective}. Using the helecity-spinor formalism, massive states can be expressed by little group indices \parencite{arkanihamed2021scattering}. This makes it possible to derive a complete dictionary between effective operators and possible UV models.
+\section{The UV dictionary}
+We use the dictionary from \parencite{li2024complete} to determine the UV origins of our SMEFT operators - the complete list of new UV states is given in tables \ref{tab:BSMscalars}, \ref{tab:BSMfermions}, and \ref{tab:BSMvectors}. We find the following for the dimension-six SMEFT operators:
+\begin{align}
+    \mathcal{O}_{ll}&\to S_1,S_6, V_1, V_4\\
+    \mathcal{O}^{(3)}_{Hl}&\to F1,F_2,F_5,F_6\\
+    \mathcal{O}_{le}&\to S_4, V_1, V_3
+\end{align}
+This means that an extension of the SM Lagrangian by either a single term for $S_1$ or $S_6$ or $V_1$ or $V_4$ would produce the SMEFT operator $\mathcal{O}_{ll}$ below the UV scale and similarly would $F1,F_2,F_5$ or $F_6$ produce the operator $\mathcal{O}^{(3)}_{Hl}$ and $S_4, V_1$ or $V_3$ the operator $\mathcal{O}_{le}$. For the UV origins of the dimension-seven SMEFT operators the situation is a bit more complicated, because several BSM fields only produce $\mathcal{O}_{LeHD}$ or $\mathcal{O}_{\bar eLLLH}$ in combination with other fields. For example $F_3$ only produces the operator $\mathcal{O}_{LeHD}$ in combination with $S_6$, so neither $S_6$ or $F_3$ alone would suffice but only their joint term in the Lagranigan has $\mathcal{O}_{LeHD}$ as an effective description at lower energies. 
+\begin{align}
+    \mathcal{O}_{LeHD}&\to F_1,F_5,F_3+S_6,F_3+V_2,V_2+V_3\\
+    \mathcal{O}_{\bar eLLLH}&\to F_1,F_5,F_3+S_6,F_3+V_2,V_2+V_3
+\end{align}
+The Lagrangian of the new UV fields is given in the Appendix - we include only those terms of the full UV Lagrangian of \parencite{li2024complete} that feature the identified fields with relevant IR limits, precisely their singular terms, interaction terms with SM field content and interaction terms among themselves. Here, we now state the matching conditions of the five SMEFT operators to their possible UV origins:
+\begin{align}
+\begin{autobreak}
+ {C_{ll}} =
+-\frac{\mathcal{D}_{{LLS_{2}}}^{{f_1f_2p_1}} \mathcal{D}_{{LLS_{2}}}^{{f_4f_3p_1*}}}{2 {M_{S_{2}}^2}}
++\frac{\mathcal{D}_{{LLS_{6}}}^{{f_1f_2p_1}} \mathcal{D}_{{LLS_{6}}}^{{f_4f_3p_1*}}}{4 {M_{S_{6}}^2}}
+-\frac{\mathcal{D}_{{LL^\dagger V_{1}}}^{{f_1f_3p_1}} \mathcal{D}_{{LL^\dagger V_{1}}}^{{f_2f_4p_1}}}{2 {M_{V_{1}}^2}}
++\frac{\mathcal{D}_{{LL^\dagger V_{4}}}^{{f_1f_3p_1}} \mathcal{D}_{{LL^\dagger V_{4}}}^{{f_2f_4p_1}}}{4 {M_{V_{4}}^2}}
+-\frac{\mathcal{D}_{{LL^\dagger V_{4}}}^{{f_1f_4p_1}} \mathcal{D}_{{LL^\dagger V_{4}}}^{{f_2f_3p_1}}}{2 {M_{V_{4}}^2}}
++\frac{\mathcal{D}_{{LLS_{2}}}^{{f_2f_1p_1}} \mathcal{D}_{{LLS_{2}}}^{{f_4f_3p_1*}}}{2 {M_{S_{2}}^2}}
++\frac{\mathcal{D}_{{LLS_{6}}}^{{f_2f_1p_1}} \mathcal{D}_{{LLS_{6}}}^{{f_4f_3p_1*}}}{4 {M_{S_{6}}^2}} 
+\end{autobreak}
+\end{align}
+So the operator $\mathcal{O}_{ll}$ could effectively be produced by extension of the SM Lagrangian by interactions of its lepton doublets with four different new fields. If we estimate the couplings $\mathcal{D}$ to be $\approx 1$, we can estimate the mass scale of the new UV fields if we assume order one coupling:
+\begin{equation}
+    |C_{ll}|\approx \frac{1}{M_{S_2,S_6,V_1,V_4}^2}
+\end{equation}
+Quite similarly, the UV origins of $\mathcal{O}_{Hl}^{(3)}$ can be assessed and again, it is by coupling terms of the possible new UV fields to the SM lepton plus Higgs doublets that it can be produced as a low energy limit:
+\begin{align}
+\begin{autobreak}
+ {C_{Hl}^{(3)}} =
+-\frac{i \mathcal{D}_{{LL^\dagger V_{4}}}^{{f_1f_4p_1}} \mathcal{D}_{{HH^\dagger V_{4}D}}^{{p_1}}}{2 {M_{V_{4}}^2}}
+-\frac{i \mathcal{D}_{{LL^\dagger V_{4}}}^{{f_1f_4p_1}} \mathcal{D}_{{HH^\dagger V_{4}D}}^{{p_1*}}}{2 {M_{V_{4}}^2}}
+-\frac{\mathcal{D}_{{F_{1}HL}}^{{p_1f_1}} \mathcal{D}_{{F_{1}HL}}^{{p_1f_4*}}}{4 {M_{F_{1}}^2}}
+-\frac{\mathcal{D}_{{F_{2L}H^\dagger L}}^{{p_1f_1}} \mathcal{D}_{{F_{2L}H^\dagger L}}^{{p_1f_4*}}}{4 {M_{F_{2}}^2}}
++\frac{\mathcal{D}_{{F_{5}HL}}^{{p_1f_1}} \mathcal{D}_{{F_{5}HL}}^{{p_1f_4*}}}{8 {M_{F_{5}}^2}}
++\frac{\mathcal{D}_{{F_{6L}H^\dagger L}}^{{p_1f_1}} \mathcal{D}_{{F_{6L}H^\dagger L}}^{{p_1f_4*}}}{8 {M_{F_{6}}^2}} 
+\end{autobreak}
+\end{align}
+Finally, we cite the matching conditions for the $\mathcal{O}_{le}$ operator:
+\begin{equation}
+ {C_{le}} =
+ \frac{\mathcal{D}_{{e^\dagger eV_{1}}}^{{f_1f_3p_1}} \mathcal{D}_{{LL^\dagger V_{1}}}^{{f_2f_4p_1}}}{{M_{V_{1}}^2}}
+-\frac{\mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_1f_2p_1}} \mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_3f_4p_1*}}}{2 {M_{S_{4}}^2}}
++\frac{\mathcal{D}_{{e^\dagger L^\dagger V_{3}^\dagger }}^{{f_1f_4p_1}} \mathcal{D}_{{e^\dagger L^\dagger V_{3}^\dagger }}^{{f_3f_2p_1*}}}{{M_{V_{3}}^2}} 
+\end{equation}
+As the matching conditions for the dim-7 operators are quite lenghty, we only cite them in the Appendix in equations \ref{eq:LeHD-UV} and \ref{eq:eLLLH-UV}.
+Let us take a closer look at the simplest field in our array of UV origins: The scalar field $S_2$, a singlet under both gauge groups $SU(2)$ and $SO(3)$ and with hypercharge 1. If we expand the field content of the SM by this field, its Lagrangian receives exactly one additional term:
+\begin{equation}
+    \Delta{\cal L}_{S_2} = 
+        - \mathcal{D}_{{LLS_{2}}}^{{rsp}}\epsilon ^{{ij}}[({l}_{{r}})_{{i}}{C}({l}_{{s}})_{{j}}]{S}_{{2p}} 
+\end{equation}
+With this interaction term, one could build a scattering amplitude of four fermions that at the EW scale looks exactly like the effective four-fermion operator $\mathcal{O}_{ll}$ and in the energy regime of muon decay matches onto the LEFT operator $\mathcal{O}_{\nu e}^{V,LL}$. So we have succesfully identified a new possible mediator of muon decay and can constrain its resonance by the experimental results for the Michel parameters. We will now derive the mass bounds for each of the fields that produce an relevant effective operator on their own and subsequently determine the constrains for combinations of UV fields that only together produce a dimension-seven SMEFT operator.
+
+
+\begin{table}[]
+    \centering
+    %\renewcommand{\arraystretch}{1.5}
+    \small
+    \begin{tabular}{lcccccccc}
+        \bottomrule
+        Notation & $S_1$ & $S_2$ & $S_3$ & $S_4$ & $S_5$ & $S_6$ & $S_7$ & $S_8$ \\
+        Name & $\mathcal{S}$ & $\mathcal{S}_1$ & $\mathcal{S}_2$ & $\varphi$ & $\Xi$ & $\Xi_1$ & $\Theta_1$ & $\Theta_3$ \\
+        Irrep & $({\bf 1,1})_0$ & $({\bf 1,1})_1$ & $({\bf 1,1})_2$ & $({\bf 1,2})_{\frac{1}{2}}$ & $({\bf 1,3})_0$ & $({\bf 1,3})_1$ & $({\bf 1,4})_{\frac{1}{2}}$ & $({\bf 1,4})_{\frac{3}{2}}$ \\
+        \midrule
+        Notation & $S_9$ & $S_{10}$ & $S_{11}$ & $S_{12}$ & $S_{13}$ & $S_{14}$ & & \\
+        Name & $\omega_4$ & $\omega_1$ & $\omega_2$ & $\Pi_1$ & $\Pi_7$ & $\zeta$ & & \\
+        Irrep & $({\bf 3,1})_{-\frac{4}{3}}$ & $({\bf 3,1})_{-\frac{1}{3}}$ & $({\bf 3,1})_{\frac{2}{3}}$ & $({\bf 3,2})_{\frac{1}{6}}$ & $({\bf 3,2})_{\frac{7}{6}}$ & $({\bf 3,3})_{-\frac{1}{3}}$ & & \\
+        \midrule
+        Notation & $S_{15}$ & $S_{16}$ & $S_{17}$ & $S_{18}$ & $S_{19}$ & & & \\
+        Name & $\Omega_2$ & $\Omega_1$ & $\Omega_4$ & $\Upsilon_1$ & $\Phi$ & & & \\
+        Irrep & $({\bf 6,1})_{-\frac{2}{3}}$ & $({\bf 6,1})_{\frac{1}{3}}$ & $({\bf 6,1})_{\frac{4}{3}}$ & $({\bf 6,3})_{\frac{1}{3}}$ & $({\bf 8,2})_{\frac{1}{2}}$ & & & \\
+        \bottomrule
+    \end{tabular}
+    \caption{BSM scalars that can contribute to operators up to dimension 7 in SMEFT at tree level, with the name in the second row corresponding to \parencite{de2018effective} - table from \parencite[p.8]{li2024complete}.}
+    \label{tab:BSMscalars}
+\end{table}
+\begin{table}[]
+    \centering
+    %\renewcommand{\arraystretch}{1.5}
+    \small
+    \begin{tabular}{lccccccc}
+        \toprule 
+        Notation & $F_1$ & $F_2$ & $F_3$ & $F_4$ & $F_5$ & $F_6$ & $F_7$ \\
+        Name & $N$ & $E^c$ & $\Delta_1^c$ & $\Delta_3^c$ & $\Sigma$ & $\Sigma_1^c$ & \\
+        Irrep & $({\bf 1,1})_0$ & $({\bf 1,1})_{1}$ & $({\bf 1,2})_{\frac{1}{2}}$ & $({\bf 1,2})_{\frac{3}{2}}$ & $({\bf 1,3})_0$ & $({\bf 1,3})_{1}$ & $({\bf 1,4})_{\frac{1}{2}}$ \\
+       \midrule 
+        Notation & $F_8$ & $F_{9}$ & $F_{10}$ & $F_{11}$ & $F_{12}$ & $F_{13}$ & $F_{14}$ \\
+        Name & $D$ & $U$ & $Q_5$ & $Q_1$ & $Q_7$ & $T_1$ & $T_2$ \\
+        Irrep & $({\bf 3,1})_{-\frac{1}{3}}$ & $({\bf 3,1})_{\frac{2}{3}}$ & $({\bf 3,2})_{-\frac{5}{6}}$ & $({\bf 3,2})_{\frac{1}{6}}$ & $({\bf 3,2})_{\frac{7}{6}}$ & $({\bf 3,3})_{-\frac{1}{3}}$ & $({\bf 3,3})_{\frac{2}{3}}$ \\
+        \bottomrule
+    \end{tabular}
+    \caption{BSM fermions that can contribute to operators up to dimension 7 in SMEFT at tree level, with the name in the second row corresponding to \parencite{de2018effective}; superscript ${}^c$ if they are conjugated with each other - complete table from \parencite[p.9]{li2024complete}. Majorana fermions $F_1$ and $F_5$ have parity left, i.e. $F = F_L = P_L F$.}
+    \label{tab:BSMfermions}
+\end{table}
+\begin{table}[]
+    \centering
+    %\renewcommand{\arraystretch}{0.8}
+    \small
+    \begin{tabular}{lccccccc}
+        \toprule 
+        Notation & $V_1$ & $V_2$ & $V_3$ & $V_4$ & $V_5$ & $V_6$ & $V_7$ \\
+        Name & $\mathcal{B}$ & $\mathcal{B}_1$ & $\mathcal{L}_3^\dagger$ & $\mathcal{W}$ & $\mathcal{U}_2$ & $\mathcal{U}_5$ & $\mathcal{Q}_5$ \\
+        Irrep & $({\bf 1,1})_0$ & $({\bf 1,1})_1$ & $({\bf 1,2})_{\frac{3}{2}}$ & $({\bf 1,3})_0$ & $({\bf 3,1})_{\frac{2}{3}}$ & $({\bf 3,1})_{\frac{5}{3}}$ &  $({\bf 3,2})_{-\frac{5}{6}}$ \\
+        \midrule
+        Notation & $V_8$ & $V_{9}$ & $V_{10}$ & $V_{11}$ & $V_{12}$ & $V_{13}$ & $V_{14}$ \\
+        Name & $\mathcal{Q}_1$ & $\mathcal{X}$ & $\mathcal{Y}_1^\dagger$ & $\mathcal{Y}_5^\dagger$ & $\mathcal{G}$ & $\mathcal{G}_1$ & $\mathcal{H}$ \\
+        Irrep & $({\bf 3,2})_{\frac{1}{6}}$ &$({\bf 3,3})_{\frac{2}{3}}$ & $({\bf {6}, 2})_{-\frac{1}{6}}$ & $({\bf {6}, 2})_{\frac{5}{6}}$ & $({\bf 8,1})_0$ & $({\bf 8,1})_1$ & $({\bf 8,3})_0$ \\
+        \bottomrule 
+    \end{tabular}
+    \caption{BSM vectors that can contribute to operators up to dimension 7 in SMEFT at tree level, with the name in the second row corresponding to \parencite{de2018effective}; superscript ${}^\dagger$ if they are conjugated with each other - complete table from \parencite[p.9]{li2024complete}.}
+    \label{tab:BSMvectors}
+\end{table}
+\section{Contraints for the UV fields}
+\section{Conclusion}
+\chapter{Outlook}
+Questions:
+\begin{itemize}
+    \item what if new physics does not follow spontaneous symmetry breaking?
+    \item do we need to change to the HEFT then? What even is it?
+    
+\end{itemize}
+\begin{appendix}
+\chapter{Kinematics}
+\section{Michel basis functions}
+
+\section{Kinematics and Phase Space integrals}\label{sec:kinPS}
+
+In this section we closely follow the textbook by Scheck \cite{Scheck:1996ur} and define the momenta as follows:
+\begin{equation}
+\mu_q\to \overset{\scriptscriptstyle(-)}{\nu}_{k_1}+\overset{\scriptscriptstyle(-)}{\nu}_{k_2}+e_p\, ,
+\end{equation}
+%
+that is the momentum assigned to the muon is $q$, that for the electron is $p$, etc. The labels $k_1$ and $k_2$ are integrated over in deriving the Michel parameters, so the assignment to (massless) neutrinos is arbitrary. When treating tau decays, the tau momentum is also taken to be $q$.
+
+We take $s_0=(0,P_\mu \hat n_0)$ to be the muon spin four-vector, with $P_\mu$ the muon polarization and $\vec n_0$ a unit vector in the direction of the muon spin expectation value. A similar spin vector can be defined for the electron,
+%
+\begin{equation}
+s_1=\left(\frac{1}{m_e}\vec p\cdot \hat n_1, \hat n_1+\frac{\vec p\cdot \hat n_1}{m_e(E+m_e)}\vec p\right)\, ,
+\end{equation}
+%
+which projects onto the electron spin state with spin along $\vec n_1$ \cite{Scheck:1996ur}.
+
+We work in the muon rest frame, $q^\mu=(m_\mu,\vec 0)$, and express the electron four-momentum us $ p^\mu=(E_e,\vec p)$. Working out the relevant products of four-vectors we obtain:
+%
+\begin{align}
+q^2&=m_\mu^2\, ,\\
+p^2&=m_e^2\, ,\\
+q\cdot p &= m_\mu E_e\, ,\\
+q\cdot s_0 &= 0\, ,\\
+q\cdot s_1 &= \frac{m_\mu}{m_e}\vec p\cdot \hat n_1\, ,\\
+p\cdot s_0 &= -P_\mu\,\vec p\cdot \hat n_0\, ,\\
+p\cdot s_1 &= 0\, ,\\
+s_0\cdot s_1 &=-P_\mu\left(\hat n_0\cdot\hat n_1+\frac{\vec p\cdot \hat n_1\, \vec p\cdot \hat n_0}{m_e(E_e+m_e)}\right)\, .
+\end{align}
+
+
+The PDG defines muon decay kinematics dependent on the electron spin in terms of the product of $\hat \zeta\cdot \vec P_e$. From a theory perspective we are able to choose to align $\zeta$ with the $\hat n_1$ direction.
+
+The product $p\cdot s_0$ is independent of the electron spin orientation:
+%
+\begin{equation}
+p\cdot s_0=-P_\mu|\vec p|\cos\theta\, .
+\end{equation}
+%
+Taking $\hat e_3$ to be along $\vec p$ we find $q\cdot s_1$ lies strictly along $\hat e_3=\hat p$:
+%
+\begin{eqnarray}
+q\cdot s_1=\frac{m_\mu}{m_e}|\vec p|\zeta_3\, .
+\end{eqnarray}
+%
+The vectors $\hat p$ and $\hat n_0$ define the decay plane. The $\hat e_1$ direction is taken to be the component of the muon spin direction orthogonal to the electron momentum,
+%
+\begin{equation}
+\hat e_1=\frac{\hat n_0-(\hat n_0\cdot \hat p)\hat p}{\sqrt{1-(\hat n_0\cdot \hat p)^2}}=\frac{\hat n_0-\cos\theta\hat p}{\sin\theta}\, ,
+\end{equation}
+%
+and therefore lies in the decay plane orthogonal to $\hat p$.
+The product of the electron and muon spins then decomposes over the $\hat e_1$ and $\hat e_3$ directions:
+%
+\begin{equation}
+s_0\cdot s_1=-P_\mu\left(\sin\theta \zeta_1+\frac{E_e}{m_e}\cos\theta\zeta_3\right)\, .
+\end{equation}
+%
+Finally $\hat e_2$ is taken to be normal to the decay plane. In this case only the structure, $\hat n_0\cdot (\hat n_1\times \hat p)$ contributes, which in four vectors corresponds to:
+%
+\begin{equation}
+\epsilon_{\mu\nu\rho\sigma}s_0^\mu s_1^\nu q^\rho p^\sigma=m_\mu P_\mu |\vec p|\sin\theta\zeta_2
+\end{equation}
+
+\section{Phase space integrations}
+In the LEFT, we need to perform phase space integrations of squared amplitudes dependent on higher orders in momentum than treated in Scheck or for example \cite{Marquez:2022bpg}. Taking $Q\equiv k_1+k_2=q-p$, and defining
+%
+\begin{equation}
+\int d\Phi_2=\int \frac{d^3k_1}{2k_1^0}\frac{d^3k_2}{2k_2^0}\delta^{(4)}(Q-k_1-k_2)\, ,
+\end{equation}
+%
+we obtain:
+%
+\begin{align}
+\int d\Phi_2\, 1&=\frac{\pi}{2}\, ,\\
+\int d\Phi_2\, k_1^\mu&=\frac{\pi}{4}Q^\mu\, ,\\
+\int d\Phi_2\, k_1^\mu k_1^\nu&=\frac{\pi}{24}\left(4Q^\mu Q^\nu-Q^2\eta^{\mu\nu}\right)\, ,\\
+\int d\Phi_2\, k_1^\mu k_1^\nu k_1^\rho&=\frac{\pi}{48}\left[6Q^\mu Q^\nu Q^\rho-Q^2\left(Q^\mu \eta^{\nu\rho}+Q^\nu \eta^{\mu\rho}+Q^\rho\eta^{\mu\nu}\right)\right]\, .
+\end{align}
+%
+It is important to note that all momenta in these basis integrands are the same, i.e. they are all $k_1$. These results also implicitly assume massless neutrinos. When applying these identities to our results we simply substitute $k_2=Q-k_1$ so that our integrals depend only on $k_1$. 
+
+The decay width is for the muon is then given as:
+%
+\begin{equation}
+\frac{d^2\Gamma}{dE_e d\cos\theta}=\frac{1}{4m_\mu}\frac{\sqrt{E_e^2-m_e^2}}{(2\pi)^5}\int d\phi\, d\Phi_2|\, \mathcal M|^2\, ,
+\end{equation}
+%
+with $\mathcal M$ the amplitude for the process. As our definition of the two body phase space excludes factors or $2\pi$ some additional factors appear explicitly in our expression for the differential decay width. For identical neutrinos in the final state an additional factor of one half is necessary.
+
+Defining the maximum electron energy to be,
+%
+\begin{equation}
+W = \frac{1}{2m_\mu}(m_\mu^2+m_e^2)\, ,
+\end{equation}
+%
+we make a change of variables to $x\equiv E_e/W$ giving:
+%
+\begin{equation}
+\frac{d^2\Gamma}{dx d\cos\theta}=\frac{W}{4m_\mu}\frac{\sqrt{W^2x^2-m_e^2}}{(2\pi)^5}\int d\phi\, d\Phi_2|\, \mathcal M|^2\, .
+\end{equation}
+%
+\section{Michel ``basis functions''}\label{sec:michelbasis}
+
+We define the following set of basis functions to aid in extracting the Michel parameters. Starting with electron polarization independent Michel parameters we define:
+%
+\begin{eqnarray}
+\phi_1(x,x_0,\cos\theta)&=&\sqrt{x^2-x_0^2}x(1-x)\, ,\\
+\phi_2(x,x_0,\cos\theta)&=&\sqrt{x^2-x_0^2}\frac{2}{9}(4x^2-3x-x_0^2)\, ,\\
+\phi_3(x,x_0,\cos\theta)&=&\sqrt{x^2-x_0^2}x_0(1-x)\, ,\\
+\phi_4(x,x_0,\cos\theta)&=&\cos\theta(x^2-x_0^2)\frac{1}{3}(1-x)\, ,\\
+\phi_5(x,x_0,\cos\theta)&=&\cos\theta(x^2-x_0^2)\frac{2}{9}\left[(4x-3)+\sqrt{1-x_0^2}-1\right]\, .
+\end{eqnarray}
+
+These correspond to the kinematic structures multiplying the Michel parameters in the differential decay rate. For example, considering only $\rho$ dependence from the decay rate we have:
+%
+\begin{equation}
+\frac{d^2\Gamma}{dxd\cos\theta}\sim\rho \frac{m_\mu}{4\pi^3}W^4G_F^2\sqrt{x^2-x_0^2}\frac{2}{9}(4x^2-3x-x_0^2)\, .
+\end{equation}
+%
+Defining the Gram matrix,
+%
+\begin{equation}
+G_{ij}=\int_{x_0}^1dx\, \int_{-1}^1d\cos\theta\phi_i\phi_j\, ,
+\end{equation}
+%
+we can solve for the Michel parameters by taking:
+%
+\begin{equation}
+\begin{pmatrix}
+A\equiv \frac{G_F^2 m_\mu W^4}{4\pi^3}\\
+A\rho\\
+A\eta\\
+\pm P_\mu A \xi\\
+\pm P_\mu A \xi\delta
+\end{pmatrix}=G_{ij}^{-1}b_j\, ,\label{eq:solveforMichel}
+\end{equation}
+%
+where we have defined:
+%
+\begin{equation}
+b_j=\left(\int_{x_0}^1dx\, \int_{-1}^{1}d\cos\theta \frac{d^2\Gamma}{dxd\cos\theta}\phi_j\right)\, .
+\end{equation}
+%
+For muon decay $\pm1$ should be understood to be $+1$ for positive muon decay, and $-1$ for negative muon decay.
+
+The same approach is taken for the other Michel parameters. We split these cases by their projection onto our choice of $\zeta_i$ as mentioned in Sec.~\ref{sec:kinPS}.
+
+
+
+%
+\begin{equation}
+\begin{aligned}
+G^{-1}b_{\rm unpol}
+&=
+\begin{pmatrix}
+A\\[2pt]
+A\rho\\[2pt]
+A\eta\\[2pt]
+- P_\mu A\xi\\[2pt]
+- P_\mu A\xi\delta
+\end{pmatrix},
+\\[8pt]
+G^{-1}b_{\zeta_1}
+&=
+\begin{pmatrix}
+-\dfrac{P_\mu A}{6}
+\left[
+\xi''+12\left(\rho-\dfrac{3}{4}\right)
+\right]
+\\[8pt]
+-\dfrac{P_\mu A}{4}\eta
+\\[8pt]
+\dfrac{P_\mu A}{12}\eta''
+\end{pmatrix},
+\\[8pt]
+G^{-1}b_{\zeta_2}
+&=
+\begin{pmatrix}
+P_\mu A\,\dfrac{\alpha'}{A}
+\\[8pt]
+\dfrac{2}{3}P_\mu A\,\sqrt{1-x_0^2}\,\dfrac{\beta'}{A}
+\end{pmatrix},
+\\[8pt]
+G^{-1}b_{\zeta_3}
+&=
+\begin{pmatrix}
+-\dfrac{A}{6}\xi'
+\\[8pt]
+-\dfrac{2A}{27}\xi\left(\delta-\dfrac{3}{4}\right)
+\\[8pt]
+\dfrac{P_\mu A}{6}\xi''
+\\[8pt]
+\dfrac{2P_\mu A}{3}\left(\rho-\dfrac{3}{4}\right)
+\\[8pt]
+\dfrac{P_\mu A}{3}\eta''
+\end{pmatrix}.
+\end{aligned}
+\label{eq:solveforMichelAll}
+\end{equation}
+%
+
+
+
+\paragraph*{$\mathbf{\zeta_1}$}
+The $\zeta_1$ projection corresponds to $F_{T_1}$ in the PDG notation \cite{particle2024review}. The basis functions we choose are:
+%
+\begin{eqnarray}
+\phi_{\zeta_1,1}(x,x_0,\cos\theta)&=&\sqrt{x^2-x_0^2}\sqrt{1-\cos^2\theta}(1-x)x_0\, ,\\
+\phi_{\zeta_1,2}(x,x_0,\cos\theta)&=&\sqrt{x^2-x_0^2}\sqrt{1-\cos^2\theta}(x^2-x_0^2)\, ,\\
+\phi_{\zeta_1,3}(x,x_0,\cos\theta)&=&\sqrt{x^2-x_0^2}\sqrt{1-\cos^2\theta}(4x-3x^2-x_0^2)\, .\\
+\end{eqnarray}
+%
+These basis functions allow for the extraction of $\xi''$, $\eta$, and $\eta''$ respectively. The simultaneous extraction of $\eta$ from $\phi_{\zeta_1,2}$ and $\phi_3$ provides a useful consistency check of our results.
+
+\paragraph*{$\mathbf{\zeta_2}$}
+The $\zeta_2$ projection corresponds to $F_{T_2}$ in the PDG notation \cite{particle2024review}. The basis functions we choose are:
+%
+\begin{eqnarray}
+\phi_{\zeta_2,1}(x,x_0,\cos\theta)&=&(x^2-x_0^2)\sqrt{1-\cos^2\theta}(1-x)\, ,\\
+\phi_{\zeta_2,2}(x,x_0,\cos\theta)&=&(x^2-x_0^2)\sqrt{1-\cos^2\theta}\sqrt{1-x_0^2}\, .
+\end{eqnarray}
+%
+These basis functions allow for the extraction of $\alpha'/A$ and $\beta'/A$ respectively.
+
+
+
+\paragraph*{$\mathbf{\zeta_3}$}
+The $\zeta_3$ projection corresponds to $F_{IP}$ and $F_{AP}$ in the PDG notation \cite{particle2024review}. The basis functions we choose are:
+%
+\begin{eqnarray}
+\phi_{\zeta_3,1}(x,x_0,\cos\theta)&=&(x^2-x_0^2)(2-2x+\sqrt{1-x_0^2})\, ,\\
+\phi_{\zeta_3,2}(x,x_0,\cos\theta)&=&(x^2-x_0^2)(4x-4+\sqrt{1-x_0^2})\,,\\
+\phi_{\zeta_3,3}(x,x_0,\cos\theta)&=&\cos\theta\sqrt{x^2-x_0^2}(2x^2-x-x_0^2)\, ,\\
+\phi_{\zeta_3,4}(x,x_0,\cos\theta)&=&\cos\theta\sqrt{x^2-x_0^2}(4x^2-3x-x_0^2)\, ,\\
+\phi_{\zeta_3,5}(x,x_0,\cos\theta)&=&\cos\theta\sqrt{x^2-x_0^2}(1-x)x_0\, .
+\end{eqnarray}
+%
+These basis functions allow for the extraction of $\xi'$, $\delta$, $\xi''$, $\rho$, and $\eta''$. Again, redundancy with previously extracted Michel parameters provides a useful cross check of our results.
+
+
+
+
+
+
+
+\chapter{Operator bases}
+\section{LEFT basis}
+Here, we give the operator bases of the LEFT at dimension six and the SMEFT at dimensions six and seven. We highlighted the operators that perturb muon decay with a grey background color and the matching operators of the SMEFT as well. 
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    
+    % ================= TOP ROW =================
+    \scalebox{0.67}{%
+    \begin{tabular}[t]{c|l}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{\nu\nu + \text{h.c.}}$}} \\ \hline
+        $\mathcal{O}_{\nu\nu}$ & $(\nu_{Lp}^T C \nu_{Lr})$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{(\nu\nu)X + \text{h.c.}}$}} \\ \hline
+        \cellcolor{gray!25}$\mathcal{O}_{\nu\gamma}$ & \cellcolor{gray!25}$(\nu_{Lp}^T C \sigma^{\mu\nu} \nu_{Lr}) F_{\mu\nu}$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{(\bar{L}R)X + \text{h.c.}}$}} \\ \hline
+        \cellcolor{gray!25}$\mathcal{O}_{e\gamma}$ & \cellcolor{gray!25}$\bar{e}_{Lp} \sigma^{\mu\nu} e_{Rr} F_{\mu\nu}$ \\
+        $\mathcal{O}_{u\gamma}$ & $\bar{u}_{Lp} \sigma^{\mu\nu} u_{Rr} F_{\mu\nu}$ \\
+        $\mathcal{O}_{d\gamma}$ & $\bar{d}_{Lp} \sigma^{\mu\nu} d_{Rr} F_{\mu\nu}$ \\
+        $\mathcal{O}_{uG}$ & $\bar{u}_{Lp} \sigma^{\mu\nu} T^A u_{Rr} G_{\mu\nu}^A$ \\
+        $\mathcal{O}_{dG}$ & $\bar{d}_{Lp} \sigma^{\mu\nu} T^A d_{Rr} G_{\mu\nu}^A$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{X^3}$}} \\ \hline
+        $\mathcal{O}_G$ & $f^{ABC} G_\mu^{A\nu} G_\nu^{B\rho} G_\rho^{C\mu}$ \\
+        $\mathcal{O}_{\widetilde{G}}$ & $f^{ABC} \widetilde{G}_\mu^{A\nu} G_\nu^{B\rho} G_\rho^{C\mu}$
+    \end{tabular}
+    } % Close first resizebox
+    
+    \vspace{2em}
+    
+    % ================= BOTTOM ROW (Massive Columns) =================
+    \scalebox{0.67}{%
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{(\bar{L}L)(\bar{L}L)}$}} \\ \hline
+        $\mathcal{O}_{\nu\nu}^{V,LL}$ & $(\bar{\nu}_{Lp} \gamma^\mu \nu_{Lr})(\bar{\nu}_{Ls} \gamma_\mu \nu_{Lt})$ \\
+        $\mathcal{O}_{ee}^{V,LL}$ & $(\bar{e}_{Lp} \gamma^\mu e_{Lr})(\bar{e}_{Ls} \gamma_\mu e_{Lt})$ \\
+        \cellcolor{gray!25}$\mathcal{O}_{\nu e}^{V,LL}$ & \cellcolor{gray!25}$(\bar{\nu}_{Lp} \gamma^\mu \nu_{Lr})(\bar{e}_{Ls} \gamma_\mu e_{Lt})$ \\
+        $\mathcal{O}_{\nu u}^{V,LL}$ & $(\bar{\nu}_{Lp} \gamma^\mu \nu_{Lr})(\bar{u}_{Ls} \gamma_\mu u_{Lt})$ \\
+        $\mathcal{O}_{\nu d}^{V,LL}$ & $(\bar{\nu}_{Lp} \gamma^\mu \nu_{Lr})(\bar{d}_{Ls} \gamma_\mu d_{Lt})$ \\
+        $\mathcal{O}_{eu}^{V,LL}$ & $(\bar{e}_{Lp} \gamma^\mu e_{Lr})(\bar{u}_{Ls} \gamma_\mu u_{Lt})$ \\
+        $\mathcal{O}_{ed}^{V,LL}$ & $(\bar{e}_{Lp} \gamma^\mu e_{Lr})(\bar{d}_{Ls} \gamma_\mu d_{Lt})$ \\
+        $\mathcal{O}_{\nu edu}^{V,LL}$ & $(\bar{\nu}_{Lp} \gamma^\mu e_{Lr})(\bar{d}_{Ls} \gamma_\mu u_{Lt}) + \text{h.c.}$ \\
+        $\mathcal{O}_{uu}^{V,LL}$ & $(\bar{u}_{Lp} \gamma^\mu u_{Lr})(\bar{u}_{Ls} \gamma_\mu u_{Lt})$ \\
+        $\mathcal{O}_{dd}^{V,LL}$ & $(\bar{d}_{Lp} \gamma^\mu d_{Lr})(\bar{d}_{Ls} \gamma_\mu d_{Lt})$ \\
+        $\mathcal{O}_{ud}^{V1,LL}$ & $(\bar{u}_{Lp} \gamma^\mu u_{Lr})(\bar{d}_{Ls} \gamma_\mu d_{Lt})$ \\
+        $\mathcal{O}_{ud}^{V8,LL}$ & $(\bar{u}_{Lp} \gamma^\mu T^A u_{Lr})(\bar{d}_{Ls} \gamma_\mu T^A d_{Lt})$ \\
+        \multicolumn{2}{c}{\vspace{-0.5em}} \\ % Small spacer
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{(\bar{R}R)(\bar{R}R)}$}} \\ \hline
+        $\mathcal{O}_{ee}^{V,RR}$ & $(\bar{e}_{Rp} \gamma^\mu e_{Rr})(\bar{e}_{Rs} \gamma_\mu e_{Rt})$ \\
+        $\mathcal{O}_{eu}^{V,RR}$ & $(\bar{e}_{Rp} \gamma^\mu e_{Rr})(\bar{u}_{Rs} \gamma_\mu u_{Rt})$ \\
+        $\mathcal{O}_{ed}^{V,RR}$ & $(\bar{e}_{Rp} \gamma^\mu e_{Rr})(\bar{d}_{Rs} \gamma_\mu d_{Rt})$ \\
+        $\mathcal{O}_{uu}^{V,RR}$ & $(\bar{u}_{Rp} \gamma^\mu u_{Rr})(\bar{u}_{Rs} \gamma_\mu u_{Rt})$ \\
+        $\mathcal{O}_{dd}^{V,RR}$ & $(\bar{d}_{Rp} \gamma^\mu d_{Rr})(\bar{d}_{Rs} \gamma_\mu d_{Rt})$ \\
+        $\mathcal{O}_{ud}^{V1,RR}$ & $(\bar{u}_{Rp} \gamma^\mu u_{Rr})(\bar{d}_{Rs} \gamma_\mu d_{Rt})$ \\
+        $\mathcal{O}_{ud}^{V8,RR}$ & $(\bar{u}_{Rp} \gamma^\mu T^A u_{Rr})(\bar{d}_{Rs} \gamma_\mu T^A d_{Rt})$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{(\bar{L}L)(\bar{R}R)}$}} \\ \hline
+        \cellcolor{gray!25}$\mathcal{O}_{\nu e}^{V,LR}$ & \cellcolor{gray!25}$(\bar{\nu}_{Lp} \gamma^\mu \nu_{Lr})(\bar{e}_{Rs} \gamma_\mu e_{Rt})$ \\
+        $\mathcal{O}_{ee}^{V,LR}$ & $(\bar{e}_{Lp} \gamma^\mu e_{Lr})(\bar{e}_{Rs} \gamma_\mu e_{Rt})$ \\
+        $\mathcal{O}_{\nu u}^{V,LR}$ & $(\bar{\nu}_{Lp} \gamma^\mu \nu_{Lr})(\bar{u}_{Rs} \gamma_\mu u_{Rt})$ \\
+        $\mathcal{O}_{\nu d}^{V,LR}$ & $(\bar{\nu}_{Lp} \gamma^\mu \nu_{Lr})(\bar{d}_{Rs} \gamma_\mu d_{Rt})$ \\
+        $\mathcal{O}_{eu}^{V,LR}$ & $(\bar{e}_{Lp} \gamma^\mu e_{Lr})(\bar{u}_{Rs} \gamma_\mu u_{Rt})$ \\
+        $\mathcal{O}_{ed}^{V,LR}$ & $(\bar{e}_{Lp} \gamma^\mu e_{Lr})(\bar{d}_{Rs} \gamma_\mu d_{Rt})$ \\
+        $\mathcal{O}_{ue}^{V,LR}$ & $(\bar{u}_{Lp} \gamma^\mu u_{Lr})(\bar{e}_{Rs} \gamma_\mu e_{Rt})$ \\
+        $\mathcal{O}_{de}^{V,LR}$ & $(\bar{d}_{Lp} \gamma^\mu d_{Lr})(\bar{e}_{Rs} \gamma_\mu e_{Rt})$ \\
+        $\mathcal{O}_{\nu edu}^{V,LR}$ & $(\bar{\nu}_{Lp} \gamma^\mu e_{Lr})(\bar{d}_{Rs} \gamma_\mu u_{Rt}) + \text{h.c.}$ \\
+        $\mathcal{O}_{uu}^{V1,LR}$ & $(\bar{u}_{Lp} \gamma^\mu u_{Lr})(\bar{u}_{Rs} \gamma_\mu u_{Rt})$ \\
+        $\mathcal{O}_{uu}^{V8,LR}$ & $(\bar{u}_{Lp} \gamma^\mu T^A u_{Lr})(\bar{u}_{Rs} \gamma_\mu T^A u_{Rt})$ \\
+        $\mathcal{O}_{ud}^{V1,LR}$ & $(\bar{u}_{Lp} \gamma^\mu u_{Lr})(\bar{d}_{Rs} \gamma_\mu d_{Rt})$ \\
+        $\mathcal{O}_{ud}^{V8,LR}$ & $(\bar{u}_{Lp} \gamma^\mu T^A u_{Lr})(\bar{d}_{Rs} \gamma_\mu T^A d_{Rt})$ \\
+        $\mathcal{O}_{du}^{V1,LR}$ & $(\bar{d}_{Lp} \gamma^\mu d_{Lr})(\bar{u}_{Rs} \gamma_\mu u_{Rt})$ \\
+        $\mathcal{O}_{du}^{V8,LR}$ & $(\bar{d}_{Lp} \gamma^\mu T^A d_{Lr})(\bar{u}_{Rs} \gamma_\mu T^A u_{Rt})$ \\
+        $\mathcal{O}_{dd}^{V1,LR}$ & $(\bar{d}_{Lp} \gamma^\mu d_{Lr})(\bar{d}_{Rs} \gamma_\mu d_{Rt})$ \\
+        $\mathcal{O}_{dd}^{V8,LR}$ & $(\bar{d}_{Lp} \gamma^\mu T^A d_{Lr})(\bar{d}_{Rs} \gamma_\mu T^A d_{Rt})$ \\
+        $\mathcal{O}_{uddu}^{V1,LR}$ & $(\bar{u}_{Lp} \gamma^\mu d_{Lr})(\bar{d}_{Rs} \gamma_\mu u_{Rt}) + \text{h.c.}$ \\
+        $\mathcal{O}_{uddu}^{V8,LR}$ & $(\bar{u}_{Lp} \gamma^\mu T^A d_{Lr})(\bar{d}_{Rs} \gamma_\mu T^A u_{Rt}) + \text{h.c.}$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{(\bar{L}R)(\bar{L}R) + \text{h.c.}}$}} \\ \hline
+        $\mathcal{O}_{ee}^{S,RR}$ & $(\bar{e}_{Lp} e_{Rr})(\bar{e}_{Ls} e_{Rt})$ \\
+        $\mathcal{O}_{eu}^{S,RR}$ & $(\bar{e}_{Lp} e_{Rr})(\bar{u}_{Ls} u_{Rt})$ \\
+        $\mathcal{O}_{eu}^{T,RR}$ & $(\bar{e}_{Lp} \sigma^{\mu\nu} e_{Rr})(\bar{u}_{Ls} \sigma_{\mu\nu} u_{Rt})$ \\
+        $\mathcal{O}_{ed}^{S,RR}$ & $(\bar{e}_{Lp} e_{Rr})(\bar{d}_{Ls} d_{Rt})$ \\
+        $\mathcal{O}_{ed}^{T,RR}$ & $(\bar{e}_{Lp} \sigma^{\mu\nu} e_{Rr})(\bar{d}_{Ls} \sigma_{\mu\nu} d_{Rt})$ \\
+        $\mathcal{O}_{\nu edu}^{S,RR}$ & $(\bar{\nu}_{Lp} e_{Rr})(\bar{d}_{Ls} u_{Rt})$ \\
+        $\mathcal{O}_{\nu edu}^{T,RR}$ & $(\bar{\nu}_{Lp} \sigma^{\mu\nu} e_{Rr})(\bar{d}_{Ls} \sigma_{\mu\nu} u_{Rt})$ \\
+        $\mathcal{O}_{uu}^{S1,RR}$ & $(\bar{u}_{Lp} u_{Rr})(\bar{u}_{Ls} u_{Rt})$ \\
+        $\mathcal{O}_{uu}^{S8,RR}$ & $(\bar{u}_{Lp} T^A u_{Rr})(\bar{u}_{Ls} T^A u_{Rt})$ \\
+        $\mathcal{O}_{ud}^{S1,RR}$ & $(\bar{u}_{Lp} u_{Rr})(\bar{d}_{Ls} d_{Rt})$ \\
+        $\mathcal{O}_{ud}^{S8,RR}$ & $(\bar{u}_{Lp} T^A u_{Rr})(\bar{d}_{Ls} T^A d_{Rt})$ \\
+        $\mathcal{O}_{dd}^{S1,RR}$ & $(\bar{d}_{Lp} d_{Rr})(\bar{d}_{Ls} d_{Rt})$ \\
+        $\mathcal{O}_{dd}^{S8,RR}$ & $(\bar{d}_{Lp} T^A d_{Rr})(\bar{d}_{Ls} T^A d_{Rt})$ \\
+        $\mathcal{O}_{uddu}^{S1,RR}$ & $(\bar{u}_{Lp} d_{Rr})(\bar{d}_{Ls} u_{Rt})$ \\
+        $\mathcal{O}_{uddu}^{S8,RR}$ & $(\bar{u}_{Lp} T^A d_{Rr})(\bar{d}_{Ls} T^A u_{Rt})$ \\
+        \multicolumn{2}{c}{\vspace{-0.5em}} \\ % Small spacer
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{(\bar{L}R)(\bar{R}L) + \text{h.c.}}$}} \\ \hline
+        $\mathcal{O}_{eu}^{S,RL}$ & $(\bar{e}_{Lp} e_{Rr})(\bar{u}_{Rs} u_{Lt})$ \\
+        $\mathcal{O}_{ed}^{S,RL}$ & $(\bar{e}_{Lp} e_{Rr})(\bar{d}_{Rs} d_{Lt})$ \\
+        $\mathcal{O}_{\nu edu}^{S,RL}$ & $(\bar{\nu}_{Lp} e_{Rr})(\bar{d}_{Rs} u_{Lt})$
+    \end{tabular}
+    } % Close second resizebox
+    \caption{LEFT operators of dimension three, five, and six that conserve baryon and lepton
+    number, and the dimension-three and dimension-five $\Delta L = \pm 2$ operators - all tables from \parencite[p.32]{jenkins2018lowOM}}
+    \label{tab:LEFTbasisLNC}
+\end{table}
+    
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    
+    % Top standalone table
+    \scalebox{0.73}{
+    \begin{tabular}{c|c}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{\Delta L = 4 + \text{h.c.}}$}} \\ \hline
+        $\mathcal{O}_{\nu\nu}^{S,LL}$ & $(\nu_{Lp}^T C \nu_{Lr})(\nu_{Ls}^T C \nu_{Lt})$
+    \end{tabular}
+    }
+    \vspace{1em}
+    
+    \scalebox{0.73}{%
+    % Bottom three columns
+    \begin{tabular}[t]{c|l}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{\Delta L = 2 + \text{h.c.}}$}} \\ \hline
+        \cellcolor{gray!25}$\mathcal{O}_{\nu e}^{S,LL}$ & \cellcolor{gray!25}$(\nu_{Lp}^T C \nu_{Lr})(\bar{e}_{Rs} e_{Lt})$ \\
+        \cellcolor{gray!25}$\mathcal{O}_{\nu e}^{T,LL}$ & \cellcolor{gray!25}$(\nu_{Lp}^T C \sigma^{\mu\nu} \nu_{Lr})(\bar{e}_{Rs} \sigma_{\mu\nu} e_{Lt})$ \\
+        \cellcolor{gray!25}$\mathcal{O}_{\nu e}^{S,LR}$ & \cellcolor{gray!25}$(\nu_{Lp}^T C \nu_{Lr})(\bar{e}_{Ls} e_{Rt})$ \\
+        $\mathcal{O}_{\nu u}^{S,LL}$ & $(\nu_{Lp}^T C \nu_{Lr})(\bar{u}_{Rs} u_{Lt})$ \\
+        $\mathcal{O}_{\nu u}^{T,LL}$ & $(\nu_{Lp}^T C \sigma^{\mu\nu} \nu_{Lr})(\bar{u}_{Rs} \sigma_{\mu\nu} u_{Lt})$ \\
+        $\mathcal{O}_{\nu u}^{S,LR}$ & $(\nu_{Lp}^T C \nu_{Lr})(\bar{u}_{Ls} u_{Rt})$ \\
+        $\mathcal{O}_{\nu d}^{S,LL}$ & $(\nu_{Lp}^T C \nu_{Lr})(\bar{d}_{Rs} d_{Lt})$ \\
+        $\mathcal{O}_{\nu d}^{T,LL}$ & $(\nu_{Lp}^T C \sigma^{\mu\nu} \nu_{Lr})(\bar{d}_{Rs} \sigma_{\mu\nu} d_{Lt})$ \\
+        $\mathcal{O}_{\nu d}^{S,LR}$ & $(\nu_{Lp}^T C \nu_{Lr})(\bar{d}_{Ls} d_{Rt})$ \\
+        $\mathcal{O}_{\nu edu}^{S,LL}$ & $(\nu_{Lp}^T C e_{Lr})(\bar{d}_{Rs} u_{Lt})$ \\
+        $\mathcal{O}_{\nu edu}^{T,LL}$ & $(\nu_{Lp}^T C \sigma^{\mu\nu} e_{Lr})(\bar{d}_{Rs} \sigma_{\mu\nu} u_{Lt})$ \\
+        $\mathcal{O}_{\nu edu}^{S,LR}$ & $(\nu_{Lp}^T C e_{Lr})(\bar{d}_{Ls} u_{Rt})$ \\
+        $\mathcal{O}_{\nu edu}^{V,RL}$ & $(\nu_{Lp}^T C \gamma^\mu e_{Rr})(\bar{d}_{Ls} \gamma_\mu u_{Lt})$ \\
+        $\mathcal{O}_{\nu edu}^{V,RR}$ & $(\nu_{Lp}^T C \gamma^\mu e_{Rr})(\bar{d}_{Rs} \gamma_\mu u_{Rt})$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|l}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{\Delta B = \Delta L = 1 + \text{h.c.}}$}} \\ \hline
+        $\mathcal{O}_{udd}^{S,LL}$ & $\epsilon_{\alpha\beta\gamma}(u_{Lp}^{\alpha T} C d_{Lr}^\beta)(d_{Ls}^{\gamma T} C \nu_{Lt})$ \\
+        $\mathcal{O}_{duu}^{S,LL}$ & $\epsilon_{\alpha\beta\gamma}(d_{Lp}^{\alpha T} C u_{Lr}^\beta)(u_{Ls}^{\gamma T} C e_{Lt})$ \\
+        $\mathcal{O}_{uud}^{S,LR}$ & $\epsilon_{\alpha\beta\gamma}(u_{Lp}^{\alpha T} C u_{Lr}^\beta)(d_{Rs}^{\gamma T} C e_{Rt})$ \\
+        $\mathcal{O}_{duu}^{S,LR}$ & $\epsilon_{\alpha\beta\gamma}(d_{Lp}^{\alpha T} C u_{Lr}^\beta)(u_{Rs}^{\gamma T} C e_{Rt})$ \\
+        $\mathcal{O}_{uud}^{S,RL}$ & $\epsilon_{\alpha\beta\gamma}(u_{Rp}^{\alpha T} C u_{Rr}^\beta)(d_{Ls}^{\gamma T} C e_{Lt})$ \\
+        $\mathcal{O}_{duu}^{S,RL}$ & $\epsilon_{\alpha\beta\gamma}(d_{Rp}^{\alpha T} C u_{Rr}^\beta)(u_{Ls}^{\gamma T} C e_{Lt})$ \\
+        $\mathcal{O}_{dud}^{S,RL}$ & $\epsilon_{\alpha\beta\gamma}(d_{Rp}^{\alpha T} C u_{Rr}^\beta)(d_{Ls}^{\gamma T} C \nu_{Lt})$ \\
+        $\mathcal{O}_{ddu}^{S,RL}$ & $\epsilon_{\alpha\beta\gamma}(d_{Rp}^{\alpha T} C d_{Rr}^\beta)(u_{Ls}^{\gamma T} C \nu_{Lt})$ \\
+        $\mathcal{O}_{duu}^{S,RR}$ & $\epsilon_{\alpha\beta\gamma}(d_{Rp}^{\alpha T} C u_{Rr}^\beta)(u_{Rs}^{\gamma T} C e_{Rt})$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|l}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{\Delta B = -\Delta L = 1 + \text{h.c.}}$}} \\ \hline
+        $\mathcal{O}_{ddd}^{S,LL}$ & $\epsilon_{\alpha\beta\gamma}(d_{Lp}^{\alpha T} C d_{Lr}^\beta)(\bar{e}_{Rs} d_{Lt}^\gamma)$ \\
+        $\mathcal{O}_{udd}^{S,LR}$ & $\epsilon_{\alpha\beta\gamma}(u_{Lp}^{\alpha T} C d_{Lr}^\beta)(\bar{\nu}_{Ls} d_{Rt}^\gamma)$ \\
+        $\mathcal{O}_{ddu}^{S,LR}$ & $\epsilon_{\alpha\beta\gamma}(d_{Lp}^{\alpha T} C d_{Lr}^\beta)(\bar{\nu}_{Ls} u_{Rt}^\gamma)$ \\
+        $\mathcal{O}_{ddd}^{S,LR}$ & $\epsilon_{\alpha\beta\gamma}(d_{Lp}^{\alpha T} C d_{Lr}^\beta)(\bar{e}_{Ls} d_{Rt}^\gamma)$ \\
+        $\mathcal{O}_{ddd}^{S,RL}$ & $\epsilon_{\alpha\beta\gamma}(d_{Rp}^{\alpha T} C d_{Rr}^\beta)(\bar{e}_{Rs} d_{Lt}^\gamma)$ \\
+        $\mathcal{O}_{udd}^{S,RR}$ & $\epsilon_{\alpha\beta\gamma}(u_{Rp}^{\alpha T} C d_{Rr}^\beta)(\bar{\nu}_{Ls} d_{Rt}^\gamma)$ \\
+        $\mathcal{O}_{ddd}^{S,RR}$ & $\epsilon_{\alpha\beta\gamma}(d_{Rp}^{\alpha T} C d_{Rr}^\beta)(\bar{e}_{Ls} d_{Rt}^\gamma)$
+    \end{tabular}
+    } % Close resizebox
+    \caption{LEFT dimension-six four-fermion operators that violate baryon and/or lepton number - all tables from \parencite[p.33]{jenkins2018lowOM}}
+    \label{tab:LEFTbasisLNV}
+\end{table}
+
+
+\section{SMEFT basis}
+See table \ref{tab:dim6SMEFTbasis}
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \scalebox{0.75}{%
+    
+    % ================= ROW 1 =================
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{1 : $\boldsymbol{X^3}$}} \\ \hline
+        $Q_G$ & $f^{ABC} G_\mu^{A\nu} G_\nu^{B\rho} G_\rho^{C\mu}$ \\
+        $Q_{\widetilde{G}}$ & $f^{ABC} \widetilde{G}_\mu^{A\nu} G_\nu^{B\rho} G_\rho^{C\mu}$ \\
+        $Q_W$ & $\epsilon^{IJK} W_\mu^{I\nu} W_\nu^{J\rho} W_\rho^{K\mu}$ \\
+        $Q_{\widetilde{W}}$ & $\epsilon^{IJK} \widetilde{W}_\mu^{I\nu} W_\nu^{J\rho} W_\rho^{K\mu}$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{2 : $\boldsymbol{H^6}$}} \\ \hline
+        $Q_H$ & $(H^\dagger H)^3$ \\
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{3 : $\boldsymbol{H^4 D^2}$}} \\ \hline
+        $Q_{H\square}$ & $(H^\dagger H)\square(H^\dagger H)$ \\
+        $Q_{HD}$ & $\left(H^\dagger D^\mu H\right)^* \left(H^\dagger D_\mu H\right)$ \\
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{5 : $\boldsymbol{\psi^2 H^3 + \text{h.c.}}$}} \\ \hline
+        $Q_{eH}$ & $(H^\dagger H)(\bar{l}_p e_r H)$ \\
+        $Q_{uH}$ & $(H^\dagger H)(\bar{q}_p u_r \widetilde{H})$ \\
+        $Q_{dH}$ & $(H^\dagger H)(\bar{q}_p d_r H)$ \\
+    \end{tabular}
+    } % Close first resizebox to allow line break
+    
+    \vspace{1em}
+    \scalebox{0.75}{%
+    % ================= ROW 2 =================
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{4 : $\boldsymbol{X^2 H^2}$}} \\ \hline
+        $Q_{HG}$ & $H^\dagger H\, G_{\mu\nu}^A G^{A\mu\nu}$ \\
+        $Q_{H\widetilde{G}}$ & $H^\dagger H\, \widetilde{G}_{\mu\nu}^A G^{A\mu\nu}$ \\
+        $Q_{HW}$ & $H^\dagger H\, W_{\mu\nu}^I W^{I\mu\nu}$ \\
+        $Q_{H\widetilde{W}}$ & $H^\dagger H\, \widetilde{W}_{\mu\nu}^I W^{I\mu\nu}$ \\
+        $Q_{HB}$ & $H^\dagger H\, B_{\mu\nu} B^{\mu\nu}$ \\
+        $Q_{H\widetilde{B}}$ & $H^\dagger H\, \widetilde{B}_{\mu\nu} B^{\mu\nu}$ \\
+        $Q_{HWB}$ & $H^\dagger \tau^I H\, W_{\mu\nu}^I B^{\mu\nu}$ \\
+        $Q_{H\widetilde{W}B}$ & $H^\dagger \tau^I H\, \widetilde{W}_{\mu\nu}^I B^{\mu\nu}$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{6 : $\boldsymbol{\psi^2 XH + \text{h.c.}}$}} \\ \hline
+        $Q_{eW}$ & $(\bar{l}_p \sigma^{\mu\nu} e_r) \tau^I H W_{\mu\nu}^I$ \\
+        $Q_{eB}$ & $(\bar{l}_p \sigma^{\mu\nu} e_r) H B_{\mu\nu}$ \\
+        $Q_{uG}$ & $(\bar{q}_p \sigma^{\mu\nu} T^A u_r) \widetilde{H} G_{\mu\nu}^A$ \\
+        $Q_{uW}$ & $(\bar{q}_p \sigma^{\mu\nu} \tau^I u_r) \widetilde{H} W_{\mu\nu}^I$ \\
+        $Q_{uB}$ & $(\bar{q}_p \sigma^{\mu\nu} u_r) \widetilde{H} B_{\mu\nu}$ \\
+        $Q_{dG}$ & $(\bar{q}_p \sigma^{\mu\nu} T^A d_r) H G_{\mu\nu}^A$ \\
+        $Q_{dW}$ & $(\bar{q}_p \sigma^{\mu\nu} \tau^I d_r) H W_{\mu\nu}^I$ \\
+        $Q_{dB}$ & $(\bar{q}_p \sigma^{\mu\nu} d_r) H B_{\mu\nu}$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{7 : $\boldsymbol{\psi^2 H^2 D}$}} \\ \hline
+        \cellcolor{gray!25}$Q_{Hl}^{(1)}$ & \cellcolor{gray!25}$(H^\dagger i\overleftrightarrow{D}_\mu H)(\bar{l}_p \gamma^\mu l_r)$ \\
+        \cellcolor{gray!25}$Q_{Hl}^{(3)}$ & \cellcolor{gray!25}$(H^\dagger i\overleftrightarrow{D}^I_\mu H)(\bar{l}_p \tau^I \gamma^\mu l_r)$ \\
+        $Q_{He}$ & $(H^\dagger i\overleftrightarrow{D}_\mu H)(\bar{e}_p \gamma^\mu e_r)$ \\
+        $Q_{Hq}^{(1)}$ & $(H^\dagger i\overleftrightarrow{D}_\mu H)(\bar{q}_p \gamma^\mu q_r)$ \\
+        $Q_{Hq}^{(3)}$ & $(H^\dagger i\overleftrightarrow{D}^I_\mu H)(\bar{q}_p \tau^I \gamma^\mu q_r)$ \\
+        $Q_{Hu}$ & $(H^\dagger i\overleftrightarrow{D}_\mu H)(\bar{u}_p \gamma^\mu u_r)$ \\
+        $Q_{Hd}$ & $(H^\dagger i\overleftrightarrow{D}_\mu H)(\bar{d}_p \gamma^\mu d_r)$ \\
+        $Q_{Hud} + \text{h.c.}$ & $i(\widetilde{H}^\dagger D_\mu H)(\bar{u}_p \gamma^\mu d_r)$
+    \end{tabular}
+    } % Close second resizebox
+    
+    \vspace{1em}
+    \scalebox{0.75}{%
+    % ================= ROW 3 =================
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{8 : $\boldsymbol{(\bar{L}L)(\bar{L}L)}$}} \\ \hline
+        \cellcolor{gray!25}$Q_{ll}$ & \cellcolor{gray!25}$(\bar{l}_p \gamma^\mu l_r)(\bar{l}_s \gamma_\mu l_t)$ \\
+        $Q_{qq}^{(1)}$ & $(\bar{q}_p \gamma^\mu q_r)(\bar{q}_s \gamma_\mu q_t)$ \\
+        $Q_{qq}^{(3)}$ & $(\bar{q}_p \gamma^\mu \tau^I q_r)(\bar{q}_s \gamma_\mu \tau^I q_t)$ \\
+        $Q_{lq}^{(1)}$ & $(\bar{l}_p \gamma^\mu l_r)(\bar{q}_s \gamma_\mu q_t)$ \\
+        $Q_{lq}^{(3)}$ & $(\bar{l}_p \gamma^\mu \tau^I l_r)(\bar{q}_s \gamma_\mu \tau^I q_t)$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{8 : $\boldsymbol{(\bar{R}R)(\bar{R}R)}$}} \\ \hline
+        $Q_{ee}$ & $(\bar{e}_p \gamma^\mu e_r)(\bar{e}_s \gamma_\mu e_t)$ \\
+        $Q_{uu}$ & $(\bar{u}_p \gamma^\mu u_r)(\bar{u}_s \gamma_\mu u_t)$ \\
+        $Q_{dd}$ & $(\bar{d}_p \gamma^\mu d_r)(\bar{d}_s \gamma_\mu d_t)$ \\
+        $Q_{eu}$ & $(\bar{e}_p \gamma^\mu e_r)(\bar{u}_s \gamma_\mu u_t)$ \\
+        $Q_{ed}$ & $(\bar{e}_p \gamma^\mu e_r)(\bar{d}_s \gamma_\mu d_t)$ \\
+        $Q_{ud}^{(1)}$ & $(\bar{u}_p \gamma^\mu u_r)(\bar{d}_s \gamma_\mu d_t)$ \\
+        $Q_{ud}^{(8)}$ & $(\bar{u}_p \gamma^\mu T^A u_r)(\bar{d}_s \gamma_\mu T^A d_t)$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{8 : $\boldsymbol{(\bar{L}L)(\bar{R}R)}$}} \\ \hline
+        \cellcolor{gray!25}$Q_{le}$ & \cellcolor{gray!25}$(\bar{l}_p \gamma^\mu l_r)(\bar{e}_s \gamma_\mu e_t)$ \\
+        $Q_{lu}$ & $(\bar{l}_p \gamma^\mu l_r)(\bar{u}_s \gamma_\mu u_t)$ \\
+        $Q_{ld}$ & $(\bar{l}_p \gamma^\mu l_r)(\bar{d}_s \gamma_\mu d_t)$ \\
+        $Q_{qe}$ & $(\bar{q}_p \gamma^\mu q_r)(\bar{e}_s \gamma_\mu e_t)$ \\
+        $Q_{qu}^{(1)}$ & $(\bar{q}_p \gamma^\mu q_r)(\bar{u}_s \gamma_\mu u_t)$ \\
+        $Q_{qu}^{(8)}$ & $(\bar{q}_p \gamma^\mu T^A q_r)(\bar{u}_s \gamma_\mu T^A u_t)$ \\
+        $Q_{qd}^{(1)}$ & $(\bar{q}_p \gamma^\mu q_r)(\bar{d}_s \gamma_\mu d_t)$ \\
+        $Q_{qd}^{(8)}$ & $(\bar{q}_p \gamma^\mu T^A q_r)(\bar{d}_s \gamma_\mu T^A d_t)$
+    \end{tabular}
+    } % Close third resizebox
+    
+    \vspace{1em}
+    \scalebox{0.75}{% Scaling down slightly less for the smaller last row
+    % ================= ROW 4 =================
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{8 : $\boldsymbol{(\bar{L}R)(\bar{R}L) + \text{h.c.}}$}} \\ \hline
+        $Q_{ledq}$ & $(\bar{l}_p^j e_r)(\bar{d}_s q_{tj})$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{8 : $\boldsymbol{(\bar{L}R)(\bar{L}R) + \text{h.c.}}$}} \\ \hline
+        $Q_{quqd}^{(1)}$ & $(\bar{q}_p^j u_r) \epsilon_{jk} (\bar{q}_s^k d_t)$ \\
+        $Q_{quqd}^{(8)}$ & $(\bar{q}_p^j T^A u_r) \epsilon_{jk} (\bar{q}_s^k T^A d_t)$ \\
+        $Q_{lequ}^{(1)}$ & $(\bar{l}_p^j e_r) \epsilon_{jk} (\bar{q}_s^k u_t)$ \\
+        $Q_{lequ}^{(3)}$ & $(\bar{l}_p^j \sigma_{\mu\nu} e_r) \epsilon_{jk} (\bar{q}_s^k \sigma^{\mu\nu} u_t)$
+    \end{tabular}
+    } % Close fourth resizebox
+    \caption{76 operators from the Warsaw basis \parencite{grzadkowski2010dimension}, that conserve baryon and lepton number $\to$ table from \parencite{jenkins2018lowOM}.}
+    \label{tab:dim6SMEFTbasis}
+\end{table}
+\subsection{SMEFT dim-7 operator basis}
+See table \ref{tab:dim7SMEFTbl02} and \ref{tab:dim7SMEFTbl1-1}.
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    
+    % ================= ROW 1 =================
+    \scalebox{0.75}{%
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{\psi^2 H^4}$}} \\ \hline
+        $\mathcal{O}_{LH}^{pr}$ & $\epsilon_{ij}\epsilon_{mn} (\overline{L_p^{iC}} L_r^m) H^j H^n (H^\dagger H)$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{\psi^2 H^3 D}$}} \\ \hline
+        \cellcolor{gray!25}$\mathcal{O}_{LeHD}^{pr}$ & \cellcolor{gray!25}$\epsilon_{ij}\epsilon_{mn} (\overline{L_p^{iC}} \gamma_\mu e_r) H^j H^m iD^\mu H^n$
+    \end{tabular}
+    } % Close row 1
+    
+    \vspace{1em}
+    \scalebox{0.75}{
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{\psi^2 H^2 D^2}$}} \\ \hline
+        $\mathcal{O}_{LHD1}^{pr}$ & $\epsilon_{ij}\epsilon_{mn} (\overline{L_p^{iC}} D^\mu L_r^j) H^m D_\mu H^n$ \\
+        $\mathcal{O}_{LHD2}^{pr}$ & $\epsilon_{im}\epsilon_{jn} (\overline{L_p^{iC}} D^\mu L_r^j) H^m D_\mu H^n$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{\psi^2 H^2 X}$}} \\ \hline
+        $\mathcal{O}_{LHB}^{pr}$ & $\epsilon_{ij}\epsilon_{mn} (\overline{L_p^{iC}} \sigma_{\mu\nu} L_r^m) H^j H^n B^{\mu\nu}$ \\
+        $\mathcal{O}_{LHW}^{pr}$ & $\epsilon_{ij}(\epsilon\tau^I)_{mn} (\overline{L_p^{iC}} \sigma_{\mu\nu} L_r^m) H^j H^n W^{I\mu\nu}$
+    \end{tabular}
+    }
+    
+    % ================= ROW 2 =================
+    \vspace{1em}
+    \scalebox{0.75}{%
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{\psi^4 D}$}} \\ \hline
+        $\mathcal{O}_{\bar{d}uLLD}^{prst}$ & $\epsilon_{ij} (\overline{d_p} \gamma_\mu u_r)(\overline{L_s^{iC}} iD^\mu L_t^j)$ \\
+        $\mathcal{O}_{\bar{e}dddD}^{prst}$ & $\epsilon_{\alpha\beta\gamma} (\overline{e_p} \gamma_\mu d_r^\alpha) (\overline{d_s^{\beta C}} iD^\mu d_t^\gamma)$ \\
+        $\mathcal{O}_{\bar{L}QddD}^{prst}$ & $\epsilon_{\alpha\beta\gamma} (\overline{L_p} \gamma_\mu Q_r^\alpha) (\overline{d_s^{\beta C}} iD^\mu d_t^\gamma)$
+    \end{tabular}
+    } % Close row 2
+    \caption{Dim-7 SMEFT operators with $(\Delta B, \Delta L) = (0, 2)$ - all tables from \parencite[p.5]{liao2025rge}}
+    \label{tab:dim7SMEFTbl02}
+    \end{table}
+    
+\begin{table}[htbp]
+    \centering
+    \scalebox{0.75}{%
+    \begin{tabular}[t]{c|l}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{\psi^4 H \quad (\Delta L = 2)}$}} \\ \hline
+        \cellcolor{gray!25}$\mathcal{O}_{\bar{e}LLLH}^{prst}$ & \cellcolor{gray!25}$\epsilon_{ij}\epsilon_{mn} (\overline{e_p} L_r^i)(\overline{L_s^{jC}} L_t^m) H^n$ \\
+        $\mathcal{O}_{\bar{d}LQLH1}^{prst}$ & $\epsilon_{ij}\epsilon_{mn} (\overline{d_p} L_r^i)(\overline{Q_s^{jC}} L_t^m) H^n$ \\
+        $\mathcal{O}_{\bar{d}LQLH2}^{prst}$ & $\epsilon_{im}\epsilon_{jn} (\overline{d_p} L_r^i)(\overline{Q_s^{jC}} L_t^m) H^n$ \\
+        $\mathcal{O}_{\bar{d}LueH}^{prst}$ & $\epsilon_{ij} (\overline{d_p} L_r^i)(u_s^C e_t) H^j$ \\
+        $\mathcal{O}_{\bar{Q}uLLH}^{prst}$ & $\epsilon_{ij} (\overline{Q_p} u_r)(\overline{L_s^C} L_t^i) H^j$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|l}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{\psi^4 H \quad (\Delta B = 1, \Delta L = -1)}$}} \\ \hline
+        $\mathcal{O}_{\bar{L}dud\tilde{H}}^{prst}$ & $\epsilon_{\alpha\beta\gamma} (\overline{L_p} d_r^\alpha) (u_s^{\beta C} d_t^\gamma) \widetilde{H}$ \\
+        $\mathcal{O}_{\bar{L}dddH}^{prst}$ & $\epsilon_{\alpha\beta\gamma} (\overline{L_p} d_r^\alpha) (\overline{d_s^{\beta C}} d_t^\gamma) H$ \\
+        $\mathcal{O}_{\bar{e}Qdd\tilde{H}}^{prst}$ & $\epsilon_{ij}\epsilon_{\alpha\beta\gamma} (\overline{e_p} Q_r^{i\alpha}) (\overline{d_s^{\beta C}} d_t^\gamma) \widetilde{H}^j$ \\
+        $\mathcal{O}_{\bar{L}dQQ\tilde{H}}^{prst}$ & $\epsilon_{ij}\epsilon_{\alpha\beta\gamma} (\overline{L_p} d_r^\alpha) (\overline{Q_s^{\beta C}} Q_t^{i\gamma}) \widetilde{H}^j$
+    \end{tabular}
+    } % Close row 3
+    \caption{Dim-7 SMEFT operators with $(\Delta B, \Delta L) = (1, -1)$ - all tables from \parencite[p.5]{liao2025rge}}
+    \label{tab:dim7SMEFTbl1-1}
+\end{table}
+\section{Renormalization Group Equations}
+Here we cite the full one-loop RGE for the relevant SMEFT operators. The overall structure of the dimension-six SMEFT renormalization group equations was presented in \parencite{jenkins2013rge1}. The Yukawa loop contributions were given in \parencite{jenkins2014rge2} and the Gauge loop contributions in \parencite{alonso2014rge3} - from the latter two papers we collect the results and add them here together. The notation in the papers is the following:
+\begin{equation}
+    \dot{C} \equiv 16\pi^2 \mu \frac{d C}{d\mu}
+\end{equation}
+\begin{align}
+%%%%%
+\dot C_{\substack{ ll \\ prst }} &= -\frac{1}{2} [Y_e^\dagger Y_e]_{pr} C_{\substack{ Hl \\ st }}^{(1)} -\frac{1}{2} [Y_e^\dagger Y_e]_{st} C_{\substack{ Hl \\ pr }}^{(1)}  +\frac{1}{2} [Y_e^\dagger Y_e]_{pr} C_{\substack{ Hl \\ st }}^{(3)} +\frac{1}{2} [Y_e^\dagger Y_e]_{st} C_{\substack{ Hl \\ pr }}^{(3)} \nn
+&-  [Y_e^\dagger Y_e]_{sr} C_{\substack{ Hl \\ pt }}^{(3)} - [Y_e^\dagger Y_e]_{pt} C_{\substack{ Hl \\ sr }}^{(3)}  - \frac{1}{2} \, [Y_e^\dagger]_{sv} \, [Y_e]_{wt} \, C_{\substack{le  \\ prvw}} - \frac{1}{2} \, [Y_e^\dagger]_{pv} \, [Y_e]_{wr} \, C_{\substack{le  \\ stvw}} \nn
+&+ \gamfY lpv C_{\substack{ll \\ vrst}} + \gamfY lsv C_{\substack{ll \\ prvt}}
++  C_{\substack{ll \\ pvst}} \gamfY lvr + C_{\substack{ll \\ prsv}}  \gamfY lvt\\
+&+ \frac23 g_1^2 \hyp_h \hyp_l C^{(1)}_{ \substack {Hl \\ s t } } \delta_{p r} 
+-       \frac16 g_2^2 C^{(3)}_{ \substack {Hl \\ s t } } \delta_{p r}
++ \frac13 g_2^2 C^{(3)}_{ \substack {Hl \\ s r } } \delta_{p t} 
++    \frac13   g_2^2 C^{(3)}_{ \substack {Hl \\ p t } } \delta_{r s} 
+\nn
+&
++ \frac23 g_1^2 \hyp_h \hyp_l C^{(1)}_{ \substack {Hl \\ p r } }   \delta_{s t} 
+- \frac16 g_2^2 C^{(3)}_{ \substack {Hl \\ p r } } \delta_{s t}  
++     \frac43 g_1^2 \hyp_l^2 C_{ \substack {ll \\ p r w w } } \delta_{s t}
++        \frac43 g_1^2 \hyp_l^2 C_{ \substack {ll \\ s t w w } } \delta_{p r} 
++        \frac43 g_1^2 \hyp_l^2 C_{ \substack {ll \\ w w s t } } \delta_{p r} 
+\nn
+&
++        \frac43 g_1^2 \hyp_l^2 C_{ \substack {ll \\ w w p r } } \delta_{s t} 
++        \frac23 g_1^2 \hyp_l^2 C_{ \substack {ll \\ p w w r } } \delta_{s t} 
++        \frac23 g_1^2 \hyp_l^2 C_{ \substack {ll \\ s w w t } } \delta_{p r} 
++        \frac23 g_1^2 \hyp_l^2 C_{ \substack {ll \\ w r p w } } \delta_{s t}
++        \frac23 g_1^2 \hyp_l^2 C_{ \substack {ll \\ w t s w } } \delta_{p r} 
+\nn
+&
+-        \frac16 g_2^2 C_{ \substack {ll \\ p w w r } } \delta_{s t} 
+-        \frac16 g_2^2 C_{ \substack {ll \\ s w w t } } \delta_{p r}
+-        \frac16 g_2^2 C_{ \substack {ll \\ w r p w } } \delta_{s t} 
+-        \frac16 g_2^2 C_{ \substack {ll \\ w t s w } } \delta_{p r} 
++        \frac13 g_2^2 C_{ \substack {ll \\ s w w r } } \delta_{p t}
+\nn
+&
++        \frac13 g_2^2 C_{ \substack {ll \\ p w w t } } \delta_{r s} 
++         \frac13    g_2^2 C_{ \substack {ll \\ w r s w } } \delta_{p t} 
++        \frac13 g_2^2 C_{ \substack {ll \\ w t p w } } \delta_{r s} 
++        \frac43 g_1^2 N_c \hyp_l \hyp_q C^{(1)}_{ \substack {lq \\ p r w w } } \delta_{s t}
++        \frac43 g_1^2 N_c \hyp_l \hyp_q C^{(1)}_{ \substack {lq \\ s t w w } } \delta_{p r} 
+\nn
+&
+-        \frac13 g_2^2 N_c C^{(3)}_{ \substack {lq \\ p r w w } } \delta_{s t}
+-        \frac13 g_2^2 N_c C^{(3)}_{ \substack {lq \\ s t w w } } \delta_{p r} 
++        \frac23 g_2^2 N_c C^{(3)}_{ \substack {lq \\ s r w w } } \delta_{p t} 
++        \frac23 g_2^2 N_c C^{(3)}_{ \substack {lq \\ p t w w } } \delta_{r s} 
+\nn
+&
++        \frac23 g_1^2 N_c \hyp_l \hyp_u C_{ \substack {lu \\ p r w w } } \delta_{s t}
++        \frac23 g_1^2 N_c \hyp_l \hyp_u C_{ \substack {lu \\ s t w w } } \delta_{p r} 
++        \frac23 g_1^2 N_c \hyp_d \hyp_l C_{ \substack {ld \\ p r w w } } \delta_{s t} 
++        \frac23 g_1^2 N_c \hyp_d \hyp_l C_{ \substack {ld \\ s t w w } } \delta_{p r} 
+\nn
+&
++        \frac23 g_1^2 \hyp_e \hyp_l C_{ \substack {le \\ p r w w } } \delta_{s t} 
++        \frac23 g_1^2 \hyp_e \hyp_l C_{ \substack {le \\ s t w w } } \delta_{p r} 
++ 6 g_2^2 \, C_{\substack{ll \\ ptsr}} - 3\left( g_2^2 - 4 \hyp_l^2 g_1^2 \right) C_{\substack{ll \\ prst}} 
+\end{align}
+\begin{align}
+%
+\dot C_{\substack{Hl  \\ pr}}^{(3)} &= -\frac12 [Y_e^\dagger Y_e]_{pr}   C_{H\Box}  +\frac12 [Y_e^\dagger Y_e]_{pt} \bigl( 3 C_{\substack{Hl \\ tr}}^{(1)} +  C_{\substack{Hl \\ tr}}^{(3)} \bigr) + \frac12 \bigl( 3 C_{\substack{Hl \\ pt}}^{(1)} +  C_{\substack{Hl \\ pt}}^{(3)} \bigr)  [Y_e^\dagger Y_e]_{tr} \nn
+&
+ - \bigl( C_{\substack{ll \\ ptsr}}+ C_{\substack{ll \\ srpt}} \bigr) [{Y_e}^\dagger Y_e  ]_{ts} -2N_c  C^{(3)}_{\substack{lq \\ prst }}   [Y_d^\dagger Y_d+Y_u^\dagger Y_u]_{ts}+ 2 \gamHY   C_{\substack{Hl  \\ pr}}^{(3)}+ \gamfY lpt C_{\substack{Hl\\ tr}} ^{(3)} + C_{\substack{Hl \\ pt}}^{(3)}\gamfY ltr\\
+ &+\frac16 g_2^2 C_{H \Box} \delta_{pr}+ \frac23 g_2^2  C^{(3)}_{\substack{H l \\ tt}}\delta_{pr} +  \frac23 g_2^2 N_c  C^{(3)}_{\substack{H q \\ tt}}\delta_{pr}
++\frac13 g_2^2  C_{\substack{Hl \\ pr}}^{(3)} +\frac{1}{3} g_2^2 C_{ \substack {ll \\ p w w r } } +\frac{1}{3} g_2^2 C_{ \substack {ll \\ w r p w } } 
++\frac{2}{3} g_2^2 N_c C^{(3)}_{ \substack {lq \\ p r w w } }\nn
+& - 6 g_2^2  C_{\substack{Hl \\ pr}}^{(3)} 
+\end{align}
+\begin{align}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\dot C_{\substack{ le \\ prst }} &=  [Y_e]_{sr} \xi_{\substack{e \\ pt}} +[Y_e^\dagger]_{pt} \xi^*_{\substack{e \\ rs}}- [Y_e^\dagger Y_e]_{pr} C_{\substack{ He \\ st }} +2  [Y_e Y_e^\dagger]_{st} C_{\substack{ Hl \\ pr }}^{(1)}  - [Y_e^\dagger]_{pv} \, [Y_e]_{wr} \, C_{\substack{ee  \\ vtsw}} -  [Y_e^\dagger]_{pw} \, [Y_e]_{vr} \, C_{\substack{ee  \\ wtsv}} \nn
+& - 2 [Y_e^\dagger]_{pv} \, [Y_e]_{wr} \, C_{\substack{ee  \\ vwst}}
+ + [Y_e^\dagger]_{pw} \, [Y_e]_{sv}  \, C_{\substack{le  \\ vrwt}}    - [Y_e^\dagger]_{wt} \, [Y_e]_{sv}  \, C_{\substack{ll  \\ pwvr}} -  [Y_e^\dagger]_{vt} \, [Y_e]_{sw} \, C_{\substack{ll \\ pvwr}} \nn
+& - 4 [Y_e^\dagger]_{wt} \, [Y_e]_{sv} \, C_{\substack{ll \\ prvw}} + [Y_e^\dagger]_{vt} \, [Y_e]_{wr}  \, C_{\substack{le \\ pvsw}}   + \gamfY lpv C_{\substack{le \\ vrst}}  + \gamfY esv  C_{\substack{le \\ prvt}}
++  C_{\substack{le \\ pvst}}  \gamfY lvr  + C_{\substack{le \\ prsv}}  \gamfY evt\\
+ &+    \frac43 g_1^2 \hyp_h \hyp_l C_{ \substack {He \\ s t } } \delta_{p r}  
+ +        \frac43 g_1^2 \hyp_e \hyp_h C^{(1)}_{ \substack {Hl \\ p r } } \delta_{s t}    
++        \frac83 g_1^2 \hyp_e \hyp_l C_{ \substack {ll \\ p r w w } } \delta_{s t} 
++        \frac83 g_1^2 \hyp_e \hyp_l C_{ \substack {ll \\ w w p r } } \delta_{s t} 
++        \frac43 g_1^2 \hyp_e \hyp_l C_{ \substack {ll \\ p w w r } } \delta_{s t}
+\nn
+&
++        \frac43 g_1^2 \hyp_e \hyp_l C_{ \substack {ll \\ w r p w } } \delta_{s t} 
++        \frac83 g_1^2 N_c \hyp_e \hyp_q C^{(1)}_{ \substack {lq \\ p r w w } } \delta_{s t} 
++        \frac83 g_1^2 N_c \hyp_l \hyp_q C_{ \substack {qe \\ w w s t } } \delta_{p r}
++        \frac43 g_1^2 \hyp_e^2 C_{ \substack {le \\ p r w w } } \delta_{s t} 
++        \frac83 g_1^2 \hyp_l^2 C_{ \substack {le \\ w w s t } } \delta_{p r} 
+\nn
+&
++        \frac43 g_1^2 N_c \hyp_e \hyp_u C_{ \substack {lu \\ p r w w } } \delta_{s t}
++        \frac43 g_1^2 N_c \hyp_d \hyp_e C_{ \substack {ld \\ p r w w } } \delta_{s t} 
++        \frac43 g_1^2 N_c \hyp_l \hyp_u C_{ \substack {eu \\ s t w w } } \delta_{p r} 
++        \frac43 g_1^2 N_c \hyp_d \hyp_l C_{ \substack {ed \\ s t w w } } \delta_{p r} 
+\nn
+&
++        \frac43 g_1^2 \hyp_e \hyp_l C_{ \substack {ee \\ s t w w } } \delta_{p r} 
++        \frac43 g_1^2 \hyp_e \hyp_l C_{ \substack {ee \\ s w w t } } \delta_{p r} 
++        \frac43 g_1^2 \hyp_e \hyp_l C_{ \substack {ee \\ w t s w } } \delta_{p r}
++        \frac43 g_1^2 \hyp_e \hyp_l C_{ \substack {ee \\ w w s t } } \delta_{p r} 
+-12 \hyp_l \hyp_e g_1^2 C_{\substack{ le \\ prst }} 
+\end{align}
+For the dimension-seven SMEFT operators, we cite here the results from \parencite{liao2019renormalization} - the authors present their results directly in terms of the counterterms that each operator requires at one loop, so we collect the respective contributions from all SMEFT operators.
+\begin{align}
+    \begin{autobreak}
+    \dot C_{\bar{e}LLLH}=
+    % eLLLH
+    +\frac{1}{8}\Big\{\big(9g_1^2+7g_2^2-4W_H\big)C^{prst}_{\bar{e}LLLH}
+    -8g_2^2\big(C^{prts}_{\bar{e}LLLH}-C^{pstr}_{\bar{e}LLLH}+2C^{ptsr}_{\bar{e}LLLH}\big)
+    -4(Y^\dagger_e)_{pr}(Y_d)_{vw}\big(2C^{wvst}_{\bar{e}LLLH}+C^{wsvt}_{\bar{e}LLLH}
+    +C^{wstv}_{\bar{e}LLLH}-C^{wtsv}_{\bar{e}LLLH}\big)
+    -2\Big[6(Y^\dagger_e Y_e)_{pv}C^{vrst}_{\bar{e}LLLH}
+    +(Y_e Y_e^\dagger)_{vr}\big(C^{pvst}_{\bar{e}LLLH}+4C^{pvts}_{\bar{e}LLLH}\big)+5(Y_e Y_e^\dagger)_{vs}C^{prvt}_{\bar{e}LLLH}
+    -(Y_e Y_e^\dagger)_{vt}\big(4C^{prvs}_{\bar{e}LLLH}+3C^{prsv}_{\bar{e}LLLH}\big)
+    \Big]\Big\}
+    % LHD1
+    -\frac{1}{4}\Big\{3g_1^2(Y^\dagger_e)_{pt}\big(C^{rs}_{LHD1}+C^{sr}_{LHD1}\big)
+    -g_2^2\Big[(Y^\dagger_e)_{pt}\big(C^{rs}_{LHD1}-C^{sr}_{LHD1} \big)-2(Y^\dagger_e)_{ps}\big(C^{rt}_{LHD1}-C^{tr}_{LHD1} \big)\Big]
+    -4(Y^\dagger_e)_{pr}W^1_{ts}\Big\}
+    % LHD2
+    -\frac{1}{4}\Big\{3\big(g_1^2-g_2^2\big)\Big[(Y^\dagger_e)_{pt}C^{rs}_{LHD2}
+    -(Y^\dagger_e)_{ps}\big(C^{rt}_{LHD2}-C^{tr}_{LHD2}\big)\Big]
+    -4(Y^\dagger_e)_{pr}W^2_{ts}\Big\}
+    % LHB
+    -3g^2_1\Big[(Y_e^\dagger)_{pr}C^{st}_{LHB}
+    +(Y_e^\dagger)_{pt}C^{rs}_{LHB}-4(Y_e^\dagger)_{ps}C^{rt}_{LHB}\Big]
+    % LHW
+    +\frac{1}{2}g^2_2
+    \Big\{(Y^\dagger_e)_{pt}\big(5C^{rs}_{LHW}+C^{sr}_{LHW}\big)
+    -4(Y^\dagger_e)_{ps}\big(C^{rt}_{LHW}-C^{tr}_{LHW}\big)\Big\}
+    % dLQLH1
+    -\frac{3}{2}(Y^\dagger_e)_{pr}(Y_d)_{vw}C^{wsvt}_{\bar{d}LQLH1}
+    % dLQLH2
+    -\frac{3}{2}(Y^\dagger_e)_{pr}(Y_d)_{vw}\big(C^{wsvt}_{\bar{d}LQLH2}-C^{wtvs}_{\bar{d}LQLH2}\big)C_{\bar{d}LQLH2}^{prst}
+    % QuLLH
+    +3(Y^\dagger_e)_{pr}(Y^\dagger_u)_{vw}C^{wvst}_{\bar{Q}uLLH}
+    \end{autobreak}
+\end{align}
+\begin{align}
+    \begin{autobreak}
+    \dot C_{LeHD}^{pr}=
+    % LeHD
+    \frac{1}{4}\Big[\big(3g_1^2-12\lambda-6W_H\big)C^{pr}_{LeHD}
+    -(Y_eY^\dagger_e)_{vp}C^{vr}_{LeHD}-2(Y_e)_{vr}(Y^\dagger_e)_{wp}C^{vw}_{LeHD}
+    -8(Y^\dagger_eY_e)_{vr}C^{pv}_{LeHD}\Big]
+    % LHD1
+    -\frac{1}{4}\Big\{(Y_e)_{vr}\Big[\big(3g_1^2
+    -4g_2^2\big)C^{pv}_{LHD1} +\big(3g_1^2+2g_2^2\big)C^{vp}_{LHD1} \Big]
+    -\Big[(Y_eY^\dagger_e)_{vp}(Y_e)_{wr}\big(2C^{vw}_{LHD1}-C^{wv}_{LHD1}\big)
+    +4(Y_eY^\dagger_eY_e)_{vr}C^{pv}_{LHD1}\Big]\Big\}
+    % LHD2
+    -\frac{1}{16}\Big[\big( 13g_1^2-17g_2^2-8\lambda\big)(Y_e)_{vr}C^{pv}_{LHD2}
+    -4\Big(5(Y_eY^\dagger_eY_e)_{vr}C^{pv}_{LHD2}
+    +(Y_eY^\dagger_e)_{vp}(Y_e)_{wr}C^{vw}_{LHD2}\Big)
+    \Big]
+    % LeHD
+    +3(Y^\dagger_uY_d)_{vw}C^{wpvr}_{LeHD}
+    \end{autobreak}
+\end{align}
+\chapter{UV Lagrangian}
+\subsection{New UV Scalars}
+\begin{align}
+    \begin{autobreak}
+        \Delta{\cal L}_{\rm S_2,S_4,S_6}^{(d = 3)} =  
+ + \frac{\mathcal{C}_{{HHS_{6}^\dagger }}^{{p}}}{\sqrt{2}}\epsilon ^{{kj}} (\tau ^{{I}})_{{k}}^{{i}}{H}_{{i}}{H}_{{j}}({S}_{{6p}}^{\dagger })^{{I}} 
+ + \mathcal{C}_{{HS_{2}^\dagger S_{4}}}^{{rp}}\epsilon ^{{ji}}{H}_{{j}}({S}_{{4r}})_{{i}}{S}_{{2p}}^{\dagger } 
+ + \frac{\mathcal{C}_{{HS_{4}S_{6}^\dagger }}^{{pr}}}{\sqrt{2}}\epsilon ^{{ki}} (\tau ^{{I}})_{{k}}^{{j}}{H}_{{j}}({S}_{{4p}})_{{i}}({S}_{{6r}}^{\dagger })^{{I}} 
+    \end{autobreak}
+\end{align}
+\begin{align}
+\begin{autobreak}
+\Delta{\cal L}_{\rm S_2,S_4,S_6}^{(d = 4)} = 
+        - \mathcal{D}_{{LLS_{2}}}^{{rsp}}\epsilon ^{{ij}}[({l}_{{r}})_{{i}}{C}({l}_{{s}})_{{j}}]{S}_{{2p}} 
+ - \mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{rsp}} [\bar{e}_{{r}}({l}_{{s}})_{{i}}]({S}_{{4p}}^{\dagger })^{{i}} 
+ - 2 \mathcal{D}_{{QS_{4}u^\dagger }}^{{rps}}\epsilon ^{{ji}} [(\bar{u}_{{s}})^{{a}}({q}_{{r}})_{{aj}}]({S}_{{4p}})_{{i}} 
+ - \frac{\mathcal{D}_{{LLS_{6}}}^{{rsp}}}{\sqrt{2}}\epsilon ^{{jk}} (\tau ^{{I}})_{{k}}^{{i}}[({l}_{{r}})_{{i}}{C}({l}_{{s}})_{{j}}]({S}_{{6p}})^{{I}} 
+ - \mathcal{D}_{{HH^\dagger H^\dagger S_{4}(1)}}^{{p}}\delta _{{k}}^{{i}} \delta _{{l}}^{{j}}{H}_{{j}}{H}^{{\dagger k}}{H}^{{\dagger l}}({S}_{{4p}})_{{i}} 
+ + \frac{\mathcal{D}_{{HH^\dagger S_{2}S_{6}^\dagger }}^{{pr}}}{\sqrt{2}}(\tau ^{{I}})_{{j}}^{{i}}{H}_{{i}}{H}^{{\dagger j}}({S}_{{6r}}^{\dagger })^{{I}}{S}_{{2p}} 
+ + \frac{\mathcal{D}_{{HH^\dagger S_{6}S_{6}^\dagger (1)}}^{{pr}}}{2}(\tau ^{{I}})_{{k}}^{{i}} (\tau ^{{J}})_{{j}}^{{k}}{H}_{{i}}{H}^{{\dagger j}}({S}_{{6p}})^{{I}}({S}_{{6r}}^{\dagger })^{{J}} 
+ + \mathcal{D}_{{HH^\dagger S_{6}S_{6}^\dagger (2)}}^{{pr}}\delta ^{{IJ}} \delta _{{j}}^{{i}}{H}_{{i}}{H}^{{\dagger j}}({S}_{{6p}})^{{I}}({S}_{{6r}}^{\dagger })^{{J}} 
+    \end{autobreak}
+\end{align}
+\subsection{New UV fermions}
+
+\subsection{New UV vectors}
+\subsection{New UV mixing terms}
+\subsection{UV Matching to dim-7 operators}
+\begin{align}
+\begin{autobreak}
+ {C_{LeHD}} =
+-\frac{{y}_{{e}}^{{p_1f_5}} \mathcal{D}_{{F_{1}HL}}^{{p_2f_1}} \mathcal{D}_{{F_{1}HL}}^{{p_2p_1}}}{2 {M_{F_{1}}^3}}
+-\frac{{y}_{{e}}^{{p_1f_5}} \mathcal{D}_{{LLS_{6}}}^{{f_1p_1p_2}} \mathcal{C}_{{HHS_{6}^\dagger }}^{{p_2}}}{{M_{S_{6}}^4}}
+-\frac{{y}_{{e}}^{{p_1f_5}} \mathcal{D}_{{F_{5}HL}}^{{p_2f_1}} \mathcal{D}_{{F_{5}HL}}^{{p_2p_1}}}{4 {M_{F_{5}}^3}}
++\frac{{y}_{{e}}^{{p_1f_5}} \mathcal{C}_{{HHS_{6}^\dagger }}^{{p_2}} \mathcal{D}_{{LLS_{6}}}^{{p_1f_1p_2}}}{{M_{S_{6}}^4}}
++\frac{2 i \mathcal{D}_{{eF_{1}V_{2}}}^{{f_5p_1p_2}} \mathcal{D}_{{F_{1}HL}}^{{p_1f_1}} \mathcal{D}_{{HHV_{2}^\dagger D}}^{{p_2}}}{{M_{F_{1}}} {M_{V_{2}}^2}}
+-\frac{\mathcal{D}_{{e^\dagger F_{3R}^\dagger H^\dagger }}^{{f_5p_1*}} \mathcal{D}_{{F_{1}F_{3R}^\dagger H}}^{{p_2p_1}} \mathcal{D}_{{F_{1}HL}}^{{p_2f_1}}}{{M_{F_{1}}} {M_{F_{3}}^2}}
+-\frac{\mathcal{D}_{{e^\dagger F_{3R}^\dagger H^\dagger }}^{{f_5p_1*}} \mathcal{D}_{{F_{3L}F_{5}H^\dagger }}^{{p_1p_2*}} \mathcal{D}_{{F_{5}HL}}^{{p_2f_1}}}{{M_{F_{3}}} {M_{F_{5}}^2}}
++\frac{2 i \mathcal{D}_{{e^\dagger F_{3R}^\dagger H^\dagger }}^{{f_5p_1*}} \mathcal{D}_{{F_{3L}L^\dagger V_{2}^\dagger }}^{{p_1f_1p_2*}} \mathcal{D}_{{HHV_{2}^\dagger D}}^{{p_2}}}{{M_{F_{3}}} {M_{V_{2}}^2}}
+-\frac{\mathcal{D}_{{e^\dagger F_{3R}^\dagger H^\dagger }}^{{f_5p_1*}} \mathcal{D}_{{F_{3R}^\dagger F_{5}H}}^{{p_1p_2}} \mathcal{D}_{{F_{5}HL}}^{{p_2f_1}}}{2 {M_{F_{3}}^2} {M_{F_{5}}}}
+-\frac{\mathcal{D}_{{e^\dagger F_{3R}^\dagger H^\dagger }}^{{f_5p_1*}} \mathcal{D}_{{F_{3R}^\dagger LS_{6}}}^{{p_1f_1p_2}} \mathcal{C}_{{HHS_{6}^\dagger }}^{{p_2}}}{{M_{F_{3}}^2} {M_{S_{6}}^2}}
++\frac{\mathcal{D}_{{e^\dagger F_{5}S_{6}^\dagger }}^{{f_5p_1p_2*}} \mathcal{D}_{{F_{5}HL}}^{{p_1f_1}} \mathcal{C}_{{HHS_{6}^\dagger }}^{{p_2}}}{{M_{F_{5}}^2} {M_{S_{6}}^2}}
+-\frac{2 i \mathcal{D}_{{e^\dagger L^\dagger V_{3}^\dagger }}^{{f_5f_1p_1*}} \mathcal{C}_{{HHS_{6}^\dagger }}^{{p_2}} \mathcal{D}_{{HS_{6}V_{3}^\dagger D}}^{{p_2p_1}}}{{M_{S_{6}}^2} {M_{V_{3}}^2}}
+-\frac{4 i \mathcal{D}_{{e^\dagger L^\dagger V_{3}^\dagger }}^{{f_5f_1p_1*}} \mathcal{D}_{{HHV_{2}^\dagger D}}^{{p_2}} \mathcal{C}_{{HV_{2}V_{3}^\dagger }}^{{p_2p_1}}}{{M_{V_{2}}^2} {M_{V_{3}}^2}} 
+\end{autobreak}
+\end{align}\label{eq:LeHD-UV}
+\begin{align}
+\begin{autobreak}
+ {C_{eLLLH}} =
+-\frac{{y}_{{e}}^{{f_1f_2*}} \mathcal{D}_{{F_{1}HL}}^{{p_1f_3}} \mathcal{D}_{{F_{1}HL}}^{{p_1f_4}}}{2 {M_{F_{1}}^3}}
+-\frac{3 \mathcal{D}_{{e^\dagger F_{1}S_{2}^\dagger }}^{{f_1p_1p_2}} \mathcal{D}_{{LLS_{2}}}^{{f_2f_3p_2}} \mathcal{D}_{{F_{1}HL}}^{{p_1f_4}}}{2 {M_{F_{1}}} {M_{S_{2}}^2}}
++\frac{3 \mathcal{D}_{{e^\dagger F_{1}S_{2}^\dagger }}^{{f_1p_1p_2}} \mathcal{D}_{{LLS_{2}}}^{{f_3f_2p_2}} \mathcal{D}_{{F_{1}HL}}^{{p_1f_4}}}{2 {M_{F_{1}}} {M_{S_{2}}^2}}
+-\frac{\mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_1f_2p_1}} \mathcal{D}_{{F_{1}HL}}^{{p_2f_4}} \mathcal{D}_{{F_{1L}S_{4}}}^{{p_2f_3p_1}}}{{M_{F_{1}}} {M_{S_{4}}^2}}
+-\frac{{y}_{{e}}^{{f_1f_2*}} \mathcal{D}_{{F_{5}HL}}^{{p_1f_3}} \mathcal{D}_{{F_{5}HL}}^{{p_1f_4}}}{4 {M_{F_{5}}^3}}
+-\frac{\mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_1f_4p_1}} \mathcal{D}_{{F_{5}HL}}^{{p_2f_3}} \mathcal{D}_{{F_{5L}S_{4}}}^{{p_2f_2p_1}}}{{M_{F_{5}}} {M_{S_{4}}^2}}
++\frac{\mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_1f_3p_1}} \mathcal{D}_{{F_{5}HL}}^{{p_2f_4}} \mathcal{D}_{{F_{5L}S_{4}}}^{{p_2f_2p_1}}}{2 {M_{F_{5}}} {M_{S_{4}}^2}}
++\frac{\mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_1f_4p_1}} \mathcal{D}_{{F_{5}HL}}^{{p_2f_2}} \mathcal{D}_{{F_{5L}S_{4}}}^{{p_2f_3p_1}}}{2 {M_{F_{5}}} {M_{S_{4}}^2}}
++\frac{\mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_1f_3p_1}} \mathcal{D}_{{F_{5}HL}}^{{p_2f_2}} \mathcal{D}_{{F_{5L}S_{4}}}^{{p_2f_4p_1}}}{2 {M_{F_{5}}} {M_{S_{4}}^2}}
++\frac{\mathcal{D}_{{e^\dagger F_{4R}^\dagger H}}^{{f_1p_1}} \mathcal{D}_{{F_{4L}LS_{2}^\dagger }}^{{p_1f_4p_2}} \mathcal{D}_{{LLS_{2}}}^{{f_2f_3p_2}}}{{M_{F_{4}}} {M_{S_{2}}^2}}
++\frac{2 \mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_1f_4p_1}} \mathcal{C}_{{HS_{2}^\dagger S_{4}}}^{{p_2p_1}} \mathcal{D}_{{LLS_{2}}}^{{f_2f_3p_2}}}{{M_{S_{2}}^2} {M_{S_{4}}^2}}
+-\frac{\mathcal{D}_{{e^\dagger F_{4R}^\dagger H}}^{{f_1p_1}} \mathcal{D}_{{F_{4L}LS_{2}^\dagger }}^{{p_1f_4p_2}} \mathcal{D}_{{LLS_{2}}}^{{f_3f_2p_2}}}{{M_{F_{4}}} {M_{S_{2}}^2}}
+-\frac{2 \mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_1f_4p_1}} \mathcal{C}_{{HS_{2}^\dagger S_{4}}}^{{p_2p_1}} \mathcal{D}_{{LLS_{2}}}^{{f_3f_2p_2}}}{{M_{S_{2}}^2} {M_{S_{4}}^2}}
++\frac{\mathcal{D}_{{e^\dagger F_{1}S_{2}^\dagger }}^{{f_1p_1p_2}} \mathcal{D}_{{F_{1}HL}}^{{p_1f_2}} \mathcal{D}_{{LLS_{2}}}^{{f_3f_4p_2}}}{2 {M_{F_{1}}} {M_{S_{2}}^2}}
+-\frac{\mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_1f_2p_1}} \mathcal{C}_{{HS_{2}^\dagger S_{4}}}^{{p_2p_1}} \mathcal{D}_{{LLS_{2}}}^{{f_3f_4p_2}}}{{M_{S_{2}}^2} {M_{S_{4}}^2}}
+-\frac{\mathcal{D}_{{e^\dagger F_{1}S_{2}^\dagger }}^{{f_1p_1p_2}} \mathcal{D}_{{F_{1}HL}}^{{p_1f_2}} \mathcal{D}_{{LLS_{2}}}^{{f_4f_3p_2}}}{2 {M_{F_{1}}} {M_{S_{2}}^2}}
++\frac{\mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_1f_2p_1}} \mathcal{C}_{{HS_{2}^\dagger S_{4}}}^{{p_2p_1}} \mathcal{D}_{{LLS_{2}}}^{{f_4f_3p_2}}}{{M_{S_{2}}^2} {M_{S_{4}}^2}}
+-\frac{\mathcal{D}_{{e^\dagger F_{4R}^\dagger H}}^{{f_1p_1}} \mathcal{D}_{{F_{4L}LS_{6}^\dagger }}^{{p_1f_4p_2}} \mathcal{D}_{{LLS_{6}}}^{{f_2f_3p_2}}}{2 {M_{F_{4}}} {M_{S_{6}}^2}}
+-\frac{3 \mathcal{D}_{{e^\dagger F_{5}S_{6}^\dagger }}^{{f_1p_1p_2}} \mathcal{D}_{{F_{5}HL}}^{{p_1f_4}} \mathcal{D}_{{LLS_{6}}}^{{f_2f_3p_2}}}{4 {M_{F_{5}}} {M_{S_{6}}^2}}
+-\frac{\mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_1f_4p_1}} \mathcal{C}_{{HS_{4}S_{6}^\dagger }}^{{p_1p_2}} \mathcal{D}_{{LLS_{6}}}^{{f_2f_3p_2}}}{2 {M_{S_{4}}^2} {M_{S_{6}}^2}}
++\frac{\mathcal{D}_{{e^\dagger F_{4R}^\dagger H}}^{{f_1p_1}} \mathcal{D}_{{F_{4L}LS_{6}^\dagger }}^{{p_1f_4p_2}} \mathcal{D}_{{LLS_{6}}}^{{f_3f_2p_2}}}{2 {M_{F_{4}}} {M_{S_{6}}^2}}
++\frac{3 \mathcal{D}_{{e^\dagger F_{5}S_{6}^\dagger }}^{{f_1p_1p_2}} \mathcal{D}_{{F_{5}HL}}^{{p_1f_4}} \mathcal{D}_{{LLS_{6}}}^{{f_3f_2p_2}}}{4 {M_{F_{5}}} {M_{S_{6}}^2}}
++\frac{\mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_1f_4p_1}} \mathcal{C}_{{HS_{4}S_{6}^\dagger }}^{{p_1p_2}} \mathcal{D}_{{LLS_{6}}}^{{f_3f_2p_2}}}{2 {M_{S_{4}}^2} {M_{S_{6}}^2}}
++\frac{\mathcal{D}_{{e^\dagger F_{5}S_{6}^\dagger }}^{{f_1p_1p_2}} \mathcal{D}_{{F_{5}HL}}^{{p_1f_2}} \mathcal{D}_{{LLS_{6}}}^{{f_3f_4p_2}}}{4 {M_{F_{5}}} {M_{S_{6}}^2}}
+-\frac{\mathcal{D}_{{e^\dagger F_{4R}^\dagger H}}^{{f_1p_1}} \mathcal{D}_{{F_{4L}LS_{6}^\dagger }}^{{p_1f_2p_2}} \mathcal{D}_{{LLS_{6}}}^{{f_4f_3p_2}}}{{M_{F_{4}}} {M_{S_{6}}^2}}
+-\frac{5 \mathcal{D}_{{e^\dagger F_{5}S_{6}^\dagger }}^{{f_1p_1p_2}} \mathcal{D}_{{F_{5}HL}}^{{p_1f_2}} \mathcal{D}_{{LLS_{6}}}^{{f_4f_3p_2}}}{4 {M_{F_{5}}} {M_{S_{6}}^2}}
+-\frac{\mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_1f_2p_1}} \mathcal{C}_{{HS_{4}S_{6}^\dagger }}^{{p_1p_2}} \mathcal{D}_{{LLS_{6}}}^{{f_4f_3p_2}}}{{M_{S_{4}}^2} {M_{S_{6}}^2}} 
+\end{autobreak}\label{eq:eLLLH-UV}
+\end{align}
+\end{appendix}
+\printbibliography
+\end{fmffile}
+\end{document}
