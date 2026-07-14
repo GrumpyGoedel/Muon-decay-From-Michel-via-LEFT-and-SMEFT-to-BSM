@@ -30,7 +30,7 @@ from scipy.optimize import brentq, minimize, minimize_scalar
 
 from . import michel
 from .coefficients import Coefficients, label, lambda_from_x
-from .observables import DEFAULT_OBSERVABLES, chi2
+from .observables import chi2, flat_models, full_covariance
 
 # Delta chi^2 thresholds
 DCHI2_1PAR_95 = 3.8414588   # 1 dof, 95% CL
@@ -72,7 +72,7 @@ def single_operator_bound(key, part="real", cl=DCHI2_1PAR_95,
     Returns a dict with the chi^2 minimum, the interval [t_lo, t_hi] where
     Delta chi^2 <= cl, the tightest |t|, and the implied Lambda.
     """
-    obs = observables if observables is not None else DEFAULT_OBSERVABLES
+    obs = observables  # None -> DEFAULT_BLOCKS inside chi2
 
     def f(t):
         value = t if part == "real" else 1j * t
@@ -117,18 +117,16 @@ def _find_crossing(g, t0, direction, span):
     return direction * span  # no crossing within span -> unconstrained side
 
 
-def linear_sensitivity(key, part, observables=None, hermitian=True, eps=1e-6):
+def linear_sensitivity(key, part, blocks=None, hermitian=True, eps=1e-6):
     """Largest |dO_i/dt| at the SM point -- i.e. whether this coefficient
-    (given the *observable set*) interferes with the SM at O(c).  Nonzero only
+    (given the observable set) interferes with the SM at O(c).  Nonzero only
     for LNC vectors in the SM flavour slot that feed a measured parameter."""
-    obs = observables if observables is not None else DEFAULT_OBSERVABLES
     slopes = []
-    for o in obs:
-        vp = eps if part == "real" else 1j * eps
-        vm = -eps if part == "real" else -1j * eps
-        op = o.model(build_single(key, vp, hermitian))
-        om = o.model(build_single(key, vm, hermitian))
-        slopes.append(abs(op - om) / (2 * eps))
+    vp = eps if part == "real" else 1j * eps
+    vm = -eps if part == "real" else -1j * eps
+    cp, cm = build_single(key, vp, hermitian), build_single(key, vm, hermitian)
+    for _, model in flat_models(blocks):
+        slopes.append(abs(model(cp) - model(cm)) / (2 * eps))
     return max(slopes)
 
 
@@ -156,7 +154,7 @@ def global_fit(keys, observables=None, fixed=None, span=5.0, warm=None):
     `fixed` maps {index_in_theta: value} to hold a direction during profiling.
     `warm`  is an optional starting vector (used to speed up profiling scans).
     """
-    obs = observables if observables is not None else DEFAULT_OBSERVABLES
+    obs = observables  # None -> DEFAULT_BLOCKS inside chi2
     layout = _pack(keys)
     n = 2 * len(keys)
     bounds = [(-span, span)] * n
@@ -191,7 +189,7 @@ def profile_bound(keys, target_key, part="real",
     floating, via geometric root-finding on the profiled chi^2.  A direction
     with no crossing inside [-span, span] is reported as unconstrained (flat).
     """
-    obs = observables if observables is not None else DEFAULT_OBSERVABLES
+    obs = observables  # None -> DEFAULT_BLOCKS inside chi2
     layout = _pack(keys)
     idx = layout[target_key][0 if part == "real" else 1]
 
@@ -239,32 +237,35 @@ def _crossing_expand(g, t0, direction, span, step0=1e-4):
 # 3. Flat-direction / sensitivity analysis
 # ---------------------------------------------------------------------------
 
-def observable_jacobian(keys, observables=None, eps=1e-6):
-    """Numerical d O_i / d theta_j at the SM point (theta = 0)."""
-    obs = observables if observables is not None else DEFAULT_OBSERVABLES
+def observable_jacobian(keys, blocks=None, eps=1e-6):
+    """Numerical d O_i / d theta_j at the SM point (theta = 0), over the
+    flattened observable list."""
     layout = _pack(keys)
     n = 2 * len(keys)
-    J = np.zeros((len(obs), n))
+    models = [m for _, m in flat_models(blocks)]
+    J = np.zeros((len(models), n))
     for j in range(n):
         tp, tm = np.zeros(n), np.zeros(n)
         tp[j], tm[j] = eps, -eps
-        op = np.array([o.model(_coeffs_from_vec(keys, layout, tp)) for o in obs])
-        om = np.array([o.model(_coeffs_from_vec(keys, layout, tm)) for o in obs])
+        op = np.array([m(_coeffs_from_vec(keys, layout, tp)) for m in models])
+        om = np.array([m(_coeffs_from_vec(keys, layout, tm)) for m in models])
         J[:, j] = (op - om) / (2 * eps)
     return J, layout
 
 
-def flat_directions(keys, observables=None, tol=1e-9):
-    """SVD of the Jacobian at the SM point + Fisher eigen-spectrum.
+def flat_directions(keys, blocks=None, tol=1e-9):
+    """Covariance-whitened SVD of the Jacobian at the SM point + Fisher
+    eigen-spectrum, using the FULL (correlated) experimental covariance.
 
     Directions with (near-)zero singular value receive NO linear sensitivity;
     for LNV coefficients that is *expected* -- they are bounded only at
     O(theta^2), via single_operator_bound / profile_bound.
     """
-    obs = observables if observables is not None else DEFAULT_OBSERVABLES
-    J, layout = observable_jacobian(keys, obs)
-    sigma = np.array([o.sigma for o in obs])
-    Jw = J / sigma[:, None]                       # weighted Jacobian
+    J, layout = observable_jacobian(keys, blocks)
+    cov_inv = np.linalg.inv(full_covariance(blocks))
+    # whiten so that Jw^T Jw = J^T cov^{-1} J = Fisher
+    L = np.linalg.cholesky(cov_inv)
+    Jw = L.T @ J
     U, s, Vt = np.linalg.svd(Jw, full_matrices=True)
 
     param_names = []
