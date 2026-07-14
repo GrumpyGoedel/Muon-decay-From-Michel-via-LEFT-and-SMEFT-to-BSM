@@ -2,8 +2,6 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{setspace}
-\DeclareOldFontCommand{\bf}{\normalfont\bfseries}{\mathbf}
-\DeclareOldFontCommand{\rm}{\normalfont\rmfamily}{\mathrm}
 \usepackage{graphicx} % Required for inserting images
 \usepackage[force]{feynmp-auto}
 \usepackage[backend=biber, uniquename=false, 
@@ -12,9 +10,24 @@
 \addbibresource{literature.bib}
 \usepackage{amsmath,amssymb}
 \usepackage{slashed}
-\newcommand{\im}{\text{i}}
-\newcommand{\op}{\mathcal{O}}
-%%%%%%%%%%%% Jenkins, Manohar, Stoffer commands
+\usepackage{autobreak}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage{bm}
+\usepackage[table]{xcolor}
+\usepackage{pdfpages}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{csquotes}
+\usepackage[normalem]{ulem}
+\usepackage{multirow}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings, decorations.pathmorphing, positioning, arrows.meta}
+\usepackage{pgfplots}
+
+\pgfplotsset{compat=1.18}
+\DeclareOldFontCommand{\bf}{\normalfont\bfseries}{\mathbf}
+\DeclareOldFontCommand{\rm}{\normalfont\rmfamily}{\mathrm}
 \def\nn{\nonumber\\ }
 \def\gamfY#1#2#3{\gamma^{(Y)}_{\substack{#1 \\ #2 #3}}}
 \def\rd{{\rm d}}
@@ -29,23 +42,8 @@
 \def\gamHY{\gamma^{(Y)}_H}
 \def\gamfY#1#2#3{\gamma^{(Y)}_{\substack{#1 \\ #2 #3}}}
 \newcommand{\de}{\text{d}}
-%%%%%%%%%%%
-\usepackage{autobreak}
-\usepackage{graphicx}
-\usepackage{siunitx}
-\usepackage{bm}
-\usepackage[table]{xcolor}
-\usepackage{tikz}
-\usetikzlibrary{decorations.markings, decorations.pathmorphing, positioning, arrows.meta}
-\usepackage{pgfplots}
-\pgfplotsset{compat=1.18}
-\usepackage{pdfpages}
-\usepackage{booktabs}
-\usepackage{hyperref}
-\usepackage{csquotes}
-\usepackage[normalem]{ulem}
-\usepackage{multirow}
-
+\newcommand{\im}{\text{i}}
+\newcommand{\op}{\mathcal{O}}
 \title{Muon decay: From Michel via LEFT and SMEFT to BSM}
 \author{Carl Jakob Moritz}
 \date{June 2026}
@@ -320,7 +318,7 @@ Systematically constructing an whole \textit{Effective Field Theory (EFT)} from 
 \section{Effective Field Theories}
 Effective Field Theory (EFT) is the idea that physics is separated by scales -- or more precisely it is a set of ideas that justify why this separation works \cite{brivio2019standard}. Notably the Standard Model (SM) has been validated up to LHC energies despite not being well-defined in the UV regime due to Landau poles in the electroweak sector. Renormalization works by regularizing the short-distance physics and absorbing the effects in low energy effective parameters -- see the detailed discussion in chapter 4 of \cite{brivio2019standard} for how dimensional regularization and the $\overline{MS}$ scheme correspond to a systematic removal of UV physics which is the key principle of an EFT. The Lagrangian is then constructed as combining the IR physics as a local, analytical operator expansion with the UV physics controlling the corresponding Wilson coefficients.
 \begin{equation}
-    \mathcal{L}_\text{EFT}\simeq\sum_iC_i^\text{UV}(\mu)O_i^\text{IR}(\mu)
+    \mathcal{L}_\text{EFT}\simeq\sum_iL_i^\text{UV}(\mu)O_i^\text{IR}(\mu)
 \end{equation}
 The first two "prime directives" of EFTs are thus in \cite{brivio2019standard} summarized as:
 \begin{enumerate}
@@ -381,9 +379,9 @@ Current experiments determine $G_F$ to the value \parencite{particle2024review}:
 \section{The Michel parameters}\label{sec:michel}
 In his work from 1950 \cite{michel1950interaction}, Michel set up the most general Lorentz-invariant Hamiltonian in order to analyze the kinematics of four-fermion interactions:
 \begin{equation}
-    \mathcal{H}_{1950} = \sum_{i=S,V,T,A,P} C_i (\bar{\psi}_e \Gamma_i \psi_\mu) (\bar{\psi}_{\nu} \Gamma_i \psi_{\nu}) + \text{h.c.}
+    \mathcal{H}_{1950} = \sum_{i=S,V,T,A,P} L_i (\bar{\psi}_e \Gamma_i \psi_\mu) (\bar{\psi}_{\nu} \Gamma_i \psi_{\nu}) + \text{h.c.}
 \end{equation}
-Because he did not consider the possibility that such an interaction might violate parity, his Hamiltonian only couples currents of the same kind -- scalar, vector, tensor, axial and pseudo -- to each other, resulting in a overall parity-conserving expression. There are thus 5 coupling constants $C_i$ that define his four-fermion theory. Critically, however, Michel realized that the exact weights of the five different interaction types in the overall expression only alter the energy spectrum by a single constant. This is because the neutrinos are not observed and integrated over. When evaluating the squared amplitude $|\mathcal{M}|^2$ one first obtains a product of two traces: One for the electron-muon line and one for the neutrino line, the latter containing the neutrino momenta $k_1,k_2$ - integrating over the neutrino phase space thus amounts to solving the following integral:
+Because he did not consider the possibility that such an interaction might violate parity, his Hamiltonian only couples currents of the same kind -- scalar, vector, tensor, axial and pseudo -- to each other, resulting in a overall parity-conserving expression. There are thus 5 coupling constants $L_i$ that define his four-fermion theory. Critically, however, Michel realized that the exact weights of the five different interaction types in the overall expression only alter the energy spectrum by a single constant. This is because the neutrinos are not observed and integrated over. When evaluating the squared amplitude $|\mathcal{M}|^2$ one first obtains a product of two traces: One for the electron-muon line and one for the neutrino line, the latter containing the neutrino momenta $k_1,k_2$ - integrating over the neutrino phase space thus amounts to solving the following integral:
 \begin{equation}
     I^{\alpha\beta} = \int \frac{d^3k_1}{2E_1} \frac{d^3k_2}{2E_2} \delta^4(Q - k_1 - k_2) k_1^\alpha k_2^\beta
 \end{equation}
@@ -407,10 +405,10 @@ Current global data gives for the $\rho$ parameter:
 \end{equation}
 This implies the interaction to consist of vector and axial vector terms:
 \begin{equation}
-    \rho = \frac{3C_V^2 + 3C_A^2 + 6C_T^2}{C_S^2 + C_P^2 + 4C_V^2 + 4C_A^2 + 6C_T^2}
+    \rho = \frac{3L_V^2 + 3L_A^2 + 6L_T^2}{L_S^2 + L_P^2 + 4L_V^2 + 4L_A^2 + 6L_T^2}
     \label{eq:rho}
 \end{equation}
-For $C_V=-C_A=1$ this gives $\rho=\tfrac{3}{4}$. However, from the experimental value of the $\rho$ parameter the exact ratio of the $V$ and $A$ term or whether axial and vector current mix to form a parity-violating term can not be deduced. A paradigm shift took place in 1956 when Lee and Yang, in order to explain the $\theta-\tau$ puzzle \parencite{lee1956question}, suggested that the weak force might violate parity  -- a breakthrough idea, which was experimentally tested a year later by Chien-Shiung Wu \parencite{wu1957experimental}: She confirmed that the electrons in Cobalt-60 decay are emitted preferentially in the direction opposite to the nuclear spin. In the phenomenology of muon decay parity violation generates an anisotropic part in the electron spectrum. If one measures the polarization of the decaying muon and the angle by which the electron is emitted relative to that polarization the probability is not distributed isotropically at all: The electron is most likely to be ejected in the exact opposite direction to the muon's polarization. And this clearly violates parity, since mirroring of the experiment would leave the polarization invariant but spatially reverse the electron momentum.\par 
+For $L_V=-L_A=1$ this gives $\rho=\tfrac{3}{4}$. However, from the experimental value of the $\rho$ parameter the exact ratio of the $V$ and $A$ term or whether axial and vector current mix to form a parity-violating term can not be deduced. A paradigm shift took place in 1956 when Lee and Yang, in order to explain the $\theta-\tau$ puzzle \parencite{lee1956question}, suggested that the weak force might violate parity  -- a breakthrough idea, which was experimentally tested a year later by Chien-Shiung Wu \parencite{wu1957experimental}: She confirmed that the electrons in Cobalt-60 decay are emitted preferentially in the direction opposite to the nuclear spin. In the phenomenology of muon decay parity violation generates an anisotropic part in the electron spectrum. If one measures the polarization of the decaying muon and the angle by which the electron is emitted relative to that polarization the probability is not distributed isotropically at all: The electron is most likely to be ejected in the exact opposite direction to the muon's polarization. And this clearly violates parity, since mirroring of the experiment would leave the polarization invariant but spatially reverse the electron momentum.\par 
 In 1957, two groups (Bouchiat \& Michel \cite{bouchiat1957theory} and, independently, Kinoshita \& Sirlin \cite{kinoshita1957muon,kinoshita1957polarization} expanded the formalism to match the new chiral reality and introduced additional
 parameters for the anisotropic part of the spectrum. The parameter $\xi$ measures parity violation and $\delta$ is again a shape parameter for the anisotropic part of the spectrum. 
 \begin{equation}
@@ -473,6 +471,291 @@ These different contributions can be qualitatively understood as follows:
 In the SM we have for these extended Michel parameters, $\eta''=0$, $\xi'=\xi''=1$, and $\alpha'/A=\beta'/A=0$. 
 
 The Michel parameters lay the phenomenological foundation for the inquiry of this thesis: How would heavy fields from beyond the SM affect them? Expressing the Michel parameters in terms of SPVAT couplings as for $\rho$ in Eq. \ref{eq:rho} possesses inherent theoretical limitations. The SPVAT Lagrangian is constructed essentially as an ad hoc, bottom-up classification of the Lorentz-invariant four-fermion interactions. It does not systematically incorporate the underlying gauge structure of the strong and electromagnetic interactions, nor does it provide a framework for consistently evolving the couplings up to the high-energy matching scale. In order to systematically probe for new physics within muon decay, a more modern theoretical architecture is required: Low-Energy Effective Field Theory (LEFT).
+```latex
+\section{Experimental Michel-parameter likelihood}
+\label{sec:michel-likelihood}
+
+The experimental Michel-parameter inputs are not treated as a set of
+independent one-dimensional Gaussian measurements. Instead, we divide
+them into experimental likelihood blocks,
+\begin{equation}
+  \bm{O}_{\mathrm{fit}}
+  =
+  \underbrace{
+    \bigl(\rho,\delta,P_\mu^\pi\xi\bigr)
+  }_{\mathrm{TWIST}}
+  \oplus
+  \underbrace{
+    \left(\eta,\eta'',\alpha'/A,\beta'/A\right)
+  }_{\mathrm{Danneberg}}
+  \oplus
+  \underbrace{\xi'}_{\mathrm{Burkard}}
+  \oplus
+  \underbrace{\xi''}_{\mathrm{Prieels}}.
+  \label{eq:michel-fit-vector}
+\end{equation}
+The different experimental blocks are assumed to be mutually
+independent, whereas the correlations within each block are retained.
+
+\paragraph{TWIST block.}
+
+For the TWIST measurement, we use the native parameter basis
+\begin{equation}
+  \bm{O}^{\mathrm{exp}}_{\mathrm{TWIST}}
+  =
+  \begin{pmatrix}
+    \rho\\
+    \delta\\
+    P_\mu^\pi\xi
+  \end{pmatrix}_{\!\mathrm{exp}}
+  =
+  \begin{pmatrix}
+    0.74977\\
+    0.75049\\
+    1.00084
+  \end{pmatrix},
+  \label{eq:twist-input}
+\end{equation}
+with uncertainties
+\begin{align}
+  \rho
+  &=
+  0.74977
+  \pm0.00012_{\mathrm{stat}}
+  \pm0.00023_{\mathrm{syst}},
+  \\
+  \delta
+  &=
+  0.75049
+  \pm0.00021_{\mathrm{stat}}
+  \pm0.00027_{\mathrm{syst}},
+  \\
+  P_\mu^\pi\xi
+  &=
+  1.00084
+  \pm0.00029_{\mathrm{stat}}
+  {}^{+0.00165}_{-0.00063}{}_{\mathrm{syst}}.
+\end{align}
+The reported correlation matrix, in the ordering
+$\left(\rho,\delta,P_\mu^\pi\xi\right)$, is
+\begin{equation}
+  \bm{R}_{\mathrm{TWIST}}
+  =
+  \begin{pmatrix}
+    1    & 0.19  & 0.21\\
+    0.19 & 1     & -0.72\\
+    0.21 & -0.72 & 1
+  \end{pmatrix}.
+  \label{eq:twist-correlation}
+\end{equation}
+In a symmetrized Gaussian approximation, the covariance matrix is
+constructed as
+\begin{equation}
+  \bm{V}_{\mathrm{TWIST}}
+  =
+  \bm{D}_{\mathrm{TWIST}}\,
+  \bm{R}_{\mathrm{TWIST}}\,
+  \bm{D}_{\mathrm{TWIST}},
+  \label{eq:twist-covariance}
+\end{equation}
+where
+\begin{equation}
+  \bm{D}_{\mathrm{TWIST}}
+  =
+  \operatorname{diag}
+  \left(
+    \sqrt{(0.00012)^2+(0.00023)^2},
+    \sqrt{(0.00021)^2+(0.00027)^2},
+    \sigma_{P_\mu^\pi\xi}
+  \right).
+\end{equation}
+For a symmetric treatment of the uncertainty on $P_\mu^\pi\xi$, we use
+\begin{equation}
+  \sigma_{P_\mu^\pi\xi}
+  \simeq
+  \sqrt{
+    (0.00029)^2+
+    \left(\frac{0.00165+0.00063}{2}\right)^2
+  }.
+  \label{eq:twist-xi-error}
+\end{equation}
+A split-normal likelihood or an explicit nuisance-parameter treatment
+is preferable if the asymmetric uncertainty is retained.
+
+The derived observable
+\begin{equation}
+  P_\mu^\pi\xi\,\frac{\delta}{\rho}
+\end{equation}
+is not included as an additional independent constraint, since it is
+constructed from the same TWIST fit parameters. If the alternative basis
+\begin{equation}
+  \left(
+    \rho,\,
+    P_\mu^\pi\xi,\,
+    P_\mu^\pi\xi\,\frac{\delta}{\rho}
+  \right)
+\end{equation}
+is used, its covariance must be obtained from
+\begin{equation}
+  \bm{V}_{\mathrm{new}}
+  =
+  \bm{J}\,
+  \bm{V}_{\mathrm{TWIST}}\,
+  \bm{J}^{T},
+\end{equation}
+where, defining $q=P_\mu^\pi\xi$,
+\begin{equation}
+  \bm{J}
+  =
+  \frac{\partial(\rho,q,q\delta/\rho)}
+       {\partial(\rho,\delta,q)}
+  =
+  \begin{pmatrix}
+    1 & 0 & 0\\
+    0 & 0 & 1\\
+    -q\delta/\rho^2 & q/\rho & \delta/\rho
+  \end{pmatrix}.
+  \label{eq:twist-jacobian}
+\end{equation}
+
+\paragraph{Danneberg block.}
+
+For the transverse-polarization measurement, we use the general
+four-parameter fit,
+\begin{equation}
+  \bm{O}^{\mathrm{exp}}_{\mathrm{D}}
+  =
+  \begin{pmatrix}
+    \eta\\
+    \eta''\\
+    \alpha'/A\\
+    \beta'/A
+  \end{pmatrix}_{\!\mathrm{exp}}
+  =
+  \begin{pmatrix}
+     0.071\\
+     0.105\\
+    -0.0034\\
+    -0.0005
+  \end{pmatrix}.
+  \label{eq:danneberg-input}
+\end{equation}
+After combining statistical and systematic uncertainties in quadrature,
+the standard-deviation matrix is
+\begin{equation}
+  \bm{D}_{\mathrm{D}}
+  =
+  \operatorname{diag}
+  \left(
+    0.03734,\,
+    0.05235,\,
+    0.02186,\,
+    0.00800
+  \right).
+  \label{eq:danneberg-errors}
+\end{equation}
+The corresponding correlation matrix, in the ordering
+$\left(\eta,\eta'',\alpha'/A,\beta'/A\right)$, is
+\begin{equation}
+  \bm{R}_{\mathrm{D}}
+  =
+  \begin{pmatrix}
+    1     & 0.946 & 0      & 0\\
+    0.946 & 1     & 0      & 0\\
+    0     & 0     & 1      & -0.893\\
+    0     & 0     & -0.893 & 1
+  \end{pmatrix}.
+  \label{eq:danneberg-correlation}
+\end{equation}
+The covariance matrix is therefore
+\begin{equation}
+  \bm{V}_{\mathrm{D}}
+  =
+  \bm{D}_{\mathrm{D}}\,
+  \bm{R}_{\mathrm{D}}\,
+  \bm{D}_{\mathrm{D}},
+\end{equation}
+or numerically,
+\begin{equation}
+  \bm{V}_{\mathrm{D}}
+  \simeq
+  \begin{pmatrix}
+    1.394\times10^{-3} & 1.849\times10^{-3} & 0 & 0\\
+    1.849\times10^{-3} & 2.741\times10^{-3} & 0 & 0\\
+    0 & 0 & 4.779\times10^{-4} & -1.562\times10^{-4}\\
+    0 & 0 & -1.562\times10^{-4} & 6.400\times10^{-5}
+  \end{pmatrix}.
+  \label{eq:danneberg-covariance}
+\end{equation}
+Consequently, $\eta$ and $\eta''$ must not be treated as statistically
+independent. The same applies to $\alpha'/A$ and $\beta'/A$.
+
+\paragraph{Single-observable blocks.}
+
+The remaining polarization observables are included as independent
+one-dimensional blocks,
+\begin{align}
+  \xi'  &= 0.998\pm0.045,\\
+  \xi'' &= 0.981
+           \pm0.045_{\mathrm{stat}}
+           \pm0.003_{\mathrm{syst}}
+         \simeq 0.981\pm0.0451.
+\end{align}
+No covariance between these measurements and the TWIST or Danneberg
+datasets is available.
+
+\paragraph{Combined likelihood.}
+
+The total experimental covariance is approximated by
+\begin{equation}
+  \bm{V}_{\mathrm{exp}}
+  \simeq
+  \bm{V}_{\mathrm{TWIST}}
+  \oplus
+  \bm{V}_{\mathrm{D}}
+  \oplus
+  \sigma_{\xi'}^2
+  \oplus
+  \sigma_{\xi''}^2.
+  \label{eq:combined-michel-covariance}
+\end{equation}
+For a vector of LEFT Wilson coefficients $\bm{C}$, the corresponding
+contribution to the likelihood is
+\begin{equation}
+  \chi^2_{\mathrm{Michel}}(\bm{C})
+  =
+  \sum_b
+  \left[
+    \bm{O}^{\mathrm{th}}_b(\bm{C})
+    -
+    \bm{O}^{\mathrm{exp}}_b
+  \right]^T
+  \bm{V}_b^{-1}
+  \left[
+    \bm{O}^{\mathrm{th}}_b(\bm{C})
+    -
+    \bm{O}^{\mathrm{exp}}_b
+  \right],
+  \qquad
+  b\in
+  \left\{
+    \mathrm{TWIST},
+    \mathrm{D},
+    \xi',
+    \xi''
+  \right\}.
+  \label{eq:michel-chi2}
+\end{equation}
+
+The quantities involving $P_\mu^\pi$ are measured as polarization
+products. Setting $P_\mu^\pi=1$ is therefore an additional
+phenomenological assumption rather than part of the experimental
+measurement. Furthermore, the Michel shape and polarization parameters
+do not constrain the overall normalization of the muon-decay amplitude.
+If normalization-changing LEFT coefficients are included, the muon
+lifetime or an equivalent normalization constraint must also be used.
+```
+
 
 \chapter{The Low Energy Effective Field Theory (LEFT)}
 The LEFT is constructed by integrating out all heavy degrees of freedom at the electroweak scale (the $W$, $Z$ and Higgs boson as well as the top quark) while strictly preserving the unbroken low-energy gauge symmetry of the Standard Model, $SU(3)_C \times U(1)_{em}$. This provides several critical advantages over the historical SPVAT approach:
@@ -505,11 +788,11 @@ As degrees of freedom remain the massless bosons and all fermions except the top
 \paragraph{LEFT Lagrangian}
 The renormalizable parts of QCD and QED plus an infinite tower of higher-dimensional operators built from the light fields form the LEFT Lagrangian:
 \begin{equation}
-    \mathcal{L}_{\text{LEFT}} = \mathcal{L}_{\text{QED} + \text{QCD}} + \sum_{d \ge 5} \sum_i c_i^{(d)} \mathcal{O}_i^{(d)}
+    \mathcal{L}_{\text{LEFT}} = \mathcal{L}_{\text{QED} + \text{QCD}} + \sum_{d \ge 5} \sum_i L_i^{(d)} \mathcal{O}_i^{(d)}
 \end{equation}
 \begin{itemize}
     \item $\mathcal{O}_i^{(d)}$ are the local, gauge-invariant operators of mass dimension $d$
-    \item $c_i^{(d)}$ are the Wilson coefficients
+    \item $L_i^{(d)}$ are the Wilson coefficients
 \end{itemize}
 The number of operators at each mass dimension is given in table \ref{tab:LEFTnum} \parencite{jenkins2018lowOM}. 
 \begin{table}[t]
@@ -587,11 +870,31 @@ If we allow for contributions that are quadratic in $L_{\nu e,2112}^{V,LR}$ and 
 Extending our analysis to include electron polarization dependence we find corrections to the following additional Michel parameters:
 %
 \begin{align}
-\eta''=&-\frac{v^2}{2}c^{(6),V,LR}_{\nu e,2112}-\frac{v^4}{4}c_{\nu e,2113}^{(6),V,LL}c_{\nu e,2113}^{(6),V,LR}=-\eta\\
+\eta''=&-\frac{v^2}{2}c^{(6),V,LR}_{\nu e,2112}-\frac{v^4}{4}L_{\nu e,2113}^{(6),V,LL}L_{\nu e,2113}^{(6),V,LR}=-\eta\\
 \xi'=&1-\frac{v^4}{2}L_{\nu e,2112}^{V,LR}L_{\nu e,1221}^{V,LR}=\xi\\
-\frac{\beta'}{A}=&\frac{v^2}{4}{\rm Im}[c_{\nu e,2112}^{(6),VLR}]-\frac{v^4}{8}{\rm Im}[(c_{\nu e,2112}^{(6),VLL})^*c_{\nu e,2112}^{(6),VLR}]-\frac{v^4}{8}{\rm Im}[(c_{\nu e,2112}^{(6),VLL})c_{\nu e,2112}^{(6),VLR}]
+\frac{\beta'}{A}=&-\frac{v^2}{4}{\rm Im}[L_{\nu e,2112}^{(6),VLR}]-\frac{v^4}{8}{\rm Im}[(L_{\nu e,2112}^{(6),VLL})^*L_{\nu e,2112}^{(6),VLR}]-\frac{v^4}{8}{\rm Im}[(L_{\nu e,2112}^{(6),VLL})L_{\nu e,2112}^{(6),VLR}]
 \end{align}
 %
+\begin{table}
+\centering
+\begin{tabular}{rclc}
+\toprule
+Parameter&&Measurement&Citation\\
+\midrule
+$\rho$ &=&$\phantom{+}0.74979\pm0.00026$&  \cite{particle2024review}\\
+$\eta$&=&$\phantom{+}0.057{\phantom{00}}\pm0.034$&\cite{particle2024review}\\
+$P_\mu\xi$&=&$\phantom{+}1.0009\phantom{0}\pm0.0012$&  \cite{particle2024review}\\
+$\xi P_\mu\delta/\rho$&=&$\phantom{+}1.00179\pm0.00114$&  \cite{particle2024review}\\
+$\xi'$&=&$\phantom{+}1.00\phantom{000}\pm0.04$&\cite{particle2024review}\\
+$\xi''$&=&$\phantom{+}0.98\phantom{000}\pm0.04$&\cite{particle2024review}\\
+$\eta''$&=&\phantom{+}$0.105\phantom{00}\pm0.052$&\cite{Danneberg:2005xv}\\
+$\alpha'/A$&=&$-0.01\phantom{000}\pm0.002$&\cite{particle2024review}\\
+$\beta'/A$&=&$\phantom{+}0.002\phantom{00}\pm0.007$&\cite{particle2024review}\\
+\bottomrule
+\end{tabular}
+\caption{PDG average values for the Michel parameters. In cases where the errors in a parameter are not symmetric, we use their average. For $\eta''$ the value is taken from \cite{Danneberg:2005xv} as no value appears in the PDG. For our analyses we assume $P_\mu=1$.}\label{tab:MichelExp}
+\end{table}
+
 The parameters $\xi''$ and $\alpha'/A$ remain unchanged -- in the LEFT we will see they only receive corrections from lepton number violating operators. As $\eta''=-\eta$ and $\xi'=\xi$ and these two additional parameters are more poorly measured than $\eta$ and $\xi$, we neglect to extend our fit to include them here. However, the leading interference for $\beta'/A$ together with the one for $\eta$ allow for determining the real and imaginary component of $L^{V,LR}_{\nu e,2112}$:
 \begin{equation}
     \eta\approx\frac{1}{2}\text{Re}[L^{V,LR}_{\nu e,2112}] \quad\quad \frac{\beta'}{A} \approx  \frac{1}{4} \text{Im}[L^{V,LR}_{\nu e,2112}]
@@ -614,62 +917,62 @@ Before we are discussing the evolution of this constrain up to the EW scale we d
 Starting with neglecting measurements sensitive to electron spin, we find for $G_F$:
 %
 \begin{align}
-G_F^2/G_{F,{\rm SM}}^2=&1-\frac{v^2}{2}\left[c_{\nu e,2112}^{(6),VLL}+c_{\nu e,1221}^{(6),VLL}\right]+\frac{v^4}{4}\sum_{a,b=1}^3\left[c_{\nu e,ab12}^{(6),VLL}c_{\nu e,ba21}^{(6),VLL}+c_{\nu e,ab12}^{(6),VLR}c_{\nu e,ba21}^{(6),VLR}\right]\nonumber\\
-&+\frac{v^4}{16}\sum_{a<b}\left[|c_{\nu e,ab12}^{(6),SLL}+c_{\nu e,ba12}^{(6),SLL}|^2+|c_{\nu e,ab12}^{(6),SLR}+c_{\nu e,ba12}^{(6),SLR}|^2+(12\to 21)\right]\nonumber\\ &+2\times\frac{v^4}{16} \sum_{a=1}^{3}\left[|c_{\nu e,aa12}^{(6),SLL}|^2+|c_{\nu e,aa12}^{(6),SLR}|^2+(12\to 21)\right]\\ &+3 v^4\sum_{a<b}\left[|c_{\nu e,ab12}^{(6),TLL}-c_{\nu e,ba12}^{(6),TLL}|^2+(12\to 21)\right]\, .\nonumber \end{align}
+G_F^2/G_{F,{\rm SM}}^2=&1-\frac{v^2}{2}\left[L_{\nu e,2112}^{(6),VLL}+L_{\nu e,1221}^{(6),VLL}\right]+\frac{v^4}{4}\sum_{a,b=1}^3\left[L_{\nu e,ab12}^{(6),VLL}L_{\nu e,ba21}^{(6),VLL}+L_{\nu e,ab12}^{(6),VLR}L_{\nu e,ba21}^{(6),VLR}\right]\nonumber\\
+&+\frac{v^4}{16}\sum_{a<b}\left[|L_{\nu e,ab12}^{(6),SLL}+L_{\nu e,ba12}^{(6),SLL}|^2+|L_{\nu e,ab12}^{(6),SLR}+L_{\nu e,ba12}^{(6),SLR}|^2+(12\to 21)\right]\nonumber\\ &+2\times\frac{v^4}{16} \sum_{a=1}^{3}\left[|L_{\nu e,aa12}^{(6),SLL}|^2+|L_{\nu e,aa12}^{(6),SLR}|^2+(12\to 21)\right]\\ &+3 v^4\sum_{a<b}\left[|L_{\nu e,ab12}^{(6),TLL}-L_{\nu e,ba12}^{(6),TLL}|^2+(12\to 21)\right]\, .\nonumber \end{align}
 %
 Here we have used ``$(12\to 21)$'' to mean swapping only the last two flavor indices from ``12'' to ``21.'' For sums with $a<b$ it is understood $b$ is summed from 1 to 3. The factor of two for like neutrinos arises from the counting factor (1/2) for identical final-state particles and symmetrizing the amplitude giving $|c+c|^2$ to $4|c|^2$ for $a=b$. The factor of 3 for the tensor can be understood as coming from the six independent components of $\sigma^{\mu\nu}$ and the trace over dirac matrices. The difference in sign structure between scalar and tensor terms is simply due to the symmetry properties of the two operators under interchange of the neutrino flavor indices.
 
 For the other electron spin independent Michel parameters we find:
 %
 \begin{align}
-\rho=&\frac{3}{4}-\frac{3v^4}{64}\sum_{a<b}\left[|c_{\nu e,ab12}^{(6),SLL}+c_{\nu e,ba12}^{(6),SLL}|^2+|c_{\nu e,ab12}^{(6),SLR}+c_{\nu e,ba12}^{(6),SLR}|^2+(12\to 21)\right]\nonumber\\
-&\phantom{\frac{3}{4}}-2\times \frac{3v^4}{64}\sum_{a=1}^3\left[|c_{\nu e,aa12}^{(6),SLL}|^2+|c_{\nu e,aa12}^{(6),SLR}|^2+(12\to 21)\right]\\
-&\phantom{\frac{3}{4}}+\frac{3v^4}{4}\sum_{a<b}\left[|c_{\nu e,ab12}^{(6),TLL}-c_{\nu e,ba12}^{(6),TLL}|^2+(12\to 21)\right]\, \nonumber
+\rho=&\frac{3}{4}-\frac{3v^4}{64}\sum_{a<b}\left[|L_{\nu e,ab12}^{(6),SLL}+L_{\nu e,ba12}^{(6),SLL}|^2+|L_{\nu e,ab12}^{(6),SLR}+L_{\nu e,ba12}^{(6),SLR}|^2+(12\to 21)\right]\nonumber\\
+&\phantom{\frac{3}{4}}-2\times \frac{3v^4}{64}\sum_{a=1}^3\left[|L_{\nu e,aa12}^{(6),SLL}|^2+|L_{\nu e,aa12}^{(6),SLR}|^2+(12\to 21)\right]\\
+&\phantom{\frac{3}{4}}+\frac{3v^4}{4}\sum_{a<b}\left[|L_{\nu e,ab12}^{(6),TLL}-L_{\nu e,ba12}^{(6),TLL}|^2+(12\to 21)\right]\, \nonumber
 \end{align}
 \begin{align}
-\eta=&0+\frac{v^2}{4}\left[c_{\nu e,2112}^{(6),VLR}+c_{\nu e,1221}^{(6),VLR}\right]+\frac{v^4}{8}\left[c_{\nu e,1221}^{(6),VLL}c_{\nu e,2112}^{(6),VLR}+c_{\nu e,2112}^{(6),VLL}c_{\nu e,1221}^{(6),VLR}\right]\nonumber\\
-&+\frac{v^4}{8}\left[c_{\nu e,2112}^{(6),VLL}c_{\nu e,2112}^{(6),VLR}+c_{\nu e,1221}^{(6),VLL}c_{\nu e,1221}^{(6),VLR}\right]-\frac{v^4}{8}\sum_{a,b=1}^3\left[c_{\nu e,ba12}^{(6),VLL}c_{\nu e,ab12}^{(6),VLR}+c_{\nu e,ab12}^{(6),VLL}c_{\nu e,ba21}^{(6),VLR}\right]\nonumber\\
-&\phantom{0}+\frac{v^4}{8}\sum_{a<b}{\rm Re}\left[(c_{\nu e,ab12}^{(6),SLL}+c_{\nu e,ba12}^{(6),SLL})^*(c_{\nu e,ab12}^{(6),SLR}+c_{\nu e,ba12}^{(6),SLR})+(12\to 21)\right]\\
-&\phantom{0}+\frac{v^4}{4}\sum_{a=1}^3{\rm Re}\left[(c_{\nu e,aa12}^{(6),SLL})^*(c_{\nu e,aa12}^{(6),SLR})+(12\to 21)\right]\, ,\nonumber
+\eta=&0+\frac{v^2}{4}\left[L_{\nu e,2112}^{(6),VLR}+L_{\nu e,1221}^{(6),VLR}\right]+\frac{v^4}{8}\left[L_{\nu e,1221}^{(6),VLL}L_{\nu e,2112}^{(6),VLR}+L_{\nu e,2112}^{(6),VLL}L_{\nu e,1221}^{(6),VLR}\right]\nonumber\\
+&+\frac{v^4}{8}\left[L_{\nu e,2112}^{(6),VLL}L_{\nu e,2112}^{(6),VLR}+L_{\nu e,1221}^{(6),VLL}L_{\nu e,1221}^{(6),VLR}\right]-\frac{v^4}{8}\sum_{a,b=1}^3\left[L_{\nu e,ba12}^{(6),VLL}L_{\nu e,ab12}^{(6),VLR}+L_{\nu e,ab12}^{(6),VLL}L_{\nu e,ba21}^{(6),VLR}\right]\nonumber\\
+&\phantom{0}+\frac{v^4}{8}\sum_{a<b}{\rm Re}\left[(L_{\nu e,ab12}^{(6),SLL}+L_{\nu e,ba12}^{(6),SLL})^*(L_{\nu e,ab12}^{(6),SLR}+L_{\nu e,ba12}^{(6),SLR})+(12\to 21)\right]\\
+&\phantom{0}+\frac{v^4}{4}\sum_{a=1}^3{\rm Re}\left[(L_{\nu e,aa12}^{(6),SLL})^*(L_{\nu e,aa12}^{(6),SLR})+(12\to 21)\right]\, ,\nonumber
 \end{align}
 
 \begin{align}
-\xi=&1-\frac{v^4}{2}\sum_{a,b=1}^3c_{\nu e,ab12}^{(6),VLR}c_{\nu e,ba21}^{(6),VLR}+\frac{v^4}{8}\sum_{a<b}\left[|c_{\nu e,ab12}^{(6),SLR}+c_{\nu e,ba21}^{(6),SLR}|^2-2|c_{\nu e,ab12}^{(6),SLL}+c_{\nu e,ba12}^{(6),SLL}|^2\right]\nonumber\\
-&\phantom{1}+\frac{v^4}{8}\sum_{a<b}\left[-2|c_{\nu e,ab21}^{(6),SLR}+c_{\nu e,ba21}^{(6),SLR}|^2+|c_{\nu e,ab21}^{(6),SLL}+c_{\nu e,ba21}^{(6),SLL}|^2\right]\\
-&\phantom{1}+\frac{v^4}{4}\sum_{a=1}^3\left[|c_{\nu e,aa21}^{(6),SLL}|^2-2|c_{\nu e,aa21}^{(6),SLR}|^2-2|c_{\nu e,aa12}^{(6),SLL}|^2+|c_{\nu e,aa12}^{(6),SLR}|^2\right]\nonumber\\
-&\phantom{1}+\frac{v^4}{8}\sum_{a<b}\left[32|c_{\nu e,ab12}^{(6),TLL}-c_{\nu e,ba12}^{(6),TLL}|^2-80|c_{\nu e,ab21}^{(6),TLL}-c_{\nu e,ba21}^{(6),TLL}|^2\right]
+\xi=&1-\frac{v^4}{2}\sum_{a,b=1}^3L_{\nu e,ab12}^{(6),VLR}L_{\nu e,ba21}^{(6),VLR}+\frac{v^4}{8}\sum_{a<b}\left[|L_{\nu e,ab12}^{(6),SLR}+L_{\nu e,ba21}^{(6),SLR}|^2-2|L_{\nu e,ab12}^{(6),SLL}+L_{\nu e,ba12}^{(6),SLL}|^2\right]\nonumber\\
+&\phantom{1}+\frac{v^4}{8}\sum_{a<b}\left[-2|L_{\nu e,ab21}^{(6),SLR}+L_{\nu e,ba21}^{(6),SLR}|^2+|L_{\nu e,ab21}^{(6),SLL}+L_{\nu e,ba21}^{(6),SLL}|^2\right]\\
+&\phantom{1}+\frac{v^4}{4}\sum_{a=1}^3\left[|L_{\nu e,aa21}^{(6),SLL}|^2-2|L_{\nu e,aa21}^{(6),SLR}|^2-2|L_{\nu e,aa12}^{(6),SLL}|^2+|L_{\nu e,aa12}^{(6),SLR}|^2\right]\nonumber\\
+&\phantom{1}+\frac{v^4}{8}\sum_{a<b}\left[32|L_{\nu e,ab12}^{(6),TLL}-L_{\nu e,ba12}^{(6),TLL}|^2-80|L_{\nu e,ab21}^{(6),TLL}-L_{\nu e,ba21}^{(6),TLL}|^2\right]
 \end{align}
 %
 \begin{align}
-\delta=&\frac{3}{4}+\frac{9v^4}{64}\sum_{a<b}\left[|c_{\nu e,ab12}^{(6),SLL}+c_{\nu e,ba12}^{(6),SLL}|^2-|c_{\nu e,ab12}^{(6),SLR}+c_{\nu e,ba12}^{(6),SLR}|^2 -(12\to 21)\right]\nonumber\\
-%&\phantom{\frac{3}{4}}-\frac{9v^4}{64}\sum_{a<b}\left[|c_{\nu e,ab21}^{(6),SLL}+c_{\nu e,ba21}^{(6),SLL}|^2-|c_{\nu e,ab21}^{(6),SLR}+c_{\nu e,ba21}^{(6),SLR}|^2\right]\\
-&\phantom{\frac{3}{4}}+\frac{9v^4}{32}\sum_{a=1}^3\left[|c_{\nu e,aa12}^{(6),SLL}|^2-|c_{\nu e,aa12}^{(6),SLR}|^2-(12\to 21)\right]\\%-|c_{\nu e,aa21}^{(6),SLL}|^2+|c_{\nu e,aa21}^{(6),SLR}|^2\right]\nonumber\\
-&\phantom{\frac{3}{4}}-\frac{9v^4}{4}\sum_{a<b}\left[|c_{\nu e,ab12}^{(6),TLL}-c_{\nu e,ba12}^{(6),TLL}|^2-(12\to 21)\right]\, .\nonumber%|c_{\nu e,ab21}^{(6),TLL}-c_{\nu e,ba21}^{(6),TLL}|^2\right]\, .\nonumber
+\delta=&\frac{3}{4}+\frac{9v^4}{64}\sum_{a<b}\left[|L_{\nu e,ab12}^{(6),SLL}+L_{\nu e,ba12}^{(6),SLL}|^2-|L_{\nu e,ab12}^{(6),SLR}+L_{\nu e,ba12}^{(6),SLR}|^2 -(12\to 21)\right]\nonumber\\
+%&\phantom{\frac{3}{4}}-\frac{9v^4}{64}\sum_{a<b}\left[|L_{\nu e,ab21}^{(6),SLL}+L_{\nu e,ba21}^{(6),SLL}|^2-|L_{\nu e,ab21}^{(6),SLR}+L_{\nu e,ba21}^{(6),SLR}|^2\right]\\
+&\phantom{\frac{3}{4}}+\frac{9v^4}{32}\sum_{a=1}^3\left[|L_{\nu e,aa12}^{(6),SLL}|^2-|L_{\nu e,aa12}^{(6),SLR}|^2-(12\to 21)\right]\\%-|L_{\nu e,aa21}^{(6),SLL}|^2+|L_{\nu e,aa21}^{(6),SLR}|^2\right]\nonumber\\
+&\phantom{\frac{3}{4}}-\frac{9v^4}{4}\sum_{a<b}\left[|L_{\nu e,ab12}^{(6),TLL}-L_{\nu e,ba12}^{(6),TLL}|^2-(12\to 21)\right]\, .\nonumber%|L_{\nu e,ab21}^{(6),TLL}-L_{\nu e,ba21}^{(6),TLL}|^2\right]\, .\nonumber
 \end{align}
 %
-The extra quadratic term in $\eta$ that does not appear as part of a sum arises from the cross term when expanding the ratio defining eta (see \ref{eq:solveforMichel}). It originates from the product of the linear term in the numerator ($\sim c_{\nu e,2112}^{(6),VLR}$) with the linear correction to $1/G_F^2$ ($\sim c_{\nu e,2112}^{(6),VLL}$). This contribution only exists for the SM flavor assignment. Notice that for $\xi$ there is a difference between the ``$12$'' and ``$21$'' contributions. From \ref{eq:LLvio} we can see that exchanging these labels swaps the chirality assigned to the electron and muon. The parameter $\xi$, which corresponds to the anisotropic part of the rate, is sensitive to precisely this difference in chiral assignments. For the same reason, $\delta$ also swaps signs under the flavor exchange $(12\to 21)$.
+The extra quadratic term in $\eta$ that does not appear as part of a sum arises from the cross term when expanding the ratio defining eta (see \ref{eq:solveforMichel}). It originates from the product of the linear term in the numerator ($\sim L_{\nu e,2112}^{(6),VLR}$) with the linear correction to $1/G_F^2$ ($\sim L_{\nu e,2112}^{(6),VLL}$). This contribution only exists for the SM flavor assignment. Notice that for $\xi$ there is a difference between the ``$12$'' and ``$21$'' contributions. From \ref{eq:LLvio} we can see that exchanging these labels swaps the chirality assigned to the electron and muon. The parameter $\xi$, which corresponds to the anisotropic part of the rate, is sensitive to precisely this difference in chiral assignments. For the same reason, $\delta$ also swaps signs under the flavor exchange $(12\to 21)$.
 
 
 Measurements sensitive to the electron's polarization then access the additional Michel parameters:
 %
 \begin{align}
-\xi'=&1-\frac{v^4}{2}\sum_{a,b=1}^3c_{\nu e,ab12}^{(6),VLR}c_{\nu e,ba21}^{(6),VLR}-\frac{v^4}{8}\sum_{a<b}\left[|c_{\nu e,ab12}^{(6),SLL}+c_{\nu e,ba12}^{(6),SLL}|^2+|c_{\nu e,ab21}^{(6),SLR}+c_{\nu e,ba21}^{(6),SLR}|^2\right]\, ,\nonumber\\
-&-\frac{v^4}{4}\sum_{a=1}^3\left[|c_{\nu e,aa12}^{(6),SLL}|^2+|c_{\nu e,aa21}^{(6),SLR}|^2\right]-6v^4\sum_{a<b}|c_{\nu e,ab12}^{(6),TLL}-c_{\nu e,ba12}^{(6),TLL}|^2\\
+\xi'=&1-\frac{v^4}{2}\sum_{a,b=1}^3L_{\nu e,ab12}^{(6),VLR}L_{\nu e,ba21}^{(6),VLR}-\frac{v^4}{8}\sum_{a<b}\left[|L_{\nu e,ab12}^{(6),SLL}+L_{\nu e,ba12}^{(6),SLL}|^2+|L_{\nu e,ab21}^{(6),SLR}+L_{\nu e,ba21}^{(6),SLR}|^2\right]\, ,\nonumber\\
+&-\frac{v^4}{4}\sum_{a=1}^3\left[|L_{\nu e,aa12}^{(6),SLL}|^2+|L_{\nu e,aa21}^{(6),SLR}|^2\right]-6v^4\sum_{a<b}|L_{\nu e,ab12}^{(6),TLL}-L_{\nu e,ba12}^{(6),TLL}|^2\\
 %%
-\xi''=&1+\frac{v^4}{8}\sum_{a<b}\left[|c_{\nu e,ab12}^{(6),SLL}+c_{\nu e,ba12}^{(6),SLL}|^2+|c_{\nu e,ab12}^{(6),SLR}+c_{\nu e,ba12}^{(6),SLR}|^2+(12\to 21)\right]\nonumber\\
-&\phantom{1}+\frac{v^4}{4}\sum_{a=1}^3\left[|c_{\nu e,aa12}^{(6),SLL}|^2+|c_{\nu e,aa12}^{(6),SLR}|^2+(12\to 21)\right]\\
-&\phantom{1}-10v^4\sum_{a<b}\left[|c_{\nu e,ab12}^{(6),TLL}-c_{\nu e,ba12}^{(6),TLL}|^2+(12\to 21)\right]\, ,\nonumber\\
+\xi''=&1+\frac{v^4}{8}\sum_{a<b}\left[|L_{\nu e,ab12}^{(6),SLL}+L_{\nu e,ba12}^{(6),SLL}|^2+|L_{\nu e,ab12}^{(6),SLR}+L_{\nu e,ba12}^{(6),SLR}|^2+(12\to 21)\right]\nonumber\\
+&\phantom{1}+\frac{v^4}{4}\sum_{a=1}^3\left[|L_{\nu e,aa12}^{(6),SLL}|^2+|L_{\nu e,aa12}^{(6),SLR}|^2+(12\to 21)\right]\\
+&\phantom{1}-10v^4\sum_{a<b}\left[|L_{\nu e,ab12}^{(6),TLL}-L_{\nu e,ba12}^{(6),TLL}|^2+(12\to 21)\right]\, ,\nonumber\\
 %%
-\eta''=&0-\frac{v^2}{4}\left[c_{\nu e,2112}^{(6),VLR}+c_{\nu e,1221}^{(6),VLR}\right]-\frac{v^4}{8}[c_{\nu e,1221}^{(6),VLL}c_{\nu e,2112}^{(6),VLR}+c_{\nu e,2112}^{(6),VLL}c_{\nu e,1221}^{(6),VLR}]\nonumber\\
-&\phantom{0}-\frac{v^4}{8}[c_{\nu e,2112}^{(6),VLL}c_{\nu e,2112}^{(6),VLR}+c_{\nu e,1221}^{(6),VLL}c_{\nu e,1221}^{(6),VLR}]+\frac{v^4}{8}\sum_{a,b=1}^3[c_{\nu e,ba21}^{(6),VLL}c_{\nu e,ab12}^{(6),VLR}+c_{\nu e,ab12}^{(6),VLL}c_{\nu e,ba21}^{(6),VLR}]\nonumber\\
-&\phantom{0}+\frac{3v^4}{8}\sum_{a<b}{\rm Re}\left[(c_{\nu e,ab12}^{(6),SLL}+c_{\nu e,ba12}^{(6),SLL})^*(c_{\nu e,ab12}^{(6),SLR}+c_{\nu e,ba12}^{(6),SLR})+(12\to 21)\right]\\
-&\phantom{0}+\frac{3v^4}{4}\sum_{a=1}^3{\rm Re}\left[(c_{\nu e,aa12}^{(6),SLL})^*c_{\nu e,aa12}^{(6),SLR}+(12\to 21)\right]\, ,\nonumber\\
+\eta''=&0-\frac{v^2}{4}\left[L_{\nu e,2112}^{(6),VLR}+L_{\nu e,1221}^{(6),VLR}\right]-\frac{v^4}{8}[L_{\nu e,1221}^{(6),VLL}L_{\nu e,2112}^{(6),VLR}+L_{\nu e,2112}^{(6),VLL}L_{\nu e,1221}^{(6),VLR}]\nonumber\\
+&\phantom{0}-\frac{v^4}{8}[L_{\nu e,2112}^{(6),VLL}L_{\nu e,2112}^{(6),VLR}+L_{\nu e,1221}^{(6),VLL}L_{\nu e,1221}^{(6),VLR}]+\frac{v^4}{8}\sum_{a,b=1}^3[L_{\nu e,ba21}^{(6),VLL}L_{\nu e,ab12}^{(6),VLR}+L_{\nu e,ab12}^{(6),VLL}L_{\nu e,ba21}^{(6),VLR}]\nonumber\\
+&\phantom{0}+\frac{3v^4}{8}\sum_{a<b}{\rm Re}\left[(L_{\nu e,ab12}^{(6),SLL}+L_{\nu e,ba12}^{(6),SLL})^*(L_{\nu e,ab12}^{(6),SLR}+L_{\nu e,ba12}^{(6),SLR})+(12\to 21)\right]\\
+&\phantom{0}+\frac{3v^4}{4}\sum_{a=1}^3{\rm Re}\left[(L_{\nu e,aa12}^{(6),SLL})^*L_{\nu e,aa12}^{(6),SLR}+(12\to 21)\right]\, ,\nonumber\\
 %%
-\frac{\alpha'}{A}=&0-\frac{v^4}{8}\sum_{a<b}{\rm Im}[(c_{\nu e,ab12}^{(6),SLL}+c_{\nu e,ba12}^{(6),SLL})^*(c_{\nu e,ab12}^{(6),SLR}+c_{\nu e,ba12}^{(6),SLR})+(12\to 21)]\nonumber\\
-&\phantom{0}-\frac{v^4}{4}\sum_{a=1}^3{\rm Im}[(c_{\nu e,aa12}^{(6),SLL})^*c_{\nu e,aa12}^{(6),SLR}+(12\to 21)]\, ,\\
+\frac{\alpha'}{A}=&0-\frac{v^4}{8}\sum_{a<b}{\rm Im}[(L_{\nu e,ab12}^{(6),SLL}+L_{\nu e,ba12}^{(6),SLL})^*(L_{\nu e,ab12}^{(6),SLR}+L_{\nu e,ba12}^{(6),SLR})+(12\to 21)]\nonumber\\
+&\phantom{0}-\frac{v^4}{4}\sum_{a=1}^3{\rm Im}[(L_{\nu e,aa12}^{(6),SLL})^*L_{\nu e,aa12}^{(6),SLR}+(12\to 21)]\, ,\\
 %%
-\frac{\beta'}{A}=&0-\frac{v^2}{4}{\rm Im}[c_{\nu e,2112}^{(6),VLR}]-\frac{v^4}{8}{\rm Im}[(c_{\nu e,2112}^{(6),VLL})^*c_{\nu e,2112}^{(6),VLR}]-\frac{v^4}{8}{\rm Im}[(c_{\nu e,2112}^{(6),VLL})c_{\nu e,2112}^{(6),VLR}]\nonumber\\
-&\phantom{0}+\frac{v^4}{8}\sum_{a,b=1}^3{\rm Im}[(c_{\nu e,ab12}^{(6),VLL})^*c_{\nu e,ab12}^{(6),VLR}]
+\frac{\beta'}{A}=&0-\frac{v^2}{4}{\rm Im}[L_{\nu e,2112}^{(6),VLR}]-\frac{v^4}{8}{\rm Im}[(L_{\nu e,2112}^{(6),VLL})^*L_{\nu e,2112}^{(6),VLR}]-\frac{v^4}{8}{\rm Im}[(L_{\nu e,2112}^{(6),VLL})L_{\nu e,2112}^{(6),VLR}]\nonumber\\
+&\phantom{0}+\frac{v^4}{8}\sum_{a,b=1}^3{\rm Im}[(L_{\nu e,ab12}^{(6),VLL})^*L_{\nu e,ab12}^{(6),VLR}]
 \end{align}
 What do I do with this? Let's talk about RGEs first.
 \section{RGEs of the LEFT}
@@ -731,8 +1034,8 @@ The SM Lagrangian can be extended by effective operators of increasing canonical
 \section{Matching onto the LEFT}
 From the LEFT paper by Jenkins, Manohar \& Stoffer \parencite{jenkins2018lowOM} on operators and matching at dimension 6 we collect the following matching conditions for the LNC operators $\mathcal{O}^{V,LL}_{\nu e}$ and $\mathcal{O}^{V,LR}_{\nu e}$:
 \begin{align}
-    L^{V,LL}_{\nu e,prst}&= C_{ll}^{prst}+C_{ll}^{stpr}-\tfrac{\bar g_2^2}{2M_W^2}[W_l]_{pt}[W_l]^*_{rs}-\tfrac{\bar g_Z^2}{M_Z^2}[Z_{\nu_L}]_{pr}[Z_{e_L}]^*_{st}\label{eq:LVLLRGE}\\
-    L^{V,LR}_{\nu e,prst}&= C_{le}^{prst} -\tfrac{\bar g_Z^2}{M_Z^2}[Z_{\nu_L}]_{pr}[Z_{e_L}]^*_{st}\label{eq:LVLRRGE}
+    L^{V,LL}_{\nu e,prst}&= L_{ll}^{prst}+L_{ll}^{stpr}-\tfrac{\bar g_2^2}{2M_W^2}[W_l]_{pt}[W_l]^*_{rs}-\tfrac{\bar g_Z^2}{M_Z^2}[Z_{\nu_L}]_{pr}[Z_{e_L}]^*_{st}\label{eq:LVLLRGE}\\
+    L^{V,LR}_{\nu e,prst}&= L_{le}^{prst} -\tfrac{\bar g_Z^2}{M_Z^2}[Z_{\nu_L}]_{pr}[Z_{e_L}]^*_{st}\label{eq:LVLRRGE}
 \end{align}
 Here, $[W_l]_{pr}$ is the modified coupling of $\mathcal{W}^+_\mu$ to $(\bar\nu_{Lp}\gamma^\mu e_{Lr})$ and $[Z_\psi]_{pr}$ the modified coupling of $\mathcal{Z}_\mu$ to $(\bar\psi_p\gamma^\mu\psi_r)$ with $\psi=\nu_L,e_L$ in the spontaneously broken SMEFT \cite{jenkins2018lowOM}:
 \begin{align}
@@ -743,14 +1046,14 @@ Here, $[W_l]_{pr}$ is the modified coupling of $\mathcal{W}^+_\mu$ to $(\bar\nu_
 \end{align}
 Gauge couplings and the VEV are also modified in the spontaneously broken SMEFT as well as the weak mixing angle:
 \begin{align}
-    v_T = \left( 1+ \frac{3 C_H v^2}{8 \lambda} \right) v\qquad \bar g_1= g_1 \left(1 + C_{HB} \, v_T^2 \right)\qquad \bar g_2= g_2 \left(1 + C_{HW} \, v_T^2 \right)\\
+    v_T = \left( 1+ \frac{3 L_H v^2}{8 \lambda} \right) v\qquad \bar g_1= g_1 \left(1 + L_{HB} \, v_T^2 \right)\qquad \bar g_2= g_2 \left(1 + L_{HW} \, v_T^2 \right)\\
     \bar s =\sin \theta =  {{\bar g_1} \over \sqrt{ \bar g_1^2 + \bar g_2^2} }\left[ 1 + {\epsilon \over 2} \ {{\bar g_2} \over {\bar g_1}} \left( {{\bar g_2^2 - \bar g_1^2} \over {\bar g_1^2 + \bar g_2^2}} \right)   \right]\hspace{2.2cm}
 \end{align}
 For the $prst=ab12$ flavor combination under consideration we are therefore obtaining, while neglecting all terms quadratic in couplings, the following matching conditions:
 \begin{align}
-    L^{V,LL}_{\nu e,ab12}=\, &C_{ll}^{ab12}+C_{ll}^{12ab}-\tfrac{\bar g_2^2}{2M_W}\left(\delta_{a2}\delta_{b1}+\delta_{a2}C^{(3),b1}_{Hl}+\delta_{b1}C^{(3),a2}_{Hl}\right)\label{eq:LVLLmatching}\\
-    &+\tfrac{\bar g_Z^2}{M_Z^2}\left(\frac{1}{4}\delta_{ab}v_T^2\left[C_{Hl}^{(1),12*}+C_{Hl}^{(3),12*}\right]\right)\nonumber\\
-    L^{V,LR}_{\nu e,ab12}=\, &C_{le}^{ab12}+\tfrac{\bar g_Z^2}{M_Z^2}\left(\frac{1}{4}\delta_{ab}v_T^2\left[C_{Hl}^{(1),12*}+C_{Hl}^{(3),12*}\right]\right)
+    L^{V,LL}_{\nu e,ab12}=\, &L_{ll}^{ab12}+L_{ll}^{12ab}-\tfrac{\bar g_2^2}{2M_W}\left(\delta_{a2}\delta_{b1}+\delta_{a2}C^{(3),b1}_{Hl}+\delta_{b1}C^{(3),a2}_{Hl}\right)\label{eq:LVLLmatching}\\
+    &+\tfrac{\bar g_Z^2}{M_Z^2}\left(\frac{1}{4}\delta_{ab}v_T^2\left[L_{Hl}^{(1),12*}+L_{Hl}^{(3),12*}\right]\right)\nonumber\\
+    L^{V,LR}_{\nu e,ab12}=\, &L_{le}^{ab12}+\tfrac{\bar g_Z^2}{M_Z^2}\left(\frac{1}{4}\delta_{ab}v_T^2\left[L_{Hl}^{(1),12*}+L_{Hl}^{(3),12*}\right]\right)
 \end{align}
 We have therefore 4 SMEFT Operators at dimension 6 which the LEFT matches onto (full basis in \ref{tab:dim6SMEFTbasis}):
 \begin{align}
@@ -761,15 +1064,15 @@ We have therefore 4 SMEFT Operators at dimension 6 which the LEFT matches onto (
 \end{align}
 For the SM-like muon decay with $ab=21$ this gives:
 \begin{align}
-        L^{V,LL}_{\nu e,2112} &=-\frac{2}{v_T^2} + C_{ll}^{2112} + C_{ll}^{1221}-2C^{(3),22}_{Hl}-2C^{(3),11}_{Hl}\\
-        L^{V,LR}_{\nu e,2112} &= C_{le,2112}
+        L^{V,LL}_{\nu e,2112} &=-\frac{2}{v_T^2} + L_{ll}^{2112} + L_{ll}^{1221}-2C^{(3),22}_{Hl}-2C^{(3),11}_{Hl}\\
+        L^{V,LR}_{\nu e,2112} &= L_{le,2112}
 \end{align}
 We see from the last term of eq. \ref{eq:LVLLmatching} that the SMEFT operator $Q_{Hl}^{(1)}$ only produces LEFT operators with two identical neutrino generations (due to the $\delta_{ab}$) -- this is because the operator stems from a lepton number changing neutral current mediated by the $Z$ boson which couples the muon directly to the electron and decays itself into two neutrinos of the same generation.\par  
 For the scalar and tensor operators, since they violate lepton number, the matching at dimension 6 is zero but at dimension 7 we get from \parencite{liao2020extending}:
 \begin{align}
-L^{S,LL}_{\nu e,prst} &= -\frac{\sqrt{2}v}{8} \left( 2C_{\bar{e}LLLH}^{stpr} + C_{\bar{e}LLLH}^{sptr} + p \leftrightarrow r \right) \\
-L^{S,LR}_{\nu e,prst} &= -\frac{\sqrt{2}v}{2} \left( C_{LeHD}^{pt}\delta^{rs} + C_{LeHD}^{rt}\delta^{ps} \right), \\
-L^{T,LL}_{\nu e, prst} &= +\frac{\sqrt{2}v}{32} \left( C_{\bar{e}LLLH}^{sptr} - C_{\bar{e}LLLH}^{srtp} \right),
+L^{S,LL}_{\nu e,prst} &= -\frac{\sqrt{2}v}{8} \left( 2L_{\bar{e}LLLH}^{stpr} + L_{\bar{e}LLLH}^{sptr} + p \leftrightarrow r \right) \\
+L^{S,LR}_{\nu e,prst} &= -\frac{\sqrt{2}v}{2} \left( L_{LeHD}^{pt}\delta^{rs} + L_{LeHD}^{rt}\delta^{ps} \right), \\
+L^{T,LL}_{\nu e, prst} &= +\frac{\sqrt{2}v}{32} \left( L_{\bar{e}LLLH}^{sptr} - L_{\bar{e}LLLH}^{srtp} \right),
 \end{align}
 So there are two relevant operators at dimension 7 (full basis in \ref{tab:dim7SMEFTbl02} and \ref{tab:dim7SMEFTbl1-1}):
 \begin{align}
@@ -777,11 +1080,8 @@ So there are two relevant operators at dimension 7 (full basis in \ref{tab:dim7S
     \mathcal{O}_{\bar{e}LLLH}^{prst} &= \epsilon_{ij}\epsilon_{mn} (\overline{e_p} L_r^i) (\overline{L_s^{jC}} L_t^m) H^n 
 \end{align}
 \section{RGEs for the SMEFT}
-Now we run the operators up to the scale of new physics, so approximately $10\text{ TeV}$. For the dim-6 operators, we are using the \texttt{wilson} package \parencite{aebischer2018python} and for the dim-7 operators the \texttt{D7RGESolver} from \parencite{liao2025rge}.
-\begin{equation}
-    \dot L^{S,LR}_{\substack{\nu e \\ 1212}}=-\frac{\sqrt{2}v}{2}C^{22}_{LeHD}
-\end{equation}
-For $C^{22}_{LeHD}$ EW scale up to new physics, the RGESolver yields neutrino operator and quark operator.\par 
+Now we run the operators up to the scale of new physics, so approximately $10\text{ TeV}$. For the dim-6 operators, we are using the \texttt{wilson} package \parencite{aebischer2018python} and for the dim-7 operators the \texttt{D7RGESolver} from \parencite{liao2025rge}. The full RGEs are given in section \ref{sec:apprge} in the appendix. How to systematically indorporate the contributions?
+
 
 
 \chapter{Beyond Standard Model (BSM) physics}
@@ -819,7 +1119,7 @@ This means that an extension of the SM Lagrangian by either a single term for $S
 The Lagrangian of the new UV fields is given in the Appendix - we include only those terms of the full UV Lagrangian of \parencite{li2024complete} that feature the identified fields with relevant IR limits, precisely their singular terms, interaction terms with SM field content and interaction terms among themselves. Here, we now state the matching conditions of the five SMEFT operators to their possible UV origins:
 \begin{align}
 \begin{autobreak}
- {C_{ll}} =
+ {L_{ll}} =
 -\frac{\mathcal{D}_{{LLS_{2}}}^{{f_1f_2p_1}} \mathcal{D}_{{LLS_{2}}}^{{f_4f_3p_1*}}}{2 {M_{S_{2}}^2}}
 +\frac{\mathcal{D}_{{LLS_{6}}}^{{f_1f_2p_1}} \mathcal{D}_{{LLS_{6}}}^{{f_4f_3p_1*}}}{4 {M_{S_{6}}^2}}
 -\frac{\mathcal{D}_{{LL^\dagger V_{1}}}^{{f_1f_3p_1}} \mathcal{D}_{{LL^\dagger V_{1}}}^{{f_2f_4p_1}}}{2 {M_{V_{1}}^2}}
@@ -831,12 +1131,12 @@ The Lagrangian of the new UV fields is given in the Appendix - we include only t
 \end{align}
 So the operator $\mathcal{O}_{ll}$ could effectively be produced by extension of the SM Lagrangian by interactions of its lepton doublets with four different new fields. If we estimate the couplings $\mathcal{D}$ to be $\approx 1$, we can estimate the mass scale of the new UV fields if we assume order one coupling:
 \begin{equation}
-    |C_{ll}|\approx \frac{1}{M_{S_2,S_6,V_1,V_4}^2}
+    |L_{ll}|\approx \frac{1}{M_{S_2,S_6,V_1,V_4}^2}
 \end{equation}
 Quite similarly, the UV origins of $\mathcal{O}_{Hl}^{(3)}$ can be assessed and again, it is by coupling terms of the possible new UV fields to the SM lepton plus Higgs doublets that it can be produced as a low energy limit:
 \begin{align}
 \begin{autobreak}
- {C_{Hl}^{(3)}} =
+ {L_{Hl}^{(3)}} =
 -\frac{i \mathcal{D}_{{LL^\dagger V_{4}}}^{{f_1f_4p_1}} \mathcal{D}_{{HH^\dagger V_{4}D}}^{{p_1}}}{2 {M_{V_{4}}^2}}
 -\frac{i \mathcal{D}_{{LL^\dagger V_{4}}}^{{f_1f_4p_1}} \mathcal{D}_{{HH^\dagger V_{4}D}}^{{p_1*}}}{2 {M_{V_{4}}^2}}
 -\frac{\mathcal{D}_{{F_{1}HL}}^{{p_1f_1}} \mathcal{D}_{{F_{1}HL}}^{{p_1f_4*}}}{4 {M_{F_{1}}^2}}
@@ -847,7 +1147,7 @@ Quite similarly, the UV origins of $\mathcal{O}_{Hl}^{(3)}$ can be assessed and 
 \end{align}
 Finally, we cite the matching conditions for the $\mathcal{O}_{le}$ operator:
 \begin{equation}
- {C_{le}} =
+ {L_{le}} =
  \frac{\mathcal{D}_{{e^\dagger eV_{1}}}^{{f_1f_3p_1}} \mathcal{D}_{{LL^\dagger V_{1}}}^{{f_2f_4p_1}}}{{M_{V_{1}}^2}}
 -\frac{\mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_1f_2p_1}} \mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_3f_4p_1*}}}{2 {M_{S_{4}}^2}}
 +\frac{\mathcal{D}_{{e^\dagger L^\dagger V_{3}^\dagger }}^{{f_1f_4p_1}} \mathcal{D}_{{e^\dagger L^\dagger V_{3}^\dagger }}^{{f_3f_2p_1*}}}{{M_{V_{3}}^2}} 
@@ -1557,17 +1857,18 @@ See table \ref{tab:dim7SMEFTbl02} and \ref{tab:dim7SMEFTbl1-1}.
     \caption{Dim-7 SMEFT operators with $(\Delta B, \Delta L) = (1, -1)$ - all tables from \parencite[p.5]{liao2025rge}}
     \label{tab:dim7SMEFTbl1-1}
 \end{table}
-\section{Renormalization Group Equations}
+\clearpage
+\section{Renormalization Group Equations}\label{sec:apprge}
 Here we cite the full one-loop RGE for the relevant SMEFT operators. The overall structure of the dimension-six SMEFT renormalization group equations was presented in \parencite{jenkins2013rge1}. The Yukawa loop contributions were given in \parencite{jenkins2014rge2} and the Gauge loop contributions in \parencite{alonso2014rge3} - from the latter two papers we collect the results and add them here together. The notation in the papers is the following:
 \begin{equation}
     \dot{C} \equiv 16\pi^2 \mu \frac{d C}{d\mu}
 \end{equation}
 \begin{align}
 %%%%%
-\dot C_{\substack{ ll \\ prst }} &= -\frac{1}{2} [Y_e^\dagger Y_e]_{pr} C_{\substack{ Hl \\ st }}^{(1)} -\frac{1}{2} [Y_e^\dagger Y_e]_{st} C_{\substack{ Hl \\ pr }}^{(1)}  +\frac{1}{2} [Y_e^\dagger Y_e]_{pr} C_{\substack{ Hl \\ st }}^{(3)} +\frac{1}{2} [Y_e^\dagger Y_e]_{st} C_{\substack{ Hl \\ pr }}^{(3)} \nn
-&-  [Y_e^\dagger Y_e]_{sr} C_{\substack{ Hl \\ pt }}^{(3)} - [Y_e^\dagger Y_e]_{pt} C_{\substack{ Hl \\ sr }}^{(3)}  - \frac{1}{2} \, [Y_e^\dagger]_{sv} \, [Y_e]_{wt} \, C_{\substack{le  \\ prvw}} - \frac{1}{2} \, [Y_e^\dagger]_{pv} \, [Y_e]_{wr} \, C_{\substack{le  \\ stvw}} \nn
-&+ \gamfY lpv C_{\substack{ll \\ vrst}} + \gamfY lsv C_{\substack{ll \\ prvt}}
-+  C_{\substack{ll \\ pvst}} \gamfY lvr + C_{\substack{ll \\ prsv}}  \gamfY lvt\\
+\dot L_{\substack{ ll \\ prst }} &= -\frac{1}{2} [Y_e^\dagger Y_e]_{pr} L_{\substack{ Hl \\ st }}^{(1)} -\frac{1}{2} [Y_e^\dagger Y_e]_{st} L_{\substack{ Hl \\ pr }}^{(1)}  +\frac{1}{2} [Y_e^\dagger Y_e]_{pr} L_{\substack{ Hl \\ st }}^{(3)} +\frac{1}{2} [Y_e^\dagger Y_e]_{st} L_{\substack{ Hl \\ pr }}^{(3)} \nn
+&-  [Y_e^\dagger Y_e]_{sr} L_{\substack{ Hl \\ pt }}^{(3)} - [Y_e^\dagger Y_e]_{pt} L_{\substack{ Hl \\ sr }}^{(3)}  - \frac{1}{2} \, [Y_e^\dagger]_{sv} \, [Y_e]_{wt} \, L_{\substack{le  \\ prvw}} - \frac{1}{2} \, [Y_e^\dagger]_{pv} \, [Y_e]_{wr} \, L_{\substack{le  \\ stvw}} \nn
+&+ \gamfY lpv L_{\substack{ll \\ vrst}} + \gamfY lsv L_{\substack{ll \\ prvt}}
++  L_{\substack{ll \\ pvst}} \gamfY lvr + L_{\substack{ll \\ prsv}}  \gamfY lvt\\
 &+ \frac23 g_1^2 \hyp_h \hyp_l C^{(1)}_{ \substack {Hl \\ s t } } \delta_{p r} 
 -       \frac16 g_2^2 C^{(3)}_{ \substack {Hl \\ s t } } \delta_{p r}
 + \frac13 g_2^2 C^{(3)}_{ \substack {Hl \\ s r } } \delta_{p t} 
@@ -1576,28 +1877,28 @@ Here we cite the full one-loop RGE for the relevant SMEFT operators. The overall
 &
 + \frac23 g_1^2 \hyp_h \hyp_l C^{(1)}_{ \substack {Hl \\ p r } }   \delta_{s t} 
 - \frac16 g_2^2 C^{(3)}_{ \substack {Hl \\ p r } } \delta_{s t}  
-+     \frac43 g_1^2 \hyp_l^2 C_{ \substack {ll \\ p r w w } } \delta_{s t}
-+        \frac43 g_1^2 \hyp_l^2 C_{ \substack {ll \\ s t w w } } \delta_{p r} 
-+        \frac43 g_1^2 \hyp_l^2 C_{ \substack {ll \\ w w s t } } \delta_{p r} 
++     \frac43 g_1^2 \hyp_l^2 L_{ \substack {ll \\ p r w w } } \delta_{s t}
++        \frac43 g_1^2 \hyp_l^2 L_{ \substack {ll \\ s t w w } } \delta_{p r} 
++        \frac43 g_1^2 \hyp_l^2 L_{ \substack {ll \\ w w s t } } \delta_{p r} 
 \nn
 &
-+        \frac43 g_1^2 \hyp_l^2 C_{ \substack {ll \\ w w p r } } \delta_{s t} 
-+        \frac23 g_1^2 \hyp_l^2 C_{ \substack {ll \\ p w w r } } \delta_{s t} 
-+        \frac23 g_1^2 \hyp_l^2 C_{ \substack {ll \\ s w w t } } \delta_{p r} 
-+        \frac23 g_1^2 \hyp_l^2 C_{ \substack {ll \\ w r p w } } \delta_{s t}
-+        \frac23 g_1^2 \hyp_l^2 C_{ \substack {ll \\ w t s w } } \delta_{p r} 
++        \frac43 g_1^2 \hyp_l^2 L_{ \substack {ll \\ w w p r } } \delta_{s t} 
++        \frac23 g_1^2 \hyp_l^2 L_{ \substack {ll \\ p w w r } } \delta_{s t} 
++        \frac23 g_1^2 \hyp_l^2 L_{ \substack {ll \\ s w w t } } \delta_{p r} 
++        \frac23 g_1^2 \hyp_l^2 L_{ \substack {ll \\ w r p w } } \delta_{s t}
++        \frac23 g_1^2 \hyp_l^2 L_{ \substack {ll \\ w t s w } } \delta_{p r} 
 \nn
 &
--        \frac16 g_2^2 C_{ \substack {ll \\ p w w r } } \delta_{s t} 
--        \frac16 g_2^2 C_{ \substack {ll \\ s w w t } } \delta_{p r}
--        \frac16 g_2^2 C_{ \substack {ll \\ w r p w } } \delta_{s t} 
--        \frac16 g_2^2 C_{ \substack {ll \\ w t s w } } \delta_{p r} 
-+        \frac13 g_2^2 C_{ \substack {ll \\ s w w r } } \delta_{p t}
+-        \frac16 g_2^2 L_{ \substack {ll \\ p w w r } } \delta_{s t} 
+-        \frac16 g_2^2 L_{ \substack {ll \\ s w w t } } \delta_{p r}
+-        \frac16 g_2^2 L_{ \substack {ll \\ w r p w } } \delta_{s t} 
+-        \frac16 g_2^2 L_{ \substack {ll \\ w t s w } } \delta_{p r} 
++        \frac13 g_2^2 L_{ \substack {ll \\ s w w r } } \delta_{p t}
 \nn
 &
-+        \frac13 g_2^2 C_{ \substack {ll \\ p w w t } } \delta_{r s} 
-+         \frac13    g_2^2 C_{ \substack {ll \\ w r s w } } \delta_{p t} 
-+        \frac13 g_2^2 C_{ \substack {ll \\ w t p w } } \delta_{r s} 
++        \frac13 g_2^2 L_{ \substack {ll \\ p w w t } } \delta_{r s} 
++         \frac13    g_2^2 L_{ \substack {ll \\ w r s w } } \delta_{p t} 
++        \frac13 g_2^2 L_{ \substack {ll \\ w t p w } } \delta_{r s} 
 +        \frac43 g_1^2 N_c \hyp_l \hyp_q C^{(1)}_{ \substack {lq \\ p r w w } } \delta_{s t}
 +        \frac43 g_1^2 N_c \hyp_l \hyp_q C^{(1)}_{ \substack {lq \\ s t w w } } \delta_{p r} 
 \nn
@@ -1608,63 +1909,63 @@ Here we cite the full one-loop RGE for the relevant SMEFT operators. The overall
 +        \frac23 g_2^2 N_c C^{(3)}_{ \substack {lq \\ p t w w } } \delta_{r s} 
 \nn
 &
-+        \frac23 g_1^2 N_c \hyp_l \hyp_u C_{ \substack {lu \\ p r w w } } \delta_{s t}
-+        \frac23 g_1^2 N_c \hyp_l \hyp_u C_{ \substack {lu \\ s t w w } } \delta_{p r} 
-+        \frac23 g_1^2 N_c \hyp_d \hyp_l C_{ \substack {ld \\ p r w w } } \delta_{s t} 
-+        \frac23 g_1^2 N_c \hyp_d \hyp_l C_{ \substack {ld \\ s t w w } } \delta_{p r} 
++        \frac23 g_1^2 N_c \hyp_l \hyp_u L_{ \substack {lu \\ p r w w } } \delta_{s t}
++        \frac23 g_1^2 N_c \hyp_l \hyp_u L_{ \substack {lu \\ s t w w } } \delta_{p r} 
++        \frac23 g_1^2 N_c \hyp_d \hyp_l L_{ \substack {ld \\ p r w w } } \delta_{s t} 
++        \frac23 g_1^2 N_c \hyp_d \hyp_l L_{ \substack {ld \\ s t w w } } \delta_{p r} 
 \nn
 &
-+        \frac23 g_1^2 \hyp_e \hyp_l C_{ \substack {le \\ p r w w } } \delta_{s t} 
-+        \frac23 g_1^2 \hyp_e \hyp_l C_{ \substack {le \\ s t w w } } \delta_{p r} 
-+ 6 g_2^2 \, C_{\substack{ll \\ ptsr}} - 3\left( g_2^2 - 4 \hyp_l^2 g_1^2 \right) C_{\substack{ll \\ prst}} 
++        \frac23 g_1^2 \hyp_e \hyp_l L_{ \substack {le \\ p r w w } } \delta_{s t} 
++        \frac23 g_1^2 \hyp_e \hyp_l L_{ \substack {le \\ s t w w } } \delta_{p r} 
++ 6 g_2^2 \, L_{\substack{ll \\ ptsr}} - 3\left( g_2^2 - 4 \hyp_l^2 g_1^2 \right) L_{\substack{ll \\ prst}} 
 \end{align}
 \begin{align}
 %
-\dot C_{\substack{Hl  \\ pr}}^{(3)} &= -\frac12 [Y_e^\dagger Y_e]_{pr}   C_{H\Box}  +\frac12 [Y_e^\dagger Y_e]_{pt} \bigl( 3 C_{\substack{Hl \\ tr}}^{(1)} +  C_{\substack{Hl \\ tr}}^{(3)} \bigr) + \frac12 \bigl( 3 C_{\substack{Hl \\ pt}}^{(1)} +  C_{\substack{Hl \\ pt}}^{(3)} \bigr)  [Y_e^\dagger Y_e]_{tr} \nn
+\dot L_{\substack{Hl  \\ pr}}^{(3)} &= -\frac12 [Y_e^\dagger Y_e]_{pr}   L_{H\Box}  +\frac12 [Y_e^\dagger Y_e]_{pt} \bigl( 3 L_{\substack{Hl \\ tr}}^{(1)} +  L_{\substack{Hl \\ tr}}^{(3)} \bigr) + \frac12 \bigl( 3 L_{\substack{Hl \\ pt}}^{(1)} +  L_{\substack{Hl \\ pt}}^{(3)} \bigr)  [Y_e^\dagger Y_e]_{tr} \nn
 &
- - \bigl( C_{\substack{ll \\ ptsr}}+ C_{\substack{ll \\ srpt}} \bigr) [{Y_e}^\dagger Y_e  ]_{ts} -2N_c  C^{(3)}_{\substack{lq \\ prst }}   [Y_d^\dagger Y_d+Y_u^\dagger Y_u]_{ts}+ 2 \gamHY   C_{\substack{Hl  \\ pr}}^{(3)}+ \gamfY lpt C_{\substack{Hl\\ tr}} ^{(3)} + C_{\substack{Hl \\ pt}}^{(3)}\gamfY ltr\\
- &+\frac16 g_2^2 C_{H \Box} \delta_{pr}+ \frac23 g_2^2  C^{(3)}_{\substack{H l \\ tt}}\delta_{pr} +  \frac23 g_2^2 N_c  C^{(3)}_{\substack{H q \\ tt}}\delta_{pr}
-+\frac13 g_2^2  C_{\substack{Hl \\ pr}}^{(3)} +\frac{1}{3} g_2^2 C_{ \substack {ll \\ p w w r } } +\frac{1}{3} g_2^2 C_{ \substack {ll \\ w r p w } } 
+ - \bigl( L_{\substack{ll \\ ptsr}}+ L_{\substack{ll \\ srpt}} \bigr) [{Y_e}^\dagger Y_e  ]_{ts} -2N_c  C^{(3)}_{\substack{lq \\ prst }}   [Y_d^\dagger Y_d+Y_u^\dagger Y_u]_{ts}+ 2 \gamHY   L_{\substack{Hl  \\ pr}}^{(3)}+ \gamfY lpt L_{\substack{Hl\\ tr}} ^{(3)} + L_{\substack{Hl \\ pt}}^{(3)}\gamfY ltr\\
+ &+\frac16 g_2^2 L_{H \Box} \delta_{pr}+ \frac23 g_2^2  C^{(3)}_{\substack{H l \\ tt}}\delta_{pr} +  \frac23 g_2^2 N_c  C^{(3)}_{\substack{H q \\ tt}}\delta_{pr}
++\frac13 g_2^2  L_{\substack{Hl \\ pr}}^{(3)} +\frac{1}{3} g_2^2 L_{ \substack {ll \\ p w w r } } +\frac{1}{3} g_2^2 L_{ \substack {ll \\ w r p w } } 
 +\frac{2}{3} g_2^2 N_c C^{(3)}_{ \substack {lq \\ p r w w } }\nn
-& - 6 g_2^2  C_{\substack{Hl \\ pr}}^{(3)} 
+& - 6 g_2^2  L_{\substack{Hl \\ pr}}^{(3)} 
 \end{align}
 \begin{align}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\dot C_{\substack{ le \\ prst }} &=  [Y_e]_{sr} \xi_{\substack{e \\ pt}} +[Y_e^\dagger]_{pt} \xi^*_{\substack{e \\ rs}}- [Y_e^\dagger Y_e]_{pr} C_{\substack{ He \\ st }} +2  [Y_e Y_e^\dagger]_{st} C_{\substack{ Hl \\ pr }}^{(1)}  - [Y_e^\dagger]_{pv} \, [Y_e]_{wr} \, C_{\substack{ee  \\ vtsw}} -  [Y_e^\dagger]_{pw} \, [Y_e]_{vr} \, C_{\substack{ee  \\ wtsv}} \nn
-& - 2 [Y_e^\dagger]_{pv} \, [Y_e]_{wr} \, C_{\substack{ee  \\ vwst}}
- + [Y_e^\dagger]_{pw} \, [Y_e]_{sv}  \, C_{\substack{le  \\ vrwt}}    - [Y_e^\dagger]_{wt} \, [Y_e]_{sv}  \, C_{\substack{ll  \\ pwvr}} -  [Y_e^\dagger]_{vt} \, [Y_e]_{sw} \, C_{\substack{ll \\ pvwr}} \nn
-& - 4 [Y_e^\dagger]_{wt} \, [Y_e]_{sv} \, C_{\substack{ll \\ prvw}} + [Y_e^\dagger]_{vt} \, [Y_e]_{wr}  \, C_{\substack{le \\ pvsw}}   + \gamfY lpv C_{\substack{le \\ vrst}}  + \gamfY esv  C_{\substack{le \\ prvt}}
-+  C_{\substack{le \\ pvst}}  \gamfY lvr  + C_{\substack{le \\ prsv}}  \gamfY evt\\
- &+    \frac43 g_1^2 \hyp_h \hyp_l C_{ \substack {He \\ s t } } \delta_{p r}  
+\dot L_{\substack{ le \\ prst }} &=  [Y_e]_{sr} \xi_{\substack{e \\ pt}} +[Y_e^\dagger]_{pt} \xi^*_{\substack{e \\ rs}}- [Y_e^\dagger Y_e]_{pr} L_{\substack{ He \\ st }} +2  [Y_e Y_e^\dagger]_{st} L_{\substack{ Hl \\ pr }}^{(1)}  - [Y_e^\dagger]_{pv} \, [Y_e]_{wr} \, L_{\substack{ee  \\ vtsw}} -  [Y_e^\dagger]_{pw} \, [Y_e]_{vr} \, L_{\substack{ee  \\ wtsv}} \nn
+& - 2 [Y_e^\dagger]_{pv} \, [Y_e]_{wr} \, L_{\substack{ee  \\ vwst}}
+ + [Y_e^\dagger]_{pw} \, [Y_e]_{sv}  \, L_{\substack{le  \\ vrwt}}    - [Y_e^\dagger]_{wt} \, [Y_e]_{sv}  \, L_{\substack{ll  \\ pwvr}} -  [Y_e^\dagger]_{vt} \, [Y_e]_{sw} \, L_{\substack{ll \\ pvwr}} \nn
+& - 4 [Y_e^\dagger]_{wt} \, [Y_e]_{sv} \, L_{\substack{ll \\ prvw}} + [Y_e^\dagger]_{vt} \, [Y_e]_{wr}  \, L_{\substack{le \\ pvsw}}   + \gamfY lpv L_{\substack{le \\ vrst}}  + \gamfY esv  L_{\substack{le \\ prvt}}
++  L_{\substack{le \\ pvst}}  \gamfY lvr  + L_{\substack{le \\ prsv}}  \gamfY evt\\
+ &+    \frac43 g_1^2 \hyp_h \hyp_l L_{ \substack {He \\ s t } } \delta_{p r}  
  +        \frac43 g_1^2 \hyp_e \hyp_h C^{(1)}_{ \substack {Hl \\ p r } } \delta_{s t}    
-+        \frac83 g_1^2 \hyp_e \hyp_l C_{ \substack {ll \\ p r w w } } \delta_{s t} 
-+        \frac83 g_1^2 \hyp_e \hyp_l C_{ \substack {ll \\ w w p r } } \delta_{s t} 
-+        \frac43 g_1^2 \hyp_e \hyp_l C_{ \substack {ll \\ p w w r } } \delta_{s t}
++        \frac83 g_1^2 \hyp_e \hyp_l L_{ \substack {ll \\ p r w w } } \delta_{s t} 
++        \frac83 g_1^2 \hyp_e \hyp_l L_{ \substack {ll \\ w w p r } } \delta_{s t} 
++        \frac43 g_1^2 \hyp_e \hyp_l L_{ \substack {ll \\ p w w r } } \delta_{s t}
 \nn
 &
-+        \frac43 g_1^2 \hyp_e \hyp_l C_{ \substack {ll \\ w r p w } } \delta_{s t} 
++        \frac43 g_1^2 \hyp_e \hyp_l L_{ \substack {ll \\ w r p w } } \delta_{s t} 
 +        \frac83 g_1^2 N_c \hyp_e \hyp_q C^{(1)}_{ \substack {lq \\ p r w w } } \delta_{s t} 
-+        \frac83 g_1^2 N_c \hyp_l \hyp_q C_{ \substack {qe \\ w w s t } } \delta_{p r}
-+        \frac43 g_1^2 \hyp_e^2 C_{ \substack {le \\ p r w w } } \delta_{s t} 
-+        \frac83 g_1^2 \hyp_l^2 C_{ \substack {le \\ w w s t } } \delta_{p r} 
++        \frac83 g_1^2 N_c \hyp_l \hyp_q L_{ \substack {qe \\ w w s t } } \delta_{p r}
++        \frac43 g_1^2 \hyp_e^2 L_{ \substack {le \\ p r w w } } \delta_{s t} 
++        \frac83 g_1^2 \hyp_l^2 L_{ \substack {le \\ w w s t } } \delta_{p r} 
 \nn
 &
-+        \frac43 g_1^2 N_c \hyp_e \hyp_u C_{ \substack {lu \\ p r w w } } \delta_{s t}
-+        \frac43 g_1^2 N_c \hyp_d \hyp_e C_{ \substack {ld \\ p r w w } } \delta_{s t} 
-+        \frac43 g_1^2 N_c \hyp_l \hyp_u C_{ \substack {eu \\ s t w w } } \delta_{p r} 
-+        \frac43 g_1^2 N_c \hyp_d \hyp_l C_{ \substack {ed \\ s t w w } } \delta_{p r} 
++        \frac43 g_1^2 N_c \hyp_e \hyp_u L_{ \substack {lu \\ p r w w } } \delta_{s t}
++        \frac43 g_1^2 N_c \hyp_d \hyp_e L_{ \substack {ld \\ p r w w } } \delta_{s t} 
++        \frac43 g_1^2 N_c \hyp_l \hyp_u L_{ \substack {eu \\ s t w w } } \delta_{p r} 
++        \frac43 g_1^2 N_c \hyp_d \hyp_l L_{ \substack {ed \\ s t w w } } \delta_{p r} 
 \nn
 &
-+        \frac43 g_1^2 \hyp_e \hyp_l C_{ \substack {ee \\ s t w w } } \delta_{p r} 
-+        \frac43 g_1^2 \hyp_e \hyp_l C_{ \substack {ee \\ s w w t } } \delta_{p r} 
-+        \frac43 g_1^2 \hyp_e \hyp_l C_{ \substack {ee \\ w t s w } } \delta_{p r}
-+        \frac43 g_1^2 \hyp_e \hyp_l C_{ \substack {ee \\ w w s t } } \delta_{p r} 
--12 \hyp_l \hyp_e g_1^2 C_{\substack{ le \\ prst }} 
++        \frac43 g_1^2 \hyp_e \hyp_l L_{ \substack {ee \\ s t w w } } \delta_{p r} 
++        \frac43 g_1^2 \hyp_e \hyp_l L_{ \substack {ee \\ s w w t } } \delta_{p r} 
++        \frac43 g_1^2 \hyp_e \hyp_l L_{ \substack {ee \\ w t s w } } \delta_{p r}
++        \frac43 g_1^2 \hyp_e \hyp_l L_{ \substack {ee \\ w w s t } } \delta_{p r} 
+-12 \hyp_l \hyp_e g_1^2 L_{\substack{ le \\ prst }} 
 \end{align}
 For the dimension-seven SMEFT operators, we cite here the results from \parencite{liao2019renormalization} - the authors present their results directly in terms of the counterterms that each operator requires at one loop, so we collect the respective contributions from all SMEFT operators.
 \begin{align}
     \begin{autobreak}
-    \dot C_{\bar{e}LLLH}=
+    \dot L_{\bar{e}LLLH}=
     % eLLLH
     +\frac{1}{8}\Big\{\big(9g_1^2+7g_2^2-4W_H\big)C^{prst}_{\bar{e}LLLH}
     -8g_2^2\big(C^{prts}_{\bar{e}LLLH}-C^{pstr}_{\bar{e}LLLH}+2C^{ptsr}_{\bar{e}LLLH}\big)
@@ -1692,14 +1993,14 @@ For the dimension-seven SMEFT operators, we cite here the results from \parencit
     % dLQLH1
     -\frac{3}{2}(Y^\dagger_e)_{pr}(Y_d)_{vw}C^{wsvt}_{\bar{d}LQLH1}
     % dLQLH2
-    -\frac{3}{2}(Y^\dagger_e)_{pr}(Y_d)_{vw}\big(C^{wsvt}_{\bar{d}LQLH2}-C^{wtvs}_{\bar{d}LQLH2}\big)C_{\bar{d}LQLH2}^{prst}
+    -\frac{3}{2}(Y^\dagger_e)_{pr}(Y_d)_{vw}\big(C^{wsvt}_{\bar{d}LQLH2}-C^{wtvs}_{\bar{d}LQLH2}\big)L_{\bar{d}LQLH2}^{prst}
     % QuLLH
     +3(Y^\dagger_e)_{pr}(Y^\dagger_u)_{vw}C^{wvst}_{\bar{Q}uLLH}
     \end{autobreak}
 \end{align}
 \begin{align}
     \begin{autobreak}
-    \dot C_{LeHD}^{pr}=
+    \dot L_{LeHD}^{pr}=
     % LeHD
     \frac{1}{4}\Big[\big(3g_1^2-12\lambda-6W_H\big)C^{pr}_{LeHD}
     -(Y_eY^\dagger_e)_{vp}C^{vr}_{LeHD}-2(Y_e)_{vr}(Y^\dagger_e)_{wp}C^{vw}_{LeHD}
@@ -1748,7 +2049,7 @@ For the dimension-seven SMEFT operators, we cite here the results from \parencit
 \subsection{UV Matching to dim-7 operators}
 \begin{align}
 \begin{autobreak}
- {C_{LeHD}} =
+ {L_{LeHD}} =
 -\frac{{y}_{{e}}^{{p_1f_5}} \mathcal{D}_{{F_{1}HL}}^{{p_2f_1}} \mathcal{D}_{{F_{1}HL}}^{{p_2p_1}}}{2 {M_{F_{1}}^3}}
 -\frac{{y}_{{e}}^{{p_1f_5}} \mathcal{D}_{{LLS_{6}}}^{{f_1p_1p_2}} \mathcal{C}_{{HHS_{6}^\dagger }}^{{p_2}}}{{M_{S_{6}}^4}}
 -\frac{{y}_{{e}}^{{p_1f_5}} \mathcal{D}_{{F_{5}HL}}^{{p_2f_1}} \mathcal{D}_{{F_{5}HL}}^{{p_2p_1}}}{4 {M_{F_{5}}^3}}
@@ -1766,7 +2067,7 @@ For the dimension-seven SMEFT operators, we cite here the results from \parencit
 \end{align}\label{eq:LeHD-UV}
 \begin{align}
 \begin{autobreak}
- {C_{eLLLH}} =
+ {L_{eLLLH}} =
 -\frac{{y}_{{e}}^{{f_1f_2*}} \mathcal{D}_{{F_{1}HL}}^{{p_1f_3}} \mathcal{D}_{{F_{1}HL}}^{{p_1f_4}}}{2 {M_{F_{1}}^3}}
 -\frac{3 \mathcal{D}_{{e^\dagger F_{1}S_{2}^\dagger }}^{{f_1p_1p_2}} \mathcal{D}_{{LLS_{2}}}^{{f_2f_3p_2}} \mathcal{D}_{{F_{1}HL}}^{{p_1f_4}}}{2 {M_{F_{1}}} {M_{S_{2}}^2}}
 +\frac{3 \mathcal{D}_{{e^\dagger F_{1}S_{2}^\dagger }}^{{f_1p_1p_2}} \mathcal{D}_{{LLS_{2}}}^{{f_3f_2p_2}} \mathcal{D}_{{F_{1}HL}}^{{p_1f_4}}}{2 {M_{F_{1}}} {M_{S_{2}}^2}}
