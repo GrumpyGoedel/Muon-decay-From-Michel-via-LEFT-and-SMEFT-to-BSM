@@ -30,9 +30,29 @@ python -m leftfit.validate               # just the self-checks
    minimise the global χ², and profile one direction with the others floating.
    Exposes cancellations the single-operator bounds miss.
 
-4. **Flat directions** (`fit.flat_directions`) — SVD of the observable Jacobian at
-   the SM point + Fisher spectrum. Shows which coefficient combinations are
-   linearly constrained and which are flat.
+4. **Flat directions** (`fit.flat_directions`) — covariance-whitened SVD of the
+   observable Jacobian at the SM point + Fisher spectrum. Shows which coefficient
+   combinations are linearly constrained and which are flat.
+
+## The experimental likelihood
+
+`observables.py` implements the block-covariance χ² of `main.tex`
+(§ *Experimental Michel-parameter likelihood*): mutually independent blocks with
+the experimental correlations retained *within* each block.
+
+| block | observables | structure |
+|---|---|---|
+| TWIST | `ρ, δ, P_μ^πξ` | 3×3 correlated (δ–P_μξ at −0.72) |
+| Danneberg | `η, η'', α'/A, β'/A` | 4×4 (η–η'' 0.946; α'/A–β'/A −0.893) |
+| Burkard | `ξ'` | 1D |
+| Prieels | `ξ''` | 1D |
+| G_F | `(G_F/G_F,SM)²` | 1D — **normalization block**, not part of the Michel likelihood |
+
+The covariance construction is checked against the thesis's stated numerical
+`V_D` and `σ_{P_μξ}` in `validate.py`. The Michel likelihood deliberately omits
+normalization; we add the G_F block because we study normalization-changing
+coefficients (`x^VLL_2112`), as the thesis itself prescribes. Use
+`observables.MICHEL_BLOCKS` for the pure shape/polarization fit without it.
 
 ## The one physics subtlety the code is built around
 
@@ -68,10 +88,15 @@ Fisher/PCA only for the linearly-sensitive ones.
     full-4-fermion sign. *Resolve this in the thesis.*
   - `xi()` contains one apparently mixed-`st` term (`main.tex` L637,
     `|c^{SLR}_{ab12}+c^{SLR}_{ba21}|`), transcribed literally — check for a typo.
-- **Experimental inputs** in `leftfit/observables.py` marked `PLACEHOLDER`
-  (notably `σ_η`) must be replaced with your adopted values, and the χ² is
-  currently **diagonal** — drop in the PDG correlation matrix in `chi2()` for a
-  correct global fit.
+- **Experimental inputs** in `leftfit/observables.py` now use the block values
+  and correlation matrices from `main.tex` (§ Experimental Michel-parameter
+  likelihood), verified against its stated `V_D`/`σ_{P_μξ}`. Update here if the
+  thesis numbers change.
+- **SM fit quality:** with these inputs `χ²_SM ≈ 21` for 10 observables, driven
+  by internal tension in the TWIST block (`δ` and `P_μξ` both pulled up despite
+  their −0.72 anti-correlation). This is why some single-operator intervals sit
+  *off* zero (e.g. a diagonal scalar relieves the `ρ`-low / `δ`-high pulls) — an
+  artifact of the current central values, not a significant new-physics signal.
 - **EFT validity.** The numerical box allows `|x|` up to 5, i.e. `Λ < v`, which is
   unphysical. Meaningful bounds need `|x| ≲ 1`. Some "flat directions" in the
   global profile only open up via `|x| = O(4)` cancellations — artifacts of an

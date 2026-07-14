@@ -72,6 +72,20 @@ def run():
     check("tensor TLL pushes rho up", upt > 0.75,
           f"rho = {upt:.6f}")
 
+    # 7. Block covariances reproduce the thesis's stated numbers.
+    from . import observables as obs
+    import numpy as np
+    check("sigma(P_mu xi) ~ 0.001176",
+          abs(np.sqrt(obs.TWIST.cov[2, 2]) - 0.001176) < 1e-5,
+          f"{np.sqrt(obs.TWIST.cov[2,2]):.6f}")
+    vd = np.diag(obs.DANNEBERG.cov)
+    check("V_D diagonal matches thesis",
+          np.allclose(vd, [1.394e-3, 2.741e-3, 4.779e-4, 6.400e-5], rtol=2e-3),
+          f"{vd}")
+    check("V_D eta-eta'' off-diagonal ~ 1.849e-3",
+          abs(obs.DANNEBERG.cov[0, 1] - 1.849e-3) < 2e-6,
+          f"{obs.DANNEBERG.cov[0,1]:.3e}")
+
     # report
     ok = all(c for _, c, _ in _checks)
     width = max(len(n) for n, _, _ in _checks)
