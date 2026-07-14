@@ -974,7 +974,41 @@ Measurements sensitive to the electron's polarization then access the additional
 \frac{\beta'}{A}=&0-\frac{v^2}{4}{\rm Im}[L_{\nu e,2112}^{(6),VLR}]-\frac{v^4}{8}{\rm Im}[(L_{\nu e,2112}^{(6),VLL})^*L_{\nu e,2112}^{(6),VLR}]-\frac{v^4}{8}{\rm Im}[(L_{\nu e,2112}^{(6),VLL})L_{\nu e,2112}^{(6),VLR}]\nonumber\\
 &\phantom{0}+\frac{v^4}{8}\sum_{a,b=1}^3{\rm Im}[(L_{\nu e,ab12}^{(6),VLL})^*L_{\nu e,ab12}^{(6),VLR}]
 \end{align}
-What do I do with this? Let's talk about RGEs first.
+\section{Constraints on the LEFT Wilson coefficients}\label{sec:left-constraints}
+Having expressed the Michel parameters as functions of the LEFT Wilson coefficients, we can now invert the relation: given the experimental likelihood of Sec.~\ref{sec:michel-likelihood} we constrain the coefficients themselves. Throughout we work with the dimensionless combination $v^2L^{(6)}_{\nu e}\sim(v/\Lambda)^2$, so that a bound on $v^2L$ translates, for an order-one UV coupling, into a lower bound on the new-physics scale via $\Lambda\gtrsim v/\sqrt{|v^2L|}$. The results quoted here are obtained at the scale of muon decay, $\mu\sim m_\mu$; their evolution to the electroweak scale is the subject of the following section.
+
+\paragraph{Interference versus quadratic sensitivity.}
+The structure of the full four-fermion results dictates two qualitatively different regimes. The lepton-number-conserving vector operators $\mathcal{O}^{V,LL}_{\nu e}$ and $\mathcal{O}^{V,LR}_{\nu e}$ with the Standard-Model flavour assignment ($ab=21$, i.e.\ the final state $\nu_\mu\bar\nu_e$) interfere with the SM amplitude and therefore enter the observables \emph{linearly}, at order $v^2L$. Every lepton-number-violating operator, as well as the vector operators for any non-SM neutrino flavour, cannot interfere with the SM final state and enters only \emph{quadratically}, as $|v^2L|^2$. Since the neutrinos are not observed, the observables depend only on incoherent sums over the neutrino flavours; a bound on an individual flavour coefficient is therefore only meaningful under the assumption of single-operator dominance, and within a given operator class the bound is largely independent of the specific neutrino-flavour label.
+
+The two regimes produce reach that differs by orders of magnitude. A linearly-sensitive coefficient is bounded as $|v^2L|\lesssim\sigma_{\rm exp}$, while a quadratic one only as $|v^2L|\lesssim\sqrt{\sigma_{\rm exp}}$, so that the mass reach scales as $\Lambda\propto\sigma_{\rm exp}^{-1/4}$ rather than $\sigma_{\rm exp}^{-1/2}$. This is the origin of the multi-TeV bounds on the interfering coefficients and the $\mathcal{O}(1\text{ TeV})$ bounds on the lepton-number-violating ones.
+
+\paragraph{Single-operator bounds.}
+Switching on one coefficient at a time and profiling the block-covariance $\chi^2$ of Eq.~\eqref{eq:michel-chi2} (supplemented by the muon-lifetime/$G_F$ normalization constraint, required once normalization-changing coefficients are included) yields the $95\%$ confidence-level bounds of Table~\ref{tab:leftbounds}. The coefficients listed are representatives spanning the distinct operator classes: the lepton-number-conserving vectors in the SM flavour slot, a vector in a non-SM flavour slot, and the scalar and tensor structures in both the diagonal ($a=b$) and off-diagonal ($a\neq b$) neutrino configurations.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{lccc}\toprule
+        Coefficient & $95\%$ CL interval on $v^2L$ & $\Lambda$ [TeV] & sensitivity \\\midrule
+        $L^{V,LL}_{\nu e,2112}$ (Re) & $[-0.0044,\,+0.0024]$ & $3.7$ & linear ($G_F$) \\
+        $L^{V,LR}_{\nu e,2112}$ (Re) & $[-0.021,\,+0.018]$ & $1.7$ & linear ($\eta,\eta''$) \\
+        $L^{V,LR}_{\nu e,2112}$ (Im) & $[-0.017,\,+0.023]$ & $1.6$ & linear ($\beta'/A$) \\
+        $L^{V,LL}_{\nu e,3312}$ (Re) & $[-0.13,\,+0.13]$ & $0.7$ & quadratic \\
+        $L^{S,LL}_{\nu e,1112}$ (Re) & $[+0.036,\,+0.069]$ & $0.9$ & quadratic \\
+        $L^{S,LR}_{\nu e,1112}$ (Re) & $[-0.025,\,+0.025]$ & $1.6$ & quadratic \\
+        $L^{S,LR}_{\nu e,1212}$ (Re) & $[-0.036,\,+0.036]$ & $1.3$ & quadratic \\
+        $L^{T,LL}_{\nu e,1212}$ (Re) & $[-0.008,\,+0.008]$ & $2.8$ & quadratic \\\bottomrule
+    \end{tabular}
+    \caption{Single-operator $95\%$ CL bounds on selected dimensionless LEFT Wilson coefficients $v^2L^{(6)}_{\nu e}$ at the muon scale, from the Michel-parameter likelihood of Sec.~\ref{sec:michel-likelihood}. The implied scale assumes $|L|\sim1/\Lambda^2$ with an order-one coupling. Flavour indices follow the convention $prst$ with $p,r$ the neutrino and $s,t$ the charged-lepton generations.}
+    \label{tab:leftbounds}
+\end{table}
+
+The interfering coefficient $L^{V,LL}_{\nu e,2112}$ is the most tightly constrained, reproducing the $\Lambda\gtrsim5$~TeV normalization bound; its imaginary vector partner $L^{V,LR}_{\nu e,2112}$ is bounded through the transverse-polarization parameter $\beta'/A$, giving access to a CP-violating phase. The tensor operator is comparatively well constrained even though it enters quadratically, because it feeds the precisely-measured shape parameters $\rho$, $\delta$ and $\xi$ with large numerical coefficients.
+
+It is worth noting that the scalar coefficient $L^{S,LL}_{\nu e,1112}$ has a $95\%$ interval that excludes zero. This is not evidence for new physics: a diagonal scalar lowers $\rho$ and raises $\delta$, and the current central values sit slightly below and above their SM predictions respectively, so the fit mildly prefers a non-zero value. With $\chi^2_{\rm SM}\approx21$ for the ten observables --- driven largely by the internal tension of the TWIST block, where $\delta$ and $P_\mu^\pi\xi$ are both pulled upward despite their $-0.72$ correlation --- this preference reflects the present experimental inputs rather than a significant signal.
+
+\paragraph{Global fit and flat directions.}
+Relaxing single-operator dominance and profiling one coefficient with the others floating weakens the bounds through cancellations: for instance the $\Lambda\gtrsim3.7$~TeV bound on $\text{Re}\,L^{V,LL}_{\nu e,2112}$ degrades to $\gtrsim2.6$~TeV once $\text{Re}\,L^{V,LR}_{\nu e,2112}$ is allowed to compensate. A singular-value decomposition of the (covariance-whitened) observable response at the SM point shows that only the interfering combinations receive linear sensitivity, while all lepton-number-violating directions are flat at linear order and bounded purely quadratically. Consequently the Michel parameters alone constrain only a limited number of coefficient combinations; the remaining directions require complementary observables. These findings are subject to the assumed validity of the effective expansion, $|v^2L|\lesssim1$: some apparent flat directions in the global fit only open up for coefficient values at which the EFT description has broken down.
+
 \section{RGEs of the LEFT}
 Before we can map the LEFT to the SMEFT we have to consider the RGEs for the LEFT up to the EW scale to check whether heavy mixing with other operators occurs or the Wilson coefficients dramatically change -- we will see, however, that this is not the case. 
 From \parencite[p.29]{jenkins2018lowAD} we find for the anomalous dimensions of the LNC operators $\mathcal{O}^{V,LL}_{\nu e}$ and $\mathcal{O}^{V,LR}_{\nu e}$:
