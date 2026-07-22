@@ -1,0 +1,98 @@
+\chapter{Beyond Standard Model (BSM) physics}
+We now want to investigate the UV fields that could possibly leave their imprint on muon decay. The direction of our inquiry, as we are coming from the low-energy regime, makes the necessary line of reasoning quite intricate. Inferring the effective low-energy limit of a given UV extension of the SM is relatively straight-forward: We construct an amplitude with a heavy degree of freedom and integrate it out, as we did in sec.~\ref{sec:intoutHDOF}. As we match the resulting expression to the corresponding effective contact interaction we find its Wilson coefficient. And as we carry out this calculation for all constructable amplitudes we derive the complete set of Wilson coefficients and thus the full low-energy EFT. However, finding all UV origins for a given effective operator by such a top-down approach requires extensive research -- basically it comes down to constructing all low-energy EFTs for all possible UV models (of a certain type). So for the directive of this work a more effective bottom-up strategy would clearly be in order.\par 
+The bottom-up approach has been made effective by the work on local on-shell amplitudes of recent years. Specifically Li, Ni, Xiao \& Yu showed in \cite{li2022bottom} the correspondence of on-shell contact amplitudes and effective operators and De Angelis provided in \cite{de2022amplitude} an algorithm for finding all kinematically independent massive amplitudes from UV states. This allows Li, Ren \& Yu in \cite{li2024complete} to present a complete UV dictionary for SMEFT operators up to dimension 7. Precisely their dictionary allows us to look up all BSM particles of spin $0,\tfrac{1}{2},1$ that lead to renormalizable UV interactions which would then match at tree-level to a SMEFT operator of our interest -- which four our endevaour means a SMEFT operator that could disturb muon decay.\par 
+We order the steps of the thought process in the following way: First we look up all UV fields that produce the SMEFT operators we derived in sec.~\ref{sec:matchingLEFTSMEFT}. In the following section we analyze the Lagrangian for a specific UV field -- $S_4$ -- so we are well prepared to derive our results in the next chapter.
+
+\section{The UV dictionary}
+\begin{table}[]
+    \centering
+    %\renewcommand{\arraystretch}{1.5}
+    \small
+    \begin{tabular}{lcccccccc}
+        \toprule
+        Notation \cite{li2024complete}& $S_1$ & $S_4$ & $S_6$ & $F_1$ & $F_2$ & $F_3$\\
+        Notation \cite{de2018effective} & $\mathcal{S}$ &$\varphi$ & $\Xi_1$ & $N$ & $E^c$ & $\Delta^c_1$\\
+        Irrep & $({\bf 1,1})_0$ & $({\bf 1,2})_{\frac{1}{2}}$ & $({\bf 1,3})_1$ & $({\bf 1,1})_0$ & $({\bf 1,4})_{\frac{3}{2}}$ & $({\bf 1,2})_{\frac{1}{2}}$\\
+        \midrule
+        Notation \cite{li2024complete}& $F_5$ & $F_6$ & $V_1$ & $V_2$ & $V_3$ & $V_4$  \\
+        Notation \cite{de2018effective} & $\Sigma$ & $\Sigma_1^c$ & $\mathcal{B}$ & $\mathcal{B}_1$ & $\mathcal{L}_3^\dagger$ & $\mathcal{W}$ \\
+        Irrep & $({\bf 1,3})_0$& $({\bf 1,3})_1$& $({\bf 1,1})_0$ & $({\bf 1,1})_1$ & $({\bf 1,2})_{\frac{3}{2}}$ & $({\bf 1,3})_0$\\
+        \bottomrule
+    \end{tabular}
+    \caption{BSM scalars, fermions and vectors that produce the operators $\mathcal{O}_{ll}, \mathcal{O}_{le}, \mathcal{O}^{(1)}_{Hl}, \mathcal{O}^{(3)}_{Hl}, \mathcal{O}_{LeHD}, \mathcal{O}_{\bar eLLLH}$ at tree-level. Fermions have a superscript ${}^c$ if they are conjugated with each other. Majorana fermions $F_1$ and $F_5$ have parity left, i.e. $F = F_L = P_L F$. Vectors have a superscript ${}^\dagger$ if they are conjugated with each other.}
+    \label{tab:rBSMsfv}
+\end{table}
+We use the dictionary from \cite{li2024complete} to determine the possible UV origins of our SMEFT operators -- the complete list of new UV states that at tree-level produce SMEFT operators of dimension 5, 6 and 7 is cited in table \ref{tab:BSMsfv} in the appendix. We see that the dimension 6 operators are produced by adding a single new UV field to the Lagrangian. The four-lepton operators $\op_{ll}$ and $\op_{le}$ Our two dimension 7 operators $\mathcal{O}_{LeHD}$ and $\mathcal{O}_{\bar eLLLH}$ are produced by either adding $F_1$ or $F_5$ or  certain combinations of fermion and vector fields -- see eq. \ref{eq:bsmOLeHD} and \ref{eq:bsmOeLLLH}. 
+\begin{align}
+    \mathcal{O}_{ll}&\to S_1,S_6, V_1, V_4\label{eq:bsmOll}\\
+    \mathcal{O}_{le}&\to S_4, V_1, V_3\\
+    \mathcal{O}^{(1)}_{Hl}&\to F_1,F_2,F_5,F_6,V_1\\
+    \mathcal{O}^{(3)}_{Hl}&\to F_1,F_2,F_5,F_6,V_4\\
+    \mathcal{O}_{LeHD}&\to F_1,F_5,F_3+S_6,F_3+V_2,V_2+V_3\label{eq:bsmOLeHD}\\
+    \mathcal{O}_{\bar eLLLH}&\to F_1,F_5,F_3+S_6,F_3+V_2,V_2+V_3\label{eq:bsmOeLLLH}
+\end{align}
+The representations of the UV fields are given in tab. \ref{tab:rBSMsfv}. The Lagrangians of the fields are given in the Appendix -- we include only those terms of the full UV Lagrangian of \parencite{li2024complete} that feature the identified fields with relevant IR limits, precisely their kinetic terms, interaction terms with SM field content and interaction terms among themselves. We cite here now the matching conditions from the complete UV dictionary \cite{li2024complete}, starting with the operator $\mathcal{O}_{ll}$:
+\begin{align}
+\begin{autobreak}
+ {C_{ll}} =
+-\frac{\mathcal{D}_{{LLS_{2}}}^{{f_1f_2p_1}} \mathcal{D}_{{LLS_{2}}}^{{f_4f_3p_1*}}}{2 {M_{S_{2}}^2}}
++\frac{\mathcal{D}_{{LLS_{6}}}^{{f_1f_2p_1}} \mathcal{D}_{{LLS_{6}}}^{{f_4f_3p_1*}}}{4 {M_{S_{6}}^2}}
+-\frac{\mathcal{D}_{{LL^\dagger V_{1}}}^{{f_1f_3p_1}} \mathcal{D}_{{LL^\dagger V_{1}}}^{{f_2f_4p_1}}}{2 {M_{V_{1}}^2}}
++\frac{\mathcal{D}_{{LL^\dagger V_{4}}}^{{f_1f_3p_1}} \mathcal{D}_{{LL^\dagger V_{4}}}^{{f_2f_4p_1}}}{4 {M_{V_{4}}^2}}
+-\frac{\mathcal{D}_{{LL^\dagger V_{4}}}^{{f_1f_4p_1}} \mathcal{D}_{{LL^\dagger V_{4}}}^{{f_2f_3p_1}}}{2 {M_{V_{4}}^2}}
++\frac{\mathcal{D}_{{LLS_{2}}}^{{f_2f_1p_1}} \mathcal{D}_{{LLS_{2}}}^{{f_4f_3p_1*}}}{2 {M_{S_{2}}^2}}
++\frac{\mathcal{D}_{{LLS_{6}}}^{{f_2f_1p_1}} \mathcal{D}_{{LLS_{6}}}^{{f_4f_3p_1*}}}{4 {M_{S_{6}}^2}} 
+\end{autobreak}
+\end{align}
+The indices $(f_1,f_2,f_3,f_4)$ refer to $(s,r,t,p)$. We see from the matching that the operator $\mathcal{O}_{ll}$ could effectively be produced by extension of the SM Lagrangian by interactions of its lepton doublets with four different new fields. If we estimate the couplings $\mathcal{D}$ to be $\approx 1$, we can estimate the mass scale of the new UV fields if we assume order one coupling:
+\begin{equation}
+    |C_{ll}|\approx \frac{1}{M_{S_2,S_6,V_1,V_4}^2}\label{eq:BSMapprox}
+\end{equation}
+Let us take a closer look at the simplest field in our array of UV origins: The scalar field $S_2$, a singlet under both gauge groups $SU(2)$ and $SO(3)$ and with hypercharge 1. If we expand the field content of the SM by this field, its Lagrangian receives exactly one additional term:
+\begin{equation}
+    \Delta{\cal L}_{S_2} = 
+        - \mathcal{D}_{{LLS_{2}}}^{{rsp}}\epsilon ^{{ij}}[({l}_{{r}})_{{i}}{C}({l}_{{s}})_{{j}}]{S}_{{2p}} 
+\end{equation}
+With this interaction term, one could build a scattering amplitude of four fermions that at the EW scale looks like the effective four-fermion SMEFT operator $\mathcal{O}_{ll}$ and in the energy regime of muon decay like the LEFT operator $\mathcal{O}_{\nu e}^{V,LL}$. So we have successfully identified a new possible mediator of muon decay and can constrain its resonance by the experimental results for the Michel parameters from tab. \ref{tab:leftbounds}. The LEFT RGEs give no correction, but the SMEFT RGEs a factor of $x$. The $95\%$ CL interval on $v^2L$ for the real part of $L_{\nu e,2112}^{V,LL}$ is $[-0.0044,\,+0.0024]$
+
+We only introduce the The operator $\mathcal{O}_{le}$ can be produced by extending the SM Lagrangian with interactions of its lepton singlets and doublets with either of two new vectors or a scalar:
+\begin{equation}
+ {C_{le}} =
+ \frac{\mathcal{D}_{{e^\dagger eV_{1}}}^{{f_1f_3p_1}} \mathcal{D}_{{LL^\dagger V_{1}}}^{{f_2f_4p_1}}}{{M_{V_{1}}^2}}
+-\frac{\mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_1f_2p_1}} \mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_3f_4p_1*}}}{2 {M_{S_{4}}^2}}
++\frac{\mathcal{D}_{{e^\dagger L^\dagger V_{3}^\dagger }}^{{f_1f_4p_1}} \mathcal{D}_{{e^\dagger L^\dagger V_{3}^\dagger }}^{{f_3f_2p_1*}}}{{M_{V_{3}}^2}} \label{eq:UVMatchCle}
+\end{equation}
+The same reasoning as in eq. \ref{eq:BSMapprox} applies,
+Quite similarly, the UV origins of $\mathcal{O}_{Hl}^{(3)}$ can be assessed and again, it is by coupling terms of the possible new UV fields to the SM lepton plus Higgs doublets that it can be produced as a low energy limit:
+\begin{align}
+\begin{autobreak}
+ {C_{Hl}^{(3)}} =
+-\frac{i \mathcal{D}_{{LL^\dagger V_{4}}}^{{f_1f_4p_1}} \mathcal{D}_{{HH^\dagger V_{4}D}}^{{p_1}}}{2 {M_{V_{4}}^2}}
+-\frac{i \mathcal{D}_{{LL^\dagger V_{4}}}^{{f_1f_4p_1}} \mathcal{D}_{{HH^\dagger V_{4}D}}^{{p_1*}}}{2 {M_{V_{4}}^2}}
+-\frac{\mathcal{D}_{{F_{1}HL}}^{{p_1f_1}} \mathcal{D}_{{F_{1}HL}}^{{p_1f_4*}}}{4 {M_{F_{1}}^2}}
+-\frac{\mathcal{D}_{{F_{2L}H^\dagger L}}^{{p_1f_1}} \mathcal{D}_{{F_{2L}H^\dagger L}}^{{p_1f_4*}}}{4 {M_{F_{2}}^2}}
++\frac{\mathcal{D}_{{F_{5}HL}}^{{p_1f_1}} \mathcal{D}_{{F_{5}HL}}^{{p_1f_4*}}}{8 {M_{F_{5}}^2}}
++\frac{\mathcal{D}_{{F_{6L}H^\dagger L}}^{{p_1f_1}} \mathcal{D}_{{F_{6L}H^\dagger L}}^{{p_1f_4*}}}{8 {M_{F_{6}}^2}} 
+\end{autobreak}
+\end{align}
+
+As the matching conditions for the dim-7 operators are quite lengthy, we only cite them in the Appendix in equations \ref{eq:LeHD-UV} and \ref{eq:eLLLH-UV}.
+\section{UV Lagrangian}
+So the complete Lagrangian for $S_4$ is:
+\begin{align}
+\begin{autobreak}
+{\Delta\mathcal{L}_{S_4}} =
+- 2 \mathcal{D}_{{d^\dagger QS_{4}^\dagger }}^{{rsp}} [(\bar{d}_{{r}})^{{a}}({q}_{{s}})_{{ai}}]({S}_{{4p}}^{\dagger })^{{i}} 
+- \mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{rsp}} [\bar{e}_{{r}}({l}_{{s}})_{{i}}]({S}_{{4p}}^{\dagger })^{{i}} 
+- 2 \mathcal{D}_{{QS_{4}u^\dagger }}^{{rps}}\epsilon ^{{ji}} [(\bar{u}_{{s}})^{{a}}({q}_{{r}})_{{aj}}]({S}_{{4p}})_{{i}}  
+- \mathcal{D}_{{HH^\dagger H^\dagger S_{4}(1)}}^{{p}}\delta _{{k}}^{{i}} \delta _{{l}}^{{j}}{H}_{{j}}{H}^{{\dagger k}}{H}^{{\dagger l}}({S}_{{4p}})_{{i}} 
+- \mathcal{D}_{{HH^\dagger H^\dagger S_{4}(2)}}^{{p}}\delta _{{l}}^{{i}} \delta _{{k}}^{{j}}{H}_{{j}}{H}^{{\dagger k}}{H}^{{\dagger l}}({S}_{{4p}})_{{i}}
+\end{autobreak}\label{eq:UVLagS4}
+\end{align}
+
+
+
+
+\section{Contraints for the UV fields}
+$C_{le}$ is easiest, compare with \cite{falkowski2016model}.\par
+$V_1$ is constrained by both, is that a problem?\par 

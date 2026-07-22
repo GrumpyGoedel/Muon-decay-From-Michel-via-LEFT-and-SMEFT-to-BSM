@@ -264,7 +264,7 @@ In order to make the connection between the the two theories precise we will now
     \caption{The four-fermion contact interaction}
     \label{fig:mdSM2FF}
 \end{figure}
-\section{Integrating out heavy fields}
+\section{Integrating out heavy fields}\label{sec:intoutHDOF}
 In the path integral formulation, the dynamics of a system are captured by the generating functional, which integrates over all possible field configurations. For a theory containing both light fields, denoted collectively as $\phi$, and a heavy field $\Phi$ with mass $M \gg E$ (where $E$ is the typical energy scale of the physical processes under consideration), the effective action $S_{\text{eff}}[\phi]$ for the light degrees of freedom is formally defined by integrating out the heavy field \cite{Donoghue:1992dd}:
 \begin{equation}
     e^{i S_{\text{eff}}[\phi]} = \int \mathcal{D}\Phi \, e^{i S[\phi, \Phi]}
@@ -757,7 +757,7 @@ lifetime or an equivalent normalization constraint must also be used.
 ```
 
 
-\chapter{The Low Energy Effective Field Theory (LEFT)}
+\chapter{Low Energy Effective Field Theory (LEFT)}
 The LEFT is constructed by integrating out all heavy degrees of freedom at the electroweak scale (the $W$, $Z$ and Higgs boson as well as the top quark) while strictly preserving the unbroken low-energy gauge symmetry of the Standard Model, $SU(3)_C \times U(1)_{em}$. This provides several critical advantages over the historical SPVAT approach:
 \begin{itemize}
     \item \textbf{Gauge Invariance:} The operators in LEFT are explicitly constructed to be invariant under QED and QCD, ensuring theoretical consistency at low energies.
@@ -905,7 +905,7 @@ This operator can be transformed to to a scalar operator by a Fierz transformati
     \begin{aligned}
         \mathcal{O}_{\nu e,prst}^{V,LR}&=(\bar{\nu}_{p}\gamma^\mu P_L\nu_{r})(\bar e_{s}\gamma_\mu P_Re_{t})\\
         &=2(\bar e_{Rs}\nu_{Lr})(\bar{\nu}_{Lp}e_{Rt})\\[7pt]
-        &\text{by Fierz: } (\gamma^\mu P_L)_{ab}(\gamma_\mu P_R)_{cd}=-2(P_R)_{ad}(P_L)_{cb}\\
+        &\text{by Fierz: } (\gamma^\mu P_L)_{ab}(\gamma_\mu P_R)_{cd}=-2(P_R)_{ad}(P_L)_{cb} \label{eq:fierzingVLR2SRR}\\
     \end{aligned}
 \end{equation}
 This resembles for $prst=2112$ the Michel structure of $g_{RR}^S$ in the notation by Fetscher, Gerber \& Johnson \cite{fetscher1986muon} and thus our determination in \ref{eq:etabetaprime} reproduces the findings in \cite{falkowski2016model} where the authors state that at leading order (and for SM like neutrino output) only the Michel parameters $\eta$ and $\beta'/A$ receive a correction stemming from the scalar interaction term $g_{RR}^S$. Since $L^{V,LR}_{\nu e,2112}$ and $g_{RR}^S$ produce the same operator structure we can also constrain $L^{V,LR}_{\nu e,2112}$ directly from the PDG results for the SPVAT matrix elements \cite{particle2024review}:
@@ -1001,7 +1001,6 @@ Switching on one coefficient at a time and profiling the block-covariance $\chi^
     \caption{Single-operator $95\%$ CL bounds on selected dimensionless LEFT Wilson coefficients $v^2L^{(6)}_{\nu e}$ at the muon scale, from the Michel-parameter likelihood of Sec.~\ref{sec:michel-likelihood}. The implied scale assumes $|L|\sim1/\Lambda^2$ with an order-one coupling. Flavour indices follow the convention $prst$ with $p,r$ the neutrino and $s,t$ the charged-lepton generations.}
     \label{tab:leftbounds}
 \end{table}
-
 The interfering coefficient $L^{V,LL}_{\nu e,2112}$ is the most tightly constrained, reproducing the $\Lambda\gtrsim5$~TeV normalization bound; its imaginary vector partner $L^{V,LR}_{\nu e,2112}$ is bounded through the transverse-polarization parameter $\beta'/A$, giving access to a CP-violating phase. The tensor operator is comparatively well constrained even though it enters quadratically, because it feeds the precisely-measured shape parameters $\rho$, $\delta$ and $\xi$ with large numerical coefficients.
 
 It is worth noting that the scalar coefficient $L^{S,LL}_{\nu e,1112}$ has a $95\%$ interval that excludes zero. This is not evidence for new physics: a diagonal scalar lowers $\rho$ and raises $\delta$, and the current central values sit slightly below and above their SM predictions respectively, so the fit mildly prefers a non-zero value. With $\chi^2_{\rm SM}\approx21$ for the ten observables --- driven largely by the internal tension of the TWIST block, where $\delta$ and $P_\mu^\pi\xi$ are both pulled upward despite their $-0.72$ correlation --- this preference reflects the present experimental inputs rather than a significant signal.
@@ -1009,7 +1008,7 @@ It is worth noting that the scalar coefficient $L^{S,LL}_{\nu e,1112}$ has a $95
 \paragraph{Global fit and flat directions.}
 Relaxing single-operator dominance and profiling one coefficient with the others floating weakens the bounds through cancellations: for instance the $\Lambda\gtrsim3.7$~TeV bound on $\text{Re}\,L^{V,LL}_{\nu e,2112}$ degrades to $\gtrsim2.6$~TeV once $\text{Re}\,L^{V,LR}_{\nu e,2112}$ is allowed to compensate. A singular-value decomposition of the (covariance-whitened) observable response at the SM point shows that only the interfering combinations receive linear sensitivity, while all lepton-number-violating directions are flat at linear order and bounded purely quadratically. Consequently the Michel parameters alone constrain only a limited number of coefficient combinations; the remaining directions require complementary observables. These findings are subject to the assumed validity of the effective expansion, $|v^2L|\lesssim1$: some apparent flat directions in the global fit only open up for coefficient values at which the EFT description has broken down.
 
-\section{RGEs of the LEFT}
+\section{RGEs of the LEFT}\label{sec:RGELEFT}
 Before we can map the LEFT to the SMEFT we have to consider the RGEs for the LEFT up to the EW scale to check whether heavy mixing with other operators occurs or the Wilson coefficients dramatically change -- we will see, however, that this is not the case. 
 From \parencite[p.29]{jenkins2018lowAD} we find for the anomalous dimensions of the LNC operators $\mathcal{O}^{V,LL}_{\nu e}$ and $\mathcal{O}^{V,LR}_{\nu e}$:
 \begin{equation}
@@ -1039,55 +1038,74 @@ Solving for the three operators yields:
     L^{S,LL}_{\nu e}(v) = L^{S,LL}_{\nu e}(m_\mu)\left(\frac{v}{m_\mu}\right)^{-\frac{3\alpha}{2\pi}}\approx0.973\cdot L^{S,LL}_{\nu e}(m_\mu)
 \end{equation}
 \begin{equation}
-    L^{T,LL}_{\nu e}(M_Z) = L^{T,LL}_{\nu e}(m_\mu)\left(\frac{M_Z}{m_\mu}\right)^{\frac{\alpha}{2\pi}}\approx 1.009\cdot L^{T,LL}_{\nu e}(m_\mu)
+    L^{T,LL}_{\nu e}(v) = L^{T,LL}_{\nu e}(m_\mu)\left(\frac{v}{m_\mu}\right)^{\frac{\alpha}{2\pi}}\approx 1.009\cdot L^{T,LL}_{\nu e}(m_\mu)
 \end{equation}
 \begin{equation}
-    L^{S,LR}_{\nu e}(M_Z) = L^{S,LR}_{\nu e}(m_\mu)\left(\frac{M_Z}{m_\mu}\right)^{-\frac{3\alpha}{2\pi}}\approx 0.973\cdot L^{S,LR}_{\nu e}(m_\mu)
+    L^{S,LR}_{\nu e}(v) = L^{S,LR}_{\nu e}(m_\mu)\left(\frac{v}{m_\mu}\right)^{-\frac{3\alpha}{2\pi}}\approx 0.973\cdot L^{S,LR}_{\nu e}(m_\mu)
 \end{equation}
 So we see that running of the couplings from the energy scale of muon decay ($\approx m_\mu$) to the EW scale ($\approx v$) only gives minor corrections -- but for completeness we are including them in our calculations. In the next chapter we will see how the five LEFT operators under consideration match onto the SMEFT and how the corresponding SMEFT coefficients evolve under the RGEs.
-\chapter{The Standard Model Effective Field Theory (SMEFT)}
-For the energy regime above the electroweak scale, the full Standard Model Effective Field Theory (SMEFT) is the appropriate effective description. Since we are exploring the imprints of heavy new physics in the phenomenology of muon decay we first have to identify the set of relevant SMEFT operators -- those operators which result in their low-energy limit in the LEFT operators identified in the previous chapter. For this purpose we are using the tree-level matching results of \cite{jenkins2018lowOM} and \parencite{liao2020extending}. However, while the matching is performed at the electroweak scale, the investigation of potential heavy new fields possibly shielded by these effective operators naturally takes place at the energy scale of new physics -- roughly $10\text{ TeV}$. So before we can \enquote{open up} the SMEFT operators, we first have to run them up to that energy scale. To accomplish this task we are using the paython package \texttt{wilson} \cite{aebischer2018python} and the \texttt{D7RGESolver} \parencite{liao2025rge}. This will allow us to present the full set of SMEFT operators at the new physics scale which in their low-energy limit affect muon decay.\par
-The reasoning of this chapter will be ordered in the following way: First, we briefly elaborate on the structure of SMEFT and its operators at dimensions 5, 6 and 7. Subsequently, we present the tree-level matching conditions for the relevant SMEFT operators at dimension 6 and 7 to the LEFT operators which perturb muon decay. Finally, the identified SMEFT operators are run up to the energy scale of new physics where, in the next chapter, we can open them up to explore the various heavy new fields veiled by them.
-\section{The SMEFT basis}
-The SM Lagrangian can be extended by effective operators of increasing canonical mass dimension:
+\chapter{Standard Model Effective Field Theory (SMEFT)}
+For the energy regime above the electroweak scale, the full Standard Model Effective Field Theory (SMEFT) is the appropriate effective description. Since we are exploring the imprints of heavy new physics on the phenomenology of muon decay we first have to identify the set of relevant SMEFT operators -- those operators which result in their low-energy limit in the LEFT operators identified in the previous chapter. For this purpose we are using the tree-level matching results of \cite{jenkins2018lowOM} and \parencite{liao2020extending}. However, while the matching is performed at the electroweak scale, the investigation of potential heavy new fields possibly shielded by these effective operators naturally takes place at the energy scale of new physics -- roughly at the order of a $\text{ TeV}$, as we know from tab:~\ref{tab:leftbounds}. So before we can \enquote{open up} the SMEFT operators we first have to run them up to that energy scale. To accomplish this task we are using the python packages \texttt{wilson} \cite{aebischer2018python} and the \texttt{D7RGESolver} \parencite{liao2025rge}. This will allow us to present the full set of SMEFT operators at the new physics scale which in their low-energy limit affect muon decay.\par
+The content of this chapter will be ordered in the following way: First, we briefly elaborate on the structure of SMEFT and its operators at dimensions 5, 6 and 7. Subsequently, we cite the tree-level matching conditions for the relevant SMEFT operators at dimension 6 and 7 to the LEFT operators which perturb muon decay. Finally, the identified SMEFT operators are run up to the energy scale of new physics where, in the next chapter, we can open them up to explore the various heavy new fields possibly veiled by them.
+\section{The SMEFT Lagrangian}
+The SMEFT extends the SM Lagrangian by embedding it as the leading term of an expansion in terms of powers of a heavy scale $\Lambda$: At each canonical mass dimension $D$ (in our convention the $\Lambda$s are absorbed by the Wilson coefficients, following \cite{jenkins2013rge1}) we add all local Lorentz invariant operators built out of the SM field content:
 \begin{equation}
     \mathcal{L}=\mathcal{L}_\text{SM}+\sum_{D\ge5}\mathcal{L}^D
 \end{equation}
-\begin{itemize}
-    \item at dimension 5, only one operator exists: Weinberg neutrino mass operator \parencite{weinberg1967model}
-    \item at dimension 6, Buchmüller and Wyler counted 80 operators in 1986 \parencite{buchmuller1986effective}
-    \item Standard Model equations of motion $\to$ field redefinitions $\to$ reduced number of operators
-    \item Updated classification published 2010: Warsaw basis \parencite{grzadkowski2010dimension}
-    \item 63 independent operators (59 conserve baryon number)
-    \item 20 operators at dimension 7 (violate baryon and lepton number) \parencite{lehman2014extending}
-    \item current contraints of dim-7 operators: \parencite{fridell2024probing}
-    \item extending LEFT matching to dim-7: \parencite{liao2020extending} (but only LEFT dim-7 to SMEFT dim-7)
-    \item Use dim-7 anomalous dimension to produce appropriate field content \parencite{liao2016renormalization}
-    \item produce LEFT op \parencite{jenkins2018lowAD}
-\end{itemize}
-\section{Matching onto the LEFT}
-From the LEFT paper by Jenkins, Manohar \& Stoffer \parencite{jenkins2018lowOM} on operators and matching at dimension 6 we collect the following matching conditions for the LNC operators $\mathcal{O}^{V,LL}_{\nu e}$ and $\mathcal{O}^{V,LR}_{\nu e}$:
-\begin{align}
-    L^{V,LL}_{\nu e,prst}&= L_{ll}^{prst}+L_{ll}^{stpr}-\tfrac{\bar g_2^2}{2M_W^2}[W_l]_{pt}[W_l]^*_{rs}-\tfrac{\bar g_Z^2}{M_Z^2}[Z_{\nu_L}]_{pr}[Z_{e_L}]^*_{st}\label{eq:LVLLRGE}\\
-    L^{V,LR}_{\nu e,prst}&= L_{le}^{prst} -\tfrac{\bar g_Z^2}{M_Z^2}[Z_{\nu_L}]_{pr}[Z_{e_L}]^*_{st}\label{eq:LVLRRGE}
-\end{align}
-Here, $[W_l]_{pr}$ is the modified coupling of $\mathcal{W}^+_\mu$ to $(\bar\nu_{Lp}\gamma^\mu e_{Lr})$ and $[Z_\psi]_{pr}$ the modified coupling of $\mathcal{Z}_\mu$ to $(\bar\psi_p\gamma^\mu\psi_r)$ with $\psi=\nu_L,e_L$ in the spontaneously broken SMEFT \cite{jenkins2018lowOM}:
+Unlike the HEFT, the SMEFT assumes that electroweak symmetry is linearly realized and that the physical Higgs belongs to the $SU(2)_L$ doublet $H$. The higher dimensional interactions are therefore constructed from complete SM muliplets and respect the full SM gauge group $SU(3)_C\times SU(2)_L\times U(1)_Y$.\par 
+At dimension 5, there is only one operator (class) we can add -- the Weinberg neutrino mass operator \cite{weinberg1967model}, which combines two Higgs doublets with two lepton doublets:
+\begin{equation}
+    \mathcal{L}^5=C_5^{rs}\epsilon ^{ik}\epsilon^{kl}(l^T_{ir}Cl_{ks})H_jH_l+\text{h.c.}
+\end{equation}
+Here, $r,s$ are flavor indices, $i,j,k,l$ weak-eigenstate indices and $C=i\gamma^2\gamma^0$ is the charge conjugation matrix. For three generations, $C_5$ has 6 complex entries. After spontaneous symmetry breaking, this operator produces a Majorana mass term for the neutrino: $M_\nu=-v^2C_5$\par 
+For dimension 6, Buchmüller and Wyler counted 80 operators in 1986 \cite{buchmuller1986effective}. However, many of these operators turn out to be actually equivalent and refer to the same operator structure because they can be transformed into each other. Fierz transformations, for example -- one of which we used in eq.~\ref{eq:fierzingVLR2SRR} to \enquote{fierz} $L_{\nu e}^{V,LR}$ into $g^S_{RR}$ -- account for many subtle equivalences of scalar, vector and tensor-like structures. Moreover, the SM equations of motion and field redefinitions also allow for transforming many operator structure into each other. An updated classification was therefore published in 2010 which is now mostly referred to as the Warsaw basis \cite{grzadkowski2010dimension} and which counts 63 independent operators, 59 of which conserve baryon number. Of those 59 operators, 42 are self-hermitian and 17 not -- which is why Jenkins, Manohar \& Stoffer count $42+2(17)=76$ baryon-number conserving operators in \cite{jenkins2018lowOM} and $4+4=8$ baryon-number violating operators. At dimension 7, there are 18 independent operators \cite{liao2020extending} -- originally Lehman \cite{lehman2014extending} presented 20 operators, but 2 pairs of $\psi^4D$ operators were shown to refer to the same structure. In tab.~\ref{tab:SMEFTnumOP} we collect the number of operators at dimension 5, 6 and 7, following the counting in \cite{jenkins2018lowOM} and \cite{liao2020extending}. We cite the full bases for dimensions 6 and 7 in the appendix in chap.~\ref{sec:base}.
+\begin{table}[t]
+    \centering
+    \begin{tabular}{llll} \toprule
+             d&$(\Delta B,\Delta L)$&$n_g=1$&$n_g=3$\\\midrule
+             5&$(0,+2)$ + h.c.&$1+1$&6 + 6\\
+             6&$(0,0)$&76&2499\\
+             6&$(1,1)$ + h.c.&4 + 4&273 + 273\\
+             7&$(0,+2)$ + h.c.&12 + 12&474 + 474\\
+             7&$(+1,-1)$ + h.c.&6 + 6&297 + 297\\\bottomrule
+    \end{tabular}
+    \caption{Number of SMEFT operators at dimensions 5,6 and 7 from \cite{jenkins2018lowOM} and \cite{liao2020extending} ($n_g=$ number of generations)}
+    \label{tab:SMEFTnumOP}
+\end{table}
+\section{SMEFT in the broken phase}
+In the spontaneously broken SMEFT effective Higgs operators alter the VEV, the couplings and the weak mixing angle. Essential for muon decay, the gauge currents themselves receive operator-dependent corrections -- for example $\mathcal{W}^+_\mu$ couples to $(\bar\nu_{Lp}\gamma^\mu e_{Lr})$ via a modified coupling $[W_l]_{pr}$:
+\begin{equation}
+    \Delta\mathcal{L}_{Wl\nu}=-\frac{\bar g_2}{\sqrt{2}}\mathcal{W}_\mu^+\bar\nu_{Lp}\gamma^\mu[W_l]_{pr}e_{Lr}+\text{h.c.}
+\end{equation}
+The modified coupling $[W_l]_{pr}$ as well as $[Z_\psi]_{pr}$ which couples $\mathcal{Z}_\mu$ to $(\bar\psi_p\gamma^\mu\psi_r)$ with $\psi=\nu_L,e_L$ in the spontaneously broken SMEFT receive corrections from $\mathcal{O}^{(3)}_{Hl}$ as well as from the modified VEV \cite{jenkins2018lowOM}:
 \begin{align}
     [W_l]_{pr} &= \left[\delta_{pr} + v_T^2  C^{(3),pr}_{Hl} \right]\\
     [Z_{\nu_L}]_{pr} &= \left[\delta_{pr}\left(\frac 12\right) - \frac12 v_T^2
     C^{(1),pr}_{Hl} + \frac12 v_T^2  C^{(3),pr}_{Hl} \right]\\
     [Z_{e_L}]_{pr} &= \left[\delta_{pr}\left(-\frac 12+\bar s^2 \right) - \frac12 v_T^2  C^{(1),pr}_{Hl} - \frac12 v_T^2  C^{(3),pr}_{Hl} \right]
 \end{align}
-Gauge couplings and the VEV are also modified in the spontaneously broken SMEFT as well as the weak mixing angle:
+The VEV and the gauge coupling change in the following way, which also affects the weak mixing angle \cite{jenkins2018lowOM}:
 \begin{align}
-    v_T = \left( 1+ \frac{3 L_H v^2}{8 \lambda} \right) v\qquad \bar g_1= g_1 \left(1 + L_{HB} \, v_T^2 \right)\qquad \bar g_2= g_2 \left(1 + L_{HW} \, v_T^2 \right)\\
+    v_T = \left( 1+ \frac{3 L_H v^2}{8 \lambda} \right) v\qquad \bar g_1= g_1 \left(1 + L_{HB} \, v_T^2 \right)\qquad \bar g_2= g_2 \left(1 + L_{HW} \, v_T^2 \right)\label{eq:vtgaugecorr}\\
     \bar s =\sin \theta =  {{\bar g_1} \over \sqrt{ \bar g_1^2 + \bar g_2^2} }\left[ 1 + {\epsilon \over 2} \ {{\bar g_2} \over {\bar g_1}} \left( {{\bar g_2^2 - \bar g_1^2} \over {\bar g_1^2 + \bar g_2^2}} \right)   \right]\hspace{2.2cm}
+\end{align}
+And the effective couplings $\bar e$ and $\bar g_Z$ as well:
+\begin{align}
+\bar e &= \bar g_2 \, \sin \bar \theta - \frac{1}{2} \, \cos \bar \theta  \, \bar g_2 \, v_T^2 \, C_{HWB}, \nn
+\bar g_Z &= \frac{\bar e}{\sin \bar\theta \cos \bar\theta}  \left[1 +  \frac{\bar g_1^2+\bar g_2^2}{2 \bar g_1\bar g_2} v_T^2C_{HWB}\right] .
+\end{align}
+Equipped with these corrections we can now take a look on the matching conditions of the SMEFT onto the LEFT.
+\section{Matching conditions}\label{sec:matchingLEFTSMEFT}
+From the LEFT paper by Jenkins, Manohar \& Stoffer \parencite{jenkins2018lowOM} on operators and matching at dimension 6 we collect the following matching conditions for the LNC operators $\mathcal{O}^{V,LL}_{\nu e}$ and $\mathcal{O}^{V,LR}_{\nu e}$:
+\begin{align}
+    L^{V,LL}_{\nu e,prst}&= C_{ll}^{prst}+C_{ll}^{stpr}-\tfrac{\bar g_2^2}{2M_W^2}[W_l]_{pt}[W_l]^*_{rs}-\tfrac{\bar g_Z^2}{M_Z^2}[Z_{\nu_L}]_{pr}[Z_{e_L}]^*_{st}\label{eq:LVLLRGE}\\
+    L^{V,LR}_{\nu e,prst}&= C_{le}^{prst} -\tfrac{\bar g_Z^2}{M_Z^2}[Z_{\nu_L}]_{pr}[Z_{e_L}]^*_{st}\label{eq:LVLRRGE}
 \end{align}
 For the $prst=ab12$ flavor combination under consideration we are therefore obtaining, while neglecting all terms quadratic in couplings, the following matching conditions:
 \begin{align}
-    L^{V,LL}_{\nu e,ab12}=\, &L_{ll}^{ab12}+L_{ll}^{12ab}-\tfrac{\bar g_2^2}{2M_W}\left(\delta_{a2}\delta_{b1}+\delta_{a2}C^{(3),b1}_{Hl}+\delta_{b1}C^{(3),a2}_{Hl}\right)\label{eq:LVLLmatching}\\
-    &+\tfrac{\bar g_Z^2}{M_Z^2}\left(\frac{1}{4}\delta_{ab}v_T^2\left[L_{Hl}^{(1),12*}+L_{Hl}^{(3),12*}\right]\right)\nonumber\\
-    L^{V,LR}_{\nu e,ab12}=\, &L_{le}^{ab12}+\tfrac{\bar g_Z^2}{M_Z^2}\left(\frac{1}{4}\delta_{ab}v_T^2\left[L_{Hl}^{(1),12*}+L_{Hl}^{(3),12*}\right]\right)
+    L^{V,LL}_{\nu e,ab12}=\, &C_{ll}^{ab12}+C_{ll}^{12ab}-\tfrac{\bar g_2^2}{2M_W}\left(\delta_{a2}\delta_{b1}+\delta_{a2}C^{(3),b1}_{Hl}+\delta_{b1}C^{(3),a2}_{Hl}\right)\label{eq:LVLLmatching}\\
+    &+\tfrac{\bar g_Z^2}{M_Z^2}\left(\frac{1}{4}\delta_{ab}v_T^2\left[C_{Hl}^{(1),12*}+C_{Hl}^{(3),12*}\right]\right)\nonumber\\
+    L^{V,LR}_{\nu e,ab12}=\, &C_{le}^{ab12}+\tfrac{\bar g_Z^2}{M_Z^2}\left(\frac{1}{4}\delta_{ab}v_T^2\left[C_{Hl}^{(1),12*}+C_{Hl}^{(3),12*}\right]\right)
 \end{align}
 We have therefore 4 SMEFT Operators at dimension 6 which the LEFT matches onto (full basis in \ref{tab:dim6SMEFTbasis}):
 \begin{align}
@@ -1096,179 +1114,126 @@ We have therefore 4 SMEFT Operators at dimension 6 which the LEFT matches onto (
     Q_{Hl}^{(1),pr}&=(H^\dagger i\overleftrightarrow{D}_\mu H)(\bar{l}_p \gamma^\mu l_r)\\
     Q_{Hl}^{(3),pr} &=(H^\dagger i\overleftrightarrow{D}^I_\mu H)(\bar{l}_p \tau^I \gamma^\mu l_r) 
 \end{align}
-For the SM-like muon decay with $ab=21$ this gives:
-\begin{align}
-        L^{V,LL}_{\nu e,2112} &=-\frac{2}{v_T^2} + L_{ll}^{2112} + L_{ll}^{1221}-2C^{(3),22}_{Hl}-2C^{(3),11}_{Hl}\\
-        L^{V,LR}_{\nu e,2112} &= L_{le,2112}
-\end{align}
 We see from the last term of eq. \ref{eq:LVLLmatching} that the SMEFT operator $Q_{Hl}^{(1)}$ only produces LEFT operators with two identical neutrino generations (due to the $\delta_{ab}$) -- this is because the operator stems from a lepton number changing neutral current mediated by the $Z$ boson which couples the muon directly to the electron and decays itself into two neutrinos of the same generation.\par  
 For the scalar and tensor operators, since they violate lepton number, the matching at dimension 6 is zero but at dimension 7 we get from \parencite{liao2020extending}:
 \begin{align}
-L^{S,LL}_{\nu e,prst} &= -\frac{\sqrt{2}v}{8} \left( 2L_{\bar{e}LLLH}^{stpr} + L_{\bar{e}LLLH}^{sptr} + p \leftrightarrow r \right) \\
-L^{S,LR}_{\nu e,prst} &= -\frac{\sqrt{2}v}{2} \left( L_{LeHD}^{pt}\delta^{rs} + L_{LeHD}^{rt}\delta^{ps} \right), \\
-L^{T,LL}_{\nu e, prst} &= +\frac{\sqrt{2}v}{32} \left( L_{\bar{e}LLLH}^{sptr} - L_{\bar{e}LLLH}^{srtp} \right),
+L^{S,LL}_{\nu e,prst} &= -\frac{\sqrt{2}v}{8} \left( 2C_{\bar{e}LLLH}^{stpr} + C_{\bar{e}LLLH}^{sptr} + p \leftrightarrow r \right) \\
+L^{S,LR}_{\nu e,prst} &= -\frac{\sqrt{2}v}{2} \left( C_{LeHD}^{pt}\delta^{rs} + C_{LeHD}^{rt}\delta^{ps} \right) \\
+L^{T,LL}_{\nu e, prst} &= +\frac{\sqrt{2}v}{32} \left( C_{\bar{e}LLLH}^{sptr} - C_{\bar{e}LLLH}^{srtp} \right)
 \end{align}
-So there are two relevant operators at dimension 7 (full basis in \ref{tab:dim7SMEFTbl02} and \ref{tab:dim7SMEFTbl1-1}):
+Notice that in this case the $v$ is the bare SM VEV -- corrections in terms of $v_T$ would start at order $1/\Lambda^5$ and are therefore neglected in this tree-level result. So there are two relevant operators at dimension 7 (full basis in \ref{tab:dim7SMEFTbl02} and \ref{tab:dim7SMEFTbl1-1}):
 \begin{align}
-    \mathcal{O}_{LeHD}^{pr} &= \epsilon_{ij}\epsilon_{mn} (\overline{L_p^{iC}} \gamma_\mu e_r) H^j H^m iD^\mu H^n \\
-    \mathcal{O}_{\bar{e}LLLH}^{prst} &= \epsilon_{ij}\epsilon_{mn} (\overline{e_p} L_r^i) (\overline{L_s^{jC}} L_t^m) H^n 
+    \mathcal{O}_{LeHD}^{pr} &= \epsilon_{ij}\epsilon_{mn} (\overline{L_p^{iC}} \gamma_\mu e_r) H^j H^m iD^\mu H^n \label{eq:LeHD}\\
+    \mathcal{O}_{\bar{e}LLLH}^{prst} &= \epsilon_{ij}\epsilon_{mn} (\overline{e_p} L_r^i) (\overline{L_s^{jC}} L_t^m) H^n \label{eq:eLLLH}
 \end{align}
+The specific matching for the seven operators that we derived $95\%$ CL intervals for (tab.~\ref{tab:leftbounds}) is:
+\begin{align}
+        L^{V,LL}_{\nu e,2112} &=-\frac{2}{v_T^2} + C_{ll}^{2112} + C_{ll}^{1221}-2C^{(3),22}_{Hl}-2C^{(3),11}_{Hl}\label{eq:specMatchVLL2112}\\
+        L^{V,LR}_{\nu e,2112} &= C_{le}^{2112}\label{eq:specMatchVLR2112}\\
+        L^{V,LL}_{\nu e,3312} &= C_{ll}^{3312}+C_{ll}^{1233}+\frac{1}{4}v_T^2\tfrac{\bar g_Z^2}{M_Z^2}\left(C_{Hl}^{(1),12*}+C_{Hl}^{(3),12*}\right)\\
+        L^{S,LL}_{\nu e,1112} &= -\frac{\sqrt{2}v}{4}\left(2C_{\bar eLLLH}^{1211}+C_{\bar e LLLH}^{1121}\right)\\
+        L^{S,LR}_{\nu e,1112} &=-\sqrt{2}vC_{LeDH}^{12}\\
+        L^{S,LR}_{\nu e,1212} &=\frac{\sqrt{2}v}{2}C_{LeDH}^{22}\\
+        L^{T,LL}_{\nu e,1212} &=\frac{\sqrt{2}v}{32}\left(C_{\bar eLLLH}^{1122}-C_{\bar eLLLH}^{1221}\right)
+\end{align}
+Let us analyze the very first matching conditions in eq. \ref{eq:specMatchVLL2112} for $ L^{V,LL}_{\nu e,2112}$: The first term $-\tfrac{2}{v_T^2}$ amounts to the pure SM $W$-boson exchange -- however, in the spontaneously broken SMEFT the Higgs potential is modified by the operator $\mathcal{O}_H = (H^\dagger H)^3$, see eq. \ref{eq:vtgaugecorr}. Since we are working in the  $\{\hat{m}_W, \hat{m}_Z, \hat{\alpha}\}$ input scheme, $v_T$ is not determined by the Higgs potential but by the physical mass of the $W$ boson:
+\begin{equation}
+    m_W^2 = \frac{1}{4} \bar{g}_2^2 v_T^2
+\end{equation}
+We can not really distinguish whether our LEFT deviation is due to an SM gauge shift, a vertex correction or the four-fermion operator. The first two are heavily restricted by Electroweak Precision Observables (EWPO) and LEP data -- we must unfortunately refrain from a detailed discussion at this point and only note that exclusively constraining the four-fermion operator should be somewhat legitimate.\par
+Since furthermore $C_{ll}^{2112}=C_{ll}^{1221*}$ we can simplify the matching to:
+\begin{equation}
+    \text{Re}[L^{V,LL}_{\nu e,2112}]\approx 2\text{Re}[C_{ll}^{2112}]
+\end{equation}
+The vertex corrections $\mathcal{O}^{(3)}_{Hl}$ and $\mathcal{O}^{(1)}_{Hl}$ are heavily restricted -- do we analyze them anyway?\par
+The matching for $L^{V,LR}_{\nu e,2112} = C_{le}^{2112}$ \ref{eq:specMatchVLR2112} is much cleaner -- and moreover we have constraints for both its real and imaginary part.\par 
+The matching result of $L^{S,LL}_{\nu e,1112}$ requires further attention. We see from the operator structure of $\mathcal{O}_{\bar eLLLH}$ in eq.~\ref{eq:eLLLH} that two antisymmetric Levi-Civita tensors contract the three $SU(2)_L$ doublets to a gauge singlet. For the RGEs we need to decompose this into antisymmetric, symmetric and mixed terms -- because gauge couplings don't alter the symmetry structure (important!).
+\begin{align}
+    L^{S,LL}_{\nu e,1112}   &= -\frac{\sqrt{2}v}{4}\left(2C_{\bar eLLLH}^{1211}+C_{\bar e LLLH}^{1121}\right)\nonumber\\
+                            &= -\frac{\sqrt{2}v}{4}\left(\frac{3}{2}C^{(S)}_{\bar eLLLH}+C^{(M),1211}_{\bar eLLLH}+\frac{1}{2}C^{(M),1121}_{\bar eLLLH}\right)
+\end{align}
+For $L^{S,LR}_{\nu e,1112}$ and $L^{S,LR}_{\nu e,1212}$ the matching is quite clean, for $L^{T,LL}_{\nu e,1212}$ we should again consider the symmetries:
+
 \section{RGEs for the SMEFT}
-Now we run the operators up to the scale of new physics, so approximately $10\text{ TeV}$. For the dim-6 operators, we are using the \texttt{wilson} package \parencite{aebischer2018python} and for the dim-7 operators the \texttt{D7RGESolver} from \parencite{liao2025rge}. The full RGEs are given in section \ref{sec:apprge} in the appendix. How to systematically indorporate the contributions?
-
-
-
-\chapter{Beyond Standard Model (BSM) physics}
-In order to connect SMEFT operators to their UV origins, two different ways of thinking can be followed:\par
-Top-down approach
+Now we run the operators up to the scale of new physics, so approximately $10\text{ TeV}$. For the dim-6 operators, we are using the \texttt{wilson} package \parencite{aebischer2018python} and for the dim-7 operators the \texttt{D7RGESolver} from \parencite{liao2025rge}. The full RGEs are given in section \ref{sec:apprge} in the appendix. We start with the RGE for $L^{V,LL}_{\nu e,2112}$ -- the $95\%$ CL interval on $v^2L$ from tab. \ref{tab:leftbounds} (and remembering from sec. \ref{sec:RGELEFT} that the LEFT RGE for this flavor combination vanishes) translates to:
+\begin{align}
+        [-0.0044,\,+0.0024]\quad\text{for }\text{Re}[L^{V,LL}_{\nu e,2112}]&\text{ from }106\text{ MeV to }246\text{ GeV}\nonumber\\
+    \to\quad [-0.0022,\,+0.0012]\quad\text{for }\text{Re}[C_{ll}^{2112}]&\text{ at }246\text{ GeV}\\
+\end{align}
+The package \texttt{wilson} works with the full $v^2L$, so for the input: \par
+\texttt{python code}\par
+\input{bsm.tex}
+\chapter{Results}
+We begin by discussing the constraints for UV fields that would produce the operator $\mathcal{O}_{le}$. From the LEFT bounds in tab.~\ref{tab:leftbounds} and from the matching condition in eq.~\ref{eq:specMatchVLR2112} we know that the real and imaginary part of its coefficient lie in this $95\%$-confidence region:
+\begin{equation}
+    \text{Re}[C_{le}^{2112}]\text{ in }[-0.021,+0.018]\text{ and Im}[C_{le}^{2112}]\text{ in }[-0.017,+0.023]
+\end{equation}
+The UV matching of this operator was cited in eq.~\ref{eq:UVMatchCle} and for $C_{le}^{2112}$ amounts to:
+\begin{equation}
+     C_{le}^{2112} =
+     \frac{\mathcal{D}_{{e^\dagger eV_{1}}}^{{12p_1}} \mathcal{D}_{{LL^\dagger V_{1}}}^{{12p_1}}}{{M_{V_{1}}^2}}
+    -\frac{\mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{11p_1}} \mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{22p_1*}}}{2 {M_{S_{4}}^2}}
+    +\frac{\mathcal{D}_{{e^\dagger L^\dagger V_{3}^\dagger }}^{{12p_1}} \mathcal{D}_{{e^\dagger L^\dagger V_{3}^\dagger }}^{{21p_1*}}}{{M_{V_{3}}^2}}
+\end{equation}
+If we assume single-mediator dominance, a single heavy copy, and a unit real coupling product, the appropriate limits for the masses are:
+\begin{align}
+    M_{V_1},M_{V_3}&>\frac{v}{\sqrt{0.018}}\simeq1.84\text{ TeV}\\
+    M_{S_4}&>\frac{v}{\sqrt{2(0.21)}}\simeq1.2\text{ TeV}
+\end{align}
+For $S_4$ we used the lower end of the $95\%$ CL region and for $V_1,V_3$ the upper end due to the sign in their matching condition. The SMEFT RGEs only change the Wilson coefficient by about $1\%$, but what about the other way around? It's time to \textit{change gears} and reverse directions: We take at look at which SMEFT operators $S_4$ produces and if they would show up in muon decay. From the dictionary we can look up the top-down translation of $S_4$:
+\begin{equation}
+    S_4\to \op_H,\op_{eH},\op_{uH},\op_{dH},\op_{le},\op^{(1)}_{qu},\op^{(8)}_{qu},\op^{(1)}_{qd},\op^{(8)}_{qd},
+    \op_{leqd},\op_{quqd}^{(1)},\op^{(1)}_{lequ}
+\end{equation}
+But we do can not really make any educated assumptions on the hypothetical coupling of $S_4$ to the quark sector or the Higgs. Let us assume those other couplings are zero, can we infer something nevertheless? The matching condition of $C_{le}$ to $S_4$ in $prst$ convention was this:
+\begin{equation}
+ {C_{le,prst}} = -\frac{\mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{sr}} \mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{tp*}}}{2 {M_{S_{4}}^2}} \label{eq:UVMatchCle}
+\end{equation}
+We got for $C_{le,2112}$ the following matching:
+\begin{equation}
+{C_{le,2112}} = -\frac{\mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{11a}} \mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{22a*}}}{2 {M_{S_{4}}^2}}=-\frac{\lambda_e\lambda_\mu^*}{2M_{S_4}^2}
+\end{equation}
+We thus can infer:
+\begin{equation}
+{|C_{le,1111}}| = -\frac{\lambda_e^2}{2M_{S_4}^2}\qquad{|C_{le,2222}|} = -\frac{\lambda_\mu^2}{2M_{S_4}^2}\qquad{|C_{le,1221}|} = -\frac{\lambda_e^*\lambda_\mu}{2M_{S_4}^2}
+\end{equation}
+Together with our assumptions $\lambda_e\simeq1$ and $\lambda_\mu\simeq1$ this translates to:
+\begin{equation}
+    |C_{le}^{1111}| > 1.2\text{ TeV}\qquad{|C_{le}^{2222}|} > 1.2\text{ TeV} \qquad{|C_{le}^{2112}|} > 1.2\text{ TeV}
+\end{equation}
+For $\op_{le,1111}=(\bar L_e\gamma_\mu L_e)(\bar e_R\gamma^\mu e_R)$ probably Bhabha scattering $e^+e^-\to e^+e^-$ provides the most direct probe. Here, $C_{le,1111}$ interferes with the SM photon and Z-exchange amplitudes. A recent scalar-doublet analysis using the LEP differential distributions quotes \cite{erdelyi2025probing}:
+\begin{equation}
+    \frac{M_{S_4}}{|\lambda_e|}>2.7\text{ TeV}\qquad (95\%\text{ CL})
+\end{equation}
+At $M_{S_4}=2.7\text{ TeV}$, the unit-coupling prediction is already:
+\begin{equation}
+    |v^2C_{le}^{2112}|=\frac{v^2}{2M_{S_4}}\simeq 0.00416
+\end{equation}
+This is well inside the Michel parameter interval. However, muon decay still gives complimentary ensitivity to the complex phase. For the coeffcient $C_{le,2222}$ a future high-energy muon collider could probe the muonic analogue of Bhabha scattering, $\mu^+\mu\to\mu^+\mu^-$ and significantly extend current sensitivity to muon contact interactions \cite{glioti2025flavor}.\par 
+Because $S_4$ is an electroweak scalar doublet, it contains charged and neutral components. The gauge interactions are fixed by its representation, independently of $\lambda_e$ or $\lambda_\mu$, and the components could thus be produced through electroweak processes involving $\gamma,Z$ and $W^\pm$. The expected decay would be then:
+\begin{align}
+    S^0_4&\to e^+e^-\qquad S^0_4\to \mu^+\mu^-\\
+    S^\pm_4&\to e^\pm\nu_e\qquad S^\pm_4\to\mu^\pm\nu_\mu
+\end{align}
+It has been shown that a charged scalar decaying into electrons or muons would provide an especially clean collider signature \cite{alcaide2020lhc}.\par
 \begin{itemize}
-    \item start with a UV extension of the Standard Model
-    \item integrate out the heavy degree of freedom for a given process
-    \item match the resulting expression to the SMEFT
-    \item find Wilson coefficient
-    \item however, finding all UV origins for a given SMEFT operator requires extensive research
+    \item The paper from Falkowski 
+    \item current contraints of dim-7 operators: \parencite{fridell2024probing}
 \end{itemize}
-Bottom-up approach in the j-basis:
-\begin{itemize}
-    \item  classify operators by their angular momentum quantum numbers
-    \item convert 4-fermion SMEFT operators into on-shell contact amplitudes
-    \item project them into j-basis
-    \item this partitions EFT space by the spin of the possible UV mediators
-    \item for given j-basis element: Use unitarity $\to$ cut 4-point contact term: factorize it into two 3-point amplitudes times heavy mediator
-    \item structure of the extracted 3-point amplitudes immediately tells the required properties of the heavy BSM field
-\end{itemize}
-EFT operator bases are plagued by redundancies - however, there is a possibility to transition to amplitude bases: \parencite{shadmi2019effective}. Using the helecity-spinor formalism, massive states can be expressed by little group indices \parencite{arkanihamed2021scattering}. This makes it possible to derive a complete dictionary between effective operators and possible UV models.
-\section{The UV dictionary}
-We use the dictionary from \parencite{li2024complete} to determine the UV origins of our SMEFT operators - the complete list of new UV states is given in tables \ref{tab:BSMscalars}, \ref{tab:BSMfermions}, and \ref{tab:BSMvectors}. We find the following for the dimension-six SMEFT operators:
-\begin{align}
-    \mathcal{O}_{ll}&\to S_1,S_6, V_1, V_4\\
-    \mathcal{O}^{(3)}_{Hl}&\to F1,F_2,F_5,F_6\\
-    \mathcal{O}_{le}&\to S_4, V_1, V_3
-\end{align}
-This means that an extension of the SM Lagrangian by either a single term for $S_1$ or $S_6$ or $V_1$ or $V_4$ would produce the SMEFT operator $\mathcal{O}_{ll}$ below the UV scale and similarly would $F1,F_2,F_5$ or $F_6$ produce the operator $\mathcal{O}^{(3)}_{Hl}$ and $S_4, V_1$ or $V_3$ the operator $\mathcal{O}_{le}$. For the UV origins of the dimension-seven SMEFT operators the situation is a bit more complicated, because several BSM fields only produce $\mathcal{O}_{LeHD}$ or $\mathcal{O}_{\bar eLLLH}$ in combination with other fields. For example $F_3$ only produces the operator $\mathcal{O}_{LeHD}$ in combination with $S_6$, so neither $S_6$ or $F_3$ alone would suffice but only their joint term in the Lagranigan has $\mathcal{O}_{LeHD}$ as an effective description at lower energies. 
-\begin{align}
-    \mathcal{O}_{LeHD}&\to F_1,F_5,F_3+S_6,F_3+V_2,V_2+V_3\\
-    \mathcal{O}_{\bar eLLLH}&\to F_1,F_5,F_3+S_6,F_3+V_2,V_2+V_3
-\end{align}
-The Lagrangian of the new UV fields is given in the Appendix - we include only those terms of the full UV Lagrangian of \parencite{li2024complete} that feature the identified fields with relevant IR limits, precisely their singular terms, interaction terms with SM field content and interaction terms among themselves. Here, we now state the matching conditions of the five SMEFT operators to their possible UV origins:
-\begin{align}
-\begin{autobreak}
- {L_{ll}} =
--\frac{\mathcal{D}_{{LLS_{2}}}^{{f_1f_2p_1}} \mathcal{D}_{{LLS_{2}}}^{{f_4f_3p_1*}}}{2 {M_{S_{2}}^2}}
-+\frac{\mathcal{D}_{{LLS_{6}}}^{{f_1f_2p_1}} \mathcal{D}_{{LLS_{6}}}^{{f_4f_3p_1*}}}{4 {M_{S_{6}}^2}}
--\frac{\mathcal{D}_{{LL^\dagger V_{1}}}^{{f_1f_3p_1}} \mathcal{D}_{{LL^\dagger V_{1}}}^{{f_2f_4p_1}}}{2 {M_{V_{1}}^2}}
-+\frac{\mathcal{D}_{{LL^\dagger V_{4}}}^{{f_1f_3p_1}} \mathcal{D}_{{LL^\dagger V_{4}}}^{{f_2f_4p_1}}}{4 {M_{V_{4}}^2}}
--\frac{\mathcal{D}_{{LL^\dagger V_{4}}}^{{f_1f_4p_1}} \mathcal{D}_{{LL^\dagger V_{4}}}^{{f_2f_3p_1}}}{2 {M_{V_{4}}^2}}
-+\frac{\mathcal{D}_{{LLS_{2}}}^{{f_2f_1p_1}} \mathcal{D}_{{LLS_{2}}}^{{f_4f_3p_1*}}}{2 {M_{S_{2}}^2}}
-+\frac{\mathcal{D}_{{LLS_{6}}}^{{f_2f_1p_1}} \mathcal{D}_{{LLS_{6}}}^{{f_4f_3p_1*}}}{4 {M_{S_{6}}^2}} 
-\end{autobreak}
-\end{align}
-So the operator $\mathcal{O}_{ll}$ could effectively be produced by extension of the SM Lagrangian by interactions of its lepton doublets with four different new fields. If we estimate the couplings $\mathcal{D}$ to be $\approx 1$, we can estimate the mass scale of the new UV fields if we assume order one coupling:
-\begin{equation}
-    |L_{ll}|\approx \frac{1}{M_{S_2,S_6,V_1,V_4}^2}
-\end{equation}
-Quite similarly, the UV origins of $\mathcal{O}_{Hl}^{(3)}$ can be assessed and again, it is by coupling terms of the possible new UV fields to the SM lepton plus Higgs doublets that it can be produced as a low energy limit:
-\begin{align}
-\begin{autobreak}
- {L_{Hl}^{(3)}} =
--\frac{i \mathcal{D}_{{LL^\dagger V_{4}}}^{{f_1f_4p_1}} \mathcal{D}_{{HH^\dagger V_{4}D}}^{{p_1}}}{2 {M_{V_{4}}^2}}
--\frac{i \mathcal{D}_{{LL^\dagger V_{4}}}^{{f_1f_4p_1}} \mathcal{D}_{{HH^\dagger V_{4}D}}^{{p_1*}}}{2 {M_{V_{4}}^2}}
--\frac{\mathcal{D}_{{F_{1}HL}}^{{p_1f_1}} \mathcal{D}_{{F_{1}HL}}^{{p_1f_4*}}}{4 {M_{F_{1}}^2}}
--\frac{\mathcal{D}_{{F_{2L}H^\dagger L}}^{{p_1f_1}} \mathcal{D}_{{F_{2L}H^\dagger L}}^{{p_1f_4*}}}{4 {M_{F_{2}}^2}}
-+\frac{\mathcal{D}_{{F_{5}HL}}^{{p_1f_1}} \mathcal{D}_{{F_{5}HL}}^{{p_1f_4*}}}{8 {M_{F_{5}}^2}}
-+\frac{\mathcal{D}_{{F_{6L}H^\dagger L}}^{{p_1f_1}} \mathcal{D}_{{F_{6L}H^\dagger L}}^{{p_1f_4*}}}{8 {M_{F_{6}}^2}} 
-\end{autobreak}
-\end{align}
-Finally, we cite the matching conditions for the $\mathcal{O}_{le}$ operator:
-\begin{equation}
- {L_{le}} =
- \frac{\mathcal{D}_{{e^\dagger eV_{1}}}^{{f_1f_3p_1}} \mathcal{D}_{{LL^\dagger V_{1}}}^{{f_2f_4p_1}}}{{M_{V_{1}}^2}}
--\frac{\mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_1f_2p_1}} \mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_3f_4p_1*}}}{2 {M_{S_{4}}^2}}
-+\frac{\mathcal{D}_{{e^\dagger L^\dagger V_{3}^\dagger }}^{{f_1f_4p_1}} \mathcal{D}_{{e^\dagger L^\dagger V_{3}^\dagger }}^{{f_3f_2p_1*}}}{{M_{V_{3}}^2}} 
-\end{equation}
-As the matching conditions for the dim-7 operators are quite lenghty, we only cite them in the Appendix in equations \ref{eq:LeHD-UV} and \ref{eq:eLLLH-UV}.
-Let us take a closer look at the simplest field in our array of UV origins: The scalar field $S_2$, a singlet under both gauge groups $SU(2)$ and $SO(3)$ and with hypercharge 1. If we expand the field content of the SM by this field, its Lagrangian receives exactly one additional term:
-\begin{equation}
-    \Delta{\cal L}_{S_2} = 
-        - \mathcal{D}_{{LLS_{2}}}^{{rsp}}\epsilon ^{{ij}}[({l}_{{r}})_{{i}}{C}({l}_{{s}})_{{j}}]{S}_{{2p}} 
-\end{equation}
-With this interaction term, one could build a scattering amplitude of four fermions that at the EW scale looks exactly like the effective four-fermion operator $\mathcal{O}_{ll}$ and in the energy regime of muon decay matches onto the LEFT operator $\mathcal{O}_{\nu e}^{V,LL}$. So we have succesfully identified a new possible mediator of muon decay and can constrain its resonance by the experimental results for the Michel parameters. We will now derive the mass bounds for each of the fields that produce an relevant effective operator on their own and subsequently determine the constrains for combinations of UV fields that only together produce a dimension-seven SMEFT operator.
 
-
-\begin{table}[]
-    \centering
-    %\renewcommand{\arraystretch}{1.5}
-    \small
-    \begin{tabular}{lcccccccc}
-        \bottomrule
-        Notation & $S_1$ & $S_2$ & $S_3$ & $S_4$ & $S_5$ & $S_6$ & $S_7$ & $S_8$ \\
-        Name & $\mathcal{S}$ & $\mathcal{S}_1$ & $\mathcal{S}_2$ & $\varphi$ & $\Xi$ & $\Xi_1$ & $\Theta_1$ & $\Theta_3$ \\
-        Irrep & $({\bf 1,1})_0$ & $({\bf 1,1})_1$ & $({\bf 1,1})_2$ & $({\bf 1,2})_{\frac{1}{2}}$ & $({\bf 1,3})_0$ & $({\bf 1,3})_1$ & $({\bf 1,4})_{\frac{1}{2}}$ & $({\bf 1,4})_{\frac{3}{2}}$ \\
-        \midrule
-        Notation & $S_9$ & $S_{10}$ & $S_{11}$ & $S_{12}$ & $S_{13}$ & $S_{14}$ & & \\
-        Name & $\omega_4$ & $\omega_1$ & $\omega_2$ & $\Pi_1$ & $\Pi_7$ & $\zeta$ & & \\
-        Irrep & $({\bf 3,1})_{-\frac{4}{3}}$ & $({\bf 3,1})_{-\frac{1}{3}}$ & $({\bf 3,1})_{\frac{2}{3}}$ & $({\bf 3,2})_{\frac{1}{6}}$ & $({\bf 3,2})_{\frac{7}{6}}$ & $({\bf 3,3})_{-\frac{1}{3}}$ & & \\
-        \midrule
-        Notation & $S_{15}$ & $S_{16}$ & $S_{17}$ & $S_{18}$ & $S_{19}$ & & & \\
-        Name & $\Omega_2$ & $\Omega_1$ & $\Omega_4$ & $\Upsilon_1$ & $\Phi$ & & & \\
-        Irrep & $({\bf 6,1})_{-\frac{2}{3}}$ & $({\bf 6,1})_{\frac{1}{3}}$ & $({\bf 6,1})_{\frac{4}{3}}$ & $({\bf 6,3})_{\frac{1}{3}}$ & $({\bf 8,2})_{\frac{1}{2}}$ & & & \\
-        \bottomrule
-    \end{tabular}
-    \caption{BSM scalars that can contribute to operators up to dimension 7 in SMEFT at tree level, with the name in the second row corresponding to \parencite{de2018effective} - table from \parencite[p.8]{li2024complete}.}
-    \label{tab:BSMscalars}
-\end{table}
-\begin{table}[]
-    \centering
-    %\renewcommand{\arraystretch}{1.5}
-    \small
-    \begin{tabular}{lccccccc}
-        \toprule 
-        Notation & $F_1$ & $F_2$ & $F_3$ & $F_4$ & $F_5$ & $F_6$ & $F_7$ \\
-        Name & $N$ & $E^c$ & $\Delta_1^c$ & $\Delta_3^c$ & $\Sigma$ & $\Sigma_1^c$ & \\
-        Irrep & $({\bf 1,1})_0$ & $({\bf 1,1})_{1}$ & $({\bf 1,2})_{\frac{1}{2}}$ & $({\bf 1,2})_{\frac{3}{2}}$ & $({\bf 1,3})_0$ & $({\bf 1,3})_{1}$ & $({\bf 1,4})_{\frac{1}{2}}$ \\
-       \midrule 
-        Notation & $F_8$ & $F_{9}$ & $F_{10}$ & $F_{11}$ & $F_{12}$ & $F_{13}$ & $F_{14}$ \\
-        Name & $D$ & $U$ & $Q_5$ & $Q_1$ & $Q_7$ & $T_1$ & $T_2$ \\
-        Irrep & $({\bf 3,1})_{-\frac{1}{3}}$ & $({\bf 3,1})_{\frac{2}{3}}$ & $({\bf 3,2})_{-\frac{5}{6}}$ & $({\bf 3,2})_{\frac{1}{6}}$ & $({\bf 3,2})_{\frac{7}{6}}$ & $({\bf 3,3})_{-\frac{1}{3}}$ & $({\bf 3,3})_{\frac{2}{3}}$ \\
-        \bottomrule
-    \end{tabular}
-    \caption{BSM fermions that can contribute to operators up to dimension 7 in SMEFT at tree level, with the name in the second row corresponding to \parencite{de2018effective}; superscript ${}^c$ if they are conjugated with each other - complete table from \parencite[p.9]{li2024complete}. Majorana fermions $F_1$ and $F_5$ have parity left, i.e. $F = F_L = P_L F$.}
-    \label{tab:BSMfermions}
-\end{table}
-\begin{table}[]
-    \centering
-    %\renewcommand{\arraystretch}{0.8}
-    \small
-    \begin{tabular}{lccccccc}
-        \toprule 
-        Notation & $V_1$ & $V_2$ & $V_3$ & $V_4$ & $V_5$ & $V_6$ & $V_7$ \\
-        Name & $\mathcal{B}$ & $\mathcal{B}_1$ & $\mathcal{L}_3^\dagger$ & $\mathcal{W}$ & $\mathcal{U}_2$ & $\mathcal{U}_5$ & $\mathcal{Q}_5$ \\
-        Irrep & $({\bf 1,1})_0$ & $({\bf 1,1})_1$ & $({\bf 1,2})_{\frac{3}{2}}$ & $({\bf 1,3})_0$ & $({\bf 3,1})_{\frac{2}{3}}$ & $({\bf 3,1})_{\frac{5}{3}}$ &  $({\bf 3,2})_{-\frac{5}{6}}$ \\
-        \midrule
-        Notation & $V_8$ & $V_{9}$ & $V_{10}$ & $V_{11}$ & $V_{12}$ & $V_{13}$ & $V_{14}$ \\
-        Name & $\mathcal{Q}_1$ & $\mathcal{X}$ & $\mathcal{Y}_1^\dagger$ & $\mathcal{Y}_5^\dagger$ & $\mathcal{G}$ & $\mathcal{G}_1$ & $\mathcal{H}$ \\
-        Irrep & $({\bf 3,2})_{\frac{1}{6}}$ &$({\bf 3,3})_{\frac{2}{3}}$ & $({\bf {6}, 2})_{-\frac{1}{6}}$ & $({\bf {6}, 2})_{\frac{5}{6}}$ & $({\bf 8,1})_0$ & $({\bf 8,1})_1$ & $({\bf 8,3})_0$ \\
-        \bottomrule 
-    \end{tabular}
-    \caption{BSM vectors that can contribute to operators up to dimension 7 in SMEFT at tree level, with the name in the second row corresponding to \parencite{de2018effective}; superscript ${}^\dagger$ if they are conjugated with each other - complete table from \parencite[p.9]{li2024complete}.}
-    \label{tab:BSMvectors}
-\end{table}
-\section{Contraints for the UV fields}
-\section{Conclusion}
 \chapter{Outlook}
 Questions:
 \begin{itemize}
-    \item what if new physics does not follow spontaneous symmetry breaking?
-    \item do we need to change to the HEFT then? What even is it?
-    
+    \item what if new physics does not follow spontaneous symmetry breaking? Do we need to change to the HEFT then? What even is it?
+    \item maybe BSM means beyond the Lagrangian
 \end{itemize}
-\begin{appendix}
+\appendix
 \chapter{Kinematics}
 \section{Michel basis functions}
 
 \section{Kinematics and Phase Space integrals}\label{sec:kinPS}
 
-In this section we closely follow the textbook by Scheck \cite{Scheck:1996ur} and define the momenta as follows:
+In this section we closely follow the textbook by Scheck \cite{scheck2012electroweak} and define the momenta as follows:
 \begin{equation}
 \mu_q\to \overset{\scriptscriptstyle(-)}{\nu}_{k_1}+\overset{\scriptscriptstyle(-)}{\nu}_{k_2}+e_p\, ,
 \end{equation}
@@ -1512,7 +1477,7 @@ These basis functions allow for the extraction of $\xi'$, $\delta$, $\xi''$, $\r
 
 
 
-\chapter{Operator bases}
+\chapter{Operator bases}\label{sec:base}
 \section{LEFT basis}
 Here, we give the operator bases of the LEFT at dimension six and the SMEFT at dimensions six and seven. We highlighted the operators that perturb muon decay with a grey background color and the matching operators of the SMEFT as well. 
 \begin{table}[htbp]
@@ -2053,8 +2018,50 @@ For the dimension-seven SMEFT operators, we cite here the results from \parencit
     +3(Y^\dagger_uY_d)_{vw}C^{wpvr}_{LeHD}
     \end{autobreak}
 \end{align}
+
+
 \chapter{UV Lagrangian}
-\subsection{New UV Scalars}
+\section{Irreps}
+UV scalars, fermions and vectors that contribute to SMEFT operators up to dimension 7 at tree-level in tab. \ref{tab:BSMsfv} \cite{li2024complete}.
+\begin{table}[]
+    \centering
+    %\renewcommand{\arraystretch}{1.5}
+    \small
+    \begin{tabular}{lcccccccc}
+        \toprule
+        Notation \cite{li2024complete}& \cellcolor{gray!25} $S_1$ & $S_2$ & $S_3$ & \cellcolor{gray!25}$S_4$ & $S_5$ & \cellcolor{gray!25}$S_6$ & $S_7$ & $S_8$ \\
+        Notation \cite{de2018effective} & \cellcolor{gray!25}$\mathcal{S}$ & $\mathcal{S}_1$ & $\mathcal{S}_2$ & \cellcolor{gray!25}$\varphi$ & $\Xi$ & \cellcolor{gray!25}$\Xi_1$ & $\Theta_1$ & $\Theta_3$ \\
+        Irrep & \cellcolor{gray!25}$({\bf 1,1})_0$ & $({\bf 1,1})_1$ & $({\bf 1,1})_2$ & \cellcolor{gray!25}$({\bf 1,2})_{\frac{1}{2}}$ & $({\bf 1,3})_0$ & \cellcolor{gray!25}$({\bf 1,3})_1$ & $({\bf 1,4})_{\frac{1}{2}}$ & $({\bf 1,4})_{\frac{3}{2}}$ \\
+        \midrule
+        Notation \cite{li2024complete}& $S_9$ & $S_{10}$ & $S_{11}$ & $S_{12}$ & $S_{13}$ & $S_{14}$ & & \\
+        Notation \cite{de2018effective} & $\omega_4$ & $\omega_1$ & $\omega_2$ & $\Pi_1$ & $\Pi_7$ & $\zeta$ & & \\
+        Irrep & $({\bf 3,1})_{-\frac{4}{3}}$ & $({\bf 3,1})_{-\frac{1}{3}}$ & $({\bf 3,1})_{\frac{2}{3}}$ & $({\bf 3,2})_{\frac{1}{6}}$ & $({\bf 3,2})_{\frac{7}{6}}$ & $({\bf 3,3})_{-\frac{1}{3}}$ & & \\
+        \midrule
+        Notation \cite{li2024complete}& $S_{15}$ & $S_{16}$ & $S_{17}$ & $S_{18}$ & $S_{19}$ & & & \\
+        Notation \cite{de2018effective} & $\Omega_2$ & $\Omega_1$ & $\Omega_4$ & $\Upsilon_1$ & $\Phi$ & & & \\
+        Irrep & $({\bf 6,1})_{-\frac{2}{3}}$ & $({\bf 6,1})_{\frac{1}{3}}$ & $({\bf 6,1})_{\frac{4}{3}}$ & $({\bf 6,3})_{\frac{1}{3}}$ & $({\bf 8,2})_{\frac{1}{2}}$ & & & \\
+        \midrule
+        Notation \cite{li2024complete}& \cellcolor{gray!25}$F_1$ & \cellcolor{gray!25}$F_2$ & \cellcolor{gray!25}$F_3$ & $F_4$ & \cellcolor{gray!25}$F_5$ & \cellcolor{gray!25}$F_6$ & $F_7$ \\
+        Notation \cite{de2018effective} & \cellcolor{gray!25}$N$ & \cellcolor{gray!25}$E^c$ & \cellcolor{gray!25}$\Delta_1^c$ & $\Delta_3^c$ & \cellcolor{gray!25}$\Sigma$ & \cellcolor{gray!25}$\Sigma_1^c$ & \\
+        Irrep & \cellcolor{gray!25}$({\bf 1,1})_0$ & \cellcolor{gray!25}$({\bf 1,1})_{1}$ & \cellcolor{gray!25}$({\bf 1,2})_{\frac{1}{2}}$ & $({\bf 1,2})_{\frac{3}{2}}$ & \cellcolor{gray!25}$({\bf 1,3})_0$ & \cellcolor{gray!25}$({\bf 1,3})_{1}$ & $({\bf 1,4})_{\frac{1}{2}}$ \\
+        \midrule 
+        Notation \cite{li2024complete} & $F_8$ & $F_{9}$ & $F_{10}$ & $F_{11}$ & $F_{12}$ & $F_{13}$ & $F_{14}$ \\
+        Notation \cite{de2018effective} & $D$ & $U$ & $Q_5$ & $Q_1$ & $Q_7$ & $T_1$ & $T_2$ \\
+        Irrep & $({\bf 3,1})_{-\frac{1}{3}}$ & $({\bf 3,1})_{\frac{2}{3}}$ & $({\bf 3,2})_{-\frac{5}{6}}$ & $({\bf 3,2})_{\frac{1}{6}}$ & $({\bf 3,2})_{\frac{7}{6}}$ & $({\bf 3,3})_{-\frac{1}{3}}$ & $({\bf 3,3})_{\frac{2}{3}}$ \\
+        \midrule
+        Notation \cite{li2024complete}& \cellcolor{gray!25}$V_1$ & \cellcolor{gray!25}$V_2$ & \cellcolor{gray!25}$V_3$ & \cellcolor{gray!25}$V_4$ & $V_5$ & $V_6$ & $V_7$ \\
+        Notation \cite{de2018effective} & \cellcolor{gray!25}$\mathcal{B}$ & \cellcolor{gray!25}$\mathcal{B}_1$ & \cellcolor{gray!25}$\mathcal{L}_3^\dagger$ & \cellcolor{gray!25}$\mathcal{W}$ & $\mathcal{U}_2$ & $\mathcal{U}_5$ & $\mathcal{Q}_5$ \\
+        Irrep & \cellcolor{gray!25}$({\bf 1,1})_0$ & \cellcolor{gray!25}$({\bf 1,1})_1$ & \cellcolor{gray!25}$({\bf 1,2})_{\frac{3}{2}}$ & \cellcolor{gray!25}$({\bf 1,3})_0$ & $({\bf 3,1})_{\frac{2}{3}}$ & $({\bf 3,1})_{\frac{5}{3}}$ &  $({\bf 3,2})_{-\frac{5}{6}}$ \\
+        \midrule
+        Notation \cite{li2024complete}& $V_8$ & $V_{9}$ & $V_{10}$ & $V_{11}$ & $V_{12}$ & $V_{13}$ & $V_{14}$ \\
+        Notation \cite{de2018effective}& $\mathcal{Q}_1$ & $\mathcal{X}$ & $\mathcal{Y}_1^\dagger$ & $\mathcal{Y}_5^\dagger$ & $\mathcal{G}$ & $\mathcal{G}_1$ & $\mathcal{H}$ \\
+        Irrep & $({\bf 3,2})_{\frac{1}{6}}$ &$({\bf 3,3})_{\frac{2}{3}}$ & $({\bf {6}, 2})_{-\frac{1}{6}}$ & $({\bf {6}, 2})_{\frac{5}{6}}$ & $({\bf 8,1})_0$ & $({\bf 8,1})_1$ & $({\bf 8,3})_0$ \\
+        \bottomrule
+    \end{tabular}
+    \caption{BSM scalars, fermions and vectors that can contribute to operators up to dimension 7 in SMEFT at tree level. Table(s) from \cite{li2024complete}, name in the second row corresponding to \cite{de2018effective}. Fermion superscript ${}^c$ if they are conjugated with each other, Majorana fermions $F_1$ and $F_5$ have parity left, i.e. $F = F_L = P_L F$. Vector superscript ${}^\dagger$ if they are conjugated with each other. Fields that produce the operators $\mathcal{O}_{ll}, \mathcal{O}_{le}, \mathcal{O}^{(1)}_{Hl}, \mathcal{O}^{(3)}_{Hl}, \mathcal{O}_{LeHD}, \mathcal{O}_{\bar eLLLH}$ relevant for muon decay are highlighted in gray.}
+    \label{tab:BSMsfv}
+\end{table}
+\section{UV Scalars}
 \begin{align}
     \begin{autobreak}
         \Delta{\cal L}_{\rm S_2,S_4,S_6}^{(d = 3)} =  
@@ -2097,8 +2104,8 @@ For the dimension-seven SMEFT operators, we cite here the results from \parencit
 +\frac{\mathcal{D}_{{e^\dagger F_{5}S_{6}^\dagger }}^{{f_5p_1p_2*}} \mathcal{D}_{{F_{5}HL}}^{{p_1f_1}} \mathcal{C}_{{HHS_{6}^\dagger }}^{{p_2}}}{{M_{F_{5}}^2} {M_{S_{6}}^2}}
 -\frac{2 i \mathcal{D}_{{e^\dagger L^\dagger V_{3}^\dagger }}^{{f_5f_1p_1*}} \mathcal{C}_{{HHS_{6}^\dagger }}^{{p_2}} \mathcal{D}_{{HS_{6}V_{3}^\dagger D}}^{{p_2p_1}}}{{M_{S_{6}}^2} {M_{V_{3}}^2}}
 -\frac{4 i \mathcal{D}_{{e^\dagger L^\dagger V_{3}^\dagger }}^{{f_5f_1p_1*}} \mathcal{D}_{{HHV_{2}^\dagger D}}^{{p_2}} \mathcal{C}_{{HV_{2}V_{3}^\dagger }}^{{p_2p_1}}}{{M_{V_{2}}^2} {M_{V_{3}}^2}} 
-\end{autobreak}
-\end{align}\label{eq:LeHD-UV}
+\end{autobreak}\label{eq:LeHD-UV}
+\end{align}
 \begin{align}
 \begin{autobreak}
  {L_{eLLLH}} =
@@ -2131,7 +2138,6 @@ For the dimension-seven SMEFT operators, we cite here the results from \parencit
 -\frac{\mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_1f_2p_1}} \mathcal{C}_{{HS_{4}S_{6}^\dagger }}^{{p_1p_2}} \mathcal{D}_{{LLS_{6}}}^{{f_4f_3p_2}}}{{M_{S_{4}}^2} {M_{S_{6}}^2}} 
 \end{autobreak}\label{eq:eLLLH-UV}
 \end{align}
-\end{appendix}
 \printbibliography
 \end{fmffile}
 \end{document}
