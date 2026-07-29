@@ -1,0 +1,623 @@
+\chapter{Muon decay in the Standard Model}
+We briefly introduce the Standard Model of particle physics -- its gauge symmetry, field contents and Lagrangian density. For muon decay, however, we do not need the full SM: At the energy scale of the muon mass, the $W$ boson is not a dynamical degree of freedom and can be intergrated out. The effective theory obtained this way resembles the historical four-fermi theory and we use it to derive the decay width for muon decay.
+\begin{figure}[ht]
+    \centering
+    \vspace*{1.5cm}
+    \hspace*{-2cm}
+    \begin{fmfgraph*}(80,60)
+        \fmfleft{l1,l2}
+        \fmfright{r1,r2,r3}
+        \fmf{fermion,tension=2}{l2,o1}
+        \fmf{fermion}{o1,r3}
+        \fmf{photon,label=$W^-$}{o1,o2}
+        \fmf{fermion}{r1,o2,r2}
+        \fmflabel{$\mu^-$}{l2}
+        \fmflabel{$\nu_\mu$}{r3}
+        \fmflabel{$e^-$}{r2}
+        \fmflabel{$\bar\nu_e$}{r1}
+    \end{fmfgraph*}\par\vspace{1cm}
+    \caption{Muon decay in the Standard Model}
+    \label{fig:mdSM}
+\end{figure}
+\section{The Standard Model}
+The fundamental structuring principle for the Standard Model is its local gauge symmetry group:
+\begin{equation}
+    SU(3)_C \times SU(2)_L \times U(1)_Y
+\end{equation}
+The first subgroup $SU(3)_C$ defines quantum chromodynamics, the theory of strong interactions governing quarks by means of 8 massless gluons. The other two subgroups $SU(2)_L \times U(1)_Y$ jointly represents the unified electroweak sector. The three generations of left-handed lepton fields $L$ and quark fields $Q$ transform as doublets under $SU(2)_L$, whereas the right-handed lepton $e$, up-type quark $u$ and down-type quark $d$ transform as singlets. The gauge bosons of $SU(2)_L$ thus couple exclusively to left-handed fermions, rendering electroweak theory chiral. The completing building block of the SM is the Higgs doublet $H$. After it acquires a vacuum expectation value (VEV) at an energy of $v\approx 246\text{ GeV}$ it no longer transforms as a $SU(2)_L$ doublet but as a singlet - and the three remaining degrees of freedom are absorbed by three vector bosons obtaining a mass. The Higgs VEV thus defines the electroweak scale, below which the $SU(2)_L \times U(1)_Y$ symmetry group is broken and only the electromagnetic $U(1)_\text{em}$ symmetry applies. Above the electroweak scale the entire symmetry group $SU(2)_L \times U(1)_Y$ applies and the full Lagrangian density is constructed as a renormalizable and gauge invariant theory:
+\begin{align}
+\mathcal{L} _{\rm SM} &= -\frac14 G_{\mu \nu}^A G^{A\mu \nu}-\frac14 W_{\mu \nu}^I W^{I \mu \nu} -\frac14 B_{\mu \nu} B^{\mu \nu}
++ (D_\mu H^\dagger)(D^\mu H)+\sum_{\psi=Q,L,e,u,d} \overline \psi\, i \slashed{D} \, \psi\nn
+&-\lambda \left(H^\dagger H -\frac12 v^2\right)^2- \biggl[ H^{\dagger j} \overline d\, Y_d\, Q_{j} + \widetilde H^{\dagger j} \overline u\, Y_u\, Q_{j} + H^{\dagger j} \overline e\, Y_e\,  L_{j} + \hbox{h.c.}\biggr]
+\label{eq:LagSM}
+\end{align}
+The gauge covariant derivative is:
+\begin{equation}
+    D_\mu = \partial_\mu + i g_3 T^A A^A_\mu + \tfrac{1}{2}i g_2  \sigma^I W^I_\mu + i g_1 \hyp B_\mu
+\end{equation}
+Here, $T^A$ are the $SU(3)_C$ generators,  the Pauli matrices $\tfrac{1}{2}\sigma^I$ generate $SU(2)_L$, and $\hyp$ is the $U(1)_Y$ hypercharge generator.  The fermion fields have weak-eigenstate indices $r=1, ..., 3$ and the Yukawa couplings are $3\times 3$ matrices. $\widetilde H$ is defined by
+\begin{align}
+\widetilde H_j &= \epsilon_{jk} H^{\dagger\, k}
+\end{align}
+Here, an $SU(2)$ invariant tensor $\epsilon_{jk}$ is defined by $\epsilon_{12}=1$ and $\epsilon_{jk}=-\epsilon_{kj}$, $j,k=1,2$.
+
+\section{Weak interactions and leptonic currents}
+We wish to find a description for muon decay in the SM, whereby we will use the following momenta convention:
+\begin{equation}
+    \mu^-(q)\to \bar{\nu}_e(k_1)+\nu_\mu(k_2)+e^-(p)
+    \label{eq:md}
+\end{equation}
+From the fermion sector of the SM Lagrangian \ref{eq:LagSM} we can derive the interaction term of the lepton doublet with the $SU(2)_L$ gauge bosons:
+\begin{equation}
+    \mathcal{L}_\text{int}^{SU(2)_L}=\bar{L} i\gamma^\mu \tfrac{1}{2}i g_2  \sigma^I W^I_\mu L
+\end{equation}
+We expand the product of the Pauli matrices and the weak gauge fields and rotate the latter to their physical, charged fields:
+\begin{equation}
+    W_\mu^\pm = \frac{1}{\sqrt{2}} (W_\mu^1 \mp i W_\mu^2)
+\end{equation}
+We then find the following interaction terms (dropping flavor indices):
+\begin{equation}
+    \mathcal{L}_\text{int}^{SU(2)_L} = \frac{g_2}{2} \left( \bar{\nu}_L \gamma^\mu W_\mu^3 \nu_L - \bar{e}_L \gamma^\mu W_\mu^3 e_L + \sqrt{2} \bar{\nu}_L \gamma^\mu W_\mu^+ e_L + \sqrt{2} \bar{e}_L \gamma^\mu W_\mu^- \nu_L \right)
+\end{equation}
+We see that two interactions $\sqrt{2} \bar{e}_L \gamma^\mu W_\mu^- \nu_L$ allow us to describe muon decay as mediated by a $W^-$ boson (see fig. \ref{fig:mdSM}). The full invariant amplitude can the be derived by applying Feynman rules, notably inserting two vertex factors $i\tfrac{g}{\sqrt{2}}\gamma^\mu P_L$ and the $W^-$ propagator $-i\left(g_{\mu\nu}-\frac{k_\mu k_\nu}{m_W^2}\right)/\left(k^2-m_W^2\right)^{-1}$, and setting the spinor momenta according to \ref{eq:md}:
+\begin{equation}
+    \im\mathcal{M}=\Big[\bar u(k_1)\big(i\tfrac{g}{\sqrt{2}}\gamma^\mu P_L\big)u(q)\Big]
+                    \frac{-i\Big(g_{\mu\nu}-\frac{k_\mu k_\nu}{m_W^2}\Big)}{k^2-m_W^2}
+                    \Big[\bar u(p)\big(\im\tfrac{g}{\sqrt{2}}\gamma^\mu P_L\big)u(k_2)\Big]
+    \label{eq:mdAmp}
+\end{equation}
+The momentum $k$ of the $W^-$ boson relates to the momenta of the interacting leptons by $k=q-k_1=k_2+p$ -- but since the momentum exchange is very small compared to the $W$ boson mass, we can expand the propagator:
+\begin{equation}
+    \frac{-\im\Big(g_{\mu\nu}-\frac{k_\mu k_\nu}{m_W^2}\Big)}{k^2-m_W^2} \approx
+    -\im\frac{g_{\mu\nu}}{m_W^2}+\mathcal{O}\left(\frac{k^4}{m_W^2}\right)
+\end{equation}
+Substituting this simplified propagator back into the amplitude yields:
+\begin{equation}
+    \mathcal{M}=-\frac{g_2^2}{2m_W^2}[\bar u(k_1)\gamma^\mu P_L u(q)][\bar u(p)\gamma_\mu P_L u(k_2)]
+\end{equation}
+This result resembles the theory that Fermi presented in 1934 for beta decay \cite{fermi1934tentativo} where he conceptualized the process by a four-fermion vector-vector interaction Hamiltonian. He already speculated about a heavy, undiscovered mechanism and gave an account of the decay as an approximated local interaction between the two weak currents. In order to connect his theory with the SM and frame it as a low energy limit of a UV complete Lagrangian we are adjusting Fermi's approach to modern terminology, namely by writing it as an interaction term of two charged currents in a Lagrangian:
+\begin{equation}
+    \mathcal{L}_\text{IR} = \frac{-4G_F}{\sqrt{2}} \left[ \bar{e} \gamma^\mu P_L \nu_e + \bar{\mu} \gamma^\mu P_L \nu_\mu \right] \left[ \bar{\nu}_e \gamma_\mu P_L e + \bar{\nu}_\mu \gamma_\mu P_L \mu \right]
+    \label{eq:LagIR}
+\end{equation}
+The coupling constant $G_F$ of this interaction has a factor $\tfrac{4}{\sqrt{2}}$ to appropriately connect this direct coupling to the SM parameters, as we will see soon. The IR Lagrangian gives as a Feynman rule the four-fermion vertex $-i \frac{4G_F}{\sqrt{2}} [\gamma^\mu P_L]_{ab} [\gamma_\mu P_L]_{cd}$ where $abcd$ are Dirac indices of the respective spinor pairs. Contracting the vertex with the four particles of muon decay gives the amplitude:
+\begin{equation}
+    \mathcal{M}=-\frac{4G_F}{\sqrt{2}}[\bar u(k_1)\gamma^\mu P_L u(q)][\bar u(p)\gamma_\mu P_L u(k_2)]
+    \label{eq:Amp4F}
+\end{equation}
+We see that the IR Lagrangian and the SM Lagrangian in the large $m_W$ limit produce the same amplitude for muon decay if:
+\begin{equation}
+    -\frac{4G_F}{\sqrt{2}}=-\frac{g_2^2}{2m_W^2}\implies G_F=\frac{\sqrt{2}g_2^2}{8m_W^2}
+\end{equation}
+In order to make the connection between the the two theories precise we will now give an account of how to generally integrate out heavy fields from the Lagrangian and how to apply the technique to the $W^-$ boson.
+\begin{figure}[t]
+    \centering
+    \sbox{\muondecaySM}{
+        \begin{fmfgraph*}(80,60)
+            \fmfleft{l1,l2}
+            \fmfright{r1,r2,r3}
+            \fmf{fermion,tension=2}{l2,o1}
+            \fmf{fermion}{o1,r3}
+            \fmf{photon,label=$W^-$}{o1,o2}
+            \fmf{fermion}{r1,o2,r2}
+            \fmflabel{$\mu^-$}{l2}
+            \fmflabel{$\nu_\mu$}{r3}
+            \fmflabel{$e^-$}{r2}
+            \fmflabel{$\bar\nu_e$}{r1}
+        \end{fmfgraph*}
+    }
+    \sbox{\muondecayLEFT}{
+        \begin{fmfgraph*}(80,60)
+            \fmfleft{l1,l2}
+            \fmfright{r1,r2,r3}
+            \fmf{fermion,tension=2}{l2,o1}
+            \fmf{phantom,tension=25}{o1,o2}
+            \fmf{fermion}{o1,r3}
+            \fmf{fermion}{r1,o2,r2}
+            \fmflabel{$\mu^-$}{l2}
+            \fmflabel{$\nu_\mu$}{r3}
+            \fmflabel{$e^-$}{r2}
+            \fmflabel{$\bar\nu_e$}{r1}
+        \end{fmfgraph*}
+    }
+    \begin{tikzpicture}
+        \node (mdSM) {\usebox{\muondecaySM}};
+        \node[anchor=west] (mdLEFT) at (mdSM.east) [xshift=3.3cm] {\usebox{\muondecayLEFT}};
+        \draw[->, thick, dotted, shorten <=25pt, shorten >=-5pt] (mdSM.south) to[bend right] node[midway, below] {$q^2\ll m_W^2$} (mdLEFT.south);
+        \node[anchor=north] at (mdSM.south) [yshift=0.5cm] {$\frac{g^2}{q^2-m_W^2}$};
+        \node[anchor=north] (mdLEFTform) at (mdLEFT.south) [yshift=1.2cm, xshift=-0.6cm] {$-\frac{g^2}{m_W^2}\propto G_F$};
+    \end{tikzpicture}
+    \caption{The four-fermion contact interaction}
+    \label{fig:mdSM2FF}
+\end{figure}
+\section{Integrating out heavy fields}\label{sec:intoutHDOF}
+In the path integral formulation, the dynamics of a system are captured by the generating functional, which integrates over all possible field configurations. For a theory containing both light fields, denoted collectively as $\phi$, and a heavy field $\Phi$ with mass $M \gg E$ (where $E$ is the typical energy scale of the physical processes under consideration), the effective action $S_{\text{eff}}[\phi]$ for the light degrees of freedom is formally defined by integrating out the heavy field \cite{Donoghue:1992dd}:
+\begin{equation}
+    e^{i S_{\text{eff}}[\phi]} = \int \mathcal{D}\Phi \, e^{i S[\phi, \Phi]}
+\end{equation}
+If the heavy field $\Phi$ appears strictly quadratically in the action -- for instance, interacting with a current $J(\phi)$ composed of light fields via an interaction term $J \Phi$ -- the path integral is exactly solvable. It reduces to a multi-dimensional Gaussian integral. By shifting the integration variable to complete the square, the heavy field can be analytically integrated out, resulting in a non-local effective action. At low energies ($p^2 \ll M^2$), the heavy propagator $1/(p^2 - M^2)$ collapses to a point-like contact interaction $-1/M^2$, generating the local operators of the effective field theory.
+
+However, if the heavy field possesses self-interactions or couples non-linearly, the path integral cannot be evaluated exactly. Instead, one employs the saddle-point approximation. In the low-energy limit, the path integral is overwhelmingly dominated by the field configuration that minimizes the action. We expand the heavy field around this classical minimum, $\Phi_c$:
+\begin{equation}
+    \Phi = \Phi_c + \eta
+\end{equation}
+where $\eta$ represents quantum fluctuations, and $\Phi_c$ is the solution to the Euler-Lagrange Equation of Motion (EOM), defined by:
+\begin{equation}
+    \left. \frac{\delta S[\phi, \Phi]}{\delta \Phi} \right|_{\Phi = \Phi_c} = 0
+\end{equation}
+Expanding the action around $\Phi_c$ yields:
+\begin{equation}
+    S[\phi, \Phi] = S[\phi, \Phi_c] + \frac{1}{2} \left. \frac{\delta^2 S}{\delta \Phi^2} \right|_{\Phi_c} \eta^2 + \mathcal{O}(\eta^3)
+\end{equation}
+Notably, the linear term in $\eta$ vanishes by definition of the EOM. The integration over the quadratic quantum fluctuations $\eta$ generates a functional determinant, which corresponds to one-loop quantum corrections.
+If we restrict our matching procedure strictly to tree-level, these loop corrections are neglected. The effective action simply becomes the original action evaluated at the classical minimum:
+\begin{equation}
+    S_{\text{eff}}^{\text{tree}}[\phi] \approx S[\phi, \Phi_c]
+\end{equation}
+Therefore, replacing a heavy mediator with its classical equation of motion and substituting it back into the Lagrangian evaluates the path integral at the tree-level saddle point. We now perform this calculation for the $W^\pm$ in order to derive the IR Lagrangian appropriate for muon decay. To this end we first isolate the terms in the electroweak Lagranigan that contain the $W^\pm$ boson:
+\begin{equation}
+    \mathcal{L}_ \text{SM} \supset -\frac{1}{2} W_{\mu\nu}^+ W^{-\mu\nu} + m_W^2 W_\mu^+ W^{-\mu} - \frac{g}{\sqrt{2}} \left( J^\mu W_\mu^+ + J^{\mu \dagger} W_\mu^- \right)
+    \label{eq:LagW}
+\end{equation}
+The current $J^\mu$ is that of eq. \ref{eq:LagIR}, containing only the first and second generation of leptons:
+\begin{equation}
+    J^\mu=\bar{e} \gamma^\mu P_L \nu_e + \bar{\mu} \gamma^\mu P_L \nu_\mu 
+\end{equation}
+To find the EOM we apply the Euler-Lagrange equation:
+\begin{equation}
+    \frac{\partial \mathcal{L}}{\partial W_\mu^-} - \partial_\nu \frac{\partial \mathcal{L}}{\partial (\partial_\nu W_\mu^-)} = 0
+\end{equation}
+This gives:
+\begin{equation}
+    m_W^2 W_\mu^+ - \frac{g}{\sqrt{2}} J^\mu + \partial^\nu W_{\nu\mu}^+ = 0
+\end{equation}
+The derivative of $W_{\nu\mu}$ corresponds to the momentum $p$ and the term can therefore be neglected in the low energy limit. We therefore have:
+\begin{equation}
+    W_\mu^+ \approx \frac{g}{\sqrt{2} m_W^2} J^\mu
+\end{equation}
+Substituting this back into the Lagrangian \ref{eq:LagW} gives the familiar charged current interaction of eq. \ref{eq:LagIR}:
+\begin{equation}
+    \mathcal{L}_\text{IR} = - \frac{g^2}{2 m_W^2} J^{\mu \dagger} J_\mu
+\end{equation}
+At the energy scale of muon decay, which roughly amounts to the muon mass $105.658\text{ MeV}$ \cite{particle2024review}, this Lagrangian is an adequate description of the dynamics.\par 
+Systematically constructing an whole \textit{Effective Field Theory (EFT)} from a UV complete theory by integrating out the heavy degree of freedom represents an example of a \textit{top-down} approach to EFTs: Starting from a full theory valid in the high energy limit, in this case the SM Lagrangian, one derives the appropriate effective theory for the low energy limit. By requiring the amplitudes in both theories to agree in a certain energy regime, one \textit{matches} the couplings of the effective theory, called \textit{Wilson coefficients}, to the UV complete theory. The four-fermi theory, on the other hand, started from the opposite direction: Without knowledge of the SM and the underlying heavy mechanism it gave an adequate description for weak interactions starting \textit{from scratch}, namely directly from the known, interacting fields. Experimental evaluation then allowed for constraining the effective couplings. For the course of this work both methods are applied to some extent. In the next section we see how to to determine Fermi's constant from the total decay width. The kinematic space of the electron is, however, far more complex and in the following section we get acquainted with the Michel parameters that form its foundation. The $\rho$ parameter, for example, brings to light the V-A nature of the weak interaction, as we will briefly show.
+\section{Effective Field Theories}
+Effective Field Theory (EFT) is the idea that physics is separated by scales -- or more precisely it is a set of ideas that justify why this separation works \cite{brivio2019standard}. Notably the Standard Model (SM) has been validated up to LHC energies despite not being well-defined in the UV regime due to Landau poles in the electroweak sector. Renormalization works by regularizing the short-distance physics and absorbing the effects in low energy effective parameters -- see the detailed discussion in chapter 4 of \cite{brivio2019standard} for how dimensional regularization and the $\overline{MS}$ scheme correspond to a systematic removal of UV physics which is the key principle of an EFT. The Lagrangian is then constructed as combining the IR physics as a local, analytical operator expansion with the UV physics controlling the corresponding Wilson coefficients.
+\begin{equation}
+    \mathcal{L}_\text{EFT}\simeq\sum_iL_i^\text{UV}(\mu)O_i^\text{IR}(\mu)
+\end{equation}
+The first two "prime directives" of EFTs are thus in \cite{brivio2019standard} summarized as:
+\begin{enumerate}
+    \item determine a characteristic scale in observables
+    \item construct the Lagrangian out of the degrees of freedom, the propagating on-shell ates
+\end{enumerate}
+Starting from the SM two characteristic scales directly come to mind: The scale of electroweak symmetry breaking dictated by the Higgs VEV $v$ and the scale of heavy new physics $\Lambda$. Depending on how one assumes heavy new physics to relate to the Higgs mechanism two  EFTs can be set up by the scale $\Lambda$:
+\begin{enumerate}
+    \item if one assumes the Higgs to enter the EFT in the form of its scalar doublet $H$, the full SM field content above the EW scale is used to construct the Standard Model Effective Field Theory (SMEFT).
+    \item the Higgs Effective Field Theory (HEFT) instead treats the physical Higgs and the Goldstone bosons separatedly. The framework can be described as a chiral Lagrangian with a light scalar h, organized by a loop/chiral expansion rather than by canonical dimension \cite{buchalla2014complete}.
+\end{enumerate}
+While the HEFT might be more general and appropriate for non-linear UV models, the SMEFT is in our case the more restrictive and diagnostic tool: As its operators adhere to the full $SU(3)_C\times SU(2)_L\times U(1)_Y$ gauge group one can systematically derive all UV representations that would generate specific operators -- rendering the SMEFT a powerful mode of investigation in the bottom-up spirit \cite{li2022bottom}.\par 
+The scale $v$ on the other hand separates the IR regime from the full SM and allows expanding the physics above the EW scale by Wilson coefficients divided by powers of $v$ and the effects of UV physics by powers of $\Lambda$. We will first introduce the SMEFT and subsequently derive the LEFT.
+\section{Total decay width}
+We want to derive the total decay width for muon decay from the amplitude of four-fermi theory:
+\begin{equation}
+    \mathcal{M}=-\frac{4G_F}{\sqrt{2}}[\bar u(k_1)\gamma^\mu P_L u(q)][\bar u(p)\gamma_\mu P_L u(k_2)]
+    \label{eq:Amp4F2}
+\end{equation}
+If the spins of the outgoing particles are not measured, the expectation value of the squared amplitude is the following spin sum:
+\begin{equation}
+    \langle|\mathcal{M}|^2\rangle=\sum_{\text{spins}}|\mathcal{M}|^2
+\end{equation}
+Squaring the amplitude, we get:
+\begin{equation}
+\begin{aligned}
+    |\mathcal{M}|^2=\left(\frac{g^2}{2m_W^2}\right)^2&[\overline{u}(k_1)\gamma^\mu P_L u(q)][\overline{u}(p)\gamma_\mu P_Lu(2)]\\ &\times [\overline{u}(k_1)\gamma^\mu P_L u(q)]^*[\overline{u}(p)\gamma_\mu P_Lu(2)]^*
+    \label{eq:T2}
+\end{aligned}
+\end{equation}
+A detailed derivation can be found in \cite{griffiths2020introduction} - by applying the completeness theorem for the spin sums and trace identities, the amplitude evaluates to:
+\begin{equation}
+    \langle|\mathcal{M}|^2\rangle=2\left(\frac{g}{M_W}\right)^4(q\cdot k_3)(k_2\cdot p)
+    \label{eq:T2summedF}
+\end{equation}
+The decay rate is calculated by applying Fermi's Golden Rule:
+\begin{equation}
+    \frac{\de^3\Gamma}{\de^3p} = \frac{1}{(2\pi)^5}\frac{1}{4m_\mu E_e}
+    \int\frac{\de^3k_1}{2E_1}\frac{\de^3k_2}{2E_2}
+    \delta^{(4)}(q-k_1-k_2-p)\langle|\mathcal{M}|^2\rangle
+    \label{eq:fermiGoldenRule}
+\end{equation}
+The neutrino phase space is evaluated using the following identity \cite[p.308]{scheck2012electroweak}:
+\begin{equation}
+    \int\frac{d^3p_2}{2E_2}\frac{d^3p_3}{2E_3}=\delta^{(4)}(Q-p_2-p_3)p_2^\alpha p_3^\beta=\frac{\pi}{24}(g^{\alpha\beta}Q^2+2Q^\alpha Q^\beta)
+    \label{eq:neutrinoPhaseSpace}
+\end{equation}
+Integrating over all electron momenta gives in the $m_e\to 0$ limit the total decay width:
+\begin{equation}
+    \Gamma =\frac{G_F^2m_\mu^5}{192\pi^3}
+    \label{eq:totalDW}
+\end{equation}
+Current experiments determine $G_F$ to the value \parencite{particle2024review}:
+\begin{equation}
+    G_{F,SM}=\qty{1.166385(6)e-5}{\per\giga\electronvolt\squared}
+    \label{eq:GFexp}
+\end{equation}
+\section{The Michel parameters}\label{sec:michel}
+In his work from 1950 \cite{michel1950interaction}, Michel set up the most general Lorentz-invariant Hamiltonian in order to analyze the kinematics of four-fermion interactions:
+\begin{equation}
+    \mathcal{H}_{1950} = \sum_{i=S,V,T,A,P} L_i (\bar{\psi}_e \Gamma_i \psi_\mu) (\bar{\psi}_{\nu} \Gamma_i \psi_{\nu}) + \text{h.c.}
+\end{equation}
+Because he did not consider the possibility that such an interaction might violate parity, his Hamiltonian only couples currents of the same kind -- scalar, vector, tensor, axial and pseudo -- to each other, resulting in a overall parity-conserving expression. There are thus 5 coupling constants $L_i$ that define his four-fermion theory. Critically, however, Michel realized that the exact weights of the five different interaction types in the overall expression only alter the energy spectrum by a single constant. This is because the neutrinos are not observed and integrated over. When evaluating the squared amplitude $|\mathcal{M}|^2$ one first obtains a product of two traces: One for the electron-muon line and one for the neutrino line, the latter containing the neutrino momenta $k_1,k_2$ - integrating over the neutrino phase space thus amounts to solving the following integral:
+\begin{equation}
+    I^{\alpha\beta} = \int \frac{d^3k_1}{2E_1} \frac{d^3k_2}{2E_2} \delta^4(Q - k_1 - k_2) k_1^\alpha k_2^\beta
+\end{equation}
+By pure Lorentz invariance, this can only depend on the total transferred momentum $Q=q-p$ and the only two rank-2 tensors one can build out of $Q$ are the metric tensor $g^{\alpha\beta}$ and the product $Q^\alpha Q^\beta$:
+\begin{equation}
+    I^{\alpha\beta} = A(Q^2) g^{\alpha\beta} + B(Q^2) Q^\alpha Q^\beta
+\end{equation}
+Because the neutrinos are considered to be massless, dimensional analysis and Lorentz invariance fix $A(Q^2)\propto g^{\alpha\beta}$ and $B(Q^2)\propto 1$. If one contracts the neutrino tensor with the muon-electron trace, which is built of $q_\mu$ and $p_e$, scalars of the following kind can be formed:
+\begin{align}
+    Q^2 = (q_\mu - p_e)^2 \approx m_\mu^2 - 2m_\mu E_e\\
+    Q \cdot q_\mu = (q_\mu - p_e) \cdot q_\mu \approx m_\mu^2 - m_\mu E_e\\
+    Q \cdot p_e = (q_\mu - p_e) \cdot p_e \approx m_\mu E_e
+\end{align}
+Every single invariant is simply linear function of the elctron energy $E_e$ and because of the phase space factor $E_e^2\de E_e$ the differential decay rate $\de\Gamma/\de E_e$ is a polynomial in $E_e^2$ and $E_e^3$. Thus a single parameter suffices to describe the relative weight between the quadratic and cubic terms and thus the shape of the spectrum -- the original Michel parameter $\rho$. Expressed in terms of the modern dimensionless variable $x=E/W$ with W the maximum electron energy, the spectrum can be written as:
+\begin{equation}
+    P(x) dx \propto x^2 \left[ 3(1 - x) + 2\rho \left( \frac{4}{3}x - 1 \right) \right] dx
+\end{equation}
+Current global data gives for the $\rho$ parameter:
+\begin{equation}
+    \rho = 0.74979\pm 0.00026
+\end{equation}
+This implies the interaction to consist of vector and axial vector terms:
+\begin{equation}
+    \rho = \frac{3L_V^2 + 3L_A^2 + 6L_T^2}{L_S^2 + L_P^2 + 4L_V^2 + 4L_A^2 + 6L_T^2}
+    \label{eq:rho}
+\end{equation}
+For $L_V=-L_A=1$ this gives $\rho=\tfrac{3}{4}$. However, from the experimental value of the $\rho$ parameter the exact ratio of the $V$ and $A$ term or whether axial and vector current mix to form a parity-violating term can not be deduced. A paradigm shift took place in 1956 when Lee and Yang, in order to explain the $\theta-\tau$ puzzle \parencite{lee1956question}, suggested that the weak force might violate parity  -- a breakthrough idea, which was experimentally tested a year later by Chien-Shiung Wu \parencite{wu1957experimental}: She confirmed that the electrons in Cobalt-60 decay are emitted preferentially in the direction opposite to the nuclear spin. In the phenomenology of muon decay parity violation generates an anisotropic part in the electron spectrum. If one measures the polarization of the decaying muon and the angle by which the electron is emitted relative to that polarization the probability is not distributed isotropically at all: The electron is most likely to be ejected in the exact opposite direction to the muon's polarization. And this clearly violates parity, since mirroring of the experiment would leave the polarization invariant but spatially reverse the electron momentum.\par 
+In 1957, two groups (Bouchiat \& Michel \cite{bouchiat1957theory} and, independently, Kinoshita \& Sirlin \cite{kinoshita1957muon,kinoshita1957polarization} expanded the formalism to match the new chiral reality and introduced additional
+parameters for the anisotropic part of the spectrum. The parameter $\xi$ measures parity violation and $\delta$ is again a shape parameter for the anisotropic part of the spectrum. 
+\begin{equation}
+    \begin{aligned}
+        \frac{\de ^2\Gamma_\text{anisotr.}}{\de x\de \hspace{-0.1em}\cos\theta}\propto\xi P_\mu\cos\theta \left( x^2(1-x)+2\delta\left(\frac{4}{3}x-1\right)\right)
+    \end{aligned}
+\end{equation}
+As one can see, the peak of the differential decay width is located at $\theta=180^\circ$, the direction opposite to the muon polarization vector. The SM predicts $\xi = 1$, maximal parity violation, and $\delta = \frac{3}{4}$, which means the shape of the anisotropic spectrum is also V-A-like. Both SM predictions are supported by current data \parencite{particle2024review}:
+\begin{align}
+    P_\mu\xi &=1.0009 \pm 0.0012\\
+    \xi P_\mu\delta/\rho&=1.00179 \pm 0.00114
+\end{align}
+Both groups also introduced a parameter $\eta$ to account for the finite electron mass shaping the low-energy end of the spectrum. It reflects the interference of scalar and tensor terms, which can only produce a non-zero term in the amplitude via mass insertion. As the Standard Model neither has tensor nor scalar interaction terms, it predicts $\eta$ to be zero, which current experimental data supports \parencite{particle2024review}:
+\begin{equation}
+    \eta =0.057 \pm 0
+\end{equation}
+The full spectrum of the electron, when the muon's polarization and the electron's momentum direction relative to it are measured (but not the spin of the electron), thus has the following form:
+\begin{equation}
+    \begin{aligned}
+        \frac{\de ^2\Gamma}{\de x\de \hspace{-0.1em}\cos\theta}=&\frac{m_\mu}{4\pi^3}W^4G_F^2
+        \sqrt{x^2-x_0^2}
+        \left[2x(1-x)+\frac{4}{9}\rho(4x^2-3x-x_0^2)\right.\\
+        &+2\eta x_0(1-x)-\frac{2}{3}\xi P_\mu\cos\theta\sqrt{x^2-x_0^2}\Big( [1-x]\\
+        &\hspace{2.2cm}+\left.\frac{2}{3}\delta\left[(4x-3)+((1-x_0^2)^{-1}-1)\right]\Big)\right]
+        \label{eq:MichelNoPe}
+    \end{aligned}
+\end{equation}
+
+If the spin of the electron is also measured, additional Michel parameters can be defined: $\xi'$, $\xi''$, $\eta''$, $\alpha'/A$, and $\beta'/A$, whereby $A$ is an overall normalization factor and not independently determined. In order to account for the elctron spin dependence, we extend the parameterization of the differential decay rate as in \cite{particle2024review}:
+
+\begin{equation}
+\frac{d^2\Gamma}{dx\, d\cos\theta}=\frac{m_\mu }{4\pi^3} W^4G_F^2\sqrt{x^2-x_0^2}\left[F_{IS}(x)-P_\mu\cos\theta F_{AS}(x)+\hat \zeta\cdot \vec P_e(x,\theta)\right]\, ,
+\end{equation}
+
+The unit vector $\hat\zeta$ defines the direction along which the electron polarization, $\vec P_e$, is analyzed. From a theory perspective, we choose $\hat\zeta$ such that it projects the polarization onto a specific axis, such as longitudinal or transverse polarizations. The isotropic and anisotropic distributions correspond to those defined in Eq. \ref{eq:MichelNoPe} -- the factor of $2$ difference relative to Eq. \ref{eq:MichelNoPe} is because we no longer sum over the electron spin states.
+\begin{eqnarray}
+F_{IS}(x)&=&x(1-x)+\frac{2}{9}\rho(4x^2-3x-x_0^2)+\eta x_0(1-x)\, ,\\
+F_{AS}(x)&=&\frac{\xi}{3}\sqrt{x^2-x_0^2}\left[(1-x)+\frac{2}{3}\delta\left(\left[4x-3\right]+\left[\sqrt{1-x_0^2}-1\right]\right)\right]\, .
+\end{eqnarray}
+%
+The additional electron spin dependent terms follow from expanding the electron spin dependence as $\vec P_e(x,\theta)=P_{T_1}\hat x_1+P_{T_2}\hat x_2+P_L\hat x_3$. The direction $\hat x_3$ is chosen along the electron momentum, $\hat x_1$ lies in the decay plane and is transverse to the electron momentum, and $\hat x_2$ is orthogonal to both $\hat x_1$ and $\hat x_3$. The kinematics are outlined in further detail in appendix~\ref{sec:kinPS}, our method for projecting out each Michel parameter is discussed in appendix~\ref{sec:michelbasis}. With this choice, the polarization components are given by:
+%
+\begin{align}
+P_{T_1}=&\frac{P_\mu\sin\theta}{12}\left[-2\left(\xi''+12\left[\rho-\frac{3}{4}\right]\right)(1-x)x_0-3\eta\left(x^2-x_0^2\right)+\eta''\left(-3x^2+4x-x_0^2\right)\right]
+\\
+P_{T_2}=&\frac{P_\mu\sin\theta}{3}\sqrt{x^2-x_0^2}\left[3\frac{\alpha'}{A}(1-x)+2\frac{\beta'}{A}\sqrt{1-x_0^2}\right]\\
+P_L=&-F_{IP}(x)+P_\mu\cos\theta F_{AP}(x)\\
+F_{IP}(x)=&\frac{\sqrt{x^2-x_0^2}}{54}\left[9\xi'\left(-2x+2+\sqrt{1-x_0^2}\right)+4\xi\left(\delta-\frac{3}{4}\right)\left(4x-4+\sqrt{1-x_0^2}\right)\right]\\
+F_{AP}(x)=&\frac{1}{6}\left[\xi''\left(2x^2-x-x_0^2\right)+4\left(\rho-\frac{3}{4}\right)\left(4x^2-3x-x_0^2\right)+2\eta''(1-x)x_0\right]
+\end{align}
+
+These different contributions can be qualitatively understood as follows:
+
+\begin{itemize}
+\item The longitudinal polarization, $P_L$, corresponds to alignment of the electron momentum with its polarization. The corresponding contributions in addition to the usual Michel parameters are $\xi'$, $\xi''$, and $\eta''$. These terms also include contributions from $\rho$ and $\delta$ as defined above.
+\item The transverse polarization $P_{T_1}$ lies in the decay plane. It receives contributions from $\xi''$ and $\eta''$ along with contributions from the previously defined $\rho$ and $\eta$. It includes angular dependence in the form of $\sin\theta$. 
+\item The transverse polarization $P_{T_2}$ is perpendicular to the decay plane. It is $T$-odd and therefore sensitive to time-reversal violating effects, we will see in the LEFT interpretation its only contributions (at leading order) come from operators that don't conserve lepton number. It also includes angular dependence of the form $\sin\theta$. The parameters $\alpha'/A$ and $\beta'/A$ are constrained by considering this kinematical region. We treat $\alpha'/A$ and $\beta'/A$ as independent variables, not ratios. Their labeling as ratios comes from a different, but equivalent treatment of the Michel parameters.
+\end{itemize}
+
+In the SM we have for these extended Michel parameters, $\eta''=0$, $\xi'=\xi''=1$, and $\alpha'/A=\beta'/A=0$. 
+
+The Michel parameters lay the phenomenological foundation for the inquiry of this thesis: How would heavy fields from beyond the SM affect them? Expressing the Michel parameters in terms of SPVAT couplings as for $\rho$ in Eq. \ref{eq:rho} possesses inherent theoretical limitations. The SPVAT Lagrangian is constructed essentially as an ad hoc, bottom-up classification of the Lorentz-invariant four-fermion interactions. It does not systematically incorporate the underlying gauge structure of the strong and electromagnetic interactions, nor does it provide a framework for consistently evolving the couplings up to the high-energy matching scale. In order to systematically probe for new physics within muon decay, a more modern theoretical architecture is required: Low-Energy Effective Field Theory (LEFT).
+```latex
+\section{Experimental Michel-parameter likelihood}
+\label{sec:michel-likelihood}
+
+The experimental Michel-parameter inputs are not treated as a set of
+independent one-dimensional Gaussian measurements. Instead, we divide
+them into experimental likelihood blocks,
+\begin{equation}
+  \bm{O}_{\mathrm{fit}}
+  =
+  \underbrace{
+    \bigl(\rho,\delta,P_\mu^\pi\xi\bigr)
+  }_{\mathrm{TWIST}}
+  \oplus
+  \underbrace{
+    \left(\eta,\eta'',\alpha'/A,\beta'/A\right)
+  }_{\mathrm{Danneberg}}
+  \oplus
+  \underbrace{\xi'}_{\mathrm{Burkard}}
+  \oplus
+  \underbrace{\xi''}_{\mathrm{Prieels}}.
+  \label{eq:michel-fit-vector}
+\end{equation}
+The different experimental blocks are assumed to be mutually
+independent, whereas the correlations within each block are retained.
+
+\paragraph{TWIST block.}
+
+For the TWIST measurement, we use the native parameter basis
+\begin{equation}
+  \bm{O}^{\mathrm{exp}}_{\mathrm{TWIST}}
+  =
+  \begin{pmatrix}
+    \rho\\
+    \delta\\
+    P_\mu^\pi\xi
+  \end{pmatrix}_{\!\mathrm{exp}}
+  =
+  \begin{pmatrix}
+    0.74977\\
+    0.75049\\
+    1.00084
+  \end{pmatrix},
+  \label{eq:twist-input}
+\end{equation}
+with uncertainties
+\begin{align}
+  \rho
+  &=
+  0.74977
+  \pm0.00012_{\mathrm{stat}}
+  \pm0.00023_{\mathrm{syst}},
+  \\
+  \delta
+  &=
+  0.75049
+  \pm0.00021_{\mathrm{stat}}
+  \pm0.00027_{\mathrm{syst}},
+  \\
+  P_\mu^\pi\xi
+  &=
+  1.00084
+  \pm0.00029_{\mathrm{stat}}
+  {}^{+0.00165}_{-0.00063}{}_{\mathrm{syst}}.
+\end{align}
+The reported correlation matrix, in the ordering
+$\left(\rho,\delta,P_\mu^\pi\xi\right)$, is
+\begin{equation}
+  \bm{R}_{\mathrm{TWIST}}
+  =
+  \begin{pmatrix}
+    1    & 0.19  & 0.21\\
+    0.19 & 1     & -0.72\\
+    0.21 & -0.72 & 1
+  \end{pmatrix}.
+  \label{eq:twist-correlation}
+\end{equation}
+In a symmetrized Gaussian approximation, the covariance matrix is
+constructed as
+\begin{equation}
+  \bm{V}_{\mathrm{TWIST}}
+  =
+  \bm{D}_{\mathrm{TWIST}}\,
+  \bm{R}_{\mathrm{TWIST}}\,
+  \bm{D}_{\mathrm{TWIST}},
+  \label{eq:twist-covariance}
+\end{equation}
+where
+\begin{equation}
+  \bm{D}_{\mathrm{TWIST}}
+  =
+  \operatorname{diag}
+  \left(
+    \sqrt{(0.00012)^2+(0.00023)^2},
+    \sqrt{(0.00021)^2+(0.00027)^2},
+    \sigma_{P_\mu^\pi\xi}
+  \right).
+\end{equation}
+For a symmetric treatment of the uncertainty on $P_\mu^\pi\xi$, we use
+\begin{equation}
+  \sigma_{P_\mu^\pi\xi}
+  \simeq
+  \sqrt{
+    (0.00029)^2+
+    \left(\frac{0.00165+0.00063}{2}\right)^2
+  }.
+  \label{eq:twist-xi-error}
+\end{equation}
+A split-normal likelihood or an explicit nuisance-parameter treatment
+is preferable if the asymmetric uncertainty is retained.
+
+The derived observable
+\begin{equation}
+  P_\mu^\pi\xi\,\frac{\delta}{\rho}
+\end{equation}
+is not included as an additional independent constraint, since it is
+constructed from the same TWIST fit parameters. If the alternative basis
+\begin{equation}
+  \left(
+    \rho,\,
+    P_\mu^\pi\xi,\,
+    P_\mu^\pi\xi\,\frac{\delta}{\rho}
+  \right)
+\end{equation}
+is used, its covariance must be obtained from
+\begin{equation}
+  \bm{V}_{\mathrm{new}}
+  =
+  \bm{J}\,
+  \bm{V}_{\mathrm{TWIST}}\,
+  \bm{J}^{T},
+\end{equation}
+where, defining $q=P_\mu^\pi\xi$,
+\begin{equation}
+  \bm{J}
+  =
+  \frac{\partial(\rho,q,q\delta/\rho)}
+       {\partial(\rho,\delta,q)}
+  =
+  \begin{pmatrix}
+    1 & 0 & 0\\
+    0 & 0 & 1\\
+    -q\delta/\rho^2 & q/\rho & \delta/\rho
+  \end{pmatrix}.
+  \label{eq:twist-jacobian}
+\end{equation}
+
+\paragraph{Danneberg block.}
+
+For the transverse-polarization measurement, we use the general
+four-parameter fit,
+\begin{equation}
+  \bm{O}^{\mathrm{exp}}_{\mathrm{D}}
+  =
+  \begin{pmatrix}
+    \eta\\
+    \eta''\\
+    \alpha'/A\\
+    \beta'/A
+  \end{pmatrix}_{\!\mathrm{exp}}
+  =
+  \begin{pmatrix}
+     0.071\\
+     0.105\\
+    -0.0034\\
+    -0.0005
+  \end{pmatrix}.
+  \label{eq:danneberg-input}
+\end{equation}
+After combining statistical and systematic uncertainties in quadrature,
+the standard-deviation matrix is
+\begin{equation}
+  \bm{D}_{\mathrm{D}}
+  =
+  \operatorname{diag}
+  \left(
+    0.03734,\,
+    0.05235,\,
+    0.02186,\,
+    0.00800
+  \right).
+  \label{eq:danneberg-errors}
+\end{equation}
+The corresponding correlation matrix, in the ordering
+$\left(\eta,\eta'',\alpha'/A,\beta'/A\right)$, is
+\begin{equation}
+  \bm{R}_{\mathrm{D}}
+  =
+  \begin{pmatrix}
+    1     & 0.946 & 0      & 0\\
+    0.946 & 1     & 0      & 0\\
+    0     & 0     & 1      & -0.893\\
+    0     & 0     & -0.893 & 1
+  \end{pmatrix}.
+  \label{eq:danneberg-correlation}
+\end{equation}
+The covariance matrix is therefore
+\begin{equation}
+  \bm{V}_{\mathrm{D}}
+  =
+  \bm{D}_{\mathrm{D}}\,
+  \bm{R}_{\mathrm{D}}\,
+  \bm{D}_{\mathrm{D}},
+\end{equation}
+or numerically,
+\begin{equation}
+  \bm{V}_{\mathrm{D}}
+  \simeq
+  \begin{pmatrix}
+    1.394\times10^{-3} & 1.849\times10^{-3} & 0 & 0\\
+    1.849\times10^{-3} & 2.741\times10^{-3} & 0 & 0\\
+    0 & 0 & 4.779\times10^{-4} & -1.562\times10^{-4}\\
+    0 & 0 & -1.562\times10^{-4} & 6.400\times10^{-5}
+  \end{pmatrix}.
+  \label{eq:danneberg-covariance}
+\end{equation}
+Consequently, $\eta$ and $\eta''$ must not be treated as statistically
+independent. The same applies to $\alpha'/A$ and $\beta'/A$.
+
+\paragraph{Single-observable blocks.}
+
+The remaining polarization observables are included as independent
+one-dimensional blocks,
+\begin{align}
+  \xi'  &= 0.998\pm0.045,\\
+  \xi'' &= 0.981
+           \pm0.045_{\mathrm{stat}}
+           \pm0.003_{\mathrm{syst}}
+         \simeq 0.981\pm0.0451.
+\end{align}
+No covariance between these measurements and the TWIST or Danneberg
+datasets is available.
+
+\paragraph{Combined likelihood.}
+
+The total experimental covariance is approximated by
+\begin{equation}
+  \bm{V}_{\mathrm{exp}}
+  \simeq
+  \bm{V}_{\mathrm{TWIST}}
+  \oplus
+  \bm{V}_{\mathrm{D}}
+  \oplus
+  \sigma_{\xi'}^2
+  \oplus
+  \sigma_{\xi''}^2.
+  \label{eq:combined-michel-covariance}
+\end{equation}
+For a vector of LEFT Wilson coefficients $\bm{C}$, the corresponding
+contribution to the likelihood is
+\begin{equation}
+  \chi^2_{\mathrm{Michel}}(\bm{C})
+  =
+  \sum_b
+  \left[
+    \bm{O}^{\mathrm{th}}_b(\bm{C})
+    -
+    \bm{O}^{\mathrm{exp}}_b
+  \right]^T
+  \bm{V}_b^{-1}
+  \left[
+    \bm{O}^{\mathrm{th}}_b(\bm{C})
+    -
+    \bm{O}^{\mathrm{exp}}_b
+  \right],
+  \qquad
+  b\in
+  \left\{
+    \mathrm{TWIST},
+    \mathrm{D},
+    \xi',
+    \xi''
+  \right\}.
+  \label{eq:michel-chi2}
+\end{equation}
+
+The quantities involving $P_\mu^\pi$ are measured as polarization
+products. Setting $P_\mu^\pi=1$ is therefore an additional
+phenomenological assumption rather than part of the experimental
+measurement. Furthermore, the Michel shape and polarization parameters
+do not constrain the overall normalization of the muon-decay amplitude.
+If normalization-changing LEFT coefficients are included, the muon
+lifetime or an equivalent normalization constraint must also be used.
+```

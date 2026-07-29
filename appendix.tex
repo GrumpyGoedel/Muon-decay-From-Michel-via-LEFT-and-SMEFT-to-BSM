@@ -1,0 +1,965 @@
+\appendix
+\chapter{Kinematics}
+\section{Michel basis functions}
+
+\section{Kinematics and Phase Space integrals}\label{sec:kinPS}
+
+In this section we closely follow the textbook by Scheck \cite{scheck2012electroweak} and define the momenta as follows:
+\begin{equation}
+\mu_q\to \overset{\scriptscriptstyle(-)}{\nu}_{k_1}+\overset{\scriptscriptstyle(-)}{\nu}_{k_2}+e_p\, ,
+\end{equation}
+%
+that is the momentum assigned to the muon is $q$, that for the electron is $p$, etc. The labels $k_1$ and $k_2$ are integrated over in deriving the Michel parameters, so the assignment to (massless) neutrinos is arbitrary. When treating tau decays, the tau momentum is also taken to be $q$.
+
+We take $s_0=(0,P_\mu \hat n_0)$ to be the muon spin four-vector, with $P_\mu$ the muon polarization and $\vec n_0$ a unit vector in the direction of the muon spin expectation value. A similar spin vector can be defined for the electron,
+%
+\begin{equation}
+s_1=\left(\frac{1}{m_e}\vec p\cdot \hat n_1, \hat n_1+\frac{\vec p\cdot \hat n_1}{m_e(E+m_e)}\vec p\right)\, ,
+\end{equation}
+%
+which projects onto the electron spin state with spin along $\vec n_1$ \cite{Scheck:1996ur}.
+
+We work in the muon rest frame, $q^\mu=(m_\mu,\vec 0)$, and express the electron four-momentum us $ p^\mu=(E_e,\vec p)$. Working out the relevant products of four-vectors we obtain:
+%
+\begin{align}
+q^2&=m_\mu^2\, ,\\
+p^2&=m_e^2\, ,\\
+q\cdot p &= m_\mu E_e\, ,\\
+q\cdot s_0 &= 0\, ,\\
+q\cdot s_1 &= \frac{m_\mu}{m_e}\vec p\cdot \hat n_1\, ,\\
+p\cdot s_0 &= -P_\mu\,\vec p\cdot \hat n_0\, ,\\
+p\cdot s_1 &= 0\, ,\\
+s_0\cdot s_1 &=-P_\mu\left(\hat n_0\cdot\hat n_1+\frac{\vec p\cdot \hat n_1\, \vec p\cdot \hat n_0}{m_e(E_e+m_e)}\right)\, .
+\end{align}
+
+
+The PDG defines muon decay kinematics dependent on the electron spin in terms of the product of $\hat \zeta\cdot \vec P_e$. From a theory perspective we are able to choose to align $\zeta$ with the $\hat n_1$ direction.
+
+The product $p\cdot s_0$ is independent of the electron spin orientation:
+%
+\begin{equation}
+p\cdot s_0=-P_\mu|\vec p|\cos\theta\, .
+\end{equation}
+%
+Taking $\hat e_3$ to be along $\vec p$ we find $q\cdot s_1$ lies strictly along $\hat e_3=\hat p$:
+%
+\begin{eqnarray}
+q\cdot s_1=\frac{m_\mu}{m_e}|\vec p|\zeta_3\, .
+\end{eqnarray}
+%
+The vectors $\hat p$ and $\hat n_0$ define the decay plane. The $\hat e_1$ direction is taken to be the component of the muon spin direction orthogonal to the electron momentum,
+%
+\begin{equation}
+\hat e_1=\frac{\hat n_0-(\hat n_0\cdot \hat p)\hat p}{\sqrt{1-(\hat n_0\cdot \hat p)^2}}=\frac{\hat n_0-\cos\theta\hat p}{\sin\theta}\, ,
+\end{equation}
+%
+and therefore lies in the decay plane orthogonal to $\hat p$.
+The product of the electron and muon spins then decomposes over the $\hat e_1$ and $\hat e_3$ directions:
+%
+\begin{equation}
+s_0\cdot s_1=-P_\mu\left(\sin\theta \zeta_1+\frac{E_e}{m_e}\cos\theta\zeta_3\right)\, .
+\end{equation}
+%
+Finally $\hat e_2$ is taken to be normal to the decay plane. In this case only the structure, $\hat n_0\cdot (\hat n_1\times \hat p)$ contributes, which in four vectors corresponds to:
+%
+\begin{equation}
+\epsilon_{\mu\nu\rho\sigma}s_0^\mu s_1^\nu q^\rho p^\sigma=m_\mu P_\mu |\vec p|\sin\theta\zeta_2
+\end{equation}
+
+\section{Phase space integrations}
+In the LEFT, we need to perform phase space integrations of squared amplitudes dependent on higher orders in momentum than treated in Scheck or for example \cite{Marquez:2022bpg}. Taking $Q\equiv k_1+k_2=q-p$, and defining
+%
+\begin{equation}
+\int d\Phi_2=\int \frac{d^3k_1}{2k_1^0}\frac{d^3k_2}{2k_2^0}\delta^{(4)}(Q-k_1-k_2)\, ,
+\end{equation}
+%
+we obtain:
+%
+\begin{align}
+\int d\Phi_2\, 1&=\frac{\pi}{2}\, ,\\
+\int d\Phi_2\, k_1^\mu&=\frac{\pi}{4}Q^\mu\, ,\\
+\int d\Phi_2\, k_1^\mu k_1^\nu&=\frac{\pi}{24}\left(4Q^\mu Q^\nu-Q^2\eta^{\mu\nu}\right)\, ,\\
+\int d\Phi_2\, k_1^\mu k_1^\nu k_1^\rho&=\frac{\pi}{48}\left[6Q^\mu Q^\nu Q^\rho-Q^2\left(Q^\mu \eta^{\nu\rho}+Q^\nu \eta^{\mu\rho}+Q^\rho\eta^{\mu\nu}\right)\right]\, .
+\end{align}
+%
+It is important to note that all momenta in these basis integrands are the same, i.e. they are all $k_1$. These results also implicitly assume massless neutrinos. When applying these identities to our results we simply substitute $k_2=Q-k_1$ so that our integrals depend only on $k_1$. 
+
+The decay width is for the muon is then given as:
+%
+\begin{equation}
+\frac{d^2\Gamma}{dE_e d\cos\theta}=\frac{1}{4m_\mu}\frac{\sqrt{E_e^2-m_e^2}}{(2\pi)^5}\int d\phi\, d\Phi_2|\, \mathcal M|^2\, ,
+\end{equation}
+%
+with $\mathcal M$ the amplitude for the process. As our definition of the two body phase space excludes factors or $2\pi$ some additional factors appear explicitly in our expression for the differential decay width. For identical neutrinos in the final state an additional factor of one half is necessary.
+
+Defining the maximum electron energy to be,
+%
+\begin{equation}
+W = \frac{1}{2m_\mu}(m_\mu^2+m_e^2)\, ,
+\end{equation}
+%
+we make a change of variables to $x\equiv E_e/W$ giving:
+%
+\begin{equation}
+\frac{d^2\Gamma}{dx d\cos\theta}=\frac{W}{4m_\mu}\frac{\sqrt{W^2x^2-m_e^2}}{(2\pi)^5}\int d\phi\, d\Phi_2|\, \mathcal M|^2\, .
+\end{equation}
+%
+\section{Michel ``basis functions''}\label{sec:michelbasis}
+
+We define the following set of basis functions to aid in extracting the Michel parameters. Starting with electron polarization independent Michel parameters we define:
+%
+\begin{eqnarray}
+\phi_1(x,x_0,\cos\theta)&=&\sqrt{x^2-x_0^2}x(1-x)\, ,\\
+\phi_2(x,x_0,\cos\theta)&=&\sqrt{x^2-x_0^2}\frac{2}{9}(4x^2-3x-x_0^2)\, ,\\
+\phi_3(x,x_0,\cos\theta)&=&\sqrt{x^2-x_0^2}x_0(1-x)\, ,\\
+\phi_4(x,x_0,\cos\theta)&=&\cos\theta(x^2-x_0^2)\frac{1}{3}(1-x)\, ,\\
+\phi_5(x,x_0,\cos\theta)&=&\cos\theta(x^2-x_0^2)\frac{2}{9}\left[(4x-3)+\sqrt{1-x_0^2}-1\right]\, .
+\end{eqnarray}
+
+These correspond to the kinematic structures multiplying the Michel parameters in the differential decay rate. For example, considering only $\rho$ dependence from the decay rate we have:
+%
+\begin{equation}
+\frac{d^2\Gamma}{dxd\cos\theta}\sim\rho \frac{m_\mu}{4\pi^3}W^4G_F^2\sqrt{x^2-x_0^2}\frac{2}{9}(4x^2-3x-x_0^2)\, .
+\end{equation}
+%
+Defining the Gram matrix,
+%
+\begin{equation}
+G_{ij}=\int_{x_0}^1dx\, \int_{-1}^1d\cos\theta\phi_i\phi_j\, ,
+\end{equation}
+%
+we can solve for the Michel parameters by taking:
+%
+\begin{equation}
+\begin{pmatrix}
+A\equiv \frac{G_F^2 m_\mu W^4}{4\pi^3}\\
+A\rho\\
+A\eta\\
+\pm P_\mu A \xi\\
+\pm P_\mu A \xi\delta
+\end{pmatrix}=G_{ij}^{-1}b_j\, ,\label{eq:solveforMichel}
+\end{equation}
+%
+where we have defined:
+%
+\begin{equation}
+b_j=\left(\int_{x_0}^1dx\, \int_{-1}^{1}d\cos\theta \frac{d^2\Gamma}{dxd\cos\theta}\phi_j\right)\, .
+\end{equation}
+%
+For muon decay $\pm1$ should be understood to be $+1$ for positive muon decay, and $-1$ for negative muon decay.
+
+The same approach is taken for the other Michel parameters. We split these cases by their projection onto our choice of $\zeta_i$ as mentioned in Sec.~\ref{sec:kinPS}.
+
+
+
+%
+\begin{equation}
+\begin{aligned}
+G^{-1}b_{\rm unpol}
+&=
+\begin{pmatrix}
+A\\[2pt]
+A\rho\\[2pt]
+A\eta\\[2pt]
+- P_\mu A\xi\\[2pt]
+- P_\mu A\xi\delta
+\end{pmatrix},
+\\[8pt]
+G^{-1}b_{\zeta_1}
+&=
+\begin{pmatrix}
+-\dfrac{P_\mu A}{6}
+\left[
+\xi''+12\left(\rho-\dfrac{3}{4}\right)
+\right]
+\\[8pt]
+-\dfrac{P_\mu A}{4}\eta
+\\[8pt]
+\dfrac{P_\mu A}{12}\eta''
+\end{pmatrix},
+\\[8pt]
+G^{-1}b_{\zeta_2}
+&=
+\begin{pmatrix}
+P_\mu A\,\dfrac{\alpha'}{A}
+\\[8pt]
+\dfrac{2}{3}P_\mu A\,\sqrt{1-x_0^2}\,\dfrac{\beta'}{A}
+\end{pmatrix},
+\\[8pt]
+G^{-1}b_{\zeta_3}
+&=
+\begin{pmatrix}
+-\dfrac{A}{6}\xi'
+\\[8pt]
+-\dfrac{2A}{27}\xi\left(\delta-\dfrac{3}{4}\right)
+\\[8pt]
+\dfrac{P_\mu A}{6}\xi''
+\\[8pt]
+\dfrac{2P_\mu A}{3}\left(\rho-\dfrac{3}{4}\right)
+\\[8pt]
+\dfrac{P_\mu A}{3}\eta''
+\end{pmatrix}.
+\end{aligned}
+\label{eq:solveforMichelAll}
+\end{equation}
+%
+
+
+
+\paragraph*{$\mathbf{\zeta_1}$}
+The $\zeta_1$ projection corresponds to $F_{T_1}$ in the PDG notation \cite{particle2024review}. The basis functions we choose are:
+%
+\begin{eqnarray}
+\phi_{\zeta_1,1}(x,x_0,\cos\theta)&=&\sqrt{x^2-x_0^2}\sqrt{1-\cos^2\theta}(1-x)x_0\, ,\\
+\phi_{\zeta_1,2}(x,x_0,\cos\theta)&=&\sqrt{x^2-x_0^2}\sqrt{1-\cos^2\theta}(x^2-x_0^2)\, ,\\
+\phi_{\zeta_1,3}(x,x_0,\cos\theta)&=&\sqrt{x^2-x_0^2}\sqrt{1-\cos^2\theta}(4x-3x^2-x_0^2)\, .\\
+\end{eqnarray}
+%
+These basis functions allow for the extraction of $\xi''$, $\eta$, and $\eta''$ respectively. The simultaneous extraction of $\eta$ from $\phi_{\zeta_1,2}$ and $\phi_3$ provides a useful consistency check of our results.
+
+\paragraph*{$\mathbf{\zeta_2}$}
+The $\zeta_2$ projection corresponds to $F_{T_2}$ in the PDG notation \cite{particle2024review}. The basis functions we choose are:
+%
+\begin{eqnarray}
+\phi_{\zeta_2,1}(x,x_0,\cos\theta)&=&(x^2-x_0^2)\sqrt{1-\cos^2\theta}(1-x)\, ,\\
+\phi_{\zeta_2,2}(x,x_0,\cos\theta)&=&(x^2-x_0^2)\sqrt{1-\cos^2\theta}\sqrt{1-x_0^2}\, .
+\end{eqnarray}
+%
+These basis functions allow for the extraction of $\alpha'/A$ and $\beta'/A$ respectively.
+
+
+
+\paragraph*{$\mathbf{\zeta_3}$}
+The $\zeta_3$ projection corresponds to $F_{IP}$ and $F_{AP}$ in the PDG notation \cite{particle2024review}. The basis functions we choose are:
+%
+\begin{eqnarray}
+\phi_{\zeta_3,1}(x,x_0,\cos\theta)&=&(x^2-x_0^2)(2-2x+\sqrt{1-x_0^2})\, ,\\
+\phi_{\zeta_3,2}(x,x_0,\cos\theta)&=&(x^2-x_0^2)(4x-4+\sqrt{1-x_0^2})\,,\\
+\phi_{\zeta_3,3}(x,x_0,\cos\theta)&=&\cos\theta\sqrt{x^2-x_0^2}(2x^2-x-x_0^2)\, ,\\
+\phi_{\zeta_3,4}(x,x_0,\cos\theta)&=&\cos\theta\sqrt{x^2-x_0^2}(4x^2-3x-x_0^2)\, ,\\
+\phi_{\zeta_3,5}(x,x_0,\cos\theta)&=&\cos\theta\sqrt{x^2-x_0^2}(1-x)x_0\, .
+\end{eqnarray}
+%
+These basis functions allow for the extraction of $\xi'$, $\delta$, $\xi''$, $\rho$, and $\eta''$. Again, redundancy with previously extracted Michel parameters provides a useful cross check of our results.
+
+
+
+
+
+
+
+\chapter{Operator bases}\label{sec:base}
+\section{LEFT basis}
+Here, we give the operator bases of the LEFT at dimension six and the SMEFT at dimensions six and seven. We highlighted the operators that perturb muon decay with a grey background color and the matching operators of the SMEFT as well. 
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    
+    % ================= TOP ROW =================
+    \scalebox{0.67}{%
+    \begin{tabular}[t]{c|l}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{\nu\nu + \text{h.c.}}$}} \\ \hline
+        $\mathcal{O}_{\nu\nu}$ & $(\nu_{Lp}^T C \nu_{Lr})$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{(\nu\nu)X + \text{h.c.}}$}} \\ \hline
+        \cellcolor{gray!25}$\mathcal{O}_{\nu\gamma}$ & \cellcolor{gray!25}$(\nu_{Lp}^T C \sigma^{\mu\nu} \nu_{Lr}) F_{\mu\nu}$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{(\bar{L}R)X + \text{h.c.}}$}} \\ \hline
+        \cellcolor{gray!25}$\mathcal{O}_{e\gamma}$ & \cellcolor{gray!25}$\bar{e}_{Lp} \sigma^{\mu\nu} e_{Rr} F_{\mu\nu}$ \\
+        $\mathcal{O}_{u\gamma}$ & $\bar{u}_{Lp} \sigma^{\mu\nu} u_{Rr} F_{\mu\nu}$ \\
+        $\mathcal{O}_{d\gamma}$ & $\bar{d}_{Lp} \sigma^{\mu\nu} d_{Rr} F_{\mu\nu}$ \\
+        $\mathcal{O}_{uG}$ & $\bar{u}_{Lp} \sigma^{\mu\nu} T^A u_{Rr} G_{\mu\nu}^A$ \\
+        $\mathcal{O}_{dG}$ & $\bar{d}_{Lp} \sigma^{\mu\nu} T^A d_{Rr} G_{\mu\nu}^A$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{X^3}$}} \\ \hline
+        $\mathcal{O}_G$ & $f^{ABC} G_\mu^{A\nu} G_\nu^{B\rho} G_\rho^{C\mu}$ \\
+        $\mathcal{O}_{\widetilde{G}}$ & $f^{ABC} \widetilde{G}_\mu^{A\nu} G_\nu^{B\rho} G_\rho^{C\mu}$
+    \end{tabular}
+    } % Close first resizebox
+    
+    \vspace{2em}
+    
+    % ================= BOTTOM ROW (Massive Columns) =================
+    \scalebox{0.67}{%
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{(\bar{L}L)(\bar{L}L)}$}} \\ \hline
+        $\mathcal{O}_{\nu\nu}^{V,LL}$ & $(\bar{\nu}_{Lp} \gamma^\mu \nu_{Lr})(\bar{\nu}_{Ls} \gamma_\mu \nu_{Lt})$ \\
+        $\mathcal{O}_{ee}^{V,LL}$ & $(\bar{e}_{Lp} \gamma^\mu e_{Lr})(\bar{e}_{Ls} \gamma_\mu e_{Lt})$ \\
+        \cellcolor{gray!25}$\mathcal{O}_{\nu e}^{V,LL}$ & \cellcolor{gray!25}$(\bar{\nu}_{Lp} \gamma^\mu \nu_{Lr})(\bar{e}_{Ls} \gamma_\mu e_{Lt})$ \\
+        $\mathcal{O}_{\nu u}^{V,LL}$ & $(\bar{\nu}_{Lp} \gamma^\mu \nu_{Lr})(\bar{u}_{Ls} \gamma_\mu u_{Lt})$ \\
+        $\mathcal{O}_{\nu d}^{V,LL}$ & $(\bar{\nu}_{Lp} \gamma^\mu \nu_{Lr})(\bar{d}_{Ls} \gamma_\mu d_{Lt})$ \\
+        $\mathcal{O}_{eu}^{V,LL}$ & $(\bar{e}_{Lp} \gamma^\mu e_{Lr})(\bar{u}_{Ls} \gamma_\mu u_{Lt})$ \\
+        $\mathcal{O}_{ed}^{V,LL}$ & $(\bar{e}_{Lp} \gamma^\mu e_{Lr})(\bar{d}_{Ls} \gamma_\mu d_{Lt})$ \\
+        $\mathcal{O}_{\nu edu}^{V,LL}$ & $(\bar{\nu}_{Lp} \gamma^\mu e_{Lr})(\bar{d}_{Ls} \gamma_\mu u_{Lt}) + \text{h.c.}$ \\
+        $\mathcal{O}_{uu}^{V,LL}$ & $(\bar{u}_{Lp} \gamma^\mu u_{Lr})(\bar{u}_{Ls} \gamma_\mu u_{Lt})$ \\
+        $\mathcal{O}_{dd}^{V,LL}$ & $(\bar{d}_{Lp} \gamma^\mu d_{Lr})(\bar{d}_{Ls} \gamma_\mu d_{Lt})$ \\
+        $\mathcal{O}_{ud}^{V1,LL}$ & $(\bar{u}_{Lp} \gamma^\mu u_{Lr})(\bar{d}_{Ls} \gamma_\mu d_{Lt})$ \\
+        $\mathcal{O}_{ud}^{V8,LL}$ & $(\bar{u}_{Lp} \gamma^\mu T^A u_{Lr})(\bar{d}_{Ls} \gamma_\mu T^A d_{Lt})$ \\
+        \multicolumn{2}{c}{\vspace{-0.5em}} \\ % Small spacer
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{(\bar{R}R)(\bar{R}R)}$}} \\ \hline
+        $\mathcal{O}_{ee}^{V,RR}$ & $(\bar{e}_{Rp} \gamma^\mu e_{Rr})(\bar{e}_{Rs} \gamma_\mu e_{Rt})$ \\
+        $\mathcal{O}_{eu}^{V,RR}$ & $(\bar{e}_{Rp} \gamma^\mu e_{Rr})(\bar{u}_{Rs} \gamma_\mu u_{Rt})$ \\
+        $\mathcal{O}_{ed}^{V,RR}$ & $(\bar{e}_{Rp} \gamma^\mu e_{Rr})(\bar{d}_{Rs} \gamma_\mu d_{Rt})$ \\
+        $\mathcal{O}_{uu}^{V,RR}$ & $(\bar{u}_{Rp} \gamma^\mu u_{Rr})(\bar{u}_{Rs} \gamma_\mu u_{Rt})$ \\
+        $\mathcal{O}_{dd}^{V,RR}$ & $(\bar{d}_{Rp} \gamma^\mu d_{Rr})(\bar{d}_{Rs} \gamma_\mu d_{Rt})$ \\
+        $\mathcal{O}_{ud}^{V1,RR}$ & $(\bar{u}_{Rp} \gamma^\mu u_{Rr})(\bar{d}_{Rs} \gamma_\mu d_{Rt})$ \\
+        $\mathcal{O}_{ud}^{V8,RR}$ & $(\bar{u}_{Rp} \gamma^\mu T^A u_{Rr})(\bar{d}_{Rs} \gamma_\mu T^A d_{Rt})$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{(\bar{L}L)(\bar{R}R)}$}} \\ \hline
+        \cellcolor{gray!25}$\mathcal{O}_{\nu e}^{V,LR}$ & \cellcolor{gray!25}$(\bar{\nu}_{Lp} \gamma^\mu \nu_{Lr})(\bar{e}_{Rs} \gamma_\mu e_{Rt})$ \\
+        $\mathcal{O}_{ee}^{V,LR}$ & $(\bar{e}_{Lp} \gamma^\mu e_{Lr})(\bar{e}_{Rs} \gamma_\mu e_{Rt})$ \\
+        $\mathcal{O}_{\nu u}^{V,LR}$ & $(\bar{\nu}_{Lp} \gamma^\mu \nu_{Lr})(\bar{u}_{Rs} \gamma_\mu u_{Rt})$ \\
+        $\mathcal{O}_{\nu d}^{V,LR}$ & $(\bar{\nu}_{Lp} \gamma^\mu \nu_{Lr})(\bar{d}_{Rs} \gamma_\mu d_{Rt})$ \\
+        $\mathcal{O}_{eu}^{V,LR}$ & $(\bar{e}_{Lp} \gamma^\mu e_{Lr})(\bar{u}_{Rs} \gamma_\mu u_{Rt})$ \\
+        $\mathcal{O}_{ed}^{V,LR}$ & $(\bar{e}_{Lp} \gamma^\mu e_{Lr})(\bar{d}_{Rs} \gamma_\mu d_{Rt})$ \\
+        $\mathcal{O}_{ue}^{V,LR}$ & $(\bar{u}_{Lp} \gamma^\mu u_{Lr})(\bar{e}_{Rs} \gamma_\mu e_{Rt})$ \\
+        $\mathcal{O}_{de}^{V,LR}$ & $(\bar{d}_{Lp} \gamma^\mu d_{Lr})(\bar{e}_{Rs} \gamma_\mu e_{Rt})$ \\
+        $\mathcal{O}_{\nu edu}^{V,LR}$ & $(\bar{\nu}_{Lp} \gamma^\mu e_{Lr})(\bar{d}_{Rs} \gamma_\mu u_{Rt}) + \text{h.c.}$ \\
+        $\mathcal{O}_{uu}^{V1,LR}$ & $(\bar{u}_{Lp} \gamma^\mu u_{Lr})(\bar{u}_{Rs} \gamma_\mu u_{Rt})$ \\
+        $\mathcal{O}_{uu}^{V8,LR}$ & $(\bar{u}_{Lp} \gamma^\mu T^A u_{Lr})(\bar{u}_{Rs} \gamma_\mu T^A u_{Rt})$ \\
+        $\mathcal{O}_{ud}^{V1,LR}$ & $(\bar{u}_{Lp} \gamma^\mu u_{Lr})(\bar{d}_{Rs} \gamma_\mu d_{Rt})$ \\
+        $\mathcal{O}_{ud}^{V8,LR}$ & $(\bar{u}_{Lp} \gamma^\mu T^A u_{Lr})(\bar{d}_{Rs} \gamma_\mu T^A d_{Rt})$ \\
+        $\mathcal{O}_{du}^{V1,LR}$ & $(\bar{d}_{Lp} \gamma^\mu d_{Lr})(\bar{u}_{Rs} \gamma_\mu u_{Rt})$ \\
+        $\mathcal{O}_{du}^{V8,LR}$ & $(\bar{d}_{Lp} \gamma^\mu T^A d_{Lr})(\bar{u}_{Rs} \gamma_\mu T^A u_{Rt})$ \\
+        $\mathcal{O}_{dd}^{V1,LR}$ & $(\bar{d}_{Lp} \gamma^\mu d_{Lr})(\bar{d}_{Rs} \gamma_\mu d_{Rt})$ \\
+        $\mathcal{O}_{dd}^{V8,LR}$ & $(\bar{d}_{Lp} \gamma^\mu T^A d_{Lr})(\bar{d}_{Rs} \gamma_\mu T^A d_{Rt})$ \\
+        $\mathcal{O}_{uddu}^{V1,LR}$ & $(\bar{u}_{Lp} \gamma^\mu d_{Lr})(\bar{d}_{Rs} \gamma_\mu u_{Rt}) + \text{h.c.}$ \\
+        $\mathcal{O}_{uddu}^{V8,LR}$ & $(\bar{u}_{Lp} \gamma^\mu T^A d_{Lr})(\bar{d}_{Rs} \gamma_\mu T^A u_{Rt}) + \text{h.c.}$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{(\bar{L}R)(\bar{L}R) + \text{h.c.}}$}} \\ \hline
+        $\mathcal{O}_{ee}^{S,RR}$ & $(\bar{e}_{Lp} e_{Rr})(\bar{e}_{Ls} e_{Rt})$ \\
+        $\mathcal{O}_{eu}^{S,RR}$ & $(\bar{e}_{Lp} e_{Rr})(\bar{u}_{Ls} u_{Rt})$ \\
+        $\mathcal{O}_{eu}^{T,RR}$ & $(\bar{e}_{Lp} \sigma^{\mu\nu} e_{Rr})(\bar{u}_{Ls} \sigma_{\mu\nu} u_{Rt})$ \\
+        $\mathcal{O}_{ed}^{S,RR}$ & $(\bar{e}_{Lp} e_{Rr})(\bar{d}_{Ls} d_{Rt})$ \\
+        $\mathcal{O}_{ed}^{T,RR}$ & $(\bar{e}_{Lp} \sigma^{\mu\nu} e_{Rr})(\bar{d}_{Ls} \sigma_{\mu\nu} d_{Rt})$ \\
+        $\mathcal{O}_{\nu edu}^{S,RR}$ & $(\bar{\nu}_{Lp} e_{Rr})(\bar{d}_{Ls} u_{Rt})$ \\
+        $\mathcal{O}_{\nu edu}^{T,RR}$ & $(\bar{\nu}_{Lp} \sigma^{\mu\nu} e_{Rr})(\bar{d}_{Ls} \sigma_{\mu\nu} u_{Rt})$ \\
+        $\mathcal{O}_{uu}^{S1,RR}$ & $(\bar{u}_{Lp} u_{Rr})(\bar{u}_{Ls} u_{Rt})$ \\
+        $\mathcal{O}_{uu}^{S8,RR}$ & $(\bar{u}_{Lp} T^A u_{Rr})(\bar{u}_{Ls} T^A u_{Rt})$ \\
+        $\mathcal{O}_{ud}^{S1,RR}$ & $(\bar{u}_{Lp} u_{Rr})(\bar{d}_{Ls} d_{Rt})$ \\
+        $\mathcal{O}_{ud}^{S8,RR}$ & $(\bar{u}_{Lp} T^A u_{Rr})(\bar{d}_{Ls} T^A d_{Rt})$ \\
+        $\mathcal{O}_{dd}^{S1,RR}$ & $(\bar{d}_{Lp} d_{Rr})(\bar{d}_{Ls} d_{Rt})$ \\
+        $\mathcal{O}_{dd}^{S8,RR}$ & $(\bar{d}_{Lp} T^A d_{Rr})(\bar{d}_{Ls} T^A d_{Rt})$ \\
+        $\mathcal{O}_{uddu}^{S1,RR}$ & $(\bar{u}_{Lp} d_{Rr})(\bar{d}_{Ls} u_{Rt})$ \\
+        $\mathcal{O}_{uddu}^{S8,RR}$ & $(\bar{u}_{Lp} T^A d_{Rr})(\bar{d}_{Ls} T^A u_{Rt})$ \\
+        \multicolumn{2}{c}{\vspace{-0.5em}} \\ % Small spacer
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{(\bar{L}R)(\bar{R}L) + \text{h.c.}}$}} \\ \hline
+        $\mathcal{O}_{eu}^{S,RL}$ & $(\bar{e}_{Lp} e_{Rr})(\bar{u}_{Rs} u_{Lt})$ \\
+        $\mathcal{O}_{ed}^{S,RL}$ & $(\bar{e}_{Lp} e_{Rr})(\bar{d}_{Rs} d_{Lt})$ \\
+        $\mathcal{O}_{\nu edu}^{S,RL}$ & $(\bar{\nu}_{Lp} e_{Rr})(\bar{d}_{Rs} u_{Lt})$
+    \end{tabular}
+    } % Close second resizebox
+    \caption{LEFT operators of dimension three, five, and six that conserve baryon and lepton
+    number, and the dimension-three and dimension-five $\Delta L = \pm 2$ operators - all tables from \parencite[p.32]{jenkins2018lowOM}}
+    \label{tab:LEFTbasisLNC}
+\end{table}
+    
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    
+    % Top standalone table
+    \scalebox{0.73}{
+    \begin{tabular}{c|c}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{\Delta L = 4 + \text{h.c.}}$}} \\ \hline
+        $\mathcal{O}_{\nu\nu}^{S,LL}$ & $(\nu_{Lp}^T C \nu_{Lr})(\nu_{Ls}^T C \nu_{Lt})$
+    \end{tabular}
+    }
+    \vspace{1em}
+    
+    \scalebox{0.73}{%
+    % Bottom three columns
+    \begin{tabular}[t]{c|l}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{\Delta L = 2 + \text{h.c.}}$}} \\ \hline
+        \cellcolor{gray!25}$\mathcal{O}_{\nu e}^{S,LL}$ & \cellcolor{gray!25}$(\nu_{Lp}^T C \nu_{Lr})(\bar{e}_{Rs} e_{Lt})$ \\
+        \cellcolor{gray!25}$\mathcal{O}_{\nu e}^{T,LL}$ & \cellcolor{gray!25}$(\nu_{Lp}^T C \sigma^{\mu\nu} \nu_{Lr})(\bar{e}_{Rs} \sigma_{\mu\nu} e_{Lt})$ \\
+        \cellcolor{gray!25}$\mathcal{O}_{\nu e}^{S,LR}$ & \cellcolor{gray!25}$(\nu_{Lp}^T C \nu_{Lr})(\bar{e}_{Ls} e_{Rt})$ \\
+        $\mathcal{O}_{\nu u}^{S,LL}$ & $(\nu_{Lp}^T C \nu_{Lr})(\bar{u}_{Rs} u_{Lt})$ \\
+        $\mathcal{O}_{\nu u}^{T,LL}$ & $(\nu_{Lp}^T C \sigma^{\mu\nu} \nu_{Lr})(\bar{u}_{Rs} \sigma_{\mu\nu} u_{Lt})$ \\
+        $\mathcal{O}_{\nu u}^{S,LR}$ & $(\nu_{Lp}^T C \nu_{Lr})(\bar{u}_{Ls} u_{Rt})$ \\
+        $\mathcal{O}_{\nu d}^{S,LL}$ & $(\nu_{Lp}^T C \nu_{Lr})(\bar{d}_{Rs} d_{Lt})$ \\
+        $\mathcal{O}_{\nu d}^{T,LL}$ & $(\nu_{Lp}^T C \sigma^{\mu\nu} \nu_{Lr})(\bar{d}_{Rs} \sigma_{\mu\nu} d_{Lt})$ \\
+        $\mathcal{O}_{\nu d}^{S,LR}$ & $(\nu_{Lp}^T C \nu_{Lr})(\bar{d}_{Ls} d_{Rt})$ \\
+        $\mathcal{O}_{\nu edu}^{S,LL}$ & $(\nu_{Lp}^T C e_{Lr})(\bar{d}_{Rs} u_{Lt})$ \\
+        $\mathcal{O}_{\nu edu}^{T,LL}$ & $(\nu_{Lp}^T C \sigma^{\mu\nu} e_{Lr})(\bar{d}_{Rs} \sigma_{\mu\nu} u_{Lt})$ \\
+        $\mathcal{O}_{\nu edu}^{S,LR}$ & $(\nu_{Lp}^T C e_{Lr})(\bar{d}_{Ls} u_{Rt})$ \\
+        $\mathcal{O}_{\nu edu}^{V,RL}$ & $(\nu_{Lp}^T C \gamma^\mu e_{Rr})(\bar{d}_{Ls} \gamma_\mu u_{Lt})$ \\
+        $\mathcal{O}_{\nu edu}^{V,RR}$ & $(\nu_{Lp}^T C \gamma^\mu e_{Rr})(\bar{d}_{Rs} \gamma_\mu u_{Rt})$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|l}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{\Delta B = \Delta L = 1 + \text{h.c.}}$}} \\ \hline
+        $\mathcal{O}_{udd}^{S,LL}$ & $\epsilon_{\alpha\beta\gamma}(u_{Lp}^{\alpha T} C d_{Lr}^\beta)(d_{Ls}^{\gamma T} C \nu_{Lt})$ \\
+        $\mathcal{O}_{duu}^{S,LL}$ & $\epsilon_{\alpha\beta\gamma}(d_{Lp}^{\alpha T} C u_{Lr}^\beta)(u_{Ls}^{\gamma T} C e_{Lt})$ \\
+        $\mathcal{O}_{uud}^{S,LR}$ & $\epsilon_{\alpha\beta\gamma}(u_{Lp}^{\alpha T} C u_{Lr}^\beta)(d_{Rs}^{\gamma T} C e_{Rt})$ \\
+        $\mathcal{O}_{duu}^{S,LR}$ & $\epsilon_{\alpha\beta\gamma}(d_{Lp}^{\alpha T} C u_{Lr}^\beta)(u_{Rs}^{\gamma T} C e_{Rt})$ \\
+        $\mathcal{O}_{uud}^{S,RL}$ & $\epsilon_{\alpha\beta\gamma}(u_{Rp}^{\alpha T} C u_{Rr}^\beta)(d_{Ls}^{\gamma T} C e_{Lt})$ \\
+        $\mathcal{O}_{duu}^{S,RL}$ & $\epsilon_{\alpha\beta\gamma}(d_{Rp}^{\alpha T} C u_{Rr}^\beta)(u_{Ls}^{\gamma T} C e_{Lt})$ \\
+        $\mathcal{O}_{dud}^{S,RL}$ & $\epsilon_{\alpha\beta\gamma}(d_{Rp}^{\alpha T} C u_{Rr}^\beta)(d_{Ls}^{\gamma T} C \nu_{Lt})$ \\
+        $\mathcal{O}_{ddu}^{S,RL}$ & $\epsilon_{\alpha\beta\gamma}(d_{Rp}^{\alpha T} C d_{Rr}^\beta)(u_{Ls}^{\gamma T} C \nu_{Lt})$ \\
+        $\mathcal{O}_{duu}^{S,RR}$ & $\epsilon_{\alpha\beta\gamma}(d_{Rp}^{\alpha T} C u_{Rr}^\beta)(u_{Rs}^{\gamma T} C e_{Rt})$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|l}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{\Delta B = -\Delta L = 1 + \text{h.c.}}$}} \\ \hline
+        $\mathcal{O}_{ddd}^{S,LL}$ & $\epsilon_{\alpha\beta\gamma}(d_{Lp}^{\alpha T} C d_{Lr}^\beta)(\bar{e}_{Rs} d_{Lt}^\gamma)$ \\
+        $\mathcal{O}_{udd}^{S,LR}$ & $\epsilon_{\alpha\beta\gamma}(u_{Lp}^{\alpha T} C d_{Lr}^\beta)(\bar{\nu}_{Ls} d_{Rt}^\gamma)$ \\
+        $\mathcal{O}_{ddu}^{S,LR}$ & $\epsilon_{\alpha\beta\gamma}(d_{Lp}^{\alpha T} C d_{Lr}^\beta)(\bar{\nu}_{Ls} u_{Rt}^\gamma)$ \\
+        $\mathcal{O}_{ddd}^{S,LR}$ & $\epsilon_{\alpha\beta\gamma}(d_{Lp}^{\alpha T} C d_{Lr}^\beta)(\bar{e}_{Ls} d_{Rt}^\gamma)$ \\
+        $\mathcal{O}_{ddd}^{S,RL}$ & $\epsilon_{\alpha\beta\gamma}(d_{Rp}^{\alpha T} C d_{Rr}^\beta)(\bar{e}_{Rs} d_{Lt}^\gamma)$ \\
+        $\mathcal{O}_{udd}^{S,RR}$ & $\epsilon_{\alpha\beta\gamma}(u_{Rp}^{\alpha T} C d_{Rr}^\beta)(\bar{\nu}_{Ls} d_{Rt}^\gamma)$ \\
+        $\mathcal{O}_{ddd}^{S,RR}$ & $\epsilon_{\alpha\beta\gamma}(d_{Rp}^{\alpha T} C d_{Rr}^\beta)(\bar{e}_{Ls} d_{Rt}^\gamma)$
+    \end{tabular}
+    } % Close resizebox
+    \caption{LEFT dimension-six four-fermion operators that violate baryon and/or lepton number - all tables from \parencite[p.33]{jenkins2018lowOM}}
+    \label{tab:LEFTbasisLNV}
+\end{table}
+
+
+\section{SMEFT basis}
+See table \ref{tab:dim6SMEFTbasis}
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \scalebox{0.75}{%
+    
+    % ================= ROW 1 =================
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{1 : $\boldsymbol{X^3}$}} \\ \hline
+        $Q_G$ & $f^{ABC} G_\mu^{A\nu} G_\nu^{B\rho} G_\rho^{C\mu}$ \\
+        $Q_{\widetilde{G}}$ & $f^{ABC} \widetilde{G}_\mu^{A\nu} G_\nu^{B\rho} G_\rho^{C\mu}$ \\
+        $Q_W$ & $\epsilon^{IJK} W_\mu^{I\nu} W_\nu^{J\rho} W_\rho^{K\mu}$ \\
+        $Q_{\widetilde{W}}$ & $\epsilon^{IJK} \widetilde{W}_\mu^{I\nu} W_\nu^{J\rho} W_\rho^{K\mu}$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{2 : $\boldsymbol{H^6}$}} \\ \hline
+        $Q_H$ & $(H^\dagger H)^3$ \\
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{3 : $\boldsymbol{H^4 D^2}$}} \\ \hline
+        $Q_{H\square}$ & $(H^\dagger H)\square(H^\dagger H)$ \\
+        $Q_{HD}$ & $\left(H^\dagger D^\mu H\right)^* \left(H^\dagger D_\mu H\right)$ \\
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{5 : $\boldsymbol{\psi^2 H^3 + \text{h.c.}}$}} \\ \hline
+        $Q_{eH}$ & $(H^\dagger H)(\bar{l}_p e_r H)$ \\
+        $Q_{uH}$ & $(H^\dagger H)(\bar{q}_p u_r \widetilde{H})$ \\
+        $Q_{dH}$ & $(H^\dagger H)(\bar{q}_p d_r H)$ \\
+    \end{tabular}
+    } % Close first resizebox to allow line break
+    
+    \vspace{1em}
+    \scalebox{0.75}{%
+    % ================= ROW 2 =================
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{4 : $\boldsymbol{X^2 H^2}$}} \\ \hline
+        $Q_{HG}$ & $H^\dagger H\, G_{\mu\nu}^A G^{A\mu\nu}$ \\
+        $Q_{H\widetilde{G}}$ & $H^\dagger H\, \widetilde{G}_{\mu\nu}^A G^{A\mu\nu}$ \\
+        $Q_{HW}$ & $H^\dagger H\, W_{\mu\nu}^I W^{I\mu\nu}$ \\
+        $Q_{H\widetilde{W}}$ & $H^\dagger H\, \widetilde{W}_{\mu\nu}^I W^{I\mu\nu}$ \\
+        $Q_{HB}$ & $H^\dagger H\, B_{\mu\nu} B^{\mu\nu}$ \\
+        $Q_{H\widetilde{B}}$ & $H^\dagger H\, \widetilde{B}_{\mu\nu} B^{\mu\nu}$ \\
+        $Q_{HWB}$ & $H^\dagger \tau^I H\, W_{\mu\nu}^I B^{\mu\nu}$ \\
+        $Q_{H\widetilde{W}B}$ & $H^\dagger \tau^I H\, \widetilde{W}_{\mu\nu}^I B^{\mu\nu}$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{6 : $\boldsymbol{\psi^2 XH + \text{h.c.}}$}} \\ \hline
+        $Q_{eW}$ & $(\bar{l}_p \sigma^{\mu\nu} e_r) \tau^I H W_{\mu\nu}^I$ \\
+        $Q_{eB}$ & $(\bar{l}_p \sigma^{\mu\nu} e_r) H B_{\mu\nu}$ \\
+        $Q_{uG}$ & $(\bar{q}_p \sigma^{\mu\nu} T^A u_r) \widetilde{H} G_{\mu\nu}^A$ \\
+        $Q_{uW}$ & $(\bar{q}_p \sigma^{\mu\nu} \tau^I u_r) \widetilde{H} W_{\mu\nu}^I$ \\
+        $Q_{uB}$ & $(\bar{q}_p \sigma^{\mu\nu} u_r) \widetilde{H} B_{\mu\nu}$ \\
+        $Q_{dG}$ & $(\bar{q}_p \sigma^{\mu\nu} T^A d_r) H G_{\mu\nu}^A$ \\
+        $Q_{dW}$ & $(\bar{q}_p \sigma^{\mu\nu} \tau^I d_r) H W_{\mu\nu}^I$ \\
+        $Q_{dB}$ & $(\bar{q}_p \sigma^{\mu\nu} d_r) H B_{\mu\nu}$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{7 : $\boldsymbol{\psi^2 H^2 D}$}} \\ \hline
+        \cellcolor{gray!25}$Q_{Hl}^{(1)}$ & \cellcolor{gray!25}$(H^\dagger i\overleftrightarrow{D}_\mu H)(\bar{l}_p \gamma^\mu l_r)$ \\
+        \cellcolor{gray!25}$Q_{Hl}^{(3)}$ & \cellcolor{gray!25}$(H^\dagger i\overleftrightarrow{D}^I_\mu H)(\bar{l}_p \tau^I \gamma^\mu l_r)$ \\
+        \cellcolor{gray!25}$Q_{He}$ & \cellcolor{gray!25}$(H^\dagger i\overleftrightarrow{D}_\mu H)(\bar{e}_p \gamma^\mu e_r)$ \\
+        $Q_{Hq}^{(1)}$ & $(H^\dagger i\overleftrightarrow{D}_\mu H)(\bar{q}_p \gamma^\mu q_r)$ \\
+        $Q_{Hq}^{(3)}$ & $(H^\dagger i\overleftrightarrow{D}^I_\mu H)(\bar{q}_p \tau^I \gamma^\mu q_r)$ \\
+        $Q_{Hu}$ & $(H^\dagger i\overleftrightarrow{D}_\mu H)(\bar{u}_p \gamma^\mu u_r)$ \\
+        $Q_{Hd}$ & $(H^\dagger i\overleftrightarrow{D}_\mu H)(\bar{d}_p \gamma^\mu d_r)$ \\
+        $Q_{Hud} + \text{h.c.}$ & $i(\widetilde{H}^\dagger D_\mu H)(\bar{u}_p \gamma^\mu d_r)$
+    \end{tabular}
+    } % Close second resizebox
+    
+    \vspace{1em}
+    \scalebox{0.75}{%
+    % ================= ROW 3 =================
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{8 : $\boldsymbol{(\bar{L}L)(\bar{L}L)}$}} \\ \hline
+        \cellcolor{gray!25}$Q_{ll}$ & \cellcolor{gray!25}$(\bar{l}_p \gamma^\mu l_r)(\bar{l}_s \gamma_\mu l_t)$ \\
+        $Q_{qq}^{(1)}$ & $(\bar{q}_p \gamma^\mu q_r)(\bar{q}_s \gamma_\mu q_t)$ \\
+        $Q_{qq}^{(3)}$ & $(\bar{q}_p \gamma^\mu \tau^I q_r)(\bar{q}_s \gamma_\mu \tau^I q_t)$ \\
+        $Q_{lq}^{(1)}$ & $(\bar{l}_p \gamma^\mu l_r)(\bar{q}_s \gamma_\mu q_t)$ \\
+        $Q_{lq}^{(3)}$ & $(\bar{l}_p \gamma^\mu \tau^I l_r)(\bar{q}_s \gamma_\mu \tau^I q_t)$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{8 : $\boldsymbol{(\bar{R}R)(\bar{R}R)}$}} \\ \hline
+        $Q_{ee}$ & $(\bar{e}_p \gamma^\mu e_r)(\bar{e}_s \gamma_\mu e_t)$ \\
+        $Q_{uu}$ & $(\bar{u}_p \gamma^\mu u_r)(\bar{u}_s \gamma_\mu u_t)$ \\
+        $Q_{dd}$ & $(\bar{d}_p \gamma^\mu d_r)(\bar{d}_s \gamma_\mu d_t)$ \\
+        $Q_{eu}$ & $(\bar{e}_p \gamma^\mu e_r)(\bar{u}_s \gamma_\mu u_t)$ \\
+        $Q_{ed}$ & $(\bar{e}_p \gamma^\mu e_r)(\bar{d}_s \gamma_\mu d_t)$ \\
+        $Q_{ud}^{(1)}$ & $(\bar{u}_p \gamma^\mu u_r)(\bar{d}_s \gamma_\mu d_t)$ \\
+        $Q_{ud}^{(8)}$ & $(\bar{u}_p \gamma^\mu T^A u_r)(\bar{d}_s \gamma_\mu T^A d_t)$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{8 : $\boldsymbol{(\bar{L}L)(\bar{R}R)}$}} \\ \hline
+        \cellcolor{gray!25}$Q_{le}$ & \cellcolor{gray!25}$(\bar{l}_p \gamma^\mu l_r)(\bar{e}_s \gamma_\mu e_t)$ \\
+        $Q_{lu}$ & $(\bar{l}_p \gamma^\mu l_r)(\bar{u}_s \gamma_\mu u_t)$ \\
+        $Q_{ld}$ & $(\bar{l}_p \gamma^\mu l_r)(\bar{d}_s \gamma_\mu d_t)$ \\
+        $Q_{qe}$ & $(\bar{q}_p \gamma^\mu q_r)(\bar{e}_s \gamma_\mu e_t)$ \\
+        $Q_{qu}^{(1)}$ & $(\bar{q}_p \gamma^\mu q_r)(\bar{u}_s \gamma_\mu u_t)$ \\
+        $Q_{qu}^{(8)}$ & $(\bar{q}_p \gamma^\mu T^A q_r)(\bar{u}_s \gamma_\mu T^A u_t)$ \\
+        $Q_{qd}^{(1)}$ & $(\bar{q}_p \gamma^\mu q_r)(\bar{d}_s \gamma_\mu d_t)$ \\
+        $Q_{qd}^{(8)}$ & $(\bar{q}_p \gamma^\mu T^A q_r)(\bar{d}_s \gamma_\mu T^A d_t)$
+    \end{tabular}
+    } % Close third resizebox
+    
+    \vspace{1em}
+    \scalebox{0.75}{% Scaling down slightly less for the smaller last row
+    % ================= ROW 4 =================
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{8 : $\boldsymbol{(\bar{L}R)(\bar{R}L) + \text{h.c.}}$}} \\ \hline
+        $Q_{ledq}$ & $(\bar{l}_p^j e_r)(\bar{d}_s q_{tj})$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{8 : $\boldsymbol{(\bar{L}R)(\bar{L}R) + \text{h.c.}}$}} \\ \hline
+        $Q_{quqd}^{(1)}$ & $(\bar{q}_p^j u_r) \epsilon_{jk} (\bar{q}_s^k d_t)$ \\
+        $Q_{quqd}^{(8)}$ & $(\bar{q}_p^j T^A u_r) \epsilon_{jk} (\bar{q}_s^k T^A d_t)$ \\
+        $Q_{lequ}^{(1)}$ & $(\bar{l}_p^j e_r) \epsilon_{jk} (\bar{q}_s^k u_t)$ \\
+        $Q_{lequ}^{(3)}$ & $(\bar{l}_p^j \sigma_{\mu\nu} e_r) \epsilon_{jk} (\bar{q}_s^k \sigma^{\mu\nu} u_t)$
+    \end{tabular}
+    } % Close fourth resizebox
+    \caption{76 operators from the Warsaw basis \parencite{grzadkowski2010dimension}, that conserve baryon and lepton number $\to$ table from \parencite{jenkins2018lowOM}.}
+    \label{tab:dim6SMEFTbasis}
+\end{table}
+\subsection{SMEFT dim-7 operator basis}
+See table \ref{tab:dim7SMEFTbl02} and \ref{tab:dim7SMEFTbl1-1}.
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    
+    % ================= ROW 1 =================
+    \scalebox{0.75}{%
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{\psi^2 H^4}$}} \\ \hline
+        $\mathcal{O}_{LH}^{pr}$ & $\epsilon_{ij}\epsilon_{mn} (\overline{L_p^{iC}} L_r^m) H^j H^n (H^\dagger H)$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{\psi^2 H^3 D}$}} \\ \hline
+        \cellcolor{gray!25}$\mathcal{O}_{LeHD}^{pr}$ & \cellcolor{gray!25}$\epsilon_{ij}\epsilon_{mn} (\overline{L_p^{iC}} \gamma_\mu e_r) H^j H^m iD^\mu H^n$
+    \end{tabular}
+    } % Close row 1
+    
+    \vspace{1em}
+    \scalebox{0.75}{
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{\psi^2 H^2 D^2}$}} \\ \hline
+        $\mathcal{O}_{LHD1}^{pr}$ & $\epsilon_{ij}\epsilon_{mn} (\overline{L_p^{iC}} D^\mu L_r^j) H^m D_\mu H^n$ \\
+        $\mathcal{O}_{LHD2}^{pr}$ & $\epsilon_{im}\epsilon_{jn} (\overline{L_p^{iC}} D^\mu L_r^j) H^m D_\mu H^n$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{\psi^2 H^2 X}$}} \\ \hline
+        $\mathcal{O}_{LHB}^{pr}$ & $\epsilon_{ij}\epsilon_{mn} (\overline{L_p^{iC}} \sigma_{\mu\nu} L_r^m) H^j H^n B^{\mu\nu}$ \\
+        $\mathcal{O}_{LHW}^{pr}$ & $\epsilon_{ij}(\epsilon\tau^I)_{mn} (\overline{L_p^{iC}} \sigma_{\mu\nu} L_r^m) H^j H^n W^{I\mu\nu}$
+    \end{tabular}
+    }
+    
+    % ================= ROW 2 =================
+    \vspace{1em}
+    \scalebox{0.75}{%
+    \begin{tabular}[t]{c|c}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{\psi^4 D}$}} \\ \hline
+        $\mathcal{O}_{\bar{d}uLLD}^{prst}$ & $\epsilon_{ij} (\overline{d_p} \gamma_\mu u_r)(\overline{L_s^{iC}} iD^\mu L_t^j)$ \\
+        $\mathcal{O}_{\bar{e}dddD}^{prst}$ & $\epsilon_{\alpha\beta\gamma} (\overline{e_p} \gamma_\mu d_r^\alpha) (\overline{d_s^{\beta C}} iD^\mu d_t^\gamma)$ \\
+        $\mathcal{O}_{\bar{L}QddD}^{prst}$ & $\epsilon_{\alpha\beta\gamma} (\overline{L_p} \gamma_\mu Q_r^\alpha) (\overline{d_s^{\beta C}} iD^\mu d_t^\gamma)$
+    \end{tabular}
+    } % Close row 2
+    \caption{Dim-7 SMEFT operators with $(\Delta B, \Delta L) = (0, 2)$ - all tables from \parencite[p.5]{liao2025rge}}
+    \label{tab:dim7SMEFTbl02}
+    \end{table}
+    
+\begin{table}[htbp]
+    \centering
+    \scalebox{0.75}{%
+    \begin{tabular}[t]{c|l}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{\psi^4 H \quad (\Delta L = 2)}$}} \\ \hline
+        \cellcolor{gray!25}$\mathcal{O}_{\bar{e}LLLH}^{prst}$ & \cellcolor{gray!25}$\epsilon_{ij}\epsilon_{mn} (\overline{e_p} L_r^i)(\overline{L_s^{jC}} L_t^m) H^n$ \\
+        $\mathcal{O}_{\bar{d}LQLH1}^{prst}$ & $\epsilon_{ij}\epsilon_{mn} (\overline{d_p} L_r^i)(\overline{Q_s^{jC}} L_t^m) H^n$ \\
+        $\mathcal{O}_{\bar{d}LQLH2}^{prst}$ & $\epsilon_{im}\epsilon_{jn} (\overline{d_p} L_r^i)(\overline{Q_s^{jC}} L_t^m) H^n$ \\
+        $\mathcal{O}_{\bar{d}LueH}^{prst}$ & $\epsilon_{ij} (\overline{d_p} L_r^i)(u_s^C e_t) H^j$ \\
+        $\mathcal{O}_{\bar{Q}uLLH}^{prst}$ & $\epsilon_{ij} (\overline{Q_p} u_r)(\overline{L_s^C} L_t^i) H^j$
+    \end{tabular}
+    \hspace{0.3em}
+    \begin{tabular}[t]{c|l}
+        \multicolumn{2}{c}{\textbf{$\boldsymbol{\psi^4 H \quad (\Delta B = 1, \Delta L = -1)}$}} \\ \hline
+        $\mathcal{O}_{\bar{L}dud\tilde{H}}^{prst}$ & $\epsilon_{\alpha\beta\gamma} (\overline{L_p} d_r^\alpha) (u_s^{\beta C} d_t^\gamma) \widetilde{H}$ \\
+        $\mathcal{O}_{\bar{L}dddH}^{prst}$ & $\epsilon_{\alpha\beta\gamma} (\overline{L_p} d_r^\alpha) (\overline{d_s^{\beta C}} d_t^\gamma) H$ \\
+        $\mathcal{O}_{\bar{e}Qdd\tilde{H}}^{prst}$ & $\epsilon_{ij}\epsilon_{\alpha\beta\gamma} (\overline{e_p} Q_r^{i\alpha}) (\overline{d_s^{\beta C}} d_t^\gamma) \widetilde{H}^j$ \\
+        $\mathcal{O}_{\bar{L}dQQ\tilde{H}}^{prst}$ & $\epsilon_{ij}\epsilon_{\alpha\beta\gamma} (\overline{L_p} d_r^\alpha) (\overline{Q_s^{\beta C}} Q_t^{i\gamma}) \widetilde{H}^j$
+    \end{tabular}
+    } % Close row 3
+    \caption{Dim-7 SMEFT operators with $(\Delta B, \Delta L) = (1, -1)$ - all tables from \parencite[p.5]{liao2025rge}}
+    \label{tab:dim7SMEFTbl1-1}
+\end{table}
+\clearpage
+\section{Renormalization Group Equations}\label{sec:apprge}
+Here we cite the full one-loop RGE for the relevant SMEFT operators. The overall structure of the dimension-six SMEFT renormalization group equations was presented in \parencite{jenkins2013rge1}. The Yukawa loop contributions were given in \parencite{jenkins2014rge2} and the Gauge loop contributions in \parencite{alonso2014rge3} - from the latter two papers we collect the results and add them here together. The notation in the papers is the following:
+\begin{equation}
+    \dot{C} \equiv 16\pi^2 \mu \frac{d C}{d\mu}
+\end{equation}
+\begin{align}
+%%%%%
+\dot L_{\substack{ ll \\ prst }} &= -\frac{1}{2} [Y_e^\dagger Y_e]_{pr} L_{\substack{ Hl \\ st }}^{(1)} -\frac{1}{2} [Y_e^\dagger Y_e]_{st} L_{\substack{ Hl \\ pr }}^{(1)}  +\frac{1}{2} [Y_e^\dagger Y_e]_{pr} L_{\substack{ Hl \\ st }}^{(3)} +\frac{1}{2} [Y_e^\dagger Y_e]_{st} L_{\substack{ Hl \\ pr }}^{(3)} \nn
+&-  [Y_e^\dagger Y_e]_{sr} L_{\substack{ Hl \\ pt }}^{(3)} - [Y_e^\dagger Y_e]_{pt} L_{\substack{ Hl \\ sr }}^{(3)}  - \frac{1}{2} \, [Y_e^\dagger]_{sv} \, [Y_e]_{wt} \, L_{\substack{le  \\ prvw}} - \frac{1}{2} \, [Y_e^\dagger]_{pv} \, [Y_e]_{wr} \, L_{\substack{le  \\ stvw}} \nn
+&+ \gamfY lpv L_{\substack{ll \\ vrst}} + \gamfY lsv L_{\substack{ll \\ prvt}}
++  L_{\substack{ll \\ pvst}} \gamfY lvr + L_{\substack{ll \\ prsv}}  \gamfY lvt\\
+&+ \frac23 g_1^2 \hyp_h \hyp_l C^{(1)}_{ \substack {Hl \\ s t } } \delta_{p r} 
+-       \frac16 g_2^2 C^{(3)}_{ \substack {Hl \\ s t } } \delta_{p r}
++ \frac13 g_2^2 C^{(3)}_{ \substack {Hl \\ s r } } \delta_{p t} 
++    \frac13   g_2^2 C^{(3)}_{ \substack {Hl \\ p t } } \delta_{r s} 
+\nn
+&
++ \frac23 g_1^2 \hyp_h \hyp_l C^{(1)}_{ \substack {Hl \\ p r } }   \delta_{s t} 
+- \frac16 g_2^2 C^{(3)}_{ \substack {Hl \\ p r } } \delta_{s t}  
++     \frac43 g_1^2 \hyp_l^2 L_{ \substack {ll \\ p r w w } } \delta_{s t}
++        \frac43 g_1^2 \hyp_l^2 L_{ \substack {ll \\ s t w w } } \delta_{p r} 
++        \frac43 g_1^2 \hyp_l^2 L_{ \substack {ll \\ w w s t } } \delta_{p r} 
+\nn
+&
++        \frac43 g_1^2 \hyp_l^2 L_{ \substack {ll \\ w w p r } } \delta_{s t} 
++        \frac23 g_1^2 \hyp_l^2 L_{ \substack {ll \\ p w w r } } \delta_{s t} 
++        \frac23 g_1^2 \hyp_l^2 L_{ \substack {ll \\ s w w t } } \delta_{p r} 
++        \frac23 g_1^2 \hyp_l^2 L_{ \substack {ll \\ w r p w } } \delta_{s t}
++        \frac23 g_1^2 \hyp_l^2 L_{ \substack {ll \\ w t s w } } \delta_{p r} 
+\nn
+&
+-        \frac16 g_2^2 L_{ \substack {ll \\ p w w r } } \delta_{s t} 
+-        \frac16 g_2^2 L_{ \substack {ll \\ s w w t } } \delta_{p r}
+-        \frac16 g_2^2 L_{ \substack {ll \\ w r p w } } \delta_{s t} 
+-        \frac16 g_2^2 L_{ \substack {ll \\ w t s w } } \delta_{p r} 
++        \frac13 g_2^2 L_{ \substack {ll \\ s w w r } } \delta_{p t}
+\nn
+&
++        \frac13 g_2^2 L_{ \substack {ll \\ p w w t } } \delta_{r s} 
++         \frac13    g_2^2 L_{ \substack {ll \\ w r s w } } \delta_{p t} 
++        \frac13 g_2^2 L_{ \substack {ll \\ w t p w } } \delta_{r s} 
++        \frac43 g_1^2 N_c \hyp_l \hyp_q C^{(1)}_{ \substack {lq \\ p r w w } } \delta_{s t}
++        \frac43 g_1^2 N_c \hyp_l \hyp_q C^{(1)}_{ \substack {lq \\ s t w w } } \delta_{p r} 
+\nn
+&
+-        \frac13 g_2^2 N_c C^{(3)}_{ \substack {lq \\ p r w w } } \delta_{s t}
+-        \frac13 g_2^2 N_c C^{(3)}_{ \substack {lq \\ s t w w } } \delta_{p r} 
++        \frac23 g_2^2 N_c C^{(3)}_{ \substack {lq \\ s r w w } } \delta_{p t} 
++        \frac23 g_2^2 N_c C^{(3)}_{ \substack {lq \\ p t w w } } \delta_{r s} 
+\nn
+&
++        \frac23 g_1^2 N_c \hyp_l \hyp_u L_{ \substack {lu \\ p r w w } } \delta_{s t}
++        \frac23 g_1^2 N_c \hyp_l \hyp_u L_{ \substack {lu \\ s t w w } } \delta_{p r} 
++        \frac23 g_1^2 N_c \hyp_d \hyp_l L_{ \substack {ld \\ p r w w } } \delta_{s t} 
++        \frac23 g_1^2 N_c \hyp_d \hyp_l L_{ \substack {ld \\ s t w w } } \delta_{p r} 
+\nn
+&
++        \frac23 g_1^2 \hyp_e \hyp_l L_{ \substack {le \\ p r w w } } \delta_{s t} 
++        \frac23 g_1^2 \hyp_e \hyp_l L_{ \substack {le \\ s t w w } } \delta_{p r} 
++ 6 g_2^2 \, L_{\substack{ll \\ ptsr}} - 3\left( g_2^2 - 4 \hyp_l^2 g_1^2 \right) L_{\substack{ll \\ prst}} 
+\end{align}
+\begin{align}
+%
+\dot L_{\substack{Hl  \\ pr}}^{(3)} &= -\frac12 [Y_e^\dagger Y_e]_{pr}   L_{H\Box}  +\frac12 [Y_e^\dagger Y_e]_{pt} \bigl( 3 L_{\substack{Hl \\ tr}}^{(1)} +  L_{\substack{Hl \\ tr}}^{(3)} \bigr) + \frac12 \bigl( 3 L_{\substack{Hl \\ pt}}^{(1)} +  L_{\substack{Hl \\ pt}}^{(3)} \bigr)  [Y_e^\dagger Y_e]_{tr} \nn
+&
+ - \bigl( L_{\substack{ll \\ ptsr}}+ L_{\substack{ll \\ srpt}} \bigr) [{Y_e}^\dagger Y_e  ]_{ts} -2N_c  C^{(3)}_{\substack{lq \\ prst }}   [Y_d^\dagger Y_d+Y_u^\dagger Y_u]_{ts}+ 2 \gamHY   L_{\substack{Hl  \\ pr}}^{(3)}+ \gamfY lpt L_{\substack{Hl\\ tr}} ^{(3)} + L_{\substack{Hl \\ pt}}^{(3)}\gamfY ltr\\
+ &+\frac16 g_2^2 L_{H \Box} \delta_{pr}+ \frac23 g_2^2  C^{(3)}_{\substack{H l \\ tt}}\delta_{pr} +  \frac23 g_2^2 N_c  C^{(3)}_{\substack{H q \\ tt}}\delta_{pr}
++\frac13 g_2^2  L_{\substack{Hl \\ pr}}^{(3)} +\frac{1}{3} g_2^2 L_{ \substack {ll \\ p w w r } } +\frac{1}{3} g_2^2 L_{ \substack {ll \\ w r p w } } 
++\frac{2}{3} g_2^2 N_c C^{(3)}_{ \substack {lq \\ p r w w } }\nn
+& - 6 g_2^2  L_{\substack{Hl \\ pr}}^{(3)} 
+\end{align}
+\begin{align}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\dot L_{\substack{ le \\ prst }} &=  [Y_e]_{sr} \xi_{\substack{e \\ pt}} +[Y_e^\dagger]_{pt} \xi^*_{\substack{e \\ rs}}- [Y_e^\dagger Y_e]_{pr} L_{\substack{ He \\ st }} +2  [Y_e Y_e^\dagger]_{st} L_{\substack{ Hl \\ pr }}^{(1)}  - [Y_e^\dagger]_{pv} \, [Y_e]_{wr} \, L_{\substack{ee  \\ vtsw}} -  [Y_e^\dagger]_{pw} \, [Y_e]_{vr} \, L_{\substack{ee  \\ wtsv}} \nn
+& - 2 [Y_e^\dagger]_{pv} \, [Y_e]_{wr} \, L_{\substack{ee  \\ vwst}}
+ + [Y_e^\dagger]_{pw} \, [Y_e]_{sv}  \, L_{\substack{le  \\ vrwt}}    - [Y_e^\dagger]_{wt} \, [Y_e]_{sv}  \, L_{\substack{ll  \\ pwvr}} -  [Y_e^\dagger]_{vt} \, [Y_e]_{sw} \, L_{\substack{ll \\ pvwr}} \nn
+& - 4 [Y_e^\dagger]_{wt} \, [Y_e]_{sv} \, L_{\substack{ll \\ prvw}} + [Y_e^\dagger]_{vt} \, [Y_e]_{wr}  \, L_{\substack{le \\ pvsw}}   + \gamfY lpv L_{\substack{le \\ vrst}}  + \gamfY esv  L_{\substack{le \\ prvt}}
++  L_{\substack{le \\ pvst}}  \gamfY lvr  + L_{\substack{le \\ prsv}}  \gamfY evt\\
+ &+    \frac43 g_1^2 \hyp_h \hyp_l L_{ \substack {He \\ s t } } \delta_{p r}  
+ +        \frac43 g_1^2 \hyp_e \hyp_h C^{(1)}_{ \substack {Hl \\ p r } } \delta_{s t}    
++        \frac83 g_1^2 \hyp_e \hyp_l L_{ \substack {ll \\ p r w w } } \delta_{s t} 
++        \frac83 g_1^2 \hyp_e \hyp_l L_{ \substack {ll \\ w w p r } } \delta_{s t} 
++        \frac43 g_1^2 \hyp_e \hyp_l L_{ \substack {ll \\ p w w r } } \delta_{s t}
+\nn
+&
++        \frac43 g_1^2 \hyp_e \hyp_l L_{ \substack {ll \\ w r p w } } \delta_{s t} 
++        \frac83 g_1^2 N_c \hyp_e \hyp_q C^{(1)}_{ \substack {lq \\ p r w w } } \delta_{s t} 
++        \frac83 g_1^2 N_c \hyp_l \hyp_q L_{ \substack {qe \\ w w s t } } \delta_{p r}
++        \frac43 g_1^2 \hyp_e^2 L_{ \substack {le \\ p r w w } } \delta_{s t} 
++        \frac83 g_1^2 \hyp_l^2 L_{ \substack {le \\ w w s t } } \delta_{p r} 
+\nn
+&
++        \frac43 g_1^2 N_c \hyp_e \hyp_u L_{ \substack {lu \\ p r w w } } \delta_{s t}
++        \frac43 g_1^2 N_c \hyp_d \hyp_e L_{ \substack {ld \\ p r w w } } \delta_{s t} 
++        \frac43 g_1^2 N_c \hyp_l \hyp_u L_{ \substack {eu \\ s t w w } } \delta_{p r} 
++        \frac43 g_1^2 N_c \hyp_d \hyp_l L_{ \substack {ed \\ s t w w } } \delta_{p r} 
+\nn
+&
++        \frac43 g_1^2 \hyp_e \hyp_l L_{ \substack {ee \\ s t w w } } \delta_{p r} 
++        \frac43 g_1^2 \hyp_e \hyp_l L_{ \substack {ee \\ s w w t } } \delta_{p r} 
++        \frac43 g_1^2 \hyp_e \hyp_l L_{ \substack {ee \\ w t s w } } \delta_{p r}
++        \frac43 g_1^2 \hyp_e \hyp_l L_{ \substack {ee \\ w w s t } } \delta_{p r} 
+-12 \hyp_l \hyp_e g_1^2 L_{\substack{ le \\ prst }} 
+\end{align}
+For the dimension-seven SMEFT operators, we cite here the results from \parencite{liao2019renormalization} - the authors present their results directly in terms of the counterterms that each operator requires at one loop, so we collect the respective contributions from all SMEFT operators.
+\begin{align}
+    \begin{autobreak}
+    \dot L_{\bar{e}LLLH}=
+    % eLLLH
+    +\frac{1}{8}\Big\{\big(9g_1^2+7g_2^2-4W_H\big)C^{prst}_{\bar{e}LLLH}
+    -8g_2^2\big(C^{prts}_{\bar{e}LLLH}-C^{pstr}_{\bar{e}LLLH}+2C^{ptsr}_{\bar{e}LLLH}\big)
+    -4(Y^\dagger_e)_{pr}(Y_d)_{vw}\big(2C^{wvst}_{\bar{e}LLLH}+C^{wsvt}_{\bar{e}LLLH}
+    +C^{wstv}_{\bar{e}LLLH}-C^{wtsv}_{\bar{e}LLLH}\big)
+    -2\Big[6(Y^\dagger_e Y_e)_{pv}C^{vrst}_{\bar{e}LLLH}
+    +(Y_e Y_e^\dagger)_{vr}\big(C^{pvst}_{\bar{e}LLLH}+4C^{pvts}_{\bar{e}LLLH}\big)+5(Y_e Y_e^\dagger)_{vs}C^{prvt}_{\bar{e}LLLH}
+    -(Y_e Y_e^\dagger)_{vt}\big(4C^{prvs}_{\bar{e}LLLH}+3C^{prsv}_{\bar{e}LLLH}\big)
+    \Big]\Big\}
+    % LHD1
+    -\frac{1}{4}\Big\{3g_1^2(Y^\dagger_e)_{pt}\big(C^{rs}_{LHD1}+C^{sr}_{LHD1}\big)
+    -g_2^2\Big[(Y^\dagger_e)_{pt}\big(C^{rs}_{LHD1}-C^{sr}_{LHD1} \big)-2(Y^\dagger_e)_{ps}\big(C^{rt}_{LHD1}-C^{tr}_{LHD1} \big)\Big]
+    -4(Y^\dagger_e)_{pr}W^1_{ts}\Big\}
+    % LHD2
+    -\frac{1}{4}\Big\{3\big(g_1^2-g_2^2\big)\Big[(Y^\dagger_e)_{pt}C^{rs}_{LHD2}
+    -(Y^\dagger_e)_{ps}\big(C^{rt}_{LHD2}-C^{tr}_{LHD2}\big)\Big]
+    -4(Y^\dagger_e)_{pr}W^2_{ts}\Big\}
+    % LHB
+    -3g^2_1\Big[(Y_e^\dagger)_{pr}C^{st}_{LHB}
+    +(Y_e^\dagger)_{pt}C^{rs}_{LHB}-4(Y_e^\dagger)_{ps}C^{rt}_{LHB}\Big]
+    % LHW
+    +\frac{1}{2}g^2_2
+    \Big\{(Y^\dagger_e)_{pt}\big(5C^{rs}_{LHW}+C^{sr}_{LHW}\big)
+    -4(Y^\dagger_e)_{ps}\big(C^{rt}_{LHW}-C^{tr}_{LHW}\big)\Big\}
+    % dLQLH1
+    -\frac{3}{2}(Y^\dagger_e)_{pr}(Y_d)_{vw}C^{wsvt}_{\bar{d}LQLH1}
+    % dLQLH2
+    -\frac{3}{2}(Y^\dagger_e)_{pr}(Y_d)_{vw}\big(C^{wsvt}_{\bar{d}LQLH2}-C^{wtvs}_{\bar{d}LQLH2}\big)L_{\bar{d}LQLH2}^{prst}
+    % QuLLH
+    +3(Y^\dagger_e)_{pr}(Y^\dagger_u)_{vw}C^{wvst}_{\bar{Q}uLLH}
+    \end{autobreak}
+\end{align}
+\begin{align}
+    \begin{autobreak}
+    \dot L_{LeHD}^{pr}=
+    % LeHD
+    \frac{1}{4}\Big[\big(3g_1^2-12\lambda-6W_H\big)C^{pr}_{LeHD}
+    -(Y_eY^\dagger_e)_{vp}C^{vr}_{LeHD}-2(Y_e)_{vr}(Y^\dagger_e)_{wp}C^{vw}_{LeHD}
+    -8(Y^\dagger_eY_e)_{vr}C^{pv}_{LeHD}\Big]
+    % LHD1
+    -\frac{1}{4}\Big\{(Y_e)_{vr}\Big[\big(3g_1^2
+    -4g_2^2\big)C^{pv}_{LHD1} +\big(3g_1^2+2g_2^2\big)C^{vp}_{LHD1} \Big]
+    -\Big[(Y_eY^\dagger_e)_{vp}(Y_e)_{wr}\big(2C^{vw}_{LHD1}-C^{wv}_{LHD1}\big)
+    +4(Y_eY^\dagger_eY_e)_{vr}C^{pv}_{LHD1}\Big]\Big\}
+    % LHD2
+    -\frac{1}{16}\Big[\big( 13g_1^2-17g_2^2-8\lambda\big)(Y_e)_{vr}C^{pv}_{LHD2}
+    -4\Big(5(Y_eY^\dagger_eY_e)_{vr}C^{pv}_{LHD2}
+    +(Y_eY^\dagger_e)_{vp}(Y_e)_{wr}C^{vw}_{LHD2}\Big)
+    \Big]
+    % LeHD
+    +3(Y^\dagger_uY_d)_{vw}C^{wpvr}_{LeHD}
+    \end{autobreak}
+\end{align}
+
+
+\chapter{UV Lagrangian}
+\section{Irreps}
+UV scalars, fermions and vectors that contribute to SMEFT operators up to dimension 7 at tree-level in tab. \ref{tab:BSMsfv} \cite{li2024complete}.
+\begin{table}[]
+    \centering
+    %\renewcommand{\arraystretch}{1.5}
+    \small
+    \begin{tabular}{lcccccccc}
+        \toprule
+        Notation \cite{li2024complete}& \cellcolor{gray!25} $S_1$ & $S_2$ & $S_3$ & \cellcolor{gray!25}$S_4$ & $S_5$ & \cellcolor{gray!25}$S_6$ & $S_7$ & $S_8$ \\
+        Notation \cite{de2018effective} & \cellcolor{gray!25}$\mathcal{S}$ & $\mathcal{S}_1$ & $\mathcal{S}_2$ & \cellcolor{gray!25}$\varphi$ & $\Xi$ & \cellcolor{gray!25}$\Xi_1$ & $\Theta_1$ & $\Theta_3$ \\
+        Irrep & \cellcolor{gray!25}$({\bf 1,1})_0$ & $({\bf 1,1})_1$ & $({\bf 1,1})_2$ & \cellcolor{gray!25}$({\bf 1,2})_{\frac{1}{2}}$ & $({\bf 1,3})_0$ & \cellcolor{gray!25}$({\bf 1,3})_1$ & $({\bf 1,4})_{\frac{1}{2}}$ & $({\bf 1,4})_{\frac{3}{2}}$ \\
+        \midrule
+        Notation \cite{li2024complete}& $S_9$ & $S_{10}$ & $S_{11}$ & $S_{12}$ & $S_{13}$ & $S_{14}$ & & \\
+        Notation \cite{de2018effective} & $\omega_4$ & $\omega_1$ & $\omega_2$ & $\Pi_1$ & $\Pi_7$ & $\zeta$ & & \\
+        Irrep & $({\bf 3,1})_{-\frac{4}{3}}$ & $({\bf 3,1})_{-\frac{1}{3}}$ & $({\bf 3,1})_{\frac{2}{3}}$ & $({\bf 3,2})_{\frac{1}{6}}$ & $({\bf 3,2})_{\frac{7}{6}}$ & $({\bf 3,3})_{-\frac{1}{3}}$ & & \\
+        \midrule
+        Notation \cite{li2024complete}& $S_{15}$ & $S_{16}$ & $S_{17}$ & $S_{18}$ & $S_{19}$ & & & \\
+        Notation \cite{de2018effective} & $\Omega_2$ & $\Omega_1$ & $\Omega_4$ & $\Upsilon_1$ & $\Phi$ & & & \\
+        Irrep & $({\bf 6,1})_{-\frac{2}{3}}$ & $({\bf 6,1})_{\frac{1}{3}}$ & $({\bf 6,1})_{\frac{4}{3}}$ & $({\bf 6,3})_{\frac{1}{3}}$ & $({\bf 8,2})_{\frac{1}{2}}$ & & & \\
+        \midrule
+        Notation \cite{li2024complete}& \cellcolor{gray!25}$F_1$ & \cellcolor{gray!25}$F_2$ & \cellcolor{gray!25}$F_3$ & $F_4$ & \cellcolor{gray!25}$F_5$ & \cellcolor{gray!25}$F_6$ & $F_7$ \\
+        Notation \cite{de2018effective} & \cellcolor{gray!25}$N$ & \cellcolor{gray!25}$E^c$ & \cellcolor{gray!25}$\Delta_1^c$ & $\Delta_3^c$ & \cellcolor{gray!25}$\Sigma$ & \cellcolor{gray!25}$\Sigma_1^c$ & \\
+        Irrep & \cellcolor{gray!25}$({\bf 1,1})_0$ & \cellcolor{gray!25}$({\bf 1,1})_{1}$ & \cellcolor{gray!25}$({\bf 1,2})_{\frac{1}{2}}$ & $({\bf 1,2})_{\frac{3}{2}}$ & \cellcolor{gray!25}$({\bf 1,3})_0$ & \cellcolor{gray!25}$({\bf 1,3})_{1}$ & $({\bf 1,4})_{\frac{1}{2}}$ \\
+        \midrule 
+        Notation \cite{li2024complete} & $F_8$ & $F_{9}$ & $F_{10}$ & $F_{11}$ & $F_{12}$ & $F_{13}$ & $F_{14}$ \\
+        Notation \cite{de2018effective} & $D$ & $U$ & $Q_5$ & $Q_1$ & $Q_7$ & $T_1$ & $T_2$ \\
+        Irrep & $({\bf 3,1})_{-\frac{1}{3}}$ & $({\bf 3,1})_{\frac{2}{3}}$ & $({\bf 3,2})_{-\frac{5}{6}}$ & $({\bf 3,2})_{\frac{1}{6}}$ & $({\bf 3,2})_{\frac{7}{6}}$ & $({\bf 3,3})_{-\frac{1}{3}}$ & $({\bf 3,3})_{\frac{2}{3}}$ \\
+        \midrule
+        Notation \cite{li2024complete}& \cellcolor{gray!25}$V_1$ & \cellcolor{gray!25}$V_2$ & \cellcolor{gray!25}$V_3$ & \cellcolor{gray!25}$V_4$ & $V_5$ & $V_6$ & $V_7$ \\
+        Notation \cite{de2018effective} & \cellcolor{gray!25}$\mathcal{B}$ & \cellcolor{gray!25}$\mathcal{B}_1$ & \cellcolor{gray!25}$\mathcal{L}_3^\dagger$ & \cellcolor{gray!25}$\mathcal{W}$ & $\mathcal{U}_2$ & $\mathcal{U}_5$ & $\mathcal{Q}_5$ \\
+        Irrep & \cellcolor{gray!25}$({\bf 1,1})_0$ & \cellcolor{gray!25}$({\bf 1,1})_1$ & \cellcolor{gray!25}$({\bf 1,2})_{\frac{3}{2}}$ & \cellcolor{gray!25}$({\bf 1,3})_0$ & $({\bf 3,1})_{\frac{2}{3}}$ & $({\bf 3,1})_{\frac{5}{3}}$ &  $({\bf 3,2})_{-\frac{5}{6}}$ \\
+        \midrule
+        Notation \cite{li2024complete}& $V_8$ & $V_{9}$ & $V_{10}$ & $V_{11}$ & $V_{12}$ & $V_{13}$ & $V_{14}$ \\
+        Notation \cite{de2018effective}& $\mathcal{Q}_1$ & $\mathcal{X}$ & $\mathcal{Y}_1^\dagger$ & $\mathcal{Y}_5^\dagger$ & $\mathcal{G}$ & $\mathcal{G}_1$ & $\mathcal{H}$ \\
+        Irrep & $({\bf 3,2})_{\frac{1}{6}}$ &$({\bf 3,3})_{\frac{2}{3}}$ & $({\bf {6}, 2})_{-\frac{1}{6}}$ & $({\bf {6}, 2})_{\frac{5}{6}}$ & $({\bf 8,1})_0$ & $({\bf 8,1})_1$ & $({\bf 8,3})_0$ \\
+        \bottomrule
+    \end{tabular}
+    \caption{BSM scalars, fermions and vectors that can contribute to operators up to dimension 7 in SMEFT at tree level. Table(s) from \cite{li2024complete}, name in the second row corresponding to \cite{de2018effective}. Fermion superscript ${}^c$ if they are conjugated with each other, Majorana fermions $F_1$ and $F_5$ have parity left, i.e. $F = F_L = P_L F$. Vector superscript ${}^\dagger$ if they are conjugated with each other. Fields that produce the operators $\mathcal{O}_{ll}, \mathcal{O}_{le}, \mathcal{O}^{(1)}_{Hl}, \mathcal{O}^{(3)}_{Hl}, \mathcal{O}_{LeHD}, \mathcal{O}_{\bar eLLLH}$ relevant for muon decay are highlighted in gray.}
+    \label{tab:BSMsfv}
+\end{table}
+\section{UV Scalars}
+\begin{align}
+    \begin{autobreak}
+        \Delta{\cal L}_{\rm S_2,S_4,S_6}^{(d = 3)} =  
+ + \frac{\mathcal{C}_{{HHS_{6}^\dagger }}^{{p}}}{\sqrt{2}}\epsilon ^{{kj}} (\tau ^{{I}})_{{k}}^{{i}}{H}_{{i}}{H}_{{j}}({S}_{{6p}}^{\dagger })^{{I}} 
+ + \mathcal{C}_{{HS_{2}^\dagger S_{4}}}^{{rp}}\epsilon ^{{ji}}{H}_{{j}}({S}_{{4r}})_{{i}}{S}_{{2p}}^{\dagger } 
+ + \frac{\mathcal{C}_{{HS_{4}S_{6}^\dagger }}^{{pr}}}{\sqrt{2}}\epsilon ^{{ki}} (\tau ^{{I}})_{{k}}^{{j}}{H}_{{j}}({S}_{{4p}})_{{i}}({S}_{{6r}}^{\dagger })^{{I}} 
+    \end{autobreak}
+\end{align}
+\begin{align}
+\begin{autobreak}
+\Delta{\cal L}_{\rm S_2,S_4,S_6}^{(d = 4)} = 
+        - \mathcal{D}_{{LLS_{2}}}^{{rsp}}\epsilon ^{{ij}}[({l}_{{r}})_{{i}}{C}({l}_{{s}})_{{j}}]{S}_{{2p}} 
+ - \mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{rsp}} [\bar{e}_{{r}}({l}_{{s}})_{{i}}]({S}_{{4p}}^{\dagger })^{{i}} 
+ - 2 \mathcal{D}_{{QS_{4}u^\dagger }}^{{rps}}\epsilon ^{{ji}} [(\bar{u}_{{s}})^{{a}}({q}_{{r}})_{{aj}}]({S}_{{4p}})_{{i}} 
+ - \frac{\mathcal{D}_{{LLS_{6}}}^{{rsp}}}{\sqrt{2}}\epsilon ^{{jk}} (\tau ^{{I}})_{{k}}^{{i}}[({l}_{{r}})_{{i}}{C}({l}_{{s}})_{{j}}]({S}_{{6p}})^{{I}} 
+ - \mathcal{D}_{{HH^\dagger H^\dagger S_{4}(1)}}^{{p}}\delta _{{k}}^{{i}} \delta _{{l}}^{{j}}{H}_{{j}}{H}^{{\dagger k}}{H}^{{\dagger l}}({S}_{{4p}})_{{i}} 
+ + \frac{\mathcal{D}_{{HH^\dagger S_{2}S_{6}^\dagger }}^{{pr}}}{\sqrt{2}}(\tau ^{{I}})_{{j}}^{{i}}{H}_{{i}}{H}^{{\dagger j}}({S}_{{6r}}^{\dagger })^{{I}}{S}_{{2p}} 
+ + \frac{\mathcal{D}_{{HH^\dagger S_{6}S_{6}^\dagger (1)}}^{{pr}}}{2}(\tau ^{{I}})_{{k}}^{{i}} (\tau ^{{J}})_{{j}}^{{k}}{H}_{{i}}{H}^{{\dagger j}}({S}_{{6p}})^{{I}}({S}_{{6r}}^{\dagger })^{{J}} 
+ + \mathcal{D}_{{HH^\dagger S_{6}S_{6}^\dagger (2)}}^{{pr}}\delta ^{{IJ}} \delta _{{j}}^{{i}}{H}_{{i}}{H}^{{\dagger j}}({S}_{{6p}})^{{I}}({S}_{{6r}}^{\dagger })^{{J}} 
+    \end{autobreak}
+\end{align}
+\subsection{New UV fermions}
+
+\subsection{New UV vectors}
+\subsection{New UV mixing terms}
+\subsection{SMEFT to UV matching conditions}
+\begin{align}
+\begin{autobreak}
+ {C_{ll}} =
+ 
+-\frac{\mathcal{D}_{{LLS_{2}}}^{{f_1f_2p_1}} \mathcal{D}_{{LLS_{2}}}^{{f_4f_3p_1*}}}{2 {M_{S_{2}}^2}}
++\frac{\mathcal{D}_{{LLS_{6}}}^{{f_1f_2p_1}} \mathcal{D}_{{LLS_{6}}}^{{f_4f_3p_1*}}}{4 {M_{S_{6}}^2}}
+-\frac{\mathcal{D}_{{LL^\dagger V_{1}}}^{{f_1f_3p_1}} \mathcal{D}_{{LL^\dagger V_{1}}}^{{f_2f_4p_1}}}{2 {M_{V_{1}}^2}}
++\frac{\mathcal{D}_{{LL^\dagger V_{4}}}^{{f_1f_3p_1}} \mathcal{D}_{{LL^\dagger V_{4}}}^{{f_2f_4p_1}}}{4 {M_{V_{4}}^2}}
+-\frac{\mathcal{D}_{{LL^\dagger V_{4}}}^{{f_1f_4p_1}} \mathcal{D}_{{LL^\dagger V_{4}}}^{{f_2f_3p_1}}}{2 {M_{V_{4}}^2}}
++\frac{\mathcal{D}_{{LLS_{2}}}^{{f_2f_1p_1}} \mathcal{D}_{{LLS_{2}}}^{{f_4f_3p_1*}}}{2 {M_{S_{2}}^2}}
++\frac{\mathcal{D}_{{LLS_{6}}}^{{f_2f_1p_1}} \mathcal{D}_{{LLS_{6}}}^{{f_4f_3p_1*}}}{4 {M_{S_{6}}^2}} 
+\end{autobreak}\label{eq:ll-UV}
+\end{align}
+\begin{align}
+\begin{autobreak}
+ {C_{le}} =
+ \frac{\mathcal{D}_{{e^\dagger eV_{1}}}^{{f_1f_3p_1}} \mathcal{D}_{{LL^\dagger V_{1}}}^{{f_2f_4p_1}}}{{M_{V_{1}}^2}}
+-\frac{\mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_1f_2p_1}} \mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_3f_4p_1*}}}{2 {M_{S_{4}}^2}}
++\frac{\mathcal{D}_{{e^\dagger L^\dagger V_{3}^\dagger }}^{{f_1f_4p_1}} \mathcal{D}_{{e^\dagger L^\dagger V_{3}^\dagger }}^{{f_3f_2p_1*}}}{{M_{V_{3}}^2}} 
+\end{autobreak}
+\end{align}
+\begin{align}
+\begin{autobreak}
+ {C_{Hl}^{(1)}} =
+ 
+-\frac{i \mathcal{D}_{{LL^\dagger V_{1}}}^{{f_1f_4p_1}} \mathcal{D}_{{HH^\dagger V_{1}D}}^{{p_1}}}{{M_{V_{1}}^2}}
++\frac{i \mathcal{D}_{{LL^\dagger V_{1}}}^{{f_1f_4p_1}} \mathcal{D}_{{HH^\dagger V_{1}D}}^{{p_1*}}}{{M_{V_{1}}^2}}
++\frac{\mathcal{D}_{{F_{1}HL}}^{{p_1f_1}} \mathcal{D}_{{F_{1}HL}}^{{p_1f_4*}}}{4 {M_{F_{1}}^2}}
+-\frac{\mathcal{D}_{{F_{2L}H^\dagger L}}^{{p_1f_1}} \mathcal{D}_{{F_{2L}H^\dagger L}}^{{p_1f_4*}}}{4 {M_{F_{2}}^2}}
++\frac{3 \mathcal{D}_{{F_{5}HL}}^{{p_1f_1}} \mathcal{D}_{{F_{5}HL}}^{{p_1f_4*}}}{8 {M_{F_{5}}^2}}
+-\frac{3 \mathcal{D}_{{F_{6L}H^\dagger L}}^{{p_1f_1}} \mathcal{D}_{{F_{6L}H^\dagger L}}^{{p_1f_4*}}}{8 {M_{F_{6}}^2}} 
+\end{autobreak}
+\end{align}
+\begin{align}
+\begin{autobreak}
+ {C_{Hl}^{(3)}} =
+ 
+-\frac{i \mathcal{D}_{{LL^\dagger V_{4}}}^{{f_1f_4p_1}} \mathcal{D}_{{HH^\dagger V_{4}D}}^{{p_1}}}{2 {M_{V_{4}}^2}}
+-\frac{i \mathcal{D}_{{LL^\dagger V_{4}}}^{{f_1f_4p_1}} \mathcal{D}_{{HH^\dagger V_{4}D}}^{{p_1*}}}{2 {M_{V_{4}}^2}}
+-\frac{\mathcal{D}_{{F_{1}HL}}^{{p_1f_1}} \mathcal{D}_{{F_{1}HL}}^{{p_1f_4*}}}{4 {M_{F_{1}}^2}}
+-\frac{\mathcal{D}_{{F_{2L}H^\dagger L}}^{{p_1f_1}} \mathcal{D}_{{F_{2L}H^\dagger L}}^{{p_1f_4*}}}{4 {M_{F_{2}}^2}}
++\frac{\mathcal{D}_{{F_{5}HL}}^{{p_1f_1}} \mathcal{D}_{{F_{5}HL}}^{{p_1f_4*}}}{8 {M_{F_{5}}^2}}
++\frac{\mathcal{D}_{{F_{6L}H^\dagger L}}^{{p_1f_1}} \mathcal{D}_{{F_{6L}H^\dagger L}}^{{p_1f_4*}}}{8 {M_{F_{6}}^2}} 
+\end{autobreak}
+\end{align}
+\begin{align}
+\begin{autobreak}
+ {C_{He}} =
+ \frac{i \mathcal{D}_{{e^\dagger eV_{1}}}^{{f_1f_4p_1}} \mathcal{D}_{{HH^\dagger V_{1}D}}^{{p_1}}}{{M_{V_{1}}^2}}
+-\frac{i \mathcal{D}_{{e^\dagger eV_{1}}}^{{f_1f_4p_1}} \mathcal{D}_{{HH^\dagger V_{1}D}}^{{p_1*}}}{{M_{V_{1}}^2}}
++\frac{\mathcal{D}_{{e^\dagger F_{3R}^\dagger H^\dagger }}^{{f_1p_1}} \mathcal{D}_{{e^\dagger F_{3R}^\dagger H^\dagger }}^{{f_4p_1*}}}{2 {M_{F_{3}}^2}}
+-\frac{\mathcal{D}_{{e^\dagger F_{4R}^\dagger H}}^{{f_1p_1}} \mathcal{D}_{{e^\dagger F_{4R}^\dagger H}}^{{f_4p_1*}}}{2 {M_{F_{4}}^2}} 
+\end{autobreak}
+\end{align}
+\begin{align}
+\begin{autobreak}
+ {C_{LeHD}} =
+-\frac{{y}_{{e}}^{{p_1f_5}} \mathcal{D}_{{F_{1}HL}}^{{p_2f_1}} \mathcal{D}_{{F_{1}HL}}^{{p_2p_1}}}{2 {M_{F_{1}}^3}}
+-\frac{{y}_{{e}}^{{p_1f_5}} \mathcal{D}_{{LLS_{6}}}^{{f_1p_1p_2}} \mathcal{C}_{{HHS_{6}^\dagger }}^{{p_2}}}{{M_{S_{6}}^4}}
+-\frac{{y}_{{e}}^{{p_1f_5}} \mathcal{D}_{{F_{5}HL}}^{{p_2f_1}} \mathcal{D}_{{F_{5}HL}}^{{p_2p_1}}}{4 {M_{F_{5}}^3}}
++\frac{{y}_{{e}}^{{p_1f_5}} \mathcal{C}_{{HHS_{6}^\dagger }}^{{p_2}} \mathcal{D}_{{LLS_{6}}}^{{p_1f_1p_2}}}{{M_{S_{6}}^4}}
++\frac{2 i \mathcal{D}_{{eF_{1}V_{2}}}^{{f_5p_1p_2}} \mathcal{D}_{{F_{1}HL}}^{{p_1f_1}} \mathcal{D}_{{HHV_{2}^\dagger D}}^{{p_2}}}{{M_{F_{1}}} {M_{V_{2}}^2}}
+-\frac{\mathcal{D}_{{e^\dagger F_{3R}^\dagger H^\dagger }}^{{f_5p_1*}} \mathcal{D}_{{F_{1}F_{3R}^\dagger H}}^{{p_2p_1}} \mathcal{D}_{{F_{1}HL}}^{{p_2f_1}}}{{M_{F_{1}}} {M_{F_{3}}^2}}
+-\frac{\mathcal{D}_{{e^\dagger F_{3R}^\dagger H^\dagger }}^{{f_5p_1*}} \mathcal{D}_{{F_{3L}F_{5}H^\dagger }}^{{p_1p_2*}} \mathcal{D}_{{F_{5}HL}}^{{p_2f_1}}}{{M_{F_{3}}} {M_{F_{5}}^2}}
++\frac{2 i \mathcal{D}_{{e^\dagger F_{3R}^\dagger H^\dagger }}^{{f_5p_1*}} \mathcal{D}_{{F_{3L}L^\dagger V_{2}^\dagger }}^{{p_1f_1p_2*}} \mathcal{D}_{{HHV_{2}^\dagger D}}^{{p_2}}}{{M_{F_{3}}} {M_{V_{2}}^2}}
+-\frac{\mathcal{D}_{{e^\dagger F_{3R}^\dagger H^\dagger }}^{{f_5p_1*}} \mathcal{D}_{{F_{3R}^\dagger F_{5}H}}^{{p_1p_2}} \mathcal{D}_{{F_{5}HL}}^{{p_2f_1}}}{2 {M_{F_{3}}^2} {M_{F_{5}}}}
+-\frac{\mathcal{D}_{{e^\dagger F_{3R}^\dagger H^\dagger }}^{{f_5p_1*}} \mathcal{D}_{{F_{3R}^\dagger LS_{6}}}^{{p_1f_1p_2}} \mathcal{C}_{{HHS_{6}^\dagger }}^{{p_2}}}{{M_{F_{3}}^2} {M_{S_{6}}^2}}
++\frac{\mathcal{D}_{{e^\dagger F_{5}S_{6}^\dagger }}^{{f_5p_1p_2*}} \mathcal{D}_{{F_{5}HL}}^{{p_1f_1}} \mathcal{C}_{{HHS_{6}^\dagger }}^{{p_2}}}{{M_{F_{5}}^2} {M_{S_{6}}^2}}
+-\frac{2 i \mathcal{D}_{{e^\dagger L^\dagger V_{3}^\dagger }}^{{f_5f_1p_1*}} \mathcal{C}_{{HHS_{6}^\dagger }}^{{p_2}} \mathcal{D}_{{HS_{6}V_{3}^\dagger D}}^{{p_2p_1}}}{{M_{S_{6}}^2} {M_{V_{3}}^2}}
+-\frac{4 i \mathcal{D}_{{e^\dagger L^\dagger V_{3}^\dagger }}^{{f_5f_1p_1*}} \mathcal{D}_{{HHV_{2}^\dagger D}}^{{p_2}} \mathcal{C}_{{HV_{2}V_{3}^\dagger }}^{{p_2p_1}}}{{M_{V_{2}}^2} {M_{V_{3}}^2}} 
+\end{autobreak}\label{eq:LeHD-UV}
+\end{align}
+\begin{align}
+\begin{autobreak}
+ {C_{eLLLH}} =
+-\frac{{y}_{{e}}^{{f_1f_2*}} \mathcal{D}_{{F_{1}HL}}^{{p_1f_3}} \mathcal{D}_{{F_{1}HL}}^{{p_1f_4}}}{2 {M_{F_{1}}^3}}
+-\frac{3 \mathcal{D}_{{e^\dagger F_{1}S_{2}^\dagger }}^{{f_1p_1p_2}} \mathcal{D}_{{LLS_{2}}}^{{f_2f_3p_2}} \mathcal{D}_{{F_{1}HL}}^{{p_1f_4}}}{2 {M_{F_{1}}} {M_{S_{2}}^2}}
++\frac{3 \mathcal{D}_{{e^\dagger F_{1}S_{2}^\dagger }}^{{f_1p_1p_2}} \mathcal{D}_{{LLS_{2}}}^{{f_3f_2p_2}} \mathcal{D}_{{F_{1}HL}}^{{p_1f_4}}}{2 {M_{F_{1}}} {M_{S_{2}}^2}}
+-\frac{\mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_1f_2p_1}} \mathcal{D}_{{F_{1}HL}}^{{p_2f_4}} \mathcal{D}_{{F_{1L}S_{4}}}^{{p_2f_3p_1}}}{{M_{F_{1}}} {M_{S_{4}}^2}}
+-\frac{{y}_{{e}}^{{f_1f_2*}} \mathcal{D}_{{F_{5}HL}}^{{p_1f_3}} \mathcal{D}_{{F_{5}HL}}^{{p_1f_4}}}{4 {M_{F_{5}}^3}}
+-\frac{\mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_1f_4p_1}} \mathcal{D}_{{F_{5}HL}}^{{p_2f_3}} \mathcal{D}_{{F_{5L}S_{4}}}^{{p_2f_2p_1}}}{{M_{F_{5}}} {M_{S_{4}}^2}}
++\frac{\mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_1f_3p_1}} \mathcal{D}_{{F_{5}HL}}^{{p_2f_4}} \mathcal{D}_{{F_{5L}S_{4}}}^{{p_2f_2p_1}}}{2 {M_{F_{5}}} {M_{S_{4}}^2}}
++\frac{\mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_1f_4p_1}} \mathcal{D}_{{F_{5}HL}}^{{p_2f_2}} \mathcal{D}_{{F_{5L}S_{4}}}^{{p_2f_3p_1}}}{2 {M_{F_{5}}} {M_{S_{4}}^2}}
++\frac{\mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_1f_3p_1}} \mathcal{D}_{{F_{5}HL}}^{{p_2f_2}} \mathcal{D}_{{F_{5L}S_{4}}}^{{p_2f_4p_1}}}{2 {M_{F_{5}}} {M_{S_{4}}^2}}
++\frac{\mathcal{D}_{{e^\dagger F_{4R}^\dagger H}}^{{f_1p_1}} \mathcal{D}_{{F_{4L}LS_{2}^\dagger }}^{{p_1f_4p_2}} \mathcal{D}_{{LLS_{2}}}^{{f_2f_3p_2}}}{{M_{F_{4}}} {M_{S_{2}}^2}}
++\frac{2 \mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_1f_4p_1}} \mathcal{C}_{{HS_{2}^\dagger S_{4}}}^{{p_2p_1}} \mathcal{D}_{{LLS_{2}}}^{{f_2f_3p_2}}}{{M_{S_{2}}^2} {M_{S_{4}}^2}}
+-\frac{\mathcal{D}_{{e^\dagger F_{4R}^\dagger H}}^{{f_1p_1}} \mathcal{D}_{{F_{4L}LS_{2}^\dagger }}^{{p_1f_4p_2}} \mathcal{D}_{{LLS_{2}}}^{{f_3f_2p_2}}}{{M_{F_{4}}} {M_{S_{2}}^2}}
+-\frac{2 \mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_1f_4p_1}} \mathcal{C}_{{HS_{2}^\dagger S_{4}}}^{{p_2p_1}} \mathcal{D}_{{LLS_{2}}}^{{f_3f_2p_2}}}{{M_{S_{2}}^2} {M_{S_{4}}^2}}
++\frac{\mathcal{D}_{{e^\dagger F_{1}S_{2}^\dagger }}^{{f_1p_1p_2}} \mathcal{D}_{{F_{1}HL}}^{{p_1f_2}} \mathcal{D}_{{LLS_{2}}}^{{f_3f_4p_2}}}{2 {M_{F_{1}}} {M_{S_{2}}^2}}
+-\frac{\mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_1f_2p_1}} \mathcal{C}_{{HS_{2}^\dagger S_{4}}}^{{p_2p_1}} \mathcal{D}_{{LLS_{2}}}^{{f_3f_4p_2}}}{{M_{S_{2}}^2} {M_{S_{4}}^2}}
+-\frac{\mathcal{D}_{{e^\dagger F_{1}S_{2}^\dagger }}^{{f_1p_1p_2}} \mathcal{D}_{{F_{1}HL}}^{{p_1f_2}} \mathcal{D}_{{LLS_{2}}}^{{f_4f_3p_2}}}{2 {M_{F_{1}}} {M_{S_{2}}^2}}
++\frac{\mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_1f_2p_1}} \mathcal{C}_{{HS_{2}^\dagger S_{4}}}^{{p_2p_1}} \mathcal{D}_{{LLS_{2}}}^{{f_4f_3p_2}}}{{M_{S_{2}}^2} {M_{S_{4}}^2}}
+-\frac{\mathcal{D}_{{e^\dagger F_{4R}^\dagger H}}^{{f_1p_1}} \mathcal{D}_{{F_{4L}LS_{6}^\dagger }}^{{p_1f_4p_2}} \mathcal{D}_{{LLS_{6}}}^{{f_2f_3p_2}}}{2 {M_{F_{4}}} {M_{S_{6}}^2}}
+-\frac{3 \mathcal{D}_{{e^\dagger F_{5}S_{6}^\dagger }}^{{f_1p_1p_2}} \mathcal{D}_{{F_{5}HL}}^{{p_1f_4}} \mathcal{D}_{{LLS_{6}}}^{{f_2f_3p_2}}}{4 {M_{F_{5}}} {M_{S_{6}}^2}}
+-\frac{\mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_1f_4p_1}} \mathcal{C}_{{HS_{4}S_{6}^\dagger }}^{{p_1p_2}} \mathcal{D}_{{LLS_{6}}}^{{f_2f_3p_2}}}{2 {M_{S_{4}}^2} {M_{S_{6}}^2}}
++\frac{\mathcal{D}_{{e^\dagger F_{4R}^\dagger H}}^{{f_1p_1}} \mathcal{D}_{{F_{4L}LS_{6}^\dagger }}^{{p_1f_4p_2}} \mathcal{D}_{{LLS_{6}}}^{{f_3f_2p_2}}}{2 {M_{F_{4}}} {M_{S_{6}}^2}}
++\frac{3 \mathcal{D}_{{e^\dagger F_{5}S_{6}^\dagger }}^{{f_1p_1p_2}} \mathcal{D}_{{F_{5}HL}}^{{p_1f_4}} \mathcal{D}_{{LLS_{6}}}^{{f_3f_2p_2}}}{4 {M_{F_{5}}} {M_{S_{6}}^2}}
++\frac{\mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_1f_4p_1}} \mathcal{C}_{{HS_{4}S_{6}^\dagger }}^{{p_1p_2}} \mathcal{D}_{{LLS_{6}}}^{{f_3f_2p_2}}}{2 {M_{S_{4}}^2} {M_{S_{6}}^2}}
++\frac{\mathcal{D}_{{e^\dagger F_{5}S_{6}^\dagger }}^{{f_1p_1p_2}} \mathcal{D}_{{F_{5}HL}}^{{p_1f_2}} \mathcal{D}_{{LLS_{6}}}^{{f_3f_4p_2}}}{4 {M_{F_{5}}} {M_{S_{6}}^2}}
+-\frac{\mathcal{D}_{{e^\dagger F_{4R}^\dagger H}}^{{f_1p_1}} \mathcal{D}_{{F_{4L}LS_{6}^\dagger }}^{{p_1f_2p_2}} \mathcal{D}_{{LLS_{6}}}^{{f_4f_3p_2}}}{{M_{F_{4}}} {M_{S_{6}}^2}}
+-\frac{5 \mathcal{D}_{{e^\dagger F_{5}S_{6}^\dagger }}^{{f_1p_1p_2}} \mathcal{D}_{{F_{5}HL}}^{{p_1f_2}} \mathcal{D}_{{LLS_{6}}}^{{f_4f_3p_2}}}{4 {M_{F_{5}}} {M_{S_{6}}^2}}
+-\frac{\mathcal{D}_{{e^\dagger LS_{4}^\dagger }}^{{f_1f_2p_1}} \mathcal{C}_{{HS_{4}S_{6}^\dagger }}^{{p_1p_2}} \mathcal{D}_{{LLS_{6}}}^{{f_4f_3p_2}}}{{M_{S_{4}}^2} {M_{S_{6}}^2}} 
+\end{autobreak}\label{eq:eLLLH-UV}
+\end{align}
