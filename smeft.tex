@@ -12,7 +12,7 @@ At dimension 5, there is only one operator (class) we can add -- the Weinberg ne
     \mathcal{L}^5=C_5^{rs}\epsilon ^{ik}\epsilon^{kl}(l^T_{ir}Cl_{ks})H_jH_l+\text{h.c.}
 \end{equation}
 Here, $r,s$ are flavor indices, $i,j,k,l$ weak-eigenstate indices and $C=i\gamma^2\gamma^0$ is the charge conjugation matrix. For three generations, $C_5$ has 6 complex entries. After spontaneous symmetry breaking, this operator produces a Majorana mass term for the neutrino: $M_\nu=-v^2C_5$\par 
-For dimension 6, Buchmüller and Wyler counted 80 operators in 1986 \cite{buchmuller1986effective}. However, many of these operators turn out to be actually equivalent and refer to the same operator structure because they can be transformed into each other. Fierz transformations, for example -- one of which we used in eq.~\ref{eq:fierzingVLR2SRR} to \enquote{fierz} $L_{\nu e}^{V,LR}$ into $g^S_{RR}$ -- account for many subtle equivalences of scalar, vector and tensor-like structures. Moreover, the SM equations of motion and field redefinitions also allow for transforming many operator structure into each other. An updated classification was therefore published in 2010 which is now mostly referred to as the Warsaw basis \cite{grzadkowski2010dimension} and which counts 63 independent operators, 59 of which conserve baryon number. Of those 59 operators, 42 are self-hermitian and 17 not -- which is why Jenkins, Manohar \& Stoffer count $42+2(17)=76$ baryon-number conserving operators in \cite{jenkins2018lowOM} and $4+4=8$ baryon-number violating operators. At dimension 7, there are 18 independent operators \cite{liao2020extending} -- originally Lehman~\cite{lehman2014extending} presented 20 operators, but 2 pairs of $\psi^4D$ operators were shown to refer to the same structure. In tab.~\ref{tab:SMEFTnumOP} we collect the number of operators at dimension 5, 6 and 7, following the counting in \cite{jenkins2018lowOM} and \cite{liao2020extending}. We cite the full bases for dimensions 6 and 7 in the appendix in ch.~\ref{sec:base}.
+For dimension 6, Buchmüller and Wyler counted 80 operators in 1986 \cite{buchmuller1986effective}. However, many of these operators turn out to be actually equivalent and refer to the same operator structure because they can be transformed into each other. Fierz transformations, for example -- one of which we used in Eq.~\ref{eq:fierzingVLR2SRR} to \enquote{fierz} $L_{\nu e}^{V,LR}$ into $g^S_{RR}$ -- account for many subtle equivalences of scalar, vector and tensor-like structures. Moreover, the SM equations of motion and field redefinitions also allow for transforming many operator structure into each other. An updated classification was therefore published in 2010 which is now mostly referred to as the Warsaw basis \cite{grzadkowski2010dimension} and which counts 63 independent operators, 59 of which conserve baryon number. Of those 59 operators, 42 are self-hermitian and 17 not -- which is why Jenkins, Manohar \& Stoffer count $42+2(17)=76$ baryon-number conserving operators in \cite{jenkins2018lowOM} and $4+4=8$ baryon-number violating operators. At dimension 7, there are 18 independent operators \cite{liao2020extending} -- originally Lehman~\cite{lehman2014extending} presented 20 operators, but 2 pairs of $\psi^4D$ operators were shown to refer to the same structure. In Tab.~\ref{tab:SMEFTnumOP} we collect the number of operators at dimension 5, 6 and 7, following the counting in \cite{jenkins2018lowOM} and \cite{liao2020extending}. We cite the full bases for dimensions 6 and 7 in the appendix in ch.~\ref{sec:base}.
 \begin{table}[t]
     \centering
     \begin{tabular}{llll} \toprule
@@ -70,19 +70,23 @@ We have therefore 5 SMEFT Operators at dimension 6 which the LEFT matches onto (
     \op_{Hl}^{(3),pr} &=(H^\dagger i\overleftrightarrow{D}^I_\mu H)(\bar{l}_p \tau^I \gamma^\mu l_r)\\
     \op_{He}^{pr}&=(H^\dagger i\overleftrightarrow{D}_\mu H)(\bar{e}_p \gamma^\mu e_r)
 \end{align}
-We see from the last term of eq. \ref{eq:LVLLmatching} that the SMEFT operator $Q_{Hl}^{(1)}$ only produces LEFT operators with two identical neutrino generations (due to the $\delta_{ab}$) -- this is because the operator stems from a lepton number changing neutral current mediated by the $Z$ boson which couples the muon directly to the electron and decays itself into two neutrinos of the same generation.\par  
+We see from the last term of Eq. \ref{eq:LVLLmatching} that the SMEFT operator $Q_{Hl}^{(1)}$ only produces LEFT operators with two identical neutrino generations (due to the $\delta_{ab}$) -- this is because the operator stems from a lepton number changing neutral current mediated by the $Z$ boson which couples the muon directly to the electron and decays itself into two neutrinos of the same generation.\par  
 For the scalar and tensor operators, since they violate lepton number, the matching at dimension 6 is zero but at dimension 7 we get from \parencite{liao2020extending}:
 \begin{align}
-L^{S,LL}_{\nu e,prst} &= -\frac{\sqrt{2}v}{8} \left( 2C_{\bar{e}LLLH}^{stpr} + C_{\bar{e}LLLH}^{sptr} + p \leftrightarrow r \right) \\
-L^{S,LR}_{\nu e,prst} &= -\frac{\sqrt{2}v}{2} \left( C_{LeHD}^{pt}\delta^{rs} + C_{LeHD}^{rt}\delta^{ps} \right) \\
-L^{T,LL}_{\nu e, prst} &= +\frac{\sqrt{2}v}{32} \left( C_{\bar{e}LLLH}^{sptr} - C_{\bar{e}LLLH}^{srtp} \right)
+L^{S,LL}_{\nu e,prst} &= -\frac{\sqrt{2}v}{8} \left( 2C_{\bar{e}LLLH}^{stpr} + C_{\bar{e}LLLH}^{sptr} + p \leftrightarrow r \right) \label{eq:SLLtoD7}\\
+L^{S,LR}_{\nu e,prst} &= -\frac{\sqrt{2}v}{2} \left( C_{LeHD}^{pt}\delta^{rs} + C_{LeHD}^{rt}\delta^{ps} \right) \label{eq:SLRtoD7} \\
+L^{T,LL}_{\nu e, prst} &= +\frac{\sqrt{2}v}{32} \left( C_{\bar{e}LLLH}^{sptr} - C_{\bar{e}LLLH}^{srtp} \right) \label{eq:TLLtoD7}
 \end{align}
-Notice that in this case the $v$ is the bare SM VEV -- corrections in terms of $v_T$ would start at order $1/\Lambda^5$ and are therefore neglected in this tree-level result. So there are two relevant operators at dimension 7 (full basis in \ref{tab:dim7SMEFTbl02} and \ref{tab:dim7SMEFTbl1-1}):
+Notice that in this case the $v$ is the bare SM VEV -- corrections in terms of $v_T$ would start at order $1/\Lambda^5$ and are therefore neglected in this tree-level result. Moreover, we neglect the corrections to $\bar g$ that stem from the SMEFT in the broken phase and refer to the technical report of the LHC EFT working group in~\cite{brivio2022truncation}: Generally products of two dimension-six coefficients,including electroweak input-parameter shifts multiplying an already dimension-six contribution, are consequently of $\mathcal O(\Lambda^{-4})$ and can be neglected.
+For operators that do not interfere with the Standard-Model amplitude, the squared EFT amplitude is retained as the leading non-vanishing contribution. Such squared terms are separately gauge invariant and basis independent, but constitute only a partial contribution at the
+corresponding higher order in the EFT expansion.
+
+As we see in Eq.~\ref{eq:SLLtoD7} to Eq.~\ref{eq:TLLtoD7} there are two relevant operators at dimension 7 (full basis in \ref{tab:dim7SMEFTbl02} and \ref{tab:dim7SMEFTbl1-1}):
 \begin{align}
     \mathcal{O}_{LeHD}^{pr} &= \epsilon_{ij}\epsilon_{mn} (\overline{L_p^{iC}} \gamma_\mu e_r) H^j H^m iD^\mu H^n \label{eq:LeHD}\\
     \mathcal{O}_{\bar{e}LLLH}^{prst} &= \epsilon_{ij}\epsilon_{mn} (\overline{e_p} L_r^i) (\overline{L_s^{jC}} L_t^m) H^n \label{eq:eLLLH}
 \end{align}
-The specific matching for the seven operators that we derived $95\%$ CL intervals for (tab.~\ref{tab:leftbounds}) is:
+The specific matching for the seven operators that we derived $95\%$ CL intervals for (Tab.~\ref{tab:leftbounds}) is:
 \begin{align}
         L^{V,LL}_{\nu e,2112} &=-\frac{2}{v_T^2} + C_{ll}^{2112} + C_{ll}^{1221}-2C^{(3),22}_{Hl}-2C^{(3),11}_{Hl}\label{eq:specMatchVLL2112}\\
         L^{V,LR}_{\nu e,2112} &= C_{le}^{2112}\label{eq:specMatchVLR2112}\\
@@ -92,18 +96,17 @@ The specific matching for the seven operators that we derived $95\%$ CL interval
         L^{S,LR}_{\nu e,1212} &=\frac{\sqrt{2}v}{2}C_{LeDH}^{22}\\
         L^{T,LL}_{\nu e,1212} &=\frac{\sqrt{2}v}{32}\left(C_{\bar eLLLH}^{1122}-C_{\bar eLLLH}^{1221}\right)\label{eq:specMatchTLL1221}
 \end{align}
-Let us analyze the very first matching conditions in eq. \ref{eq:specMatchVLL2112} for $ L^{V,LL}_{\nu e,2112}$: The first term $-\tfrac{2}{v_T^2}$ amounts to the pure SM $W$-boson exchange -- however, in the spontaneously broken SMEFT the Higgs potential is modified by the operator $\mathcal{O}_H = (H^\dagger H)^3$, see eq. \ref{eq:vtgaugecorr}. Since we are working in the  $\{\hat{m}_W, \hat{m}_Z, \hat{\alpha}\}$ input scheme, $v_T$ is not determined by the Higgs potential but by the physical mass of the $W$ boson:
+Let us analyze the very first matching conditions in Eq. \ref{eq:specMatchVLL2112} for $ L^{V,LL}_{\nu e,2112}$: The first term $-\tfrac{2}{v_T^2}$ amounts to the pure SM $W$-boson exchange -- however, in the spontaneously broken SMEFT the Higgs potential is modified by the operator $\mathcal{O}_H = (H^\dagger H)^3$, see Eq. \ref{eq:vtgaugecorr}. Since we are working in the  $\{\hat{m}_W, \hat{m}_Z, \hat{\alpha}\}$ input scheme, $v_T$ is not determined by the Higgs potential but by the physical mass of the $W$ boson:
 \begin{equation}
     m_W^2 = \frac{1}{4} \bar{g}_2^2 v_T^2
 \end{equation}
-We can not really distinguish whether our LEFT deviation is due to an SM gauge shift, a vertex correction or the four-fermion operator. The first two are heavily restricted by Electroweak Precision Observables (EWPO) and LEP data -- we must unfortunately refrain from a detailed discussion at this point and only note that exclusively constraining the four-fermion operator should be somewhat legitimate.\par
+We can not really distinguish whether our LEFT deviation is due to an SM gauge shift, a vertex correction or the four-fermion operator. The first two are heavily restricted by Electroweak Precision Observables (EWPO) and LEP data -- we must unfortunately refrain from a detailed discussion at this point and only note that exclusively constraining the four-fermion operator is legitimate.\par
 Since furthermore $C_{ll}^{2112}=C_{ll}^{1221*}$ we can simplify the matching to:
 \begin{equation}
     \text{Re}[L^{V,LL}_{\nu e,2112}]\approx 2\text{Re}[C_{ll}^{2112}]
 \end{equation}
-The vertex corrections $\mathcal{O}^{(3)}_{Hl}$ and $\mathcal{O}^{(1)}_{Hl}$ are heavily restricted -- do we analyze them anyway?\par
 The matching for $L^{V,LR}_{\nu e,2112} = C_{le}^{2112}$ \ref{eq:specMatchVLR2112} is much cleaner -- and moreover we have constraints for both its real and imaginary part.\par 
-The matching result of $L^{S,LL}_{\nu e,1112}$ requires further attention. We see from the operator structure of $\mathcal{O}_{\bar eLLLH}$ in eq.~\ref{eq:eLLLH} that two antisymmetric Levi-Civita tensors contract the three $SU(2)_L$ doublets to a gauge singlet. For the RGEs we need to decompose this into antisymmetric, symmetric and mixed terms -- because gauge couplings don't alter the symmetry structure (important!).
+The matching result of $L^{S,LL}_{\nu e,1112}$ requires further attention. We see from the operator structure of $\mathcal{O}_{\bar eLLLH}$ in Eq.~\ref{eq:eLLLH} that two antisymmetric Levi-Civita tensors contract the three $SU(2)_L$ doublets to a gauge singlet. For the RGEs we need to decompose this into antisymmetric, symmetric and mixed terms -- because gauge couplings don't alter the symmetry structure.
 \begin{align}
     L^{S,LL}_{\nu e,1112}   &= -\frac{\sqrt{2}v}{4}\left(2C_{\bar eLLLH}^{1211}+C_{\bar e LLLH}^{1121}\right)\nonumber\\
                             &= -\frac{\sqrt{2}v}{4}\left(\frac{3}{2}C^{(S)}_{\bar eLLLH}+C^{(M),1211}_{\bar eLLLH}+\frac{1}{2}C^{(M),1121}_{\bar eLLLH}\right)
@@ -111,7 +114,7 @@ The matching result of $L^{S,LL}_{\nu e,1112}$ requires further attention. We se
 For $L^{S,LR}_{\nu e,1112}$ and $L^{S,LR}_{\nu e,1212}$ the matching is quite clean, for $L^{T,LL}_{\nu e,1212}$ we should again consider the symmetries:
 
 \section{RGEs for the SMEFT}
-In order to consistently constraint UV fields we have to bridge the energy scale upwards to them. From the electroweak scale at about $246\text{ GeV}$ to a few TeV, as estimated in tab.~\ref{tab:leftbounds}, only one order of magnitude separates the regimes, so we don't expect large corrections -- but on a conceptual level the running and mixing of operators is a key element of exploring energy scales and translating between them: UV fields might produce effective operators that look quite different at a low-energy process like muon decay.\par 
+In order to consistently constraint UV fields we have to bridge the energy scale upwards to them. From the electroweak scale at about $246\text{ GeV}$ to a few TeV, as estimated in Tab.~\ref{tab:leftbounds}, only one order of magnitude separates the regimes, so we don't expect large corrections -- but on a conceptual level the running and mixing of operators is a key element of exploring energy scales and translating between them: UV fields might produce effective operators that look quite different at a low-energy process like muon decay.\par 
 For the dim-6 operators, we are using the \texttt{wilson}~2.5.2 package \parencite{aebischer2018python} and for the dim-7 operators the \texttt{D7RGESolver} from \parencite{liao2025rge}. The full RGEs are given in section \ref{sec:apprge} in the appendix. In Tab.~\ref{tab:smeft-rge-primary} we give the complete complete one-coefficient translation of the muon decay LEFT bounds into SMEFT bounds and subsequently into UV bounds together with the total relative change of the components between $\mu_\text{EW}$ and $\Lambda_\text{est}$. In Tab.~\ref{tab:smeft-rge-mixing-d7} we collect the mixing of the of the dimension-seven coefficient into the strongest generated coefficient and the Weinberg operator in order to check whether those values are consistent with current neutrino mass bounds. In Tab.~\ref{tab:smeft-rge-mixing-d6} we collect the mixing of the dimension-six coefficients into several of the coefficients they produce.\par 
 The two \(L_{\nu e,1112}^{S,LL}\) rows in Tab.~\ref{tab:smeft-rge-primary} are alternative
 one-coefficient hypotheses in the irreducible flavour basis used by
@@ -130,7 +133,7 @@ Rows sharing the same LEFT coefficient are therefore alternatives and must not
 be interpreted as a simultaneous fit. The dimension-six evolution
 uses a continuously fixed Warsaw weak basis and the dimension-seven evolution uses
 the down basis of \texttt{D7RGESolver}.\par 
-The naive contributions in tab.~\ref{tab:induced-neutrino-masses}
+The naive contributions in Tab.~\ref{tab:induced-neutrino-masses}
 range from $\mathcal{O}(10^2\,\mathrm{eV})$ to
 $\mathcal{O}(10^4\,\mathrm{eV})$ and are consequently many orders of
 magnitude above the sub-eV neutrino-mass scale indicated by oscillation

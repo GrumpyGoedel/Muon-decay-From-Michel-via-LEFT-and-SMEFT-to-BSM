@@ -24,7 +24,7 @@ The fundamental structuring principle for the Standard Model is its local gauge 
 \begin{equation}
     SU(3)_C \times SU(2)_L \times U(1)_Y
 \end{equation}
-The first subgroup $SU(3)_C$ defines quantum chromodynamics, the theory of strong interactions governing quarks by means of 8 massless gluons. The other two subgroups $SU(2)_L \times U(1)_Y$ jointly represents the unified electroweak sector. The three generations of left-handed lepton fields $L$ and quark fields $Q$ transform as doublets under $SU(2)_L$, whereas the right-handed lepton $e$, up-type quark $u$ and down-type quark $d$ transform as singlets. The gauge bosons of $SU(2)_L$ thus couple exclusively to left-handed fermions, rendering electroweak theory chiral. The completing building block of the SM is the Higgs doublet $H$. After it acquires a vacuum expectation value (VEV) at an energy of $v\approx 246\text{ GeV}$ it no longer transforms as a $SU(2)_L$ doublet but as a singlet - and the three remaining degrees of freedom are absorbed by three vector bosons obtaining a mass. The Higgs VEV thus defines the electroweak scale, below which the $SU(2)_L \times U(1)_Y$ symmetry group is broken and only the electromagnetic $U(1)_\text{em}$ symmetry applies. Above the electroweak scale the entire symmetry group $SU(2)_L \times U(1)_Y$ applies and the full Lagrangian density is constructed as a renormalizable and gauge invariant theory:
+The first subgroup $SU(3)_C$ defines quantum chromodynamics, the theory of strong interactions governing quarks by means of 8 massless gluons. The other two subgroups $SU(2)_L \times U(1)_Y$ jointly represents the unified electroweak sector. The three generations of left-handed lepton fields $L$ and quark fields $Q$ transform as doublets under $SU(2)_L$, whereas the right-handed lepton $e$, up-type quark $u$ and down-type quark $d$ transform as singlets. The gauge bosons of $SU(2)_L$ thus couple exclusively to left-handed fermions, rendering electroweak theory chiral. The completing building block of the SM is the Higgs doublet $H$. After it acquires a vacuum expectation value (VEV) at an energy of $v\approx 246\text{ GeV}$ it no longer transforms as a $SU(2)_L$ doublet but as a singlet -- and the three remaining degrees of freedom are absorbed by three vector bosons obtaining a mass. The Higgs VEV thus defines the electroweak scale, below which the $SU(2)_L \times U(1)_Y$ symmetry group is broken and only the electromagnetic $U(1)_\text{em}$ symmetry applies. Above the electroweak scale the entire symmetry group $SU(2)_L \times U(1)_Y$ applies and the full Lagrangian density is constructed as a renormalizable and gauge invariant theory:
 \begin{align}
 \mathcal{L} _{\rm SM} &= -\frac14 G_{\mu \nu}^A G^{A\mu \nu}-\frac14 W_{\mu \nu}^I W^{I \mu \nu} -\frac14 B_{\mu \nu} B^{\mu \nu}
 + (D_\mu H^\dagger)(D^\mu H)+\sum_{\psi=Q,L,e,u,d} \overline \psi\, i \slashed{D} \, \psi\nn
@@ -39,8 +39,76 @@ Here, $T^A$ are the $SU(3)_C$ generators,  the Pauli matrices $\tfrac{1}{2}\sigm
 \begin{align}
 \widetilde H_j &= \epsilon_{jk} H^{\dagger\, k}
 \end{align}
-Here, an $SU(2)$ invariant tensor $\epsilon_{jk}$ is defined by $\epsilon_{12}=1$ and $\epsilon_{jk}=-\epsilon_{kj}$, $j,k=1,2$.
-
+Here, an $SU(2)$ invariant tensor $\epsilon_{jk}$ is defined by $\epsilon_{12}=1$ and $\epsilon_{jk}=-\epsilon_{kj}$, $j,k=1,2$.\par
+As we mentioned, the vacuum of the Higgs is invariant under the electromagnetic generator
+$Q=T^3+\hyp$, but not under the remaining generators of
+$SU(2)_L\times U(1)_Y$. The electroweak symmetry is therefore
+spontaneously broken according to:
+\begin{equation}
+    SU(2)_L\times U(1)_Y
+    \longrightarrow U(1)_{\mathrm{em}}
+\end{equation}
+In unitary gauge, the Higgs doublet can be written as:
+\begin{equation}
+    H(x)
+    =
+    \frac{1}{\sqrt{2}}
+    \begin{pmatrix}
+        0\\ v+h(x)
+    \end{pmatrix}\label{eq:higgsVEV}
+\end{equation}
+It is useful at this point to introduce the gauge fields of the broken
+phase. The charged fields are defined by:
+\begin{equation}
+    W_\mu^\pm
+    =
+    \frac{1}{\sqrt{2}}
+    \left(
+        W_\mu^1\mp iW_\mu^2
+    \right)\label{eq:physicalW}
+\end{equation}
+The two neutral gauge fields mix according to:
+\begin{align}
+    Z_\mu
+    &=
+    \cos\theta_W\,W_\mu^3
+    -
+    \sin\theta_W\,B_\mu
+    \\
+    A_\mu
+    &=
+    \sin\theta_W\,W_\mu^3
+    +
+    \cos\theta_W\,B_\mu
+\end{align}
+The rotation into the physical fields is in terms of the weak mixing angle $\theta_W$:
+\begin{equation}
+    \tan\theta_W=\frac{g_1}{g_2}
+    \qquad
+    \sin\theta_W
+    =
+    \frac{g_1}{\sqrt{g_1^2+g_2^2}}
+    \qquad
+    \cos\theta_W
+    =
+    \frac{g_2}{\sqrt{g_1^2+g_2^2}}
+\end{equation}
+Substituting the Higgs VEV of Eq.~\ref{eq:higgsVEV} into the Higgs kinetic term in
+gives:
+\begin{align}
+    (D_\mu H)^\dagger(D^\mu H)
+    \supset{}&
+    \frac{g_2^2v^2}{4}W_\mu^+W^{-\mu}
+    +
+    \frac{v^2}{8}
+    \left(g_2W_\mu^3-g_1B_\mu\right)^2
+    \\
+    ={}&
+    m_W^2W_\mu^+W^{-\mu}
+    +
+    \frac{1}{2}m_Z^2Z_\mu Z^\mu ,
+\end{align}
+So the mass of the $W$ boson is set by the Higgs VEV and experimentally measured as $80.3692(133)\text{ GeV}$ \cite{particle2024review} -- three order of magnitudes higher than the mass of the muon, which resides at $105.6583755(23)\text{ MeV}$ \cite{particle2024review} and which is why we are permitted to integrate the $W$ boson out of the description of muon decay.
 \section{Weak interactions and leptonic currents}
 We wish to find a description for muon decay in the SM, whereby we will use the following momenta convention:
 \begin{equation}
@@ -51,11 +119,7 @@ From the fermion sector of the SM Lagrangian \ref{eq:LagSM} we can derive the in
 \begin{equation}
     \mathcal{L}_\text{int}^{SU(2)_L}=\bar{L} i\gamma^\mu \tfrac{1}{2}i g_2  \sigma^I W^I_\mu L
 \end{equation}
-We expand the product of the Pauli matrices and the weak gauge fields and rotate the latter to their physical, charged fields:
-\begin{equation}
-    W_\mu^\pm = \frac{1}{\sqrt{2}} (W_\mu^1 \mp i W_\mu^2)
-\end{equation}
-We then find the following interaction terms (dropping flavor indices):
+We expand the product of the Pauli matrices and the weak gauge fields and rotate the latter to their physical, charged fields according to Eq.~\ref{eq:physicalW}. We then find the following interaction terms (dropping flavor indices):
 \begin{equation}
     \mathcal{L}_\text{int}^{SU(2)_L} = \frac{g_2}{2} \left( \bar{\nu}_L \gamma^\mu W_\mu^3 \nu_L - \bar{e}_L \gamma^\mu W_\mu^3 e_L + \sqrt{2} \bar{\nu}_L \gamma^\mu W_\mu^+ e_L + \sqrt{2} \bar{e}_L \gamma^\mu W_\mu^- \nu_L \right)
 \end{equation}
@@ -69,7 +133,7 @@ We see that two interactions $\sqrt{2} \bar{e}_L \gamma^\mu W_\mu^- \nu_L$ allow
 The momentum $k$ of the $W^-$ boson relates to the momenta of the interacting leptons by $k=q-k_1=k_2+p$ -- but since the momentum exchange is very small compared to the $W$ boson mass, we can expand the propagator:
 \begin{equation}
     \frac{-\im\Big(g_{\mu\nu}-\frac{k_\mu k_\nu}{m_W^2}\Big)}{k^2-m_W^2} \approx
-    -\im\frac{g_{\mu\nu}}{m_W^2}+\mathcal{O}\left(\frac{k^4}{m_W^2}\right)
+    \im\frac{g_{\mu\nu}}{m_W^2}+\mathcal{O}\left(\frac{k^2}{m_W^4}\right)
 \end{equation}
 Substituting this simplified propagator back into the amplitude yields:
 \begin{equation}
@@ -137,11 +201,11 @@ In the path integral formulation, the dynamics of a system are captured by the g
 \end{equation}
 If the heavy field $\Phi$ appears strictly quadratically in the action -- for instance, interacting with a current $J(\phi)$ composed of light fields via an interaction term $J \Phi$ -- the path integral is exactly solvable. It reduces to a multi-dimensional Gaussian integral. By shifting the integration variable to complete the square, the heavy field can be analytically integrated out, resulting in a non-local effective action. At low energies ($p^2 \ll M^2$), the heavy propagator $1/(p^2 - M^2)$ collapses to a point-like contact interaction $-1/M^2$, generating the local operators of the effective field theory.
 
-However, if the heavy field possesses self-interactions or couples non-linearly, the path integral cannot be evaluated exactly. Instead, one employs the saddle-point approximation. In the low-energy limit, the path integral is overwhelmingly dominated by the field configuration that minimizes the action. We expand the heavy field around this classical minimum, $\Phi_c$:
+However, if the heavy field possesses self-interactions or couples non-linearly, the path integral cannot be evaluated exactly. Instead, one employs the saddle-point approximation \cite{henning2015usestandardmodeleffective}. In the low-energy limit, the path integral is overwhelmingly dominated by the field configuration that minimizes the action. We expand the heavy field around this classical stationary configuration $\Phi_c$:
 \begin{equation}
     \Phi = \Phi_c + \eta
 \end{equation}
-where $\eta$ represents quantum fluctuations, and $\Phi_c$ is the solution to the Euler-Lagrange Equation of Motion (EOM), defined by:
+Here, $\eta$ represents quantum fluctuations, and $\Phi_c$ is the solution to the Euler-Lagrange Equation of Motion (EOM), defined by:
 \begin{equation}
     \left. \frac{\delta S[\phi, \Phi]}{\delta \Phi} \right|_{\Phi = \Phi_c} = 0
 \end{equation}
@@ -156,10 +220,10 @@ If we restrict our matching procedure strictly to tree-level, these loop correct
 \end{equation}
 Therefore, replacing a heavy mediator with its classical equation of motion and substituting it back into the Lagrangian evaluates the path integral at the tree-level saddle point. We now perform this calculation for the $W^\pm$ in order to derive the IR Lagrangian appropriate for muon decay. To this end we first isolate the terms in the electroweak Lagranigan that contain the $W^\pm$ boson:
 \begin{equation}
-    \mathcal{L}_ \text{SM} \supset -\frac{1}{2} W_{\mu\nu}^+ W^{-\mu\nu} + m_W^2 W_\mu^+ W^{-\mu} - \frac{g}{\sqrt{2}} \left( J^\mu W_\mu^+ + J^{\mu \dagger} W_\mu^- \right)
+    \mathcal{L}_ \text{SM} \supset -\frac{1}{2} W_{\mu\nu}^+ W^{-\mu\nu} + m_W^2 W_\mu^+ W^{-\mu} - \frac{g}{\sqrt{2}} \left( J^\mu W_\mu^- + J^{\mu \dagger} W_\mu^+ \right)
     \label{eq:LagW}
 \end{equation}
-The current $J^\mu$ is that of eq. \ref{eq:LagIR}, containing only the first and second generation of leptons:
+The current $J^\mu$ is that of Eq. \ref{eq:LagIR}, containing only the first and second generation of leptons:
 \begin{equation}
     J^\mu=\bar{e} \gamma^\mu P_L \nu_e + \bar{\mu} \gamma^\mu P_L \nu_\mu 
 \end{equation}
@@ -175,7 +239,7 @@ The derivative of $W_{\nu\mu}$ corresponds to the momentum $p$ and the term can 
 \begin{equation}
     W_\mu^+ \approx \frac{g}{\sqrt{2} m_W^2} J^\mu
 \end{equation}
-Substituting this back into the Lagrangian \ref{eq:LagW} gives the familiar charged current interaction of eq. \ref{eq:LagIR}:
+Substituting this back into the Lagrangian \ref{eq:LagW} gives the familiar charged current interaction of Eq. \ref{eq:LagIR}:
 \begin{equation}
     \mathcal{L}_\text{IR} = - \frac{g^2}{2 m_W^2} J^{\mu \dagger} J_\mu
 \end{equation}
