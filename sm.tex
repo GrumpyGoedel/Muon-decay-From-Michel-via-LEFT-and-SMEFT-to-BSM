@@ -427,9 +427,8 @@ them into experimental likelihood blocks,
 The different experimental blocks are assumed to be mutually
 independent, whereas the correlations within each block are retained.
 
-\paragraph{TWIST block.}
-
-For the TWIST measurement, we use the native parameter basis
+\paragraph{TWIST block}
+For the TWIST measurement, we use the following native parameter basis:
 \begin{equation}
   \bm{O}^{\mathrm{exp}}_{\mathrm{TWIST}}
   =
@@ -443,7 +442,7 @@ For the TWIST measurement, we use the native parameter basis
     0.74977\\
     0.75049\\
     1.00084
-  \end{pmatrix},
+  \end{pmatrix}
   \label{eq:twist-input}
 \end{equation}
 with uncertainties
@@ -452,19 +451,19 @@ with uncertainties
   &=
   0.74977
   \pm0.00012_{\mathrm{stat}}
-  \pm0.00023_{\mathrm{syst}},
+  \pm0.00023_{\mathrm{syst}}
   \\
   \delta
   &=
   0.75049
   \pm0.00021_{\mathrm{stat}}
-  \pm0.00027_{\mathrm{syst}},
+  \pm0.00027_{\mathrm{syst}}
   \\
   P_\mu^\pi\xi
   &=
   1.00084
   \pm0.00029_{\mathrm{stat}}
-  {}^{+0.00165}_{-0.00063}{}_{\mathrm{syst}}.
+  {}^{+0.00165}_{-0.00063}{}_{\mathrm{syst}}
 \end{align}
 The reported correlation matrix, in the ordering
 $\left(\rho,\delta,P_\mu^\pi\xi\right)$, is
@@ -475,17 +474,17 @@ $\left(\rho,\delta,P_\mu^\pi\xi\right)$, is
     1    & 0.19  & 0.21\\
     0.19 & 1     & -0.72\\
     0.21 & -0.72 & 1
-  \end{pmatrix}.
+  \end{pmatrix}
   \label{eq:twist-correlation}
 \end{equation}
 In a symmetrized Gaussian approximation, the covariance matrix is
-constructed as
+constructed as:
 \begin{equation}
   \bm{V}_{\mathrm{TWIST}}
   =
   \bm{D}_{\mathrm{TWIST}}\,
   \bm{R}_{\mathrm{TWIST}}\,
-  \bm{D}_{\mathrm{TWIST}},
+  \bm{D}_{\mathrm{TWIST}}
   \label{eq:twist-covariance}
 \end{equation}
 where
@@ -499,59 +498,20 @@ where
     \sigma_{P_\mu^\pi\xi}
   \right).
 \end{equation}
-For a symmetric treatment of the uncertainty on $P_\mu^\pi\xi$, we use
+For a symmetric treatment of the uncertainty on $P_\mu^\pi\xi$, we symmetrize in quadrature:
 \begin{equation}
   \sigma_{P_\mu^\pi\xi}
   \simeq
   \sqrt{
     (0.00029)^2+
     \left(\frac{0.00165+0.00063}{2}\right)^2
-  }.
+  }
   \label{eq:twist-xi-error}
 \end{equation}
-A split-normal likelihood or an explicit nuisance-parameter treatment
-is preferable if the asymmetric uncertainty is retained.
 
-The derived observable
-\begin{equation}
-  P_\mu^\pi\xi\,\frac{\delta}{\rho}
-\end{equation}
-is not included as an additional independent constraint, since it is
-constructed from the same TWIST fit parameters. If the alternative basis
-\begin{equation}
-  \left(
-    \rho,\,
-    P_\mu^\pi\xi,\,
-    P_\mu^\pi\xi\,\frac{\delta}{\rho}
-  \right)
-\end{equation}
-is used, its covariance must be obtained from
-\begin{equation}
-  \bm{V}_{\mathrm{new}}
-  =
-  \bm{J}\,
-  \bm{V}_{\mathrm{TWIST}}\,
-  \bm{J}^{T},
-\end{equation}
-where, defining $q=P_\mu^\pi\xi$,
-\begin{equation}
-  \bm{J}
-  =
-  \frac{\partial(\rho,q,q\delta/\rho)}
-       {\partial(\rho,\delta,q)}
-  =
-  \begin{pmatrix}
-    1 & 0 & 0\\
-    0 & 0 & 1\\
-    -q\delta/\rho^2 & q/\rho & \delta/\rho
-  \end{pmatrix}.
-  \label{eq:twist-jacobian}
-\end{equation}
-
-\paragraph{Danneberg block.}
-
+\paragraph{Danneberg block}
 For the transverse-polarization measurement, we use the general
-four-parameter fit,
+four-parameter fit
 \begin{equation}
   \bm{O}^{\mathrm{exp}}_{\mathrm{D}}
   =
@@ -567,11 +527,11 @@ four-parameter fit,
      0.105\\
     -0.0034\\
     -0.0005
-  \end{pmatrix}.
+  \end{pmatrix}
   \label{eq:danneberg-input}
 \end{equation}
 After combining statistical and systematic uncertainties in quadrature,
-the standard-deviation matrix is
+the standard-deviation matrix is:
 \begin{equation}
   \bm{D}_{\mathrm{D}}
   =
@@ -581,11 +541,11 @@ the standard-deviation matrix is
     0.05235,\,
     0.02186,\,
     0.00800
-  \right).
+  \right)
   \label{eq:danneberg-errors}
 \end{equation}
 The corresponding correlation matrix, in the ordering
-$\left(\eta,\eta'',\alpha'/A,\beta'/A\right)$, is
+$\left(\eta,\eta'',\alpha'/A,\beta'/A\right)$, is:
 \begin{equation}
   \bm{R}_{\mathrm{D}}
   =
@@ -594,18 +554,18 @@ $\left(\eta,\eta'',\alpha'/A,\beta'/A\right)$, is
     0.946 & 1     & 0      & 0\\
     0     & 0     & 1      & -0.893\\
     0     & 0     & -0.893 & 1
-  \end{pmatrix}.
+  \end{pmatrix}
   \label{eq:danneberg-correlation}
 \end{equation}
-The covariance matrix is therefore
+The covariance matrix is therefore:
 \begin{equation}
   \bm{V}_{\mathrm{D}}
   =
   \bm{D}_{\mathrm{D}}\,
   \bm{R}_{\mathrm{D}}\,
-  \bm{D}_{\mathrm{D}},
+  \bm{D}_{\mathrm{D}}
 \end{equation}
-or numerically,
+Or numerically:
 \begin{equation}
   \bm{V}_{\mathrm{D}}
   \simeq
@@ -614,29 +574,26 @@ or numerically,
     1.849\times10^{-3} & 2.741\times10^{-3} & 0 & 0\\
     0 & 0 & 4.779\times10^{-4} & -1.562\times10^{-4}\\
     0 & 0 & -1.562\times10^{-4} & 6.400\times10^{-5}
-  \end{pmatrix}.
+  \end{pmatrix}
   \label{eq:danneberg-covariance}
 \end{equation}
 Consequently, $\eta$ and $\eta''$ must not be treated as statistically
-independent. The same applies to $\alpha'/A$ and $\beta'/A$.
+independent. The same applies to $\alpha'/A$ and $\beta'/A$. Indeed both pairs are separately strongly correlated. 
 
-\paragraph{Single-observable blocks.}
-
+\paragraph{Single-observable blocks}
 The remaining polarization observables are included as independent
-one-dimensional blocks,
+one-dimensional blocks:
 \begin{align}
   \xi'  &= 0.998\pm0.045,\\
   \xi'' &= 0.981
            \pm0.045_{\mathrm{stat}}
            \pm0.003_{\mathrm{syst}}
-         \simeq 0.981\pm0.0451.
+         \simeq 0.981\pm0.0451
 \end{align}
 No covariance between these measurements and the TWIST or Danneberg
 datasets is available.
-
-\paragraph{Combined likelihood.}
-
-The total experimental covariance is approximated by
+\paragraph{Combined likelihood}
+The total experimental covariance is approximated by:
 \begin{equation}
   \bm{V}_{\mathrm{exp}}
   \simeq
@@ -646,15 +603,15 @@ The total experimental covariance is approximated by
   \oplus
   \sigma_{\xi'}^2
   \oplus
-  \sigma_{\xi''}^2.
+  \sigma_{\xi''}^2
   \label{eq:combined-michel-covariance}
 \end{equation}
 For a vector of LEFT Wilson coefficients $\bm{C}$, the corresponding
-contribution to the likelihood is
-\begin{equation}
+contribution to the likelihood is:
+\begin{align}
   \chi^2_{\mathrm{Michel}}(\bm{C})
   =
-  \sum_b
+  &\sum_b
   \left[
     \bm{O}^{\mathrm{th}}_b(\bm{C})
     -
@@ -665,18 +622,17 @@ contribution to the likelihood is
     \bm{O}^{\mathrm{th}}_b(\bm{C})
     -
     \bm{O}^{\mathrm{exp}}_b
-  \right],
-  \qquad
-  b\in
+  \right]
+  \nonumber\\
+  &b\in
   \left\{
     \mathrm{TWIST},
     \mathrm{D},
     \xi',
     \xi''
-  \right\}.
+  \right\}
   \label{eq:michel-chi2}
-\end{equation}
-
+\end{align}
 The quantities involving $P_\mu^\pi$ are measured as polarization
 products. Setting $P_\mu^\pi=1$ is therefore an additional
 phenomenological assumption rather than part of the experimental
@@ -684,4 +640,3 @@ measurement. Furthermore, the Michel shape and polarization parameters
 do not constrain the overall normalization of the muon-decay amplitude.
 If normalization-changing LEFT coefficients are included, the muon
 lifetime or an equivalent normalization constraint must also be used.
-```
