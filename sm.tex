@@ -1,5 +1,5 @@
 \chapter{Muon decay in the Standard Model}
-We briefly introduce the Standard Model of particle physics -- its gauge symmetry, field contents and Lagrangian density. For muon decay, however, we do not need the full SM: At the energy scale of the muon mass, the $W$ boson is not a dynamical degree of freedom and can be intergrated out. The effective theory obtained this way resembles the historical four-fermi theory and we use it to derive the decay width for muon decay.
+We briefly introduce the Standard Model (SM) of particle physics -- its gauge symmetry, field contents and Lagrangian density. For muon decay, however, we do not need the full SM: At the energy scale of the muon mass, the $W$ boson is not a dynamical degree of freedom and can be intergrated out. The effective theory obtained this way resembles the historical four-Fermi theory and we use it to derive the decay width for muon decay.
 \begin{figure}[ht]
     \centering
     \vspace*{1.5cm}
@@ -108,7 +108,7 @@ gives:
     +
     \frac{1}{2}m_Z^2Z_\mu Z^\mu ,
 \end{align}
-So the mass of the $W$ boson is set by the Higgs VEV and experimentally measured as $80.3692(133)\text{ GeV}$ \cite{particle2024review} -- three order of magnitudes higher than the mass of the muon, which resides at $105.6583755(23)\text{ MeV}$ \cite{particle2024review} and which is why we are permitted to integrate the $W$ boson out of the description of muon decay.
+So the mass of the $W$ boson is set by the Higgs VEV and experimentally measured as $80.3692(133)\text{ GeV}$ \cite{particle2024review} -- three order of magnitudes higher than the mass of the muon, which resides at $105.6583755(23)\text{ MeV}$ \cite{particle2024review} and which is why we are permitted to integrate the $W$ boson out of the description of muon decay, as we will now see.
 \section{Weak interactions and leptonic currents}
 We wish to find a description for muon decay in the SM, whereby we will use the following momenta convention:
 \begin{equation}
@@ -235,7 +235,7 @@ This gives:
 \begin{equation}
     m_W^2 W_\mu^+ - \frac{g}{\sqrt{2}} J^\mu + \partial^\nu W_{\nu\mu}^+ = 0
 \end{equation}
-The derivative of $W_{\nu\mu}$ corresponds to the momentum $p$ and the term can therefore be neglected in the low energy limit. We therefore have:
+The derivative of $W_{\nu\mu}$ corresponds to the momentum $p$ and the term can therefore be neglected in the low energy limit, i.e. $\tfrac{p}{m_W}\approx\tfrac{m_\mu}{m_W}\approx 0$. We therefore have:
 \begin{equation}
     W_\mu^+ \approx \frac{g}{\sqrt{2} m_W^2} J^\mu
 \end{equation}
@@ -243,17 +243,17 @@ Substituting this back into the Lagrangian \ref{eq:LagW} gives the familiar char
 \begin{equation}
     \mathcal{L}_\text{IR} = - \frac{g^2}{2 m_W^2} J^{\mu \dagger} J_\mu
 \end{equation}
-At the energy scale of muon decay, which roughly amounts to the muon mass $105.658\text{ MeV}$ \cite{particle2024review}, this Lagrangian is an adequate description of the dynamics.\par 
-Systematically constructing an whole \textit{Effective Field Theory (EFT)} from a UV complete theory by integrating out the heavy degree of freedom represents an example of a \textit{top-down} approach to EFTs: Starting from a full theory valid in the high energy limit, in this case the SM Lagrangian, one derives the appropriate effective theory for the low energy limit. By requiring the amplitudes in both theories to agree in a certain energy regime, one \textit{matches} the couplings of the effective theory, called \textit{Wilson coefficients}, to the UV complete theory. The four-fermi theory, on the other hand, started from the opposite direction: Without knowledge of the SM and the underlying heavy mechanism it gave an adequate description for weak interactions starting \textit{from scratch}, namely directly from the known, interacting fields. Experimental evaluation then allowed for constraining the effective couplings. For the course of this work both methods are applied to some extent. In the next section we see how to to determine Fermi's constant from the total decay width. The kinematic space of the electron is, however, far more complex and in the following section we get acquainted with the Michel parameters that form its foundation. The $\rho$ parameter, for example, brings to light the V-A nature of the weak interaction, as we will briefly show.
+So this Lagrangian is an adequate description at $E=m_\mu=105.6583755(23)\text{ MeV}$, which three orders of magnitudes below $m_W=80.3692(133)\text{ GeV}$ \cite{particle2024review}.\par 
+Systematically constructing an whole \textit{Effective Field Theory (EFT)} from a UV complete theory by integrating out the heavy degree of freedom represents an example of a \textit{top-down} approach to EFTs: Starting from a full theory valid in the high energy limit, in this case the SM Lagrangian, one derives the appropriate effective theory for the low energy limit. By requiring the amplitudes in both theories to agree in a certain energy regime, one \textit{matches} the couplings of the effective theory, called \textit{Wilson coefficients}, to the UV complete theory. The four-Fermi theory, on the other hand, historically started from the opposite direction: Without knowledge of the SM and the underlying heavy mechanism it gave an adequate description for weak interactions starting \textit{from scratch}, namely directly from the known, interacting fields. Experimental evaluation then allowed for constraining the effective couplings. For the course of this work both methods are applied to some extent but the overall directive is a bottom-up approach: Starting from the phenomenology of muon decay well below the electroweak scale we investigate possible UV origins. In the next section we see how to to determine Fermi's constant from the total decay width - the kinematic space of the electron is, however, far more complex and in the following section we get acquainted with the Michel parameters that form its foundation. The $\rho$ parameter, for example, brings to light the V-A nature of the weak interaction, as we will briefly show.
 \section{Effective Field Theories}
 Effective Field Theory (EFT) is the idea that physics is separated by scales -- or more precisely it is a set of ideas that justify why this separation works \cite{brivio2019standard}. Notably the Standard Model (SM) has been validated up to LHC energies despite not being well-defined in the UV regime due to Landau poles in the electroweak sector. Renormalization works by regularizing the short-distance physics and absorbing the effects in low energy effective parameters -- see the detailed discussion in chapter 4 of \cite{brivio2019standard} for how dimensional regularization and the $\overline{MS}$ scheme correspond to a systematic removal of UV physics which is the key principle of an EFT. The Lagrangian is then constructed as combining the IR physics as a local, analytical operator expansion with the UV physics controlling the corresponding Wilson coefficients.
 \begin{equation}
     \mathcal{L}_\text{EFT}\simeq\sum_iL_i^\text{UV}(\mu)O_i^\text{IR}(\mu)
 \end{equation}
-The first two "prime directives" of EFTs are thus in \cite{brivio2019standard} summarized as:
+The first two \enquote{prime directives} of EFTs are thus in \cite{brivio2019standard} summarized as:
 \begin{enumerate}
     \item determine a characteristic scale in observables
-    \item construct the Lagrangian out of the degrees of freedom, the propagating on-shell ates
+    \item construct the Lagrangian out of the degrees of freedom, i.e. the propagating on-shell states
 \end{enumerate}
 Starting from the SM two characteristic scales directly come to mind: The scale of electroweak symmetry breaking dictated by the Higgs VEV $v$ and the scale of heavy new physics $\Lambda$. Depending on how one assumes heavy new physics to relate to the Higgs mechanism two  EFTs can be set up by the scale $\Lambda$:
 \begin{enumerate}
@@ -261,9 +261,9 @@ Starting from the SM two characteristic scales directly come to mind: The scale 
     \item the Higgs Effective Field Theory (HEFT) instead treats the physical Higgs and the Goldstone bosons separatedly. The framework can be described as a chiral Lagrangian with a light scalar h, organized by a loop/chiral expansion rather than by canonical dimension \cite{buchalla2014complete}.
 \end{enumerate}
 While the HEFT might be more general and appropriate for non-linear UV models, the SMEFT is in our case the more restrictive and diagnostic tool: As its operators adhere to the full $SU(3)_C\times SU(2)_L\times U(1)_Y$ gauge group one can systematically derive all UV representations that would generate specific operators -- rendering the SMEFT a powerful mode of investigation in the bottom-up spirit \cite{li2022bottom}.\par 
-The scale $v$ on the other hand separates the IR regime from the full SM and allows expanding the physics above the EW scale by Wilson coefficients divided by powers of $v$ and the effects of UV physics by powers of $\Lambda$. We will first introduce the SMEFT and subsequently derive the LEFT.
+The scale $v$ on the other hand separates the IR regime from the full SM and allows expanding the physics above the EW scale by Wilson coefficients divided by powers of $v$ and the effects of UV physics by powers of $\Lambda$. We will first introduce the LEFT in Ch.~\ref{ch:left} and subsequently the SMEFT in Ch.~\ref{ch:smeft}.
 \section{Total decay width}
-We want to derive the total decay width for muon decay from the amplitude of four-fermi theory:
+We want to derive the total decay width for muon decay from the amplitude of four-Fermi theory:
 \begin{equation}
     \mathcal{M}=-\frac{4G_F}{\sqrt{2}}[\bar u(k_1)\gamma^\mu P_L u(q)][\bar u(p)\gamma_\mu P_L u(k_2)]
     \label{eq:Amp4F2}
@@ -272,7 +272,7 @@ If the spins of the outgoing particles are not measured, the expectation value o
 \begin{equation}
     \langle|\mathcal{M}|^2\rangle=\sum_{\text{spins}}|\mathcal{M}|^2
 \end{equation}
-Squaring the amplitude, we get:
+Squaring the amplitude, we obtain:
 \begin{equation}
 \begin{aligned}
     |\mathcal{M}|^2=\left(\frac{g^2}{2m_W^2}\right)^2&[\overline{u}(k_1)\gamma^\mu P_L u(q)][\overline{u}(p)\gamma_\mu P_Lu(2)]\\ &\times [\overline{u}(k_1)\gamma^\mu P_L u(q)]^*[\overline{u}(p)\gamma_\mu P_Lu(2)]^*
@@ -315,7 +315,7 @@ Because he did not consider the possibility that such an interaction might viola
 \begin{equation}
     I^{\alpha\beta} = \int \frac{d^3k_1}{2E_1} \frac{d^3k_2}{2E_2} \delta^4(Q - k_1 - k_2) k_1^\alpha k_2^\beta
 \end{equation}
-By pure Lorentz invariance, this can only depend on the total transferred momentum $Q=q-p$ and the only two rank-2 tensors one can build out of $Q$ are the metric tensor $g^{\alpha\beta}$ and the product $Q^\alpha Q^\beta$:
+By pure Lorentz invariance, this can only depend on the total transferred momentum $Q=q-p$ and the only two rank-two tensors one can build out of $Q$ are the metric tensor $g^{\alpha\beta}$ and the product $Q^\alpha Q^\beta$:
 \begin{equation}
     I^{\alpha\beta} = A(Q^2) g^{\alpha\beta} + B(Q^2) Q^\alpha Q^\beta
 \end{equation}
@@ -325,7 +325,7 @@ Because the neutrinos are considered to be massless, dimensional analysis and Lo
     Q \cdot q_\mu = (q_\mu - p_e) \cdot q_\mu \approx m_\mu^2 - m_\mu E_e\\
     Q \cdot p_e = (q_\mu - p_e) \cdot p_e \approx m_\mu E_e
 \end{align}
-Every single invariant is simply linear function of the elctron energy $E_e$ and because of the phase space factor $E_e^2\de E_e$ the differential decay rate $\de\Gamma/\de E_e$ is a polynomial in $E_e^2$ and $E_e^3$. Thus a single parameter suffices to describe the relative weight between the quadratic and cubic terms and thus the shape of the spectrum -- the original Michel parameter $\rho$. Expressed in terms of the modern dimensionless variable $x=E/W$ with W the maximum electron energy, the spectrum can be written as:
+Every single invariant is simply linear function of the elctron energy $E_e$ and because of the phase space factor $E_e^2\de E_e$ the differential decay rate $\de\Gamma/\de E_e$ is a polynomial in $E_e^2$ and $E_e^3$. Thus a single parameter suffices to describe the relative weight between the quadratic and cubic terms and thus the shape of the spectrum -- the original Michel parameter $\rho$. Expressed in terms of the dimensionless variable $x=E/W$ with W the maximum electron energy, the spectrum can be written as:
 \begin{equation}
     P(x) dx \propto x^2 \left[ 3(1 - x) + 2\rho \left( \frac{4}{3}x - 1 \right) \right] dx
 \end{equation}
@@ -339,7 +339,7 @@ This implies the interaction to consist of vector and axial vector terms:
     \label{eq:rho}
 \end{equation}
 For $L_V=-L_A=1$ this gives $\rho=\tfrac{3}{4}$. However, from the experimental value of the $\rho$ parameter the exact ratio of the $V$ and $A$ term or whether axial and vector current mix to form a parity-violating term can not be deduced. A paradigm shift took place in 1956 when Lee and Yang, in order to explain the $\theta-\tau$ puzzle \parencite{lee1956question}, suggested that the weak force might violate parity  -- a breakthrough idea, which was experimentally tested a year later by Chien-Shiung Wu \parencite{wu1957experimental}: She confirmed that the electrons in Cobalt-60 decay are emitted preferentially in the direction opposite to the nuclear spin. In the phenomenology of muon decay parity violation generates an anisotropic part in the electron spectrum. If one measures the polarization of the decaying muon and the angle by which the electron is emitted relative to that polarization the probability is not distributed isotropically at all: The electron is most likely to be ejected in the exact opposite direction to the muon's polarization. And this clearly violates parity, since mirroring of the experiment would leave the polarization invariant but spatially reverse the electron momentum.\par 
-In 1957, two groups (Bouchiat \& Michel \cite{bouchiat1957theory} and, independently, Kinoshita \& Sirlin \cite{kinoshita1957muon,kinoshita1957polarization} expanded the formalism to match the new chiral reality and introduced additional
+In 1957, two groups (Bouchiat \& Michel \cite{bouchiat1957theory} and, independently, Kinoshita \& Sirlin \cite{kinoshita1957muon,kinoshita1957polarization}) expanded the formalism to match the new chiral reality and introduced additional
 parameters for the anisotropic part of the spectrum. The parameter $\xi$ measures parity violation and $\delta$ is again a shape parameter for the anisotropic part of the spectrum. 
 \begin{equation}
     \begin{aligned}
@@ -353,7 +353,7 @@ As one can see, the peak of the differential decay width is located at $\theta=1
 \end{align}
 Both groups also introduced a parameter $\eta$ to account for the finite electron mass shaping the low-energy end of the spectrum. It reflects the interference of scalar and tensor terms, which can only produce a non-zero term in the amplitude via mass insertion. As the Standard Model neither has tensor nor scalar interaction terms, it predicts $\eta$ to be zero, which current experimental data supports \parencite{particle2024review}:
 \begin{equation}
-    \eta =0.057 \pm 0
+    \eta =0.057 \pm 0.034
 \end{equation}
 The full spectrum of the electron, when the muon's polarization and the electron's momentum direction relative to it are measured (but not the spin of the electron), thus has the following form:
 \begin{equation}
@@ -379,17 +379,19 @@ F_{IS}(x)&=&x(1-x)+\frac{2}{9}\rho(4x^2-3x-x_0^2)+\eta x_0(1-x)\, ,\\
 F_{AS}(x)&=&\frac{\xi}{3}\sqrt{x^2-x_0^2}\left[(1-x)+\frac{2}{3}\delta\left(\left[4x-3\right]+\left[\sqrt{1-x_0^2}-1\right]\right)\right]\, .
 \end{eqnarray}
 %
-The additional electron spin dependent terms follow from expanding the electron spin dependence as $\vec P_e(x,\theta)=P_{T_1}\hat x_1+P_{T_2}\hat x_2+P_L\hat x_3$. The direction $\hat x_3$ is chosen along the electron momentum, $\hat x_1$ lies in the decay plane and is transverse to the electron momentum, and $\hat x_2$ is orthogonal to both $\hat x_1$ and $\hat x_3$. The kinematics are outlined in further detail in appendix~\ref{sec:kinPS}, our method for projecting out each Michel parameter is discussed in appendix~\ref{sec:michelbasis}. With this choice, the polarization components are given by:
+The additional electron spin dependent terms follow from expanding the electron spin dependence as $\vec P_e(x,\theta)=P_{T_1}\hat x_1+P_{T_2}\hat x_2+P_L\hat x_3$. The direction $\hat x_3$ is chosen along the electron momentum, $\hat x_1$ lies in the decay plane and is transverse to the electron momentum, and $\hat x_2$ is orthogonal to both $\hat x_1$ and $\hat x_3$. The kinematics are outlined in further detail in appendix~\ref{ch:kinematics} and specifically our method for projecting out each Michel parameter is discussed in appendix~\ref{sec:michelbasis}. With this choice, the polarization components are given by:
 %
 \begin{align}
-P_{T_1}=&\frac{P_\mu\sin\theta}{12}\left[-2\left(\xi''+12\left[\rho-\frac{3}{4}\right]\right)(1-x)x_0-3\eta\left(x^2-x_0^2\right)+\eta''\left(-3x^2+4x-x_0^2\right)\right]
-\\
-P_{T_2}=&\frac{P_\mu\sin\theta}{3}\sqrt{x^2-x_0^2}\left[3\frac{\alpha'}{A}(1-x)+2\frac{\beta'}{A}\sqrt{1-x_0^2}\right]\\
-P_L=&-F_{IP}(x)+P_\mu\cos\theta F_{AP}(x)\\
-F_{IP}(x)=&\frac{\sqrt{x^2-x_0^2}}{54}\left[9\xi'\left(-2x+2+\sqrt{1-x_0^2}\right)+4\xi\left(\delta-\frac{3}{4}\right)\left(4x-4+\sqrt{1-x_0^2}\right)\right]\\
+P_{T_1}=&\frac{P_\mu\sin\theta}{12}\left[-2\left(\xi''+12\left[\rho-\frac{3}{4}\right]\right)(1-x)x_0\right.\nonumber\\[5pt]
+&\hspace*{4cm} -3\eta\left(x^2-x_0^2\right)+\eta''\left(-3x^2+4x-x_0^2\right)\Big]
+\\[5pt]
+P_{T_2}=&\frac{P_\mu\sin\theta}{3}\sqrt{x^2-x_0^2}\left[3\frac{\alpha'}{A}(1-x)+2\frac{\beta'}{A}\sqrt{1-x_0^2}\right]\\[5pt]
+P_L=&-F_{IP}(x)+P_\mu\cos\theta F_{AP}(x)\\[5pt]
+F_{IP}(x)=&\frac{\sqrt{x^2-x_0^2}}{54}\left[9\xi'\left(-2x+2+\sqrt{1-x_0^2}\right)\right.\nonumber\\[5pt]
+&\hspace*{4.3cm}\left.+4\xi\left(\delta-\frac{3}{4}\right)\left(4x-4+\sqrt{1-x_0^2}\right)\right]\\[5pt]
 F_{AP}(x)=&\frac{1}{6}\left[\xi''\left(2x^2-x-x_0^2\right)+4\left(\rho-\frac{3}{4}\right)\left(4x^2-3x-x_0^2\right)+2\eta''(1-x)x_0\right]
 \end{align}
-
+\clearpage
 These different contributions can be qualitatively understood as follows:
 
 \begin{itemize}
@@ -400,14 +402,14 @@ These different contributions can be qualitatively understood as follows:
 
 In the SM we have for these extended Michel parameters, $\eta''=0$, $\xi'=\xi''=1$, and $\alpha'/A=\beta'/A=0$. 
 
-The Michel parameters lay the phenomenological foundation for the inquiry of this thesis: How would heavy fields from beyond the SM affect them? Expressing the Michel parameters in terms of SPVAT couplings as for $\rho$ in Eq. \ref{eq:rho} possesses inherent theoretical limitations. The SPVAT Lagrangian is constructed essentially as an ad hoc, bottom-up classification of the Lorentz-invariant four-fermion interactions. It does not systematically incorporate the underlying gauge structure of the strong and electromagnetic interactions, nor does it provide a framework for consistently evolving the couplings up to the high-energy matching scale. In order to systematically probe for new physics within muon decay, a more modern theoretical architecture is required: Low-Energy Effective Field Theory (LEFT).
-```latex
+The Michel parameters lay the phenomenological foundation for the inquiry of this thesis: How would heavy fields from beyond the SM affect them? Expressing the Michel parameters in terms of SPVAT couplings as for $\rho$ in Eq. \ref{eq:rho} possesses inherent theoretical limitations. The SPVAT Lagrangian is constructed essentially as an ad hoc, bottom-up classification of the Lorentz-invariant four-fermion interactions. It does not systematically incorporate the underlying gauge structure of the SM, nor does it provide a framework for consistently evolving the couplings up to the high-energy matching scale. In order to systematically probe for new physics within muon decay, a more modern theoretical architecture is required: Low-Energy Effective Field Theory (LEFT).
+
 \section{Experimental Michel-parameter likelihood}
 \label{sec:michel-likelihood}
 
 The experimental Michel-parameter inputs are not treated as a set of
 independent one-dimensional Gaussian measurements. Instead, we divide
-them into experimental likelihood blocks,
+them into experimental likelihood blocks:
 \begin{equation}
   \bm{O}_{\mathrm{fit}}
   =
@@ -428,7 +430,7 @@ The different experimental blocks are assumed to be mutually
 independent, whereas the correlations within each block are retained.
 
 \paragraph{TWIST block}
-For the TWIST measurement, we use the following native parameter basis:
+For the TWIST measurement, we use the following native parameter basis \cite{Hillairet2012precision,bueno2011precise}:
 \begin{equation}
   \bm{O}^{\mathrm{exp}}_{\mathrm{TWIST}}
   =
@@ -510,8 +512,8 @@ For a symmetric treatment of the uncertainty on $P_\mu^\pi\xi$, we symmetrize in
 \end{equation}
 
 \paragraph{Danneberg block}
-For the transverse-polarization measurement, we use the general
-four-parameter fit
+For the transverse-polarization measurement, we use the following general
+four-parameter fit \cite{danneberg2005muon}:
 \begin{equation}
   \bm{O}^{\mathrm{exp}}_{\mathrm{D}}
   =
@@ -578,11 +580,11 @@ Or numerically:
   \label{eq:danneberg-covariance}
 \end{equation}
 Consequently, $\eta$ and $\eta''$ must not be treated as statistically
-independent. The same applies to $\alpha'/A$ and $\beta'/A$. Indeed both pairs are separately strongly correlated. 
+independent and neither $\alpha'/A$ and $\beta'/A$ -- indeed both pairs are separately strongly correlated. 
 
 \paragraph{Single-observable blocks}
 The remaining polarization observables are included as independent
-one-dimensional blocks:
+one-dimensional blocks \cite{burkard1985muon,prieels2014measurement}:
 \begin{align}
   \xi'  &= 0.998\pm0.045,\\
   \xi'' &= 0.981
@@ -606,20 +608,20 @@ The total experimental covariance is approximated by:
   \sigma_{\xi''}^2
   \label{eq:combined-michel-covariance}
 \end{equation}
-For a vector of LEFT Wilson coefficients $\bm{C}$, the corresponding
+For a vector of LEFT Wilson coefficients $\bm{L}$, the corresponding
 contribution to the likelihood is:
 \begin{align}
-  \chi^2_{\mathrm{Michel}}(\bm{C})
+  \chi^2_{\mathrm{Michel}}(\bm{L})
   =
   &\sum_b
   \left[
-    \bm{O}^{\mathrm{th}}_b(\bm{C})
+    \bm{O}^{\mathrm{th}}_b(\bm{L})
     -
     \bm{O}^{\mathrm{exp}}_b
   \right]^T
   \bm{V}_b^{-1}
   \left[
-    \bm{O}^{\mathrm{th}}_b(\bm{C})
+    \bm{O}^{\mathrm{th}}_b(\bm{L})
     -
     \bm{O}^{\mathrm{exp}}_b
   \right]
@@ -633,10 +635,73 @@ contribution to the likelihood is:
   \right\}
   \label{eq:michel-chi2}
 \end{align}
-The quantities involving $P_\mu^\pi$ are measured as polarization
-products. Setting $P_\mu^\pi=1$ is therefore an additional
+The quantities involving $P_\mu^\pi$ are measured as polarization products. Setting $P_\mu^\pi=1$ is therefore an additional
 phenomenological assumption rather than part of the experimental
-measurement. Furthermore, the Michel shape and polarization parameters
-do not constrain the overall normalization of the muon-decay amplitude.
-If normalization-changing LEFT coefficients are included, the muon
-lifetime or an equivalent normalization constraint must also be used.
+measurement. Furthermore, the Michel shape and polarization parameters do not constrain the overall normalization of the muon-decay amplitude. If normalization-changing LEFT coefficients are included, the muon
+lifetime or an equivalent normalization constraint must also be used. The full set of experimental-level Michel parameters entering the likelihood is given in Tab.~\ref{tab:michel-likelihood-inputs}.
+\begin{table}[tbp]
+    \centering
+    \begin{tabular}{llll}
+        \toprule
+        Observable
+        & Experimental value
+        & SM value
+        & Source
+        \\
+        \midrule
+        $\rho$
+        & $0.74977\pm0.00026$
+        & $3/4$
+        & TWIST \cite{Hillairet2012precision}
+        \\
+        $\delta$
+        & $0.75049\pm0.00034$
+        & $3/4$
+        & TWIST \cite{Hillairet2012precision}
+        \\
+        $P_\mu^\pi\xi$
+        & $1.00084^{+0.00168}_{-0.00069}$
+        & $1$
+        & TWIST \cite{bueno2011precise}
+        \\
+        $\eta$
+        & $0.071\pm0.0373$
+        & $0$
+        & Danneberg et al.\ \parencite{danneberg2005muon}
+        \\
+        $\eta''$
+        & $0.105\pm0.0523$
+        & $0$
+        & Danneberg et al.\ \parencite{danneberg2005muon}
+        \\
+        $\alpha'/A$
+        & $-0.0034\pm0.0219$
+        & $0$
+        & Danneberg et al.\ \parencite{danneberg2005muon}
+        \\
+        $\beta'/A$
+        & $-0.0005\pm0.0080$
+        & $0$
+        & Danneberg et al.\ \parencite{danneberg2005muon}
+        \\
+        $\xi'$
+        & $0.998\pm0.045$
+        & $1$
+        & Burkard et al.\ \parencite{burkard1985muon}
+        \\
+        $\xi''$
+        & $0.981\pm0.0451$
+        & $1$
+        & Prieels et al.\ \parencite{prieels2014measurement}
+        \\
+        \bottomrule
+    \end{tabular}
+    \caption{%
+        Experiment-level Michel-parameter inputs entering the likelihood.
+        Statistical and systematic uncertainties are combined in quadrature,
+        except that the asymmetric uncertainty on $P_\mu^\pi\xi$ is retained.
+        These values should be distinguished from the PDG averages quoted
+        elsewhere in the text.
+    }
+    \label{tab:michel-likelihood-inputs}
+\end{table}
