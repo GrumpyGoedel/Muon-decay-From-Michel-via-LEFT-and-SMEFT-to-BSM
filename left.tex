@@ -1,15 +1,22 @@
 \chapter{Low Energy Effective Field Theory (LEFT)}\label{ch:left}
 The LEFT is constructed by integrating out all heavy degrees of freedom at the electroweak scale (the $W$, $Z$ and Higgs boson as well as the top quark) while strictly preserving the unbroken low-energy gauge symmetry of the Standard Model, $SU(3)_C \times U(1)_{em}$. This provides several critical advantages over the historical SPVAT approach:
 \begin{itemize}
-    \item \textbf{Gauge Invariance:} The operators in LEFT are explicitly constructed to be invariant under QED and QCD, ensuring theoretical consistency at low energies.
-    \item \textbf{Systematic Expansion:} LEFT allows for a rigorous power-counting expansion in terms of operator dimensionality (suppressed by powers of the new physics scale $\Lambda$), guaranteeing that all possible interactions up to a given mass dimension are accounted for.
-    \item \textbf{Renormalization Group (RG) Evolution:} A formal EFT framework allows the Wilson coefficients evaluated at the high-energy matching scale ($\mu \sim m_W$) to be systematically evolved down to the kinematic scale of muon decay ($\mu \sim m_\mu$) via the renormalization group equations, properly accounting for operator mixing.
+    \item \textbf{A complete, process-independent operator basis:}
+    The SPVAT formalism parametrizes the most general local,
+    derivative-free four-fermion interactions relevant to muon decay. LEFT instead classifies all independent interactions among the light fields through a chosen mass dimension,
+    with their flavor structure and baryon- and lepton-number properties made explicit.
+    \item \textbf{Systematic power counting and truncation:}
+    LEFT organizes the interactions according to their canonical mass
+    dimension and thus according to inverse powers of the heavy scales.
+    This provides a controlled prescription for retaining all independent
+    operators through a given order and neglecting higher-dimensional
+    contributions consistently.
+    \item \textbf{Matching and renormalization-group (RG) evolution:}
+    The LEFT Wilson coefficients form a renormalized operator basis with
+    known QED and QCD anomalous dimensions. They can therefore be evolved
+    between the muon and electroweak scales while accounting for operator
+    mixing, and can subsequently be matched onto SMEFT coefficients.
 \end{itemize}
-
-By mapping the specific SPVAT couplings to the rigorously defined Wilson coefficients of the LEFT operator basis, we can modernize the historical Michel parameters. The primary objective of the subsequent chapters is to execute this exact mapping: deriving the analytical deviations of the Michel parameters driven by the insertion of dimension-six LEFT operators, thereby establishing a precise, gauge-invariant dictionary between high-energy BSM theory and low-energy muon decay observables.
-
-
-
 At the energy scale of muon decay, determined by the muon mass $m_\mu \approx 106\text{ MeV}$, the heavy fields of the SM are not dynamical degrees of freedom - the $W^\pm$, $Z$ and $H$ boson as well as the $t$ quark all have masses clustered around the electroweak scale $v\approx 246\text{ GeV}$, three orders of magnitude above the muon mass. For energies well below this scale, an effective theory can be derived by integrating out the heavy fields and adding higher-dimensional effective operators built from the remaining field content. 
 
 \section{The LEFT basis}
@@ -60,22 +67,17 @@ Dimension-five dipole operators:
 \end{align}
 Dimension-six operators:
 \begin{align}
-    \op_{\nu e}^{V,LL}&=(\bar\nu_{L,p}\gamma^\mu\nu_{L,r})(\bar e_{L,s}\gamma_\mu e_{L,t})\\
+    \op_{\nu e}^{V,LL}&=(\bar\nu_{L,p}\gamma^\mu\nu_{L,r})(\bar e_{L,s}\gamma_\mu e_{L,t})\label{eq:OVLL}\\
     \op_{\nu e}^{V,LR}&=(\bar\nu_{L,p}\gamma^\mu\nu_{L,r})(\bar e_{R,s}\gamma_\mu e_{R,t})\\
     \op_{\nu e}^{S,LL}&=(\nu_{L,p}^TC\nu_{L,r})(\bar e_{R,s} e_{L,t})\\
     \op_{\nu e}^{S,LR}&=(\nu_{L,p}^TC\nu_{L,r})(\bar e_{L,s} e_{R,t})\\
-    \op_{\nu e}^{T,LL}&=(\nu_{L,p}^TC\sigma^{\mu\nu}\nu_{L,r})(\bar e_{R,s}\sigma_{\mu\nu} e_{L,t})
+    \op_{\nu e}^{T,LL}&=(\nu_{L,p}^TC\sigma^{\mu\nu}\nu_{L,r})(\bar e_{R,s}\sigma_{\mu\nu} e_{L,t})\label{eq:OTLL}
 \end{align}
-\begin{itemize}
-    \item[$\bullet$] Flavor-changing coupling of leptons to photon highly supressed
-    \item[$\bullet$] $C$ is charge conjugation matrix
-    \item[$\bullet$] $p,r,s,t$ flavor indices
-    \item[$\bullet$] Only $\op_{\nu e}^{V,LL}$ and $\op_{\nu e}^{V,LR}$ preserve lepton number
-\end{itemize}
+$C$ is charge conjugation matrix and $p,r,s,t$ are flavor indices. For this work we will only consider the dimension-six operators. We note that only $\op_{\nu e}^{V,LL}$ and $\op_{\nu e}^{V,LR}$ preserve lepton number and thus correspond to SM-like neutrino output. In the following section, we will perturb the SM Michel parameters with the LEFT operators from Eq.~\ref{eq:OVLL} to Eq.~\ref{eq:OTLL}.
 \section{Michel parameters in the LEFT}
-\subsection{SM-like neutrino output}
-
-We begin by deriving the Michel parameters for $\mu^-\to e^-\bar\nu_e\nu_\mu$, which corresponds to the SM process. We follow the discussion from \ref{sec:michel} and further elaborated in \ref{sec:kinPS}. We consider strictly the SM-like process as a simple first look at our results. In the next subsection we consider all four-fermion operators simultaneously which allows for different neutrino final states.
+We will now present our calculations for the perturbation of the Michel parameters by LEFT operators of dimension six. In Sec.~\ref{sec:SMlikeNeutrinoOutput} we only consider the SM-like neutrino output $\nu_\mu+\bar\nu_e$ and in Sec.~\ref{sec:FullFourFermionResults} we allow for all combinations of two outgoing neutrinos.
+\subsection{SM-like neutrino output}\label{sec:SMlikeNeutrinoOutput}
+We begin by deriving the Michel parameters for $\mu^-\to e^-\bar\nu_e\nu_\mu$, which corresponds to the SM process. We follow the discussion from Sec.~\ref{sec:michel} and further elaborated in appendix~\ref{ch:kinematics}. We consider strictly the SM-like process as a simple first look at our results.
 
 Starting with the contributions insensitive to the electron polarization we find:
 %
@@ -86,7 +88,7 @@ Starting with the contributions insensitive to the electron polarization we find
 \xi=&\;1-\frac{v^4}{2}L_{\nu e,2112}^{V,LR}L_{\nu e,1221}^{V,LR}\\[5pt]
 \delta=&\frac{3}{4}
 \end{align}
-Since the operators $\op_{\nu e}^{V,LL}$ and $\op_{\nu e}^{V,LR}$ are hermitian, their flavor structures $1221$ and $2112$ are equivalent and for their coefficients it holds that ${L_{\nu e,2112}^{V,LL}}^*=L_{\nu e,1221}^{V,LL}$ and ${L_{\nu e,2112}^{V,LR}}^*=L_{\nu e,1221}^{V,LR}$ so we can simplify the first order corrections for $G_F/G_{F,\rm SM}$ to the real part of one operator coefficient.\par 
+Since the operators $\op_{\nu e}^{V,LL}$ and $\op_{\nu e}^{V,LR}$ are hermitian, their flavor structures $1221$ and $2112$ are equivalent and for their coefficients it holds that ${L_{\nu e,2112}^{V,LL/LR}}^*=L_{\nu e,1221}^{V,LL/LR}$ so we can simplify the first order corrections for $G_F/G_{F,\rm SM}$ to the real part of one operator coefficient.\par 
 In many analyses $G_F$ is viewed as an input parameter. However, we use the result of \cite{grunwald2025beyond} where the authors apply the $\{\hat m_W,\hat m_Z,\hat \alpha\}$ input parameter scheme to conduct a theory determination of $G_F$:
 \begin{equation}
 G_{F,{\rm SM}}=\frac{\pi\hat \alpha\hat m_Z^2}{\sqrt{2}\hat m_W^2(\hat m_Z^2-\hat m_W^2)}(1+\delta_R) =1.1658(10)\cdot 10^{-5}\, 
@@ -100,7 +102,7 @@ For this they use the values $\delta_R=0.03686(21)$, $\hat\alpha=7.2973525693(11
 By taking $|L|\sim 1/\Lambda^2$ (and assuming that $|L|\approx\text{Re}[L]$) we obtain a 95\% confidence level bound on the scale of new physics:
 %
 \begin{equation}
-\Lambda\ge 21v\sim {\rm\ 5.1\ TeV}
+\Lambda\ge 21v\sim {\rm\ 5.1\ TeV}\label{eq:naiveresult}
 \end{equation}
 If we allow for contributions that are quadratic in $L_{\nu e,2112}^{V,LR}$ and  $L_{\nu e,2112}^{V,LL}$ we can define a $\chi^2$ over $G_F, \eta$ and $\xi$. Assuming $P_\mu=1$, we find the following 95\% confidence level region for the two contributing Wilson coefficients:
 \begin{align}
@@ -127,15 +129,15 @@ This operator can be transformed to to a scalar operator by a Fierz transformati
 \begin{align}
     \mathcal{O}_{\nu e,prst}^{V,LR}=&\;(\bar{\nu}_{p}\gamma^\mu P_L\nu_{r})(\bar e_{s}\gamma_\mu P_Re_{t})\nonumber\\[5pt]
     =&\;2(\bar e_{Rs}\nu_{Lr})(\bar{\nu}_{Lp}e_{Rt})\nonumber\\[8pt]
-    &\text{by Fierz: } (\gamma^\mu P_L)_{ab}(\gamma_\mu P_R)_{cd}=-2(P_R)_{ad}(P_L)_{cb} \label{eq:fierzingV,LR2SRR}
+    &\text{by Fierz: } (\gamma^\mu P_L)_{ab}(\gamma_\mu P_R)_{cd}=-2(P_R)_{ad}(P_L)_{cb} \label{eq:fierzingVLR2SRR}
 \end{align}
-This resembles for $prst=2112$ the Michel structure of $g_{RR}^S$ in the notation by Fetscher, Gerber \& Johnson \cite{fetscher1986muon} and thus our determination in \ref{eq:etabetaprime} reproduces the findings in~\cite{falkowski2016model} where the authors state that at leading order (and for SM like neutrino output) only the Michel parameters $\eta$ and $\beta'/A$ receive a correction stemming from the scalar interaction term $g_{RR}^S$. Since $L^{V,LR}_{\nu e,2112}$ and $g_{RR}^S$ produce the same operator structure we can also constrain $L^{V,LR}_{\nu e,2112}$ directly from the PDG results for the SPVAT matrix elements~\cite{particle2024review}:
+This resembles for $prst=2112$ the Michel structure of $g_{RR}^S$ in the notation by Fetscher, Gerber \& Johnson \cite{fetscher1986muon} and thus our determination in \ref{eq:etabetaprime} reproduces the findings in~\cite{falkowski2016model} where the authors state that at leading order (and for SM like neutrino output) only the Michel parameters $\eta$ and $\beta'/A$ receive a correction stemming from the scalar interaction term $g_{RR}^S$. Since $L^{V,LR}_{\nu e,2112}$ and $g_{RR}^S$ produce the same operator structure we could in principle also constrain $L^{V,LR}_{\nu e,2112}$ directly from the PDG results for the SPVAT matrix elements~\cite{particle2024review}:
 \begin{equation}
     L^{V,LR}_{\nu e,2112}\simeq |g_{RR}^S|<0.035
 \end{equation}
-Before we are discussing the evolution of this constrain up to the EW scale we discuss the case of full neutrino output.
-\subsection{Full four-fermion results}
-Starting with neglecting measurements sensitive to electron spin, we find for $G_F$:
+We will however use the Michel parameters of Tab.~\ref{tab:michel-likelihood-inputs}. Before we analyze the evolution of the constraints up to the EW scale we discuss the case of full neutrino output.
+\subsection{Full four-fermion results}\label{sec:FullFourFermionResults}
+Starting by neglecting measurements sensitive to electron spin, we find for $G_F$:
 %
 \begin{align}
 G_F^2/G_{F,{\rm SM}}^2=&\;1-\frac{v^2}{2}\left[L_{\nu e,2112}^{V,LL}+L_{\nu e,1221}^{V,LL}\right]\nonumber\\[5pt]
@@ -145,14 +147,16 @@ G_F^2/G_{F,{\rm SM}}^2=&\;1-\frac{v^2}{2}\left[L_{\nu e,2112}^{V,LL}+L_{\nu e,12
 &+3 v^4\sum_{a<b}\left[|L_{\nu e,ab12}^{T,LL}-L_{\nu e,ba12}^{T,LL}|^2+(12\to 21)\right]
 \end{align}
 %
-Here we have used ``$(12\to 21)$'' to mean swapping only the last two flavor indices from ``12'' to ``21.'' For sums with $a<b$ it is understood $b$ is summed from 1 to 3. The factor of two for like neutrinos arises from the counting factor (1/2) for identical final-state particles and symmetrizing the amplitude giving $|c+c|^2$ to $4|c|^2$ for $a=b$. The factor of 3 for the tensor can be understood as coming from the six independent components of $\sigma^{\mu\nu}$ and the trace over dirac matrices. The difference in sign structure between scalar and tensor terms is simply due to the symmetry properties of the two operators under interchange of the neutrino flavor indices.
+Here we have used ``$(12\to 21)$'' to mean swapping only the last two flavor indices from ``12'' to ``21.'' For sums with $a<b$ it is understood $b$ is summed from 1 to 3. The factor of two for like neutrinos arises from the counting factor (1/2) for identical final-state particles and symmetrizing the amplitude giving $|c+c|^2$ to $4|c|^2$ for $a=b$. The factor of 3 for the tensor can be understood as coming from the six independent components of $\sigma^{\mu\nu}$ and the trace over Dirac matrices. The difference in sign structure between scalar and tensor terms is simply due to the symmetry properties of the two operators under interchange of the neutrino flavor indices.
 
 For the other electron spin independent Michel parameters we find:
 %
 \begin{align}
 \rho=&\;\;\frac{3}{4}-\frac{3v^4}{64}\sum_{a<b}\left[|L_{\nu e,ab12}^{S,LL}+L_{\nu e,ba12}^{S,LL}|^2+|L_{\nu e,ab12}^{S,LR}+L_{\nu e,ba12}^{S,LR}|^2+(12\to 21)\right]\nonumber\\[5pt]
 &\;\;\phantom{\frac{3}{4}}-2\times \frac{3v^4}{64}\sum_{a=1}^3\left[|L_{\nu e,aa12}^{S,LL}|^2+|L_{\nu e,aa12}^{S,LR}|^2+(12\to 21)\right]\nonumber\\[5pt]
-&\;\;\phantom{\frac{3}{4}}+\frac{3v^4}{4}\sum_{a<b}\left[|L_{\nu e,ab12}^{T,LL}-L_{\nu e,ba12}^{T,LL}|^2+(12\to 21)\right]\\[5pt]
+&\;\;\phantom{\frac{3}{4}}+\frac{3v^4}{4}\sum_{a<b}\left[|L_{\nu e,ab12}^{T,LL}-L_{\nu e,ba12}^{T,LL}|^2+(12\to 21)\right]
+\end{align}
+\begin{align}
 \eta=&\;\;0+\frac{v^2}{4}\left[L_{\nu e,2112}^{V,LR}+L_{\nu e,1221}^{V,LR}\right]+\frac{v^4}{8}\left[L_{\nu e,1221}^{V,LL}L_{\nu e,2112}^{V,LR}+L_{\nu e,2112}^{V,LL}L_{\nu e,1221}^{V,LR}\right]\nonumber\\[5pt]
 &\;\;\phantom{0}+\frac{v^4}{8}\left[L_{\nu e,2112}^{V,LL}L_{\nu e,2112}^{V,LR}+L_{\nu e,1221}^{V,LL}L_{\nu e,1221}^{V,LR}\right]\nonumber\\[5pt]
 &\;\;\phantom{0}-\frac{v^4}{8}\sum_{a,b=1}^3\left[L_{\nu e,ba12}^{V,LL}L_{\nu e,ab12}^{V,LR}+L_{\nu e,ab12}^{V,LL}L_{\nu e,ba21}^{V,LR}\right]\nonumber\\[5pt]
@@ -162,16 +166,13 @@ For the other electron spin independent Michel parameters we find:
 &\;\;\phantom{1}+\frac{v^4}{8}\sum_{a<b}\left[|L_{\nu e,ab12}^{S,LR}+L_{\nu e,ba21}^{S,LR}|^2-2|L_{\nu e,ab12}^{S,LL}+L_{\nu e,ba12}^{S,LL}|^2\right]\nonumber\\[5pt]
 &\;\;\phantom{1}+\frac{v^4}{8}\sum_{a<b}\left[-2|L_{\nu e,ab21}^{S,LR}+L_{\nu e,ba21}^{S,LR}|^2+|L_{\nu e,ab21}^{S,LL}+L_{\nu e,ba21}^{S,LL}|^2\right]\nonumber\\[5pt]
 &\;\;\phantom{1}+\frac{v^4}{4}\sum_{a=1}^3\left[|L_{\nu e,aa21}^{S,LL}|^2-2|L_{\nu e,aa21}^{S,LR}|^2-2|L_{\nu e,aa12}^{S,LL}|^2+|L_{\nu e,aa12}^{S,LR}|^2\right]\nonumber\\[5pt]
-&\;\;\phantom{1}+\frac{v^4}{8}\sum_{a<b}\left[32|L_{\nu e,ab12}^{T,LL}-L_{\nu e,ba12}^{T,LL}|^2-80|L_{\nu e,ab21}^{T,LL}-L_{\nu e,ba21}^{T,LL}|^2\right]
-\end{align}
-%
-\begin{align}
+&\;\;\phantom{1}+\frac{v^4}{8}\sum_{a<b}\left[32|L_{\nu e,ab12}^{T,LL}-L_{\nu e,ba12}^{T,LL}|^2-80|L_{\nu e,ab21}^{T,LL}-L_{\nu e,ba21}^{T,LL}|^2\right]\\[5pt]
 \delta=&\;\;\frac{3}{4}+\frac{9v^4}{64}\sum_{a<b}\left[|L_{\nu e,ab12}^{S,LL}+L_{\nu e,ba12}^{S,LL}|^2-|L_{\nu e,ab12}^{S,LR}+L_{\nu e,ba12}^{S,LR}|^2 -(12\to 21)\right]\nonumber\\[5pt]
 &\;\;\phantom{\frac{3}{4}}+\frac{9v^4}{32}\sum_{a=1}^3\left[|L_{\nu e,aa12}^{S,LL}|^2-|L_{\nu e,aa12}^{S,LR}|^2-(12\to 21)\right]\nonumber\\[5pt]
 &\;\;\phantom{\frac{3}{4}}-\frac{9v^4}{4}\sum_{a<b}\left[|L_{\nu e,ab12}^{T,LL}-L_{\nu e,ba12}^{T,LL}|^2-(12\to 21)\right]
 \end{align}
 %
-The extra quadratic term in $\eta$ that does not appear as part of a sum arises from the cross term when expanding the ratio defining eta (see \ref{eq:solveforMichel}). It originates from the product of the linear term in the numerator ($\sim L_{\nu e,2112}^{V,LR}$) with the linear correction to $1/G_F^2$ ($\sim L_{\nu e,2112}^{V,LL}$). This contribution only exists for the SM flavor assignment. Notice that for $\xi$ there is a difference between the ``$12$'' and ``$21$'' contributions. From \ref{eq:LLvio} we can see that exchanging these labels swaps the chirality assigned to the electron and muon. The parameter $\xi$, which corresponds to the anisotropic part of the rate, is sensitive to precisely this difference in chiral assignments. For the same reason, $\delta$ also swaps signs under the flavor exchange $(12\to 21)$.
+The extra quadratic term in $\eta$ that does not appear as part of a sum arises from the cross term when expanding the ratio defining eta (see \ref{eq:solveforMichel}). It originates from the product of the linear term in the numerator $\sim L_{\nu e,2112}^{V,LR}$ with the linear correction to $1/G_F^2$ $\sim L_{\nu e,2112}^{V,LL}$. This contribution only exists for the SM flavor assignment. Notice that for $\xi$ there is a difference between the ``$12$'' and ``$21$'' contributions. Exchanging these labels swaps the chirality assigned to the electron and muon. The parameter $\xi$, which corresponds to the anisotropic part of the rate, is sensitive to precisely this difference in chiral assignments. For the same reason, $\delta$ also swaps signs under the flavor exchange $(12\to 21)$.
 
 
 Measurements sensitive to the electron's polarization then access the additional Michel parameters:
@@ -182,23 +183,22 @@ Measurements sensitive to the electron's polarization then access the additional
 &\;\;\phantom{1}-\frac{v^4}{4}\sum_{a=1}^3\left[|L_{\nu e,aa12}^{S,LL}|^2+|L_{\nu e,aa21}^{S,LR}|^2\right]-6v^4\sum_{a<b}|L_{\nu e,ab12}^{T,LL}-L_{\nu e,ba12}^{T,LL}|^2\\[5pt]
 \xi''=&\;\;1+\frac{v^4}{8}\sum_{a<b}\left[|L_{\nu e,ab12}^{S,LL}+L_{\nu e,ba12}^{S,LL}|^2+|L_{\nu e,ab12}^{S,LR}+L_{\nu e,ba12}^{S,LR}|^2+(12\to 21)\right]\nonumber\\[5pt]
 &\;\;\phantom{1}+\frac{v^4}{4}\sum_{a=1}^3\left[|L_{\nu e,aa12}^{S,LL}|^2+|L_{\nu e,aa12}^{S,LR}|^2+(12\to 21)\right]\nonumber\\[5pt]
-&\;\;\phantom{1}-10v^4\sum_{a<b}\left[|L_{\nu e,ab12}^{T,LL}-L_{\nu e,ba12}^{T,LL}|^2+(12\to 21)\right]
-\end{align}
-
-\begin{align}
+&\;\;\phantom{1}-10v^4\sum_{a<b}\left[|L_{\nu e,ab12}^{T,LL}-L_{\nu e,ba12}^{T,LL}|^2+(12\to 21)\right]\\[5pt]
 \eta''=&\;\;0-\frac{v^2}{4}\left[L_{\nu e,2112}^{V,LR}+L_{\nu e,1221}^{V,LR}\right]-\frac{v^4}{8}[L_{\nu e,1221}^{V,LL}L_{\nu e,2112}^{V,LR}+L_{\nu e,2112}^{V,LL}L_{\nu e,1221}^{V,LR}]\nonumber\\[5pt]
 &\;\;\phantom{0}-\frac{v^4}{8}[L_{\nu e,2112}^{V,LL}L_{\nu e,2112}^{V,LR}+L_{\nu e,1221}^{V,LL}L_{\nu e,1221}^{V,LR}]\nonumber\\[5pt]
 &\;\;\phantom{0}+\frac{v^4}{8}\sum_{a,b=1}^3[L_{\nu e,ba21}^{V,LL}L_{\nu e,ab12}^{V,LR}+L_{\nu e,ab12}^{V,LL}L_{\nu e,ba21}^{V,LR}]\nonumber\\[5pt]
 &\;\;\phantom{0}+\frac{3v^4}{8}\sum_{a<b}{\rm Re}\left[(L_{\nu e,ab12}^{S,LL}+L_{\nu e,ba12}^{S,LL})^*(L_{\nu e,ab12}^{S,LR}+L_{\nu e,ba12}^{S,LR})+(12\to 21)\right]\nonumber\\[5pt]
-&\;\;\phantom{0}+\frac{3v^4}{4}\sum_{a=1}^3{\rm Re}\left[(L_{\nu e,aa12}^{S,LL})^*L_{\nu e,aa12}^{S,LR}+(12\to 21)\right]\\[5pt]
+&\;\;\phantom{0}+\frac{3v^4}{4}\sum_{a=1}^3{\rm Re}\left[(L_{\nu e,aa12}^{S,LL})^*L_{\nu e,aa12}^{S,LR}+(12\to 21)\right]
+\end{align}
+
+\begin{align}
 \frac{\alpha'}{A}=&\;\;0-\frac{v^4}{8}\sum_{a<b}{\rm Im}[(L_{\nu e,ab12}^{S,LL}+L_{\nu e,ba12}^{S,LL})^*(L_{\nu e,ab12}^{S,LR}+L_{\nu e,ba12}^{S,LR})+(12\to 21)]\nonumber\\[5pt]
 &\;\;\phantom{0}-\frac{v^4}{4}\sum_{a=1}^3{\rm Im}[(L_{\nu e,aa12}^{S,LL})^*L_{\nu e,aa12}^{S,LR}+(12\to 21)]\\[5pt]
-%%
 \frac{\beta'}{A}=&\;\;0-\frac{v^2}{4}{\rm Im}[L_{\nu e,2112}^{V,LR}]-\frac{v^4}{8}{\rm Im}[(L_{\nu e,2112}^{V,LL})^*L_{\nu e,2112}^{V,LR}]-\frac{v^4}{8}{\rm Im}[(L_{\nu e,2112}^{V,LL})L_{\nu e,2112}^{V,LR}]\nonumber\\[5pt]
 &\;\;\phantom{0}+\frac{v^4}{8}\sum_{a,b=1}^3{\rm Im}[(L_{\nu e,ab12}^{V,LL})^*L_{\nu e,ab12}^{V,LR}]
 \end{align}
 \section{Constraints on the LEFT Wilson coefficients}\label{sec:left-constraints}
-Having expressed the Michel parameters as functions of the LEFT Wilson coefficients, we can now invert the relation: given the experimental likelihood of Sec.~\ref{sec:michel-likelihood} we constrain the coefficients themselves. Throughout we work with the dimensionless combination $v^2L^{(6)}_{\nu e}\sim(v/\Lambda)^2$, so that a bound on $v^2L$ translates, for an order-one UV coupling, into a lower bound on the new-physics scale via $\Lambda\gtrsim v/\sqrt{|v^2L|}$. The results quoted here are obtained at the scale of muon decay, $\mu\sim m_\mu$; their evolution to the electroweak scale is the subject of the following section.
+Having expressed the Michel parameters as functions of the LEFT Wilson coefficients, we can now invert the relation: given the experimental likelihood of Sec.~\ref{sec:michel-likelihood} we constrain the coefficients themselves. Throughout we work with the dimensionless combination $v^2L^{(6)}_{\nu e}\sim(v/\Lambda)^2$, so that a bound on $v^2L$ translates, for an order-one UV coupling, into a lower bound on the new-physics scale via $\Lambda\gtrsim v/\sqrt{|v^2L|}$. The results quoted here are obtained at the scale of muon decay, $\mu\sim m_\mu$; their evolution to the electroweak scale is the subject of the subsequent section.
 
 \paragraph{Interference versus quadratic sensitivity}
 The structure of the full four-fermion results dictates two qualitatively different regimes. The lepton-number-conserving vector operators $\mathcal{O}^{V,LL}_{\nu e}$ and $\mathcal{O}^{V,LR}_{\nu e}$ with the Standard-Model flavour assignment ($ab=21$, i.e.\ the final state $\nu_\mu\bar\nu_e$) interfere with the SM amplitude and therefore enter the observables \emph{linearly}, at order $v^2L$. Every lepton-number-violating operator, as well as the vector operators for any non-SM neutrino flavour, cannot interfere with the SM final state and enters only \emph{quadratically}, as $|v^2L|^2$. Since the neutrinos are not observed, the observables depend only on incoherent sums over the neutrino flavours; a bound on an individual flavour coefficient is therefore only meaningful under the assumption of single-operator dominance, and within a given operator class the bound is largely independent of the specific neutrino-flavour label.
@@ -224,7 +224,7 @@ Switching on one coefficient at a time and profiling the block-covariance $\chi^
     \caption{Single-operator $95\%$ CL bounds on selected dimensionless LEFT Wilson coefficients $v^2L^{(6)}_{\nu e}$ at the muon scale, from the Michel-parameter likelihood of Sec.~\ref{sec:michel-likelihood}. The implied scale assumes $|L|\sim1/\Lambda^2$ with an order-one coupling. Flavour indices follow the convention $prst$ with $p,r$ the neutrino and $s,t$ the charged-lepton generations.}
     \label{tab:leftbounds}
 \end{table}
-The interfering coefficient $L^{V,LL}_{\nu e,2112}$ is the most tightly constrained, reproducing the $\Lambda\gtrsim5$~TeV normalization bound; its imaginary vector partner $L^{V,LR}_{\nu e,2112}$ is bounded through the transverse-polarization parameter $\beta'/A$, giving access to a CP-violating phase. The tensor operator is comparatively well constrained even though it enters quadratically, because it feeds the precisely-measured shape parameters $\rho$, $\delta$ and $\xi$ with large numerical coefficients.
+The interfering coefficient $L^{V,LL}_{\nu e,2112}$ is the most tightly constrained and it reproduces the $\Lambda\gtrsim5\text{ TeV}$ normalization bound; its imaginary vector partner $L^{V,LR}_{\nu e,2112}$ is bounded through the transverse-polarization parameter $\beta'/A$, giving access to a CP-violating phase. The tensor operator is comparatively well constrained even though it enters quadratically, because it feeds the precisely-measured shape parameters $\rho$, $\delta$ and $\xi$ with large numerical coefficients.
 
 It is worth noting that the scalar coefficient $L^{S,LL}_{\nu e,1112}$ has a $95\%$ interval that excludes zero. This is not evidence for new physics: a diagonal scalar lowers $\rho$ and raises $\delta$, and the current central values sit slightly below and above their SM predictions respectively, so the fit mildly prefers a non-zero value. With $\chi^2_{\rm SM}\approx21$ for the ten observables -- driven largely by the internal tension of the TWIST block, where $\delta$ and $P_\mu^\pi\xi$ are both pulled upward despite their $-0.72$ correlation -- this preference reflects the present experimental inputs rather than a significant signal.
 
