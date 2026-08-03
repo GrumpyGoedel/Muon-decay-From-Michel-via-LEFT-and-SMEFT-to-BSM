@@ -1,0 +1,104 @@
+\section{Renormalization Group Equations}\label{sec:apprge}
+Here we cite the full one-loop RGE for the relevant SMEFT operators. The overall structure of the dimension-six SMEFT renormalization group equations was presented in \parencite{jenkins2013rge1}. The Yukawa loop contributions were given in \parencite{jenkins2014rge2} and the Gauge loop contributions in \parencite{alonso2014rge3} - from the latter two papers we collect the results and add them here together. The notation in the papers is the following:
+\begin{equation}
+    \dot{C} \equiv 16\pi^2 \mu \frac{d C}{d\mu}
+\end{equation}
+\begin{align}
+%%%%%
+\dot C_{\substack{ ll \\ prst }} &= -\frac{1}{2} [Y_e^\dagger Y_e]_{pr} C_{\substack{ Hl \\ st }}^{(1)} -\frac{1}{2} [Y_e^\dagger Y_e]_{st} C_{\substack{ Hl \\ pr }}^{(1)}  +\frac{1}{2} [Y_e^\dagger Y_e]_{pr} C_{\substack{ Hl \\ st }}^{(3)} +\frac{1}{2} [Y_e^\dagger Y_e]_{st} C_{\substack{ Hl \\ pr }}^{(3)} \nn
+&-  [Y_e^\dagger Y_e]_{sr} C_{\substack{ Hl \\ pt }}^{(3)} - [Y_e^\dagger Y_e]_{pt} C_{\substack{ Hl \\ sr }}^{(3)}  - \frac{1}{2} \, [Y_e^\dagger]_{sv} \, [Y_e]_{wt} \, C_{\substack{le  \\ prvw}} - \frac{1}{2} \, [Y_e^\dagger]_{pv} \, [Y_e]_{wr} \, C_{\substack{le  \\ stvw}} \nn
+&+ \gamfY lpv C_{\substack{ll \\ vrst}} + \gamfY lsv C_{\substack{ll \\ prvt}}
++  C_{\substack{ll \\ pvst}} \gamfY lvr + C_{\substack{ll \\ prsv}}  \gamfY lvt\\
+&+ \frac23 g_1^2 \hyp_h \hyp_l C^{(1)}_{ \substack {Hl \\ s t } } \delta_{p r} 
+-       \frac16 g_2^2 C^{(3)}_{ \substack {Hl \\ s t } } \delta_{p r}
++ \frac13 g_2^2 C^{(3)}_{ \substack {Hl \\ s r } } \delta_{p t} 
++    \frac13   g_2^2 C^{(3)}_{ \substack {Hl \\ p t } } \delta_{r s} 
+\nn
+&
++ \frac23 g_1^2 \hyp_h \hyp_l C^{(1)}_{ \substack {Hl \\ p r } }   \delta_{s t} 
+- \frac16 g_2^2 C^{(3)}_{ \substack {Hl \\ p r } } \delta_{s t}  
++     \frac43 g_1^2 \hyp_l^2 C_{ \substack {ll \\ p r w w } } \delta_{s t}
++        \frac43 g_1^2 \hyp_l^2 C_{ \substack {ll \\ s t w w } } \delta_{p r} 
++        \frac43 g_1^2 \hyp_l^2 C_{ \substack {ll \\ w w s t } } \delta_{p r} 
+\nn
+&
++        \frac43 g_1^2 \hyp_l^2 C_{ \substack {ll \\ w w p r } } \delta_{s t} 
++        \frac23 g_1^2 \hyp_l^2 C_{ \substack {ll \\ p w w r } } \delta_{s t} 
++        \frac23 g_1^2 \hyp_l^2 C_{ \substack {ll \\ s w w t } } \delta_{p r} 
++        \frac23 g_1^2 \hyp_l^2 C_{ \substack {ll \\ w r p w } } \delta_{s t}
++        \frac23 g_1^2 \hyp_l^2 C_{ \substack {ll \\ w t s w } } \delta_{p r} 
+\nn
+&
+-        \frac16 g_2^2 C_{ \substack {ll \\ p w w r } } \delta_{s t} 
+-        \frac16 g_2^2 C_{ \substack {ll \\ s w w t } } \delta_{p r}
+-        \frac16 g_2^2 C_{ \substack {ll \\ w r p w } } \delta_{s t} 
+-        \frac16 g_2^2 C_{ \substack {ll \\ w t s w } } \delta_{p r} 
++        \frac13 g_2^2 C_{ \substack {ll \\ s w w r } } \delta_{p t}
+\nn
+&
++        \frac13 g_2^2 C_{ \substack {ll \\ p w w t } } \delta_{r s} 
++         \frac13    g_2^2 C_{ \substack {ll \\ w r s w } } \delta_{p t} 
++        \frac13 g_2^2 C_{ \substack {ll \\ w t p w } } \delta_{r s} 
++        \frac43 g_1^2 N_c \hyp_l \hyp_q C^{(1)}_{ \substack {lq \\ p r w w } } \delta_{s t}
++        \frac43 g_1^2 N_c \hyp_l \hyp_q C^{(1)}_{ \substack {lq \\ s t w w } } \delta_{p r} 
+\nn
+&
+-        \frac13 g_2^2 N_c C^{(3)}_{ \substack {lq \\ p r w w } } \delta_{s t}
+-        \frac13 g_2^2 N_c C^{(3)}_{ \substack {lq \\ s t w w } } \delta_{p r} 
++        \frac23 g_2^2 N_c C^{(3)}_{ \substack {lq \\ s r w w } } \delta_{p t} 
++        \frac23 g_2^2 N_c C^{(3)}_{ \substack {lq \\ p t w w } } \delta_{r s} 
+\nn
+&
++        \frac23 g_1^2 N_c \hyp_l \hyp_u C_{ \substack {lu \\ p r w w } } \delta_{s t}
++        \frac23 g_1^2 N_c \hyp_l \hyp_u C_{ \substack {lu \\ s t w w } } \delta_{p r} 
++        \frac23 g_1^2 N_c \hyp_d \hyp_l C_{ \substack {ld \\ p r w w } } \delta_{s t} 
++        \frac23 g_1^2 N_c \hyp_d \hyp_l C_{ \substack {ld \\ s t w w } } \delta_{p r} 
+\nn
+&
++        \frac23 g_1^2 \hyp_e \hyp_l C_{ \substack {le \\ p r w w } } \delta_{s t} 
++        \frac23 g_1^2 \hyp_e \hyp_l C_{ \substack {le \\ s t w w } } \delta_{p r} 
++ 6 g_2^2 \, C_{\substack{ll \\ ptsr}} - 3\left( g_2^2 - 4 \hyp_l^2 g_1^2 \right) C_{\substack{ll \\ prst}} 
+\end{align}
+\begin{align}
+%
+\dot C_{\substack{Hl  \\ pr}}^{(3)} &= -\frac12 [Y_e^\dagger Y_e]_{pr}   C_{H\Box}  +\frac12 [Y_e^\dagger Y_e]_{pt} \bigl( 3 C_{\substack{Hl \\ tr}}^{(1)} +  C_{\substack{Hl \\ tr}}^{(3)} \bigr) + \frac12 \bigl( 3 C_{\substack{Hl \\ pt}}^{(1)} +  C_{\substack{Hl \\ pt}}^{(3)} \bigr)  [Y_e^\dagger Y_e]_{tr} \nn
+&
+ - \bigl( C_{\substack{ll \\ ptsr}}+ C_{\substack{ll \\ srpt}} \bigr) [{Y_e}^\dagger Y_e  ]_{ts} -2N_c  C^{(3)}_{\substack{lq \\ prst }}   [Y_d^\dagger Y_d+Y_u^\dagger Y_u]_{ts}+ 2 \gamHY   C_{\substack{Hl  \\ pr}}^{(3)}+ \gamfY lpt C_{\substack{Hl\\ tr}} ^{(3)} + C_{\substack{Hl \\ pt}}^{(3)}\gamfY ltr\\
+ &+\frac16 g_2^2 C_{H \Box} \delta_{pr}+ \frac23 g_2^2  C^{(3)}_{\substack{H l \\ tt}}\delta_{pr} +  \frac23 g_2^2 N_c  C^{(3)}_{\substack{H q \\ tt}}\delta_{pr}
++\frac13 g_2^2  C_{\substack{Hl \\ pr}}^{(3)} +\frac{1}{3} g_2^2 C_{ \substack {ll \\ p w w r } } +\frac{1}{3} g_2^2 C_{ \substack {ll \\ w r p w } } 
++\frac{2}{3} g_2^2 N_c C^{(3)}_{ \substack {lq \\ p r w w } }\nn
+& - 6 g_2^2  C_{\substack{Hl \\ pr}}^{(3)} 
+\end{align}
+\begin{align}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\dot C_{\substack{ le \\ prst }} &=  [Y_e]_{sr} \xi_{\substack{e \\ pt}} +[Y_e^\dagger]_{pt} \xi^*_{\substack{e \\ rs}}- [Y_e^\dagger Y_e]_{pr} C_{\substack{ He \\ st }} +2  [Y_e Y_e^\dagger]_{st} C_{\substack{ Hl \\ pr }}^{(1)}  - [Y_e^\dagger]_{pv} \, [Y_e]_{wr} \, C_{\substack{ee  \\ vtsw}} -  [Y_e^\dagger]_{pw} \, [Y_e]_{vr} \, C_{\substack{ee  \\ wtsv}} \nn
+& - 2 [Y_e^\dagger]_{pv} \, [Y_e]_{wr} \, C_{\substack{ee  \\ vwst}}
+ + [Y_e^\dagger]_{pw} \, [Y_e]_{sv}  \, C_{\substack{le  \\ vrwt}}    - [Y_e^\dagger]_{wt} \, [Y_e]_{sv}  \, C_{\substack{ll  \\ pwvr}} -  [Y_e^\dagger]_{vt} \, [Y_e]_{sw} \, C_{\substack{ll \\ pvwr}} \nn
+& - 4 [Y_e^\dagger]_{wt} \, [Y_e]_{sv} \, C_{\substack{ll \\ prvw}} + [Y_e^\dagger]_{vt} \, [Y_e]_{wr}  \, C_{\substack{le \\ pvsw}}   + \gamfY lpv C_{\substack{le \\ vrst}}  + \gamfY esv  C_{\substack{le \\ prvt}}
++  C_{\substack{le \\ pvst}}  \gamfY lvr  + C_{\substack{le \\ prsv}}  \gamfY evt\\
+ &+    \frac43 g_1^2 \hyp_h \hyp_l C_{ \substack {He \\ s t } } \delta_{p r}  
+ +        \frac43 g_1^2 \hyp_e \hyp_h C^{(1)}_{ \substack {Hl \\ p r } } \delta_{s t}    
++        \frac83 g_1^2 \hyp_e \hyp_l C_{ \substack {ll \\ p r w w } } \delta_{s t} 
++        \frac83 g_1^2 \hyp_e \hyp_l C_{ \substack {ll \\ w w p r } } \delta_{s t} 
++        \frac43 g_1^2 \hyp_e \hyp_l C_{ \substack {ll \\ p w w r } } \delta_{s t}
+\nn
+&
++        \frac43 g_1^2 \hyp_e \hyp_l C_{ \substack {ll \\ w r p w } } \delta_{s t} 
++        \frac83 g_1^2 N_c \hyp_e \hyp_q C^{(1)}_{ \substack {lq \\ p r w w } } \delta_{s t} 
++        \frac83 g_1^2 N_c \hyp_l \hyp_q C_{ \substack {qe \\ w w s t } } \delta_{p r}
++        \frac43 g_1^2 \hyp_e^2 C_{ \substack {le \\ p r w w } } \delta_{s t} 
++        \frac83 g_1^2 \hyp_l^2 C_{ \substack {le \\ w w s t } } \delta_{p r} 
+\nn
+&
++        \frac43 g_1^2 N_c \hyp_e \hyp_u C_{ \substack {lu \\ p r w w } } \delta_{s t}
++        \frac43 g_1^2 N_c \hyp_d \hyp_e C_{ \substack {ld \\ p r w w } } \delta_{s t} 
++        \frac43 g_1^2 N_c \hyp_l \hyp_u C_{ \substack {eu \\ s t w w } } \delta_{p r} 
++        \frac43 g_1^2 N_c \hyp_d \hyp_l C_{ \substack {ed \\ s t w w } } \delta_{p r} 
+\nn
+&
++        \frac43 g_1^2 \hyp_e \hyp_l C_{ \substack {ee \\ s t w w } } \delta_{p r} 
++        \frac43 g_1^2 \hyp_e \hyp_l C_{ \substack {ee \\ s w w t } } \delta_{p r} 
++        \frac43 g_1^2 \hyp_e \hyp_l C_{ \substack {ee \\ w t s w } } \delta_{p r}
++        \frac43 g_1^2 \hyp_e \hyp_l C_{ \substack {ee \\ w w s t } } \delta_{p r} 
+-12 \hyp_l \hyp_e g_1^2 C_{\substack{ le \\ prst }} 
+\end{align}

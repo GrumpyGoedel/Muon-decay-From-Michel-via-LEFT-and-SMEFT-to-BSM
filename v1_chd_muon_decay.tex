@@ -1,0 +1,218 @@
+% Thesis-ready section fragment.
+% Conventions: L_SMEFT = L_SM + sum_i C_i O_i, so C_i has mass dimension -2.
+% The real parameter h is the physical coupling of V_1 to the Hermitian Higgs
+% current. In the notation of the tree-level dictionary used in the thesis,
+% this corresponds to D_{HH^\dagger V_1 D}=i h/2.
+
+\subsection{The bosonic operator $\mathcal O_{HD}$ in the correlated
+$V_1$ scenario}
+\label{sec:v1-chd}
+
+The neutral vector singlet
+$V_1\sim(\mathbf 1,\mathbf 1)_0$ can couple not only to fermionic
+currents, but also to the gauge-invariant Higgs current:
+\begin{equation}
+    J_H^\mu
+    =H^\dagger i\overleftrightarrow{D}^{\mu}H
+    \equiv
+    iH^\dagger D^\mu H-i(D^\mu H)^\dagger H.
+    \label{eq:v1-higgs-current}
+\end{equation}
+The relevant ultraviolet interactions may be written as:
+\begin{equation}
+    \Delta\mathcal L_{V_1}
+    =-\frac14 V_{1,\mu\nu}V_1^{\mu\nu}
+      +\frac12M_{V_1}^2V_{1,\mu}V_1^\mu
+      +V_{1,\mu}
+       \left(
+          \lambda_l J_l^\mu
+          -\lambda_e J_e^\mu
+          -\lambda_hJ_H^\mu
+       \right)\label{eq:V1Lag}
+\end{equation}
+Here, $J_l^\mu=\bar l\gamma^\mu l$ and
+$J_e^\mu=\bar e_R\gamma^\mu e_R$.  The parameter $\lambda_h$ in
+Eq.~\eqref{eq:V1Lag} is real.  In terms of the raw
+coupling used in the tree-level matching dictionary, the Hermitian
+interaction corresponds to:
+\begin{equation}
+    \mathcal D_{HH^\dagger V_1D}=\frac{i\lambda_h}{2}.
+    \label{eq:v1-dictionary-h-coupling}
+\end{equation}
+Consequently, a statement such as ``real Higgs coupling $\lambda_h=1$'' refers to
+the physical parameter $\lambda_h$ after extracting this factor of $i$; it does
+not mean that the raw dictionary coupling
+$\mathcal D_{HH^\dagger V_1D}$ is real.
+
+At energies well below $M_{V_1}$, the leading solution of the classical
+equation of motion is
+\begin{equation}
+    V_1^\mu
+    =-\frac{1}{M_{V_1}^2}
+       \left(
+          \lambda_l J_l^\mu
+          -\lambda_e J_e^\mu
+          -hJ_H^\mu
+       \right)
+       +\mathcal O(M_{V_1}^{-4}).
+\end{equation}
+Substitution into Eq.~\eqref{eq:v1-current-lagrangian} gives
+\begin{equation}
+    \Delta\mathcal L_{\mathrm{SMEFT}}^{(6)}
+    =-\frac{1}{2M_{V_1}^2}
+       \left(
+          \lambda_l J_l^\mu
+          -\lambda_e J_e^\mu
+          -hJ_H^\mu
+       \right)^2.
+    \label{eq:v1-current-square}
+\end{equation}
+The terms containing one Higgs current and one lepton current generate
+$\mathcal O_{Hl}^{(1)}$ and $\mathcal O_{He}$.  By contrast, the square
+of the Higgs current generates purely bosonic operators,
+\begin{equation}
+    \left(J_H^\mu J_{H,\mu}\right)
+    \doteq
+    \mathcal O_{H\Box}+4\mathcal O_{HD},
+    \label{eq:higgs-current-warsaw-decomposition}
+\end{equation}
+where $\doteq$ denotes equality up to a total derivative and
+\begin{align}
+    \mathcal O_{H\Box}
+    &=(H^\dagger H)\Box(H^\dagger H),
+    \\
+    \mathcal O_{HD}
+    &=\left(H^\dagger D_\mu H\right)^*
+      \left(H^\dagger D^\mu H\right).
+\end{align}
+It follows that the correlated $V_1$ model necessarily produces
+\begin{equation}
+    C_{H\Box}=-\frac{h^2}{2M_{V_1}^2},
+    \qquad
+    C_{HD}=-\frac{2h^2}{M_{V_1}^2}.
+    \label{eq:v1-bosonic-matching}
+\end{equation}
+Thus, retaining the mixed coefficients proportional to
+$h\lambda_{l,e}$ while discarding the bosonic coefficients proportional
+to $h^2$ is not the complete tree-level matching of the same ultraviolet
+benchmark.
+
+\subsubsection{How $C_{HD}$ enters muon decay}
+
+The operator $\mathcal O_{HD}$ contains no leptons and therefore does not
+generate a four-lepton muon-decay amplitude directly.  It also does not
+alter the charged-current $W\ell\nu$ vertex at tree level.  Its effect is
+instead an electroweak-input effect.  In unitary gauge,
+\begin{equation}
+    H=\frac{1}{\sqrt2}
+      \begin{pmatrix}0\\ v+\varphi\end{pmatrix},
+\end{equation}
+$\mathcal O_{HD}$ changes the neutral gauge-boson mass term but leaves the
+charged one unchanged.  To first order in the dimension-six coefficient,
+\begin{align}
+    m_W^2
+    &=\frac{g_2^2v^2}{4},
+    \\
+    m_Z^2
+    &=\frac{(g_1^2+g_2^2)v^2}{4}
+      \left(1+\frac12v^2C_{HD}\right).
+    \label{eq:chd-gauge-boson-masses}
+\end{align}
+This unequal modification of the $W$ and $Z$ mass relations is the
+custodial-symmetry-breaking effect associated with $\mathcal O_{HD}$.
+
+Consider the electroweak input set
+$\{\widehat m_W,\widehat m_Z,\widehat\alpha\}$.  Defining
+\begin{equation}
+    s_W\equiv\frac{g_1}{\sqrt{g_1^2+g_2^2}},
+    \qquad
+    c_W\equiv\frac{g_2}{\sqrt{g_1^2+g_2^2}},
+\end{equation}
+and holding the three measured inputs fixed, Eq.~\eqref{eq:chd-gauge-boson-masses}
+implies
+\begin{equation}
+    \frac{\delta v}{v}
+    =-\frac{c_W^2}{4s_W^2}\,v^2C_{HD}.
+    \label{eq:chd-vev-shift}
+\end{equation}
+Since the Standard-Model charged-current normalization is
+\begin{equation}
+    G_F^{\mathrm{pred}}=\frac{1}{\sqrt2v^2},
+\end{equation}
+the corresponding shift in the predicted Fermi constant is
+\begin{equation}
+    \frac{\delta G_F^{\mathrm{pred}}}{G_F^{\mathrm{pred}}}
+    =-2\frac{\delta v}{v}
+    =\frac{c_W^2}{2s_W^2}\,v^2C_{HD}.
+    \label{eq:chd-gf-shift}
+\end{equation}
+For the correlated $V_1$ matching in
+Eq.~\eqref{eq:v1-bosonic-matching}, and with
+\begin{equation}
+    s_V\equiv\frac{v}{M_{V_1}},
+\end{equation}
+this becomes
+\begin{equation}
+    \left.
+    \frac{\delta G_F^{\mathrm{pred}}}{G_F^{\mathrm{pred}}}
+    \right|_{C_{HD}}
+    =-\frac{c_W^2}{s_W^2}\,h^2s_V^2.
+    \label{eq:v1-chd-gf-shift}
+\end{equation}
+The total non-radiative muon-decay rate is proportional to $G_F^2$.
+Therefore, if $R_G$ denotes the rate normalization relative to the
+Standard Model, the isolated linear contribution of $C_{HD}$ is
+\begin{equation}
+    \left.\Delta R_G\right|_{C_{HD}}
+    =-2\frac{c_W^2}{s_W^2}\,h^2s_V^2.
+    \label{eq:v1-chd-rate-shift}
+\end{equation}
+In particular, if the previously obtained correlated-mediator result
+without the purely bosonic operators is
+\begin{equation}
+    R_G^{\mathrm{old}}
+    =1+s_V^2+\frac52s_V^4,
+\end{equation}
+then the complete dimension-six prediction at linear order is instead
+\begin{equation}
+    R_G
+    =1+
+      \left[
+          1-2\frac{c_W^2}{s_W^2}h^2
+      \right]s_V^2
+      +\mathcal O(s_V^4).
+    \label{eq:v1-rate-with-chd}
+\end{equation}
+The coefficient multiplying $h^2s_V^2$ is numerically sizeable,
+$2c_W^2/s_W^2\simeq6\text{--}7$, so the omission of $C_{HD}$ is not a
+small correction when $h$ is taken to be of order unity.
+
+At tree level, $C_{HD}$ changes only the overall normalization of the
+muon-decay amplitude.  It therefore affects the lifetime, but not the
+normalized Michel-spectrum shape parameters such as $\rho$, $\delta$ or
+$\xi$.  The additional same-flavour-neutrino channels in the correlated
+$V_1$ benchmark arise instead from $\mathcal O_{Hl}^{(1)}$ and
+$\mathcal O_{He}$ through off-shell $Z$ exchange; they should not be
+attributed to $\mathcal O_{HD}$.
+
+\paragraph{Input-scheme qualification.}
+Equation~\eqref{eq:chd-gf-shift} is visible because the electroweak
+parameters are inferred from
+$\{\widehat m_W,\widehat m_Z,\widehat\alpha\}$ and the muon lifetime is
+then treated as an observable.  In an input scheme that uses the measured
+$G_F$ itself, for example
+$\{\widehat G_F,\widehat m_Z,\widehat\alpha\}$, this normalization shift
+is absorbed into the definition of the electroweak vacuum expectation
+value.  It must then not be counted a second time as an independent
+muon-decay constraint; the effect of $C_{HD}$ reappears in predictions for
+other electroweak observables.
+
+\paragraph{EFT-order qualification.}
+Equation~\eqref{eq:v1-rate-with-chd} is the result consistently truncated
+at order $M_{V_1}^{-2}$.  Extending it to order $s_V^4$ requires the
+squares and cross terms of all dimension-six contributions.  A complete
+model-independent SMEFT prediction at that order also requires the
+interference of dimension-eight operators with the Standard Model.  Thus,
+one should either quote the linear dimension-six result or compute the
+higher-order terms consistently within the specified ultraviolet model.
+

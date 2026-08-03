@@ -1,10 +1,81 @@
 \chapter{Outlook}
-We have perturbed muon decay with LEFT operators and constrained two of their possible UV origins. At the many intermediate steps in this investigation we made assumptions and exclusions that could be questioned. We will briefly reflect on some of these which might point toward future analyses:
+We reflect here on some ideas for improving the precision of the presented results as well as shifting the conceptual core of the investigation.
+\paragraph*{Dimension seven and Weinberg}
+The most immediate extension of the dimension-seven analysis would be
+a combined treatment of the Weinberg and dimension-seven operators.
+Rather than setting $C_5$ to zero at the electroweak scale, one could
+choose a concrete UV completion, match all of its dimension-five,
+-six and -seven coefficients at the heavy thresholds, and evolve them
+downwards simultaneously. The resulting Majorana mass matrix could
+then be confronted with neutrino-oscillation data, the KATRIN
+bound, neutrinoless double-beta decay where applicable, and other
+lepton-number-violating observables. Such a multi-frontier analysis is
+particularly important for the $F_1$ and $F_5$ completions, because
+the same UV interactions that generate the dimension-seven operators
+also produce the Weinberg operator. Existing surveys of
+dimension-seven lepton-number violation provide a natural basis for
+this comparison~\parencite{fridell2024probing}.
+\paragraph*{Matching to the HEFT}
+Moreover, the SMEFT analysis assumes a linear realization of
+electroweak symmetry breaking. If the Higgs does not belong to an
+approximately elementary doublet at the scale of new physics, the
+appropriate intermediate description would instead be the HEFT.
+Establishing the corresponding HEFT-to-LEFT matching would show which
+relations among the low-energy coefficients are consequences of the
+linear Higgs doublet and which survive more generally.
+\paragraph*{Michel parameters in the on-shell amplitude basis}
+An interesting idea would also be to formulate the perturbations of the Michel parameters directly in the on-shell amplitude basis. Instead of beginning with a Lagrangian operator basis or the traditional SPVAT couplings, one would construct the most general local
+four-point amplitude for muon decay:
+\begin{equation}
+    \mathcal A\!\left(\mu\to e\nu_p\bar\nu_r\right)
+    = \mathcal A_{\mathrm{SM}}
+    + \sum_I a_I\,\mathcal B_I
+    \label{eq:outlook-onshell-amplitude}
+\end{equation}
+Here, the $\mathcal B_I$ denote independent spinor-helicity structures that
+obey Lorentz invariance, little-group covariance, locality and the required
+fermionic exchange symmetries. The muon and, for a complete analysis of the
+Michel parameters, the electron would have to be treated as massive external
+states, whereas the neutrino masses could be neglected. The coefficients
+$a_I$ would constitute an amplitude-level counterpart of the LEFT Wilson
+coefficients and could be related to them by an explicit matching calculation.
 
-The heavy mediator $V_1$ also produces bosonic operators which could propagate all the way down to muon decay -- this should be included
+The Michel parameters would then arise from bilinears of these amplitude
+coefficients after forming the polarized squared amplitude and integrating
+over the unobserved neutrino phase space. Schematically, each parameter could
+be represented as
+\begin{equation}
+    X
+    = \frac{\boldsymbol a^{\dagger} M_X\boldsymbol a}
+           {\boldsymbol a^{\dagger} M_N\boldsymbol a}
+    \qquad
+    X\in\{\rho,\eta,\xi,\delta,\xi',\ldots\}
+    \label{eq:outlook-michel-bilinear}
+\end{equation}
+where $M_X$ encodes the relevant polarized phase-space integral and $M_N$
+determines the decay normalization. Expanding
+$\boldsymbol a=\boldsymbol a_{\mathrm{SM}}+\delta\boldsymbol a$ would directly
+separate the interference terms, which are linear in the new amplitude, from
+the contributions that are quadratic in it. In this way, the perturbative
+expressions derived in the LEFT could be reproduced without introducing
+off-shell operator redundancies.
 
-Questions:
-\begin{itemize}
-    \item 
-    \item what if new physics does not follow spontaneous symmetry breaking -- how would we perform these calculations in the HEFT -- is there a matching onto the LEFT?
-\end{itemize}
+The on-shell formulation would also establish a direct connection to the UV
+dictionary employed in this thesis. A local four-point interaction observed at
+low energies can be opened into possible ultraviolet origins by determining
+the massive poles through which the corresponding amplitude can factorize. In
+the vicinity of a heavy propagator, one schematically has:
+\begin{equation}
+    \mathcal A_4^{\mathrm{UV}}
+    \supset
+    \frac{\mathcal A_3^{(L)}\mathcal A_3^{(R)}}{p^2-M^2}
+    \xrightarrow{\,p^2\ll M^2\,}
+    -\frac{\mathcal A_3^{(L)}\mathcal A_3^{(R)}}{M^2}
+    +\mathcal O\!\left(\frac{p^2}{M^4}\right)\,.
+    \label{eq:outlook-onshell-factorization}
+\end{equation}
+The low-energy contact amplitude is thus the first term in the expansion of a
+factorization channel containing a dynamical heavy field. This would express
+the full bottom-up trajectory within a common on-shell language.
+
+The spinor-helicity formalism also points beyond the current Lagrangian formulation of particle physics. This fits very well with the overall directive of this work, namely shifting away from the idea of a single, complete theory that determines all observables and towards a display of the principles that connect the multiple description of physical reality.

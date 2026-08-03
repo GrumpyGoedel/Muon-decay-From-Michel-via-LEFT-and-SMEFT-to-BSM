@@ -1,0 +1,316 @@
+% Single-heavy-field source Lagrangians transcribed from Appendix A of
+% Li, Ren and Yu, arXiv:2307.10380 / Phys. Rev. D 109 (2024) 095041.
+% This file is a LaTeX fragment and can be included with \input{...}.
+
+\section{Single-field UV Lagrangians}
+\label{sec:single-field-uv-lagrangians}
+
+This section collects the UV resonances that occur in the tree-level
+completions of the SMEFT operators relevant to muon decay.  The notation and
+normalisation follow Li, Ren and Yu~\cite{li2024complete}.  For each resonance
+$X$ we retain its kinetic and mass term and all renormalisable source terms
+that are linear in $X$ and otherwise contain only Standard-Model fields.
+Terms involving two or more heavy fields are deliberately omitted.  Thus no
+interaction from the mixed-heavy sector of appendix~A.2.4 of
+Ref.~\cite{li2024complete} is included.  Higgs-portal and heavy self-couplings,
+which contain at least two heavy fields and do not provide a linear source for
+tree-level matching, are omitted for the same reason.
+
+The relevant field content is
+\begin{table}[htbp]
+    \centering
+    \small
+    \renewcommand{\arraystretch}{1.15}
+    \begin{tabular}{ccl}
+        \toprule
+        Field & $SU(3)_c\times SU(2)_L\times U(1)_Y$ & Relevant SMEFT operator(s) \\
+        \midrule
+        $S_2$ & $({\bf1},{\bf1})_{1}$
+            & $Q_{ll}$; ingredient of $\mathcal O_{\bar eLLLH}$ completions \\
+        $S_4$ & $({\bf1},{\bf2})_{1/2}$
+            & $Q_{le}$; ingredient of $\mathcal O_{\bar eLLLH}$ completions \\
+        $S_6$ & $({\bf1},{\bf3})_{1}$
+            & $Q_{ll}$, $\mathcal O_{LeHD}$; ingredient of mixed completions \\
+        \midrule
+        $F_1$ & $({\bf1},{\bf1})_{0}$
+            & $Q_{Hl}^{(1)}$, $Q_{Hl}^{(3)}$, $\mathcal O_{LeHD}$,
+              $\mathcal O_{\bar eLLLH}$ \\
+        $F_2$ & $({\bf1},{\bf1})_{1}$
+            & $Q_{Hl}^{(1)}$, $Q_{Hl}^{(3)}$ \\
+        $F_3$ & $({\bf1},{\bf2})_{1/2}$
+            & $Q_{He}$; ingredient of $\mathcal O_{LeHD}$ completions \\
+        $F_4$ & $({\bf1},{\bf2})_{3/2}$
+            & $Q_{He}$; ingredient of $\mathcal O_{\bar eLLLH}$ completions \\
+        $F_5$ & $({\bf1},{\bf3})_{0}$
+            & $Q_{Hl}^{(1)}$, $Q_{Hl}^{(3)}$, $\mathcal O_{LeHD}$,
+              $\mathcal O_{\bar eLLLH}$ \\
+        $F_6$ & $({\bf1},{\bf3})_{1}$
+            & $Q_{Hl}^{(1)}$, $Q_{Hl}^{(3)}$ \\
+        \midrule
+        $V_1$ & $({\bf1},{\bf1})_{0}$
+            & $Q_{ll}$, $Q_{le}$, $Q_{Hl}^{(1)}$, $Q_{He}$ \\
+        $V_2$ & $({\bf1},{\bf1})_{1}$
+            & ingredient of $\mathcal O_{LeHD}$ completions \\
+        $V_3$ & $({\bf1},{\bf2})_{3/2}$
+            & $Q_{le}$; ingredient of $\mathcal O_{LeHD}$ completions \\
+        $V_4$ & $({\bf1},{\bf3})_{0}$
+            & $Q_{ll}$, $Q_{Hl}^{(3)}$ \\
+        \bottomrule
+    \end{tabular}
+    \caption{Heavy fields entering the tree-level UV completions of the
+    SMEFT operators relevant to the muon-decay analysis.  ``Ingredient''
+    means that the field contributes only together with another heavy
+    resonance through a mixed-heavy vertex, which is not retained in the
+    single-field Lagrangians below.}
+    \label{tab:single-field-uv-content}
+\end{table}
+
+Here $p$ labels copies of a heavy resonance, $r,s$ are SM flavour indices,
+$i,j,k,l$ are $SU(2)_L$ indices, $a$ is a colour index, $C$ is the charge
+conjugation matrix, and $\tau^I$ are the Pauli matrices.  Repeated indices are
+summed.  The symbol ``h.c.'' completes each displayed source Lagrangian to a
+Hermitian expression.
+
+\subsection{Kinetic and mass terms}
+
+The universal kinetic terms of Ref.~\cite{li2024complete} are
+\begin{align}
+    \Delta\mathcal L_{\mathrm{kin},\Phi}
+        &= -\eta_\Phi\,\Phi^\dagger(D^2+M_\Phi^2)\Phi,
+        \label{eq:uv-kin-scalar}\\
+    \Delta\mathcal L_{\mathrm{kin},F}^{\mathrm{Maj}}
+        &= \overline F i\slashed D F
+        -\frac{M_F}{2}\left(\overline{F^c}F+\overline F F^c\right),
+        \label{eq:uv-kin-majorana}\\
+    \Delta\mathcal L_{\mathrm{kin},F}^{\mathrm{Dirac}}
+        &= \overline F(i\slashed D-M_F)F,
+        \label{eq:uv-kin-dirac}\\
+    \Delta\mathcal L_{\mathrm{kin},V}
+        &= \eta_V V^{\dagger\mu}
+        \left(g_{\mu\nu}D^2-D_\nu D_\mu+g_{\mu\nu}M_V^2\right)V^\nu.
+        \label{eq:uv-kin-vector}
+\end{align}
+For real bosonic fields $\eta=1/2$, while for complex bosonic fields
+$\eta=1$.  In the present set, the complex bosons are
+$S_2,S_4,S_6,V_2,V_3$, whereas $V_1,V_4$ are real.
+The fermions $F_1$ and $F_5$ are left-parity Majorana fermions, whereas
+$F_2,F_3,F_4,F_6$ are vector-like Dirac fermions.
+
+\subsection{New scalars}
+
+\paragraph{$S_2\sim({\bf1},{\bf1})_1$.}
+Its SM source is the lepton-doublet bilinear,
+\begin{align}
+    \Delta\mathcal L_{S_2}^{\mathrm{src}}
+    ={}&-\mathcal D_{LLS_2}^{rsp}\,epsilon^{ij}
+        \big[(\ell_r)_i C(\ell_s)_j\big]S_{2p}
+        +\mathrm{h.c.}
+    \label{eq:uv-lag-S2}
+\end{align}
+Together with Eq.~\eqref{eq:uv-kin-scalar}, this is the single-$S_2$
+Lagrangian relevant for $Q_{ll}$.
+
+\paragraph{$S_4\sim({\bf1},{\bf2})_{1/2}$.}
+The complete set of terms linear in $S_4$ and built only from SM fields is
+\begin{align}
+\begin{split}
+    \Delta\mathcal L_{S_4}^{\mathrm{src}}={}&
+       -2\mathcal D_{d^\dagger Q S_4^\dagger}^{rsp}
+        \big[(\overline d_r)^a(q_s)_{ai}\big](S_{4p}^\dagger)^i
+       -\mathcal D_{e^\dagger L S_4^\dagger}^{rsp}
+        \big[\overline e_r(\ell_s)_i\big](S_{4p}^\dagger)^i
+        \\
+      &-2\mathcal D_{Q S_4u^\dagger}^{rps}\epsilon^{ji}
+        \big[(\overline u_s)^a(q_r)_{aj}\big](S_{4p})_i
+       -\mathcal D_{HH^\dagger H^\dagger S_4(1)}^{p}
+        \delta^i_k\delta^j_l H_jH^{\dagger k}H^{\dagger l}(S_{4p})_i
+        \\
+      &-\mathcal D_{HH^\dagger H^\dagger S_4(2)}^{p}
+        \delta^i_l\delta^j_k H_jH^{\dagger k}H^{\dagger l}(S_{4p})_i
+       +\mathrm{h.c.}
+\end{split}
+\label{eq:uv-lag-S4}
+\end{align}
+The second term is the source of $Q_{le}$; the remaining terms display the
+quark and Higgs interactions correlated with the same heavy doublet.
+
+\paragraph{$S_6\sim({\bf1},{\bf3})_1$.}
+The triplet has one dimension-three Higgs source and one dimension-four
+lepton source,
+\begin{align}
+\begin{split}
+    \Delta\mathcal L_{S_6}^{\mathrm{src}}={}&
+       \frac{\mathcal C_{HHS_6^\dagger}^{p}}{\sqrt2}
+       \epsilon^{kj}(\tau^I)_k{}^i H_iH_j(S_{6p}^\dagger)^I
+       \\
+      &-\frac{\mathcal D_{LLS_6}^{rsp}}{\sqrt2}
+       \epsilon^{jk}(\tau^I)_k{}^i
+       \big[(\ell_r)_iC(\ell_s)_j\big](S_{6p})^I
+       +\mathrm{h.c.}
+\end{split}
+\label{eq:uv-lag-S6}
+\end{align}
+These two sources generate $Q_{ll}$ and also the single-field
+dimension-seven contribution to $\mathcal O_{LeHD}$.
+
+\subsection{New fermions}
+
+\paragraph{$F_1\sim({\bf1},{\bf1})_0$.}
+\begin{align}
+    \Delta\mathcal L_{F_1}^{\mathrm{src}}
+    ={}&-\mathcal D_{F_1HL}^{pr}\epsilon^{ji}
+       \big[F_{1p}C(\ell_r)_i\big]H_j+\mathrm{h.c.}
+    \label{eq:uv-lag-F1}
+\end{align}
+
+\paragraph{$F_2\sim({\bf1},{\bf1})_1$.}
+\begin{align}
+    \Delta\mathcal L_{F_2}^{\mathrm{src}}
+    ={}&+\mathcal D_{F_{2L}H^\dagger L}^{pr}
+       \big[F_{2p}C(\ell_r)_i\big]H^{\dagger i}+\mathrm{h.c.}
+    \label{eq:uv-lag-F2}
+\end{align}
+
+\paragraph{$F_3\sim({\bf1},{\bf2})_{1/2}$.}
+\begin{align}
+    \Delta\mathcal L_{F_3}^{\mathrm{src}}
+    ={}&-\mathcal D_{e^\dagger F_{3R}^\dagger H^\dagger}^{rp}
+       \epsilon^{ij}\big[\overline e_r C(\overline F_{3p})_i\big]
+       H_j^\dagger+\mathrm{h.c.}
+    \label{eq:uv-lag-F3}
+\end{align}
+
+\paragraph{$F_4\sim({\bf1},{\bf2})_{3/2}$.}
+\begin{align}
+    \Delta\mathcal L_{F_4}^{\mathrm{src}}
+    ={}&+\mathcal D_{e^\dagger F_{4R}^\dagger H}^{rp}
+       \big[\overline e_r C(\overline F_{4p})^i\big]H_i
+       +\mathrm{h.c.}
+    \label{eq:uv-lag-F4}
+\end{align}
+The $F_3$ and $F_4$ sources separately generate $Q_{He}$ after the heavy
+doublet is integrated out.
+
+\paragraph{$F_5\sim({\bf1},{\bf3})_0$.}
+With the triplet normalisation of Ref.~\cite{li2024complete}, the two explicit
+$SU(2)_L$ contractions belonging to the same coupling are
+\begin{align}
+\begin{split}
+    \Delta\mathcal L_{F_5}^{\mathrm{src}}={}&
+       \frac{\mathcal D_{F_5HL}^{pr}}{2\sqrt2}
+       \epsilon_{kj}(\tau^I)_i{}^k
+       \big[(F_{5p})_I C(\ell_r)_i\big]H_j
+       \\
+      &+\frac{\mathcal D_{F_5HL}^{pr}}{2\sqrt2}
+       \epsilon_{ki}(\tau^I)_j{}^k
+       \big[(F_{5p})_I C(\ell_r)_i\big]H_j
+       +\mathrm{h.c.}
+\end{split}
+\label{eq:uv-lag-F5}
+\end{align}
+
+\paragraph{$F_6\sim({\bf1},{\bf3})_1$.}
+\begin{align}
+    \Delta\mathcal L_{F_6}^{\mathrm{src}}
+    ={}&+\frac{\mathcal D_{F_{6L}H^\dagger L}^{pr}}{\sqrt2}
+       (\tau^I)_i{}^j
+       \big[(F_{6p})_I C(\ell_r)_i\big]H_j^\dagger
+       +\mathrm{h.c.}
+    \label{eq:uv-lag-F6}
+\end{align}
+
+\subsection{New vectors}
+
+\paragraph{$V_1\sim({\bf1},{\bf1})_0$.}
+The singlet vector can couple to every hypercharge-neutral SM singlet current.
+The source terms appearing in the dictionary are
+\begin{align}
+\begin{split}
+    \Delta\mathcal L_{V_1}^{\mathrm{src}}={}&
+       -2\mathcal D_{d^\dagger dV_1}^{rsp}
+        \big[(\overline d_r)^a\gamma_\mu(d_s)_a\big]V_{1p}^\mu
+       -\mathcal D_{e^\dagger eV_1}^{rsp}
+        \big[\overline e_r\gamma_\mu e_s\big]V_{1p}^\mu
+        \\
+      &-2\mathcal D_{HH^\dagger V_1D}^{p}
+        (D_\mu H_i)H^{\dagger i}V_{1p}^\mu
+       +\mathcal D_{LL^\dagger V_1}^{rsp}
+        \big[(\overline\ell_s)^i\gamma_\mu(\ell_r)_i\big]V_{1p}^\mu
+        \\
+      &+2\mathcal D_{QQ^\dagger V_1}^{rsp}
+        \big[(\overline q_s)^{ai}\gamma_\mu(q_r)_{ai}\big]V_{1p}^\mu
+       -2\mathcal D_{u^\dagger uV_1}^{rsp}
+        \big[(\overline u_r)^a\gamma_\mu(u_s)_a\big]V_{1p}^\mu
+       +\mathrm{h.c.}
+\end{split}
+\label{eq:uv-lag-V1}
+\end{align}
+The $L$, $e$ and Higgs currents generate $Q_{ll}$, $Q_{le}$,
+$Q_{Hl}^{(1)}$ and $Q_{He}$ in correlated combinations.
+
+\paragraph{$V_2\sim({\bf1},{\bf1})_1$.}
+\begin{align}
+\begin{split}
+    \Delta\mathcal L_{V_2}^{\mathrm{src}}={}&
+       -2\mathcal D_{d^\dagger uV_2^\dagger}^{rsp}
+       \big[(\overline d_r)^a\gamma_\mu(u_s)_a\big]V_{2p}^{\dagger\mu}
+       \\
+      &-2\mathcal D_{HHV_2^\dagger D}^{p}\epsilon^{ij}
+       (D_\mu H_i)H_jV_{2p}^{\dagger\mu}+\mathrm{h.c.}
+\end{split}
+\label{eq:uv-lag-V2}
+\end{align}
+No operator in the muon-decay set is generated by $V_2$ alone.  It enters
+$\mathcal O_{LeHD}$ only through a mixed-heavy completion.
+
+\paragraph{$V_3\sim({\bf1},{\bf2})_{3/2}$.}
+\begin{align}
+    \Delta\mathcal L_{V_3}^{\mathrm{src}}
+    ={}&-\mathcal D_{e^\dagger L^\dagger V_3^\dagger}^{rsp}
+       \epsilon^{ji}\big[\overline e_r\gamma_\mu
+       C(\overline\ell_s)_j\big](V_{3p}^\dagger)_i{}^\mu
+       +\mathrm{h.c.}
+    \label{eq:uv-lag-V3}
+\end{align}
+This source generates $Q_{le}$ through single-$V_3$ exchange.
+
+\paragraph{$V_4\sim({\bf1},{\bf3})_0$.}
+\begin{align}
+\begin{split}
+    \Delta\mathcal L_{V_4}^{\mathrm{src}}={}&
+       +\sqrt2\mathcal D_{HH^\dagger V_4D}^{p}
+        (\tau^I)_i{}^j(D_\mu H_i)H^{\dagger j}(V_{4p})_I{}^\mu
+        \\
+      &-\frac{\mathcal D_{LL^\dagger V_4}^{rsp}}{\sqrt2}
+        (\tau^I)_i{}^j
+        \big[(\overline\ell_s)^j\gamma_\mu(\ell_r)_i\big](V_{4p})_I{}^\mu
+        \\
+      &-\sqrt2\mathcal D_{QQ^\dagger V_4}^{rsp}
+        (\tau^I)_i{}^j
+        \big[(\overline q_s)^{aj}\gamma_\mu(q_r)_{ai}\big](V_{4p})_I{}^\mu
+       +\mathrm{h.c.}
+\end{split}
+\label{eq:uv-lag-V4}
+\end{align}
+The lepton and Higgs triplet currents generate $Q_{ll}$ and
+$Q_{Hl}^{(3)}$.  There is no renormalisable $V_4\overline e_R e_R$ current,
+because both $V_4$ and the current would have to carry incompatible
+$SU(2)_L$ quantum numbers.
+
+\subsection{Consequence of omitting mixed-heavy interactions}
+
+The distinction between a field appearing in a UV completion and a field
+being sufficient by itself is essential at dimension seven.  With the
+mixed-heavy vertices removed as requested, the one-field completions retained
+by the Lagrangians above are
+\begin{align}
+    \mathcal O_{LeHD}&:\quad F_1,\;F_5,\;S_6,
+    \\
+    \mathcal O_{\bar eLLLH}&:\quad F_1,\;F_5.
+\end{align}
+The fields $F_3,V_2,V_3$ can participate in further completions of
+$\mathcal O_{LeHD}$, and $S_2,S_4,S_6,F_4$ can participate in further
+completions of $\mathcal O_{\bar eLLLH}$, but only through a vertex containing
+at least two distinct heavy species.  Such vertices are not part of any
+single-field Lagrangian displayed here and cannot consistently be used after
+the mixed-heavy sector has been set to zero.
