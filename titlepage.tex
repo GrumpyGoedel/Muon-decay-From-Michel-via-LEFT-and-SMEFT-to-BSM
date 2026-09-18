@@ -1,0 +1,51 @@
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    \hspace*{-.6cm}
+    \begin{tikzpicture}
+        \node (muon) at (0,0) {\textsf{\LARGE Muon}};
+        \node[anchor=north] (decay) at (muon.south) [yshift=0.32cm,xshift=-0.28cm] {\textsf{\LARGE decay}};
+        \coordinate (vertex1) at (-0.7,0.5);
+        \coordinate (vertex2) at (0.3,-0.9);
+        \draw[postaction={
+            decorate,
+            decoration={
+                markings,
+                % Change 0.5 to move the arrow along the line
+                mark=at position 0.5 with {\arrow{Stealth[length=6pt]}}
+            }
+        }] (-6,3) -- (vertex1);
+        \draw[postaction={
+            decorate,
+            decoration={
+                markings,
+                % Change 0.5 to move the arrow along the line
+                mark=at position 0.5 with {\arrow{Stealth[length=6pt]}}
+            }
+        }] (vertex1) -- (3,2);
+        \draw[postaction={
+            decorate,
+            decoration={
+                markings,
+                % Change 0.5 to move the arrow along the line
+                mark=at position 0.5 with {\arrow{Stealth[length=6pt]}}
+            }
+        }] (3,-2) -- (vertex2);
+        \draw[postaction={
+            decorate,
+            decoration={
+                markings,
+                % Change 0.5 to move the arrow along the line
+                mark=at position 0.5 with {\arrow{Stealth[length=6pt]}}
+            }
+        }] (vertex2) -- (2,-4);
+    \end{tikzpicture}\par\vspace*{4cm}
+    \sffamily\Large 
+    From the Michel parameters via LEFT and SMEFT to BSM\par\large 
+    A comprehensive exploration of energy regimes and theoretical layers\par\vspace*{3cm}\normalsize
+    Carl Jakob Moritz\par 
+    August 2026\par 
+    Supervisor: Tyler Corbett\par
+    University of Vienna
+    
+\end{titlepage}

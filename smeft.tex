@@ -9,7 +9,7 @@ The SMEFT extends the SM Lagrangian by embedding it as the leading term of an ex
 Unlike the HEFT, the SMEFT assumes that electroweak symmetry is linearly realized and that the physical Higgs belongs to the $SU(2)_L$ doublet $H$. The higher dimensional interactions are therefore constructed from complete SM muliplets and respect the full SM gauge group $SU(3)_C\times SU(2)_L\times U(1)_Y$.\par 
 At dimension five, there is only one operator (class) we can add -- the Weinberg neutrino mass operator \cite{weinberg1967model}, which combines two Higgs doublets with two lepton doublets:
 \begin{equation}
-    \mathcal{L}^5=C_5^{rs}\epsilon ^{ik}\epsilon^{kl}(l^T_{ir}Cl_{ks})H_jH_l+\text{h.c.}
+    \mathcal{L}^5=C_5^{rs}\epsilon ^{ij}\epsilon^{kl}(l^T_{ir}Cl_{ks})H_jH_l+\text{h.c.}
 \end{equation}
 Here, $r,s$ are flavor indices, $i,j,k,l$ weak-eigenstate indices. For three generations, $C_5$ has 6 complex entries. After spontaneous symmetry breaking, this operator produces a Majorana mass term for the neutrino: $M_\nu=-v^2C_5$.\par 
 For dimension six, Buchmüller and Wyler counted 80 operators in 1986 \cite{buchmuller1986effective}. However, many of these operators turn out to be actually equivalent and refer to the same operator structure because they can be transformed into each other. Fierz transformations, for example -- one of which we used in Eq.~\ref{eq:fierzingVLR2SRR} to \enquote{fierz} $L_{\nu e}^{V,LR}$ into $g^S_{RR}$ -- account for many subtle equivalences of scalar, vector and tensor-like structures. Moreover, the SM equations of motion and field redefinitions also allow for transforming many operator structure into each other. An updated classification was therefore published in 2010 which is now mostly referred to as the Warsaw basis \cite{grzadkowski2010dimension} and which counts 63 independent operators, 59 of which conserve baryon number. Of those 59 operators, 42 are self-hermitian and 17 not -- which is why Jenkins, Manohar \& Stoffer count $42+2(17)=76$ baryon-number conserving operators in \cite{jenkins2018lowOM} and $4+4=8$ baryon-number violating operators. At dimension seven, there are 18 independent operators \cite{liao2020extending} -- originally Lehman~\cite{lehman2014extending} presented 20 operators, but 2 pairs of $\psi^4D$ operators were shown to refer to the same structure. In Tab.~\ref{tab:SMEFTnumOP} we collect the number of operators at dimension five, six and seven, following the counting in \cite{jenkins2018lowOM} and \cite{liao2020extending}. We cite the full bases for dimensions six and seven in the appendix in Ch.~\ref{sec:base}.
@@ -58,9 +58,9 @@ From the LEFT paper by Jenkins, Manohar and Stoffer \cite{jenkins2018lowOM} on o
 \end{align}
 For the $prst=ab12$ flavor combination under consideration we are therefore obtaining, while neglecting all terms quadratic in couplings, the following matching conditions:
 \begin{align}
-    L^{V,LL}_{\nu e,ab12}=\, &C_{ll}^{ab12}+C_{ll}^{12ab}-\tfrac{\bar g_2^2}{2M_W^2}\left(\delta_{a2}\delta_{b1}+\delta_{a2}C^{(3),b1}_{Hl}+\delta_{b1}C^{(3),a2}_{Hl}\right)\label{eq:LVLLmatching}\\[5pt]
+    L^{V,LL}_{\nu e,ab12}=\; &C_{ll}^{ab12}+C_{ll}^{12ab}-\tfrac{\bar g_2^2}{2M_W^2}\left(\delta_{a2}\delta_{b1}+\delta_{a2}v_T^2C^{(3),b1}_{Hl}+\delta_{b1}v_T^2C^{(3),a2}_{Hl}\right)\label{eq:LVLLmatching}\\[5pt]
     &+\tfrac{\bar g_Z^2}{M_Z^2}\left(\frac{1}{4}\delta_{ab}v_T^2\left[C_{Hl}^{(1),12*}+C_{Hl}^{(3),12*}\right]\right)\nonumber\\[5pt]
-    L^{V,LR}_{\nu e,ab12}=\, &C_{le}^{ab12}+\tfrac{\bar g_Z^2}{M_Z^2}\left(\frac{1}{4}\delta_{ab}v_T^2C_{He}^{12*}\right)
+    L^{V,LR}_{\nu e,ab12}=\; &C_{le}^{ab12}+\tfrac{\bar g_Z^2}{M_Z^2}\left(\frac{1}{4}\delta_{ab}v_T^2C_{He}^{12*}\right)
 \end{align}
 We have therefore 5 SMEFT Operators at dimension six which the LEFT matches onto (full basis in \ref{tab:dim6SMEFTbasis}):
 \begin{align}
@@ -88,8 +88,8 @@ The specific matching for the seven operators that we derived $95\%$ CL interval
         L^{V,LR}_{\nu e,2112} &= C_{le}^{2112}\label{eq:specMatchVLR2112}\\
         L^{V,LL}_{\nu e,3312} &= C_{ll}^{3312}+C_{ll}^{1233}+\frac{1}{4}v_T^2\tfrac{\bar g_Z^2}{M_Z^2}\left(C_{Hl}^{(1),12*}+C_{Hl}^{(3),12*}\right)\\
         L^{S,LL}_{\nu e,1112} &= -\frac{\sqrt{2}v}{4}\left(2C_{\bar elllH}^{1211}+C_{\bar e lllH}^{1121}\right)\\
-        L^{S,LR}_{\nu e,1112} &=-\sqrt{2}vC_{LeDH}^{12}\\
-        L^{S,LR}_{\nu e,1212} &=\frac{\sqrt{2}v}{2}C_{LeDH}^{22}\\
+        L^{S,LR}_{\nu e,1112} &=-\sqrt{2}vC_{leDH}^{12}\\
+        L^{S,LR}_{\nu e,1212} &=-\frac{\sqrt{2}v}{2}C_{leDH}^{22}\\
         L^{T,LL}_{\nu e,1212} &=\frac{\sqrt{2}v}{32}\left(C_{\bar elllH}^{1122}-C_{\bar elllH}^{1221}\right)\label{eq:specMatchTLL1221}
 \end{align}
 Let us analyze the very first matching conditions in Eq. \ref{eq:specMatchVLL2112} for $ L^{V,LL}_{\nu e,2112}$: The first term $-\tfrac{2}{v_T^2}$ amounts to the pure SM $W$-boson exchange -- however, in the spontaneously broken SMEFT the Higgs potential is modified by the operator $\mathcal{O}_H = (H^\dagger H)^3$, see Eq. \ref{eq:vtgaugecorr}. Since we are working in the  $\{\hat{m}_W, \hat{m}_Z, \hat{\alpha}\}$ input scheme, $v_T$ is not determined by the Higgs potential but by the physical mass of the $W$ boson:

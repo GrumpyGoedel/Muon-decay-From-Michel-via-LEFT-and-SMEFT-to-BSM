@@ -63,7 +63,7 @@ For muon decay, the following operators are relevant:\par
 Dimension-five dipole operators:
 \begin{align}
     \op_{eA}&=\bar e_{L,p}\sigma^{\mu\nu}e_{R,r}F_{\mu\nu}\\
-    \op_{\nu A}&=(\nu^T_{L,p}C\sigma^{\mu\nu}e_{R,r})F_{\mu\nu}
+    \op_{\nu A}&=(\nu^T_{L,p}C\sigma^{\mu\nu}\nu_{R,r})F_{\mu\nu}
 \end{align}
 Dimension-six operators:
 \begin{align}
@@ -84,7 +84,7 @@ Starting with the contributions insensitive to the electron polarization we find
 \begin{align}
 \frac{G_F^2}{G_{F,{\rm SM}}^2}=&\;1-\frac{v^2}{2}\left[L_{\nu e,2112}^{V,LL}+L_{\nu e,1221}^{V,LL}\right]+\frac{v^4}{4}\left[L_{\nu e,2112}^{V,LL}L_{\nu e,1221}^{V,LL}+L_{\nu e,2112}^{V,LR}L_{\nu e,1221}^{V,LR}\right]\label{eq:SMlikeGF}\\[5pt]
 \rho=&\;\frac{3}{4}\\[5pt]
-\eta=&\;\frac{v^2}{4}\left[L_{\nu e,2112}^{V,LR}+L_{\nu e,1221}^{V,LR}\right]+\frac{v^4}{8}\left[L_{\nu e,2112}^{V,LL}L_{\nu e,1221}^{V,LR}+L_{\nu e,2112}^{V,LL}L_{\nu e,1221}^{V,LR}\right]\\[5pt]
+\eta=&\;\frac{v^2}{4}\left[L_{\nu e,2112}^{V,LR}+L_{\nu e,1221}^{V,LR}\right]+\frac{v^4}{8}\left[L_{\nu e,2112}^{V,LL}L_{\nu e,1221}^{V,LR}+L_{\nu e,1221}^{V,LL}L_{\nu e,2112}^{V,LR}\right]\\[5pt]
 \xi=&\;1-\frac{v^4}{2}L_{\nu e,2112}^{V,LR}L_{\nu e,1221}^{V,LR}\\[5pt]
 \delta=&\frac{3}{4}
 \end{align}
@@ -113,7 +113,7 @@ If we allow for contributions that are quadratic in $L_{\nu e,2112}^{V,LR}$ and 
 Extending our analysis to include electron polarization dependence we find corrections to the following additional Michel parameters:
 %
 \begin{align}
-\eta''=&-\frac{v^2}{2}c^{V,LR}_{\nu e,2112}-\frac{v^4}{4}L_{\nu e,2113}^{V,LL}L_{\nu e,2113}^{V,LR}=-\eta\\[5pt]
+\eta''=&-\frac{v^2}{2}L^{V,LR}_{\nu e,2112}-\frac{v^4}{4}L_{\nu e,2113}^{V,LL}L_{\nu e,2113}^{V,LR}=-\eta\\[5pt]
 \xi'=&\;\;1-\frac{v^4}{2}L_{\nu e,2112}^{V,LR}L_{\nu e,1221}^{V,LR}=\xi\\[5pt]
 \frac{\beta'}{A}=&-\frac{v^2}{4}{\rm Im}[L_{\nu e,2112}^{V,LR}]-\frac{v^4}{8}{\rm Im}[(L_{\nu e,2112}^{V,LL})^*L_{\nu e,2112}^{V,LR}]\nonumber\\[5pt]
 &-\frac{v^4}{8}{\rm Im}[(L_{\nu e,2112}^{V,LL})L_{\nu e,2112}^{V,LR}]
@@ -122,7 +122,7 @@ Extending our analysis to include electron polarization dependence we find corre
 
 The parameters $\xi''$ and $\alpha'/A$ remain unchanged -- in the LEFT we will see they only receive corrections from lepton number violating operators. As $\eta''=-\eta$ and $\xi'=\xi$ and these two additional parameters are more poorly measured than $\eta$ and $\xi$, we neglect to extend our fit to include them here. However, the leading interference for $\beta'/A$ together with the one for $\eta$ allow for determining the real and imaginary component of $L^{V,LR}_{\nu e,2112}$:
 \begin{equation}
-    \eta\approx\frac{1}{2}\text{Re}[L^{V,LR}_{\nu e,2112}] \quad\quad \frac{\beta'}{A} \approx  \frac{1}{4} \text{Im}[L^{V,LR}_{\nu e,2112}]
+    \eta\approx\frac{v^2}{2}\text{Re}[L^{V,LR}_{\nu e,2112}] \quad\quad \frac{\beta'}{A} \approx  -\frac{v^2}{4} \text{Im}[L^{V,LR}_{\nu e,2112}]
     \label{eq:etabetaprime}
 \end{equation}
 This operator can be transformed to to a scalar operator by a Fierz transformation:
@@ -133,7 +133,7 @@ This operator can be transformed to to a scalar operator by a Fierz transformati
 \end{align}
 This resembles for $prst=2112$ the Michel structure of $g_{RR}^S$ in the notation by Fetscher, Gerber \& Johnson \cite{fetscher1986muon} and thus our determination in \ref{eq:etabetaprime} reproduces the findings in~\cite{falkowski2016model} where the authors state that at leading order (and for SM like neutrino output) only the Michel parameters $\eta$ and $\beta'/A$ receive a correction stemming from the scalar interaction term $g_{RR}^S$. Since $L^{V,LR}_{\nu e,2112}$ and $g_{RR}^S$ produce the same operator structure we could in principle also constrain $L^{V,LR}_{\nu e,2112}$ directly from the PDG results for the SPVAT matrix elements~\cite{particle2024review}:
 \begin{equation}
-    L^{V,LR}_{\nu e,2112}\simeq |g_{RR}^S|<0.035
+    v^2L^{V,LR}_{\nu e,2112}\simeq |g_{RR}^S|<0.035
 \end{equation}
 We will however use the Michel parameters of Tab.~\ref{tab:michel-likelihood-inputs}. Before we analyze the evolution of the constraints up to the EW scale we discuss the case of full neutrino output.
 \subsection{Full four-fermion results}\label{sec:FullFourFermionResults}
